@@ -14,7 +14,7 @@ Currently equiped armor\
 Wardrobe\
 Personal vault\
 Storage\
-Pets\
+Pets
 
 With these (excluding pets), it will do the following:\
 If it's purchasable on the auction house, get the lowest BIN with the same internal ID. (If it's not use Jerry The Price Checker's price list)\
@@ -24,5 +24,4 @@ If it's been recombobulated, add 5,000,000 to the value.\
 If it's a dungeon item, give the rough value in essence for each item (and each star).\
 If it's a warped aspect of the end, add 10 million if it's epic, add 5 million if it's not.\
 For each level 6 enchantment, add 500k, for each level 7 and above enchantment, add 1 million.\
-And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.\
-
+And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.
