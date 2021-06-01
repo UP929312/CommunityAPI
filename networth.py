@@ -6,7 +6,7 @@ with open("api_key.txt", 'r') as file:
     API_KEY = file.read()
 
 from decode_container import parse_container
-from calculators import calc_pets, calc_stars, calculate_items
+from calculators.main_calculator_handler import calculate_container
 from utils import human_number as hf
 
 def get_data(username):
@@ -29,7 +29,7 @@ def get_storage(player_data):
     return storage_items
 
 # Setup
-username = "nonbunary"  # ------------------
+username = "HoodedRay"  # ------------------
 
 # Parse/Grab data
 player_data, other_data = get_data(username)
@@ -45,18 +45,18 @@ storage_items  = get_storage(player_data)
 pet_items      = player_data.get("pets", [])
 
 # Calculate each section
-accessories_worth = calculate_items(talisman_bag)
-inventory_worth   = calculate_items(inv_contents)
-ender_chest_worth = calculate_items(ender_chest)
-armour_worth      = calculate_items(armour)
-wardrobe_worth    = calculate_items(wardrobe, print_prices=True)
-vault_worth       = calculate_items(personal_vault)
-storage_worth     = calculate_items(storage_items)
+accessories_worth = calculate_container(talisman_bag)
+inventory_worth   = calculate_container(inv_contents)
+ender_chest_worth = calculate_container(ender_chest)
+armour_worth      = calculate_container(armour)
+wardrobe_worth    = calculate_container(wardrobe, print_prices=True)
+vault_worth       = calculate_container(personal_vault)
+storage_worth     = calculate_container(storage_items)
 
 # Other sections
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.
 banking = int(other_data.get("banking", {"balance": 0}).get("balance", 0))  # Same with Bank
-pets = calc_pets(pet_items)
+pets = calculate_container(pet_items)
 
 # Total
 total = purse+banking+pets+inventory_worth+accessories_worth+ender_chest_worth+armour_worth+wardrobe_worth+vault_worth+storage_worth

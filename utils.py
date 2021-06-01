@@ -13,7 +13,7 @@ def human_number(num):
     '''
     Takes an int/float e.g. 10000 and returns a formatted version e.g. 10k
     '''
-    if num < 1: 0
+    if num < 1: return 0
 
     rounded = round(num, 3 - int(log10(num)) - 1)
     suffix = ends[int(log10(rounded)/3)]
@@ -23,7 +23,7 @@ def human_number(num):
     return str(new_num)+suffix
 
 #=========================================================
-
+'''
 LOWEST_BIN = {}
 
 request = requests.get(f"http://moulberry.codes/lowestbin.json")
@@ -37,5 +37,5 @@ else:
     print("Error getting lowest bin data!")
 
 print("Loaded BIN")
-
+'''
 

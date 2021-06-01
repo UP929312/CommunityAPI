@@ -1,6 +1,13 @@
-from essence_dict import ESSENCE_DICT, AVERAGE_REQUIRED, TYPE_DICT, ESSENCE_PRICE
-from manual_price_checking_prices import PRICES as prices
-from utils import LOWEST_BIN
+#from essence_dict import ESSENCE_DICT, AVERAGE_REQUIRED, TYPE_DICT, ESSENCE_PRICE
+#from manual_price_checking_prices import PRICES as prices
+#from utils import LOWEST_BIN
+
+LOWEST_BIN = {}
+prices = {}
+ESSENCE_DICT = {}
+AVERAGE_REQUIRED = {}
+TYPE_DICT = {}
+ESSENCE_PRICE = {}
 
 level_two_reqs = {"COMMON": 383_700, "UNCOMMON": 611_700, "RARE": 936_700, "EPIC": 1_386_700, "LEGENDARY": 1_886_700}
 
@@ -16,18 +23,16 @@ def calc_pets(pets):
     return total
 
 def calc_stars(item_name, internal_id):
+    '''
     #print("Calc stars:", item_name, item_name.count("✪"))        
     essence_required = ESSENCE_DICT.get(internal_id, AVERAGE_REQUIRED)[item_name.count("✪")]
     essence_type = TYPE_DICT.get(internal_id, "SPIDER")
     essence_value = ESSENCE_PRICE[essence_type]*essence_required
     #print(f"Dungeon item! Required: {essence_required}, Type: {essence_type}, Value: {essence_value}")
     return essence_value
+    '''
+    return 0
 
-def calculate_pets(pets):
-    pass
-
-def calculate_enchanted_books(book):
-    pass
 
 def calculate_items(items, print_prices=False):        
     total = 0
