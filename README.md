@@ -6,7 +6,7 @@ Anyone can make a pull request, and it'll be reviewed and possibly added.\
 If you make good suggestions, you'll be invited into a special community-bot-dev channel, where we can further discuss ideas.
 
 Here's what the code currently does to get the value.\
-It gets a collection of items, from your:
+It gets a collection of items, from your:\
 Accessory bag\
 Inventory\
 Ender chest\
