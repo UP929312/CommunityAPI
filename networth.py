@@ -29,7 +29,7 @@ def get_storage(player_data):
     return storage_items
 
 # Setup
-username = "AlphaMu"  # ------------------
+username = "DrN3cr0n"  # ------------------
 
 # Parse/Grab data
 player_data, other_data = get_data(username)
@@ -57,7 +57,7 @@ storage_worth     = calculate_container(storage_items)
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.
 banking = int(other_data.get("banking", {"balance": 0}).get("balance", 0))  # Same with Bank
 pets = calculate_container(pet_items)
-
+#'''
 # Total
 total = purse+banking+pets+inventory_worth+accessories_worth+ender_chest_worth+armour_worth+wardrobe_worth+vault_worth+storage_worth
 
@@ -74,3 +74,4 @@ data = [f"Purse: {hf(purse)}",
         f"Total = {hf(total)}"]
 
 print("\n".join(data))
+#'''

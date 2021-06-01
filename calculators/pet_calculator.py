@@ -1,16 +1,44 @@
 from manual_price_checking_prices import PRICES as prices
 from constants.lowest_bin import LOWEST_BIN
+from constants.pets import PET_DICT
 
-level_two_reqs = {"COMMON": 383_700, "UNCOMMON": 611_700, "RARE": 936_700, "EPIC": 1_386_700, "LEGENDARY": 1_886_700}
+MAX_LEVELS = {"COMMON": 5_624_785, "UNCOMMON": 8_644_220, "RARE": 12_626_665, "EPIC": 18_608_500, "LEGENDARY": 25_353_230}
 
+def get_pet_level(pet):
+    #print("-"*50)
+    #print("XP:", pet["exp"], ",", pet["tier"], pet['type'])
+    pet_xp = int(pet["exp"])
+    xp_offset = PET_DICT["pet_rarity_offset"][pet["tier"]]
+
+    if pet_xp >= MAX_LEVELS[pet['tier']]:
+        #print("Calculated level: 100")
+        return 100, PET_DICT['pet_levels'][98+xp_offset]
+    
+    pet_level = 1
+    while pet_xp > 0:
+        pet_xp -= PET_DICT['pet_levels'][pet_level+xp_offset]
+        pet_level += 1
+
+    #print(f"Calculated level: {pet_level}")
+    xp_required_at_pet_level = PET_DICT['pet_levels'][pet_level+xp_offset]
+    return pet_level, xp_required_at_pet_level
+    
+    
 def calculate_pet(pet):
+    pet_level, xp_required = get_pet_level(pet)
+    
     # Try from LOWEST_BIN
     if f"{pet['type']};{pet['tier']}" in LOWEST_BIN:
-        return LOWEST_BIN[f"{pet['type']};{pet['tier']}"]
+        base_pet_price = LOWEST_BIN[f"{pet['type']};{pet['tier']}"]
+    else:
+        # Try from Jerry's list
+        level = 100 if pet_level >= 100 else 1
+        base_pet_price = prices.get(f"LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()}", 0)  # LVL_x_COMMON_ENDERMAN
+        #print(f"Pet at LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()} priced at {price}")
 
-    # Try from Jerry's list
-    level_two_req = level_two_reqs[pet["tier"]]
-    level = 100 if pet['exp'] >= level_two_req else 1
-    price = prices.get(f"LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()}", 0)  # LVL_x_COMMON_ENDERMAN
-    return price
-    #print(f"Pet at LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()} priced at {price}")
+    pet_held_item = pet.get("heldItem", "")
+    pet_level_bonus = int(xp_required/10)
+    held_item_price = LOWEST_BIN.get(pet_held_item, 0)
+
+    print("Estimated value:", base_pet_price+pet_level_bonus+held_item_price)
+    return base_pet_price+pet_level_bonus+held_item_price

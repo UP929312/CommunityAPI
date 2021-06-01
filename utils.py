@@ -13,6 +13,10 @@ def human_number(num):
     '''
     Takes an int/float e.g. 10000 and returns a formatted version e.g. 10k
     '''
+
+    if isinstance(num, str):
+        return num
+    
     if num < 1: return 0
 
     rounded = round(num, 3 - int(log10(num)) - 1)
