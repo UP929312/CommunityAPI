@@ -29,7 +29,7 @@ def get_storage(player_data):
     return storage_items
 
 # Setup
-username = "HoodedRay"  # ------------------
+username = "AlphaMu"  # ------------------
 
 # Parse/Grab data
 player_data, other_data = get_data(username)
