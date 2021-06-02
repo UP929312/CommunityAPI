@@ -1,4 +1,4 @@
-from manual_price_checking_prices import PRICES as prices
+from constants.manual_price_checking_prices import PRICES as prices
 from constants.lowest_bin import LOWEST_BIN
 
 ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "XI", "X"]

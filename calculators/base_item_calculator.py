@@ -1,5 +1,5 @@
 from constants.essence import ESSENCE_DICT
-from manual_price_checking_prices import PRICES as prices
+from constants.manual_price_checking_prices import PRICES as prices
 from constants.lowest_bin import LOWEST_BIN
 
 ESSENCE_PRICE = {"Wither": 5000, "Gold": 3000,
@@ -10,6 +10,9 @@ ESSENCE_PRICE = {"Wither": 5000, "Gold": 3000,
 def calc_stars(item_name, internal_id):
     #print("Calc stars:", item_name, item_name.count("✪"))
     essence_object = ESSENCE_DICT.get(internal_id.removeprefix("STARRED_"), None)
+    if essence_object is None:
+        print("CALC STARS FAILED:", internal_id)
+        return 0
     essence_required = sum([essence_object[f"{i}"] for i in range(1, item_name.count("✪"))])
     essence_value = ESSENCE_PRICE[essence_object.get("type", "Spider")]*essence_required
     #print(f"Dungeon item! Required: {essence_required}, Type: {essence_type}, Value: {essence_value}")
