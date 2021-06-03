@@ -32,7 +32,6 @@ def calculate_pet(pet):
 
     # Try from LOWEST_BIN
     if f"{pet['type']};{TIERS.index(pet['tier'])}" in LOWEST_BIN:
-        print("LOWEST BIN")
         base_pet_price = LOWEST_BIN[f"{pet['type']};{TIERS.index(pet['tier'])}"]
     else:
         # Try from Jerry's list

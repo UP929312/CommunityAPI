@@ -32,3 +32,12 @@ else:
     print("Error getting lowest bin data!")
 
 print("Loaded BIN")
+#==================================================================
+BAZAAR = {}
+result = requests.get("https://api.hypixel.net/skyblock/bazaar").json()
+for product in result["products"]:
+    BAZAAR[product] = result["products"][product]['quick_status']['sellPrice']
+
+with open(f"bazaar.py", 'w') as file:
+    file.write("BAZAAR = "+json.dumps(BAZAAR))
+

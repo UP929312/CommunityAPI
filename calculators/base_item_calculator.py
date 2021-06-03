@@ -1,6 +1,7 @@
 from constants.essence import ESSENCE_DICT
 from constants.manual_price_checking_prices import PRICES as prices
 from constants.lowest_bin import LOWEST_BIN
+from constants.bazaar import BAZAAR
 
 ESSENCE_PRICE = {"Wither": 5000, "Gold": 3000,
                  "Ice": 3000,    "Diamond": 3000,
@@ -11,7 +12,7 @@ def calc_stars(item_name, internal_id):
     #print("Calc stars:", item_name, item_name.count("✪"))
     essence_object = ESSENCE_DICT.get(internal_id.removeprefix("STARRED_"), None)
     if essence_object is None:
-        print("CALC STARS FAILED:", internal_id)
+        print("CALC STARS FAILED:", internal_id, item_name)
         return 0
     essence_required = sum([essence_object[f"{i}"] for i in range(1, item_name.count("✪"))])
     essence_value = ESSENCE_PRICE[essence_object.get("type", "Spider")]*essence_required
@@ -19,14 +20,12 @@ def calc_stars(item_name, internal_id):
     return essence_value
 
 def calculate_item(item, print_prices=False):        
-    
-    #for reforge in ("GENTLE", "ODD", "FAST", "FAIR")
-    jerry_name = item.name.upper().replace(" ", "_")
-    
+    if item.internal_name in BAZAAR:
+        base_price = BAZAAR[item.internal_name]
     if item.internal_name in LOWEST_BIN:
         base_price = LOWEST_BIN[item.internal_name]
     else:
-        base_price = prices.get(jerry_name, 0)  # The price list uses the item name, not the internal_id.
+        base_price = prices.get(item.name.upper().replace(" ", "_"), 0)  # The price list uses the item name, not the internal_id.
 
     hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value = (0, 0, 0, 0, 0)
 
