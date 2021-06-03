@@ -6,15 +6,15 @@ Anyone can make a pull request, and it'll be reviewed and possibly added.\
 If you make good suggestions, you'll be invited into a special community-bot-dev channel, where we can further discuss ideas.
 
 Here's what the code currently does to get the value.\
-It gets a collection of items, from your:\
-Accessory bag\
-Inventory\
-Ender chest\
-Currently equiped armor\
-Wardrobe\
-Personal vault\
-Storage\
-Pets
+It gets a collection of items, from your:
+- Accessory bag
+- Inventory
+- Ender chest
+- Currently equiped armor
+- Wardrobe
+- Personal vault
+- Storage
+- Pets
 
 With these (excluding pets), it will do the following:
 1. If it's purchasable from the Bazaar, use that price, it's the most accurate.
