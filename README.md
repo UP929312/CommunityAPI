@@ -16,8 +16,10 @@ Personal vault\
 Storage\
 Pets
 
-With these (excluding pets), it will do the following:\
-If it's purchasable on the auction house, get the lowest BIN with the same internal ID. (If it's not use Jerry The Price Checker's price list)\
+With these (excluding pets), it will do the following:
+1. If it's purchasable from the Bazaar, use that price, it's the most accurate.
+2. If it's purchasable on the auction house, buy the lowest Buy It Now item, this is quite accurate.
+3. If it's not on either of these, check Jerry's list, it's not always entirely accurate, but has much more items.
 
 If it has hot potato books, add 10,000 for each hot potato book, and 100,000 for each fuming potato book.\
 If it's been recombobulated, add 5,000,000 to the value.\
