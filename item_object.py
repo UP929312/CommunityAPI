@@ -35,7 +35,6 @@ class Item:
             print(self.reforge)
             print(nbt)
         '''
-
         # Parse item name with removed reforges (We can already get the reforges)
         for reforge in ['strong', 'shaded', 'withered', 'fabled', 'unreal', 'unpleasant', 'precise', 'blessed', 'forceful', 'ancient', 'renowned', 'submerged', 'light', 'necrotic', 'wise', 'loving', 'pure', 'fierce', 'candied', 'treacherous', 'dirty']:
             if self.name.startswith(reforge.capitalize()+" "):

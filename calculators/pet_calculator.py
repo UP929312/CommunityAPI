@@ -10,18 +10,17 @@ def get_pet_level(pet):
     pet_tier = pet["tier"] if pet["tier"] != "MYTHIC" else "LEGENDARY"
     pet_xp = int(pet["exp"])
     xp_offset = PET_DICT["pet_rarity_offset"][pet_tier]
-
-    if pet_xp >= MAX_LEVELS[pet_tier]:
-        #print("Calculated level: 100")
-        return 100, PET_DICT['pet_levels'][98+xp_offset]
     
     pet_level = 1
-    while pet_xp > 0:
+    while pet_xp > 0 and pet_level < 99:
         pet_xp -= PET_DICT['pet_levels'][pet_level+xp_offset]
         pet_level += 1
 
-    #print(f"Calculated level: {pet_level}")
+    if len(PET_DICT['pet_levels']) == (pet_level+xp_offset):
+        return 100, PET_DICT['pet_levels'][98+xp_offset]
+
     xp_required_at_pet_level = PET_DICT['pet_levels'][pet_level+xp_offset]
+
     return pet_level, xp_required_at_pet_level
     
     
@@ -40,8 +39,8 @@ def calculate_pet(pet):
         #print(f"Pet at LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()} priced at {price}")
 
     pet_held_item = pet.get("heldItem", "")
-    pet_level_bonus = int(xp_required/10)
     held_item_price = LOWEST_BIN.get(pet_held_item, 0)
+    pet_level_bonus = int(xp_required/10)
 
-    #print(f"Estimated value: {base_pet_price+pet_level_bonus+held_item_price} made up of {base_pet_price}+{held_item_price} bonus.")
+    #print(f"Estimated value: {base_pet_price+pet_level_bonus+held_item_price}")# made up of {base_pet_price}+{held_item_price} bonus.")
     return base_pet_price+pet_level_bonus+held_item_price

@@ -20,7 +20,23 @@ def calc_stars(item):
     #print(f"Dungeon item! Required: {essence_required}, Type: {essence_type}, Value: {essence_value}")
     return essence_value
 
-def calculate_item(item, print_prices=False):        
+def calculate_reforge_price(item):
+    if item.reforge is not None and item.type is not None:
+        reforge_stone = REFORGE_DICT.get(item.reforge.lower()+";"+item.type.upper(), None)
+        if reforge_stone is not None:
+            reforge_item = reforge_stone["INTERNAL_NAME"]
+            item_rarity = item.rarity if item.rarity != "SPECIAL" else "LEGENDARY"
+            reforge_cost = reforge_stone["REFORGE_COST"][item_rarity]
+            reforge_item_cost = LOWEST_BIN.get(f"{reforge_item}", 0)
+            
+            return reforge_item_cost + reforge_cost
+    return 0
+
+def calculate_item(item, print_prices=False):
+
+    #print("BASE ITEM CALC:", item.type)
+    #print(item.internal_name)
+    
     if item.internal_name in BAZAAR:
         base_price = BAZAAR[item.internal_name]
     elif item.internal_name in LOWEST_BIN:
@@ -31,7 +47,7 @@ def calculate_item(item, print_prices=False):
         #if base_price == 0:
             #print("No price found ):")
 
-    hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value = (0, 0, 0, 0, 0)
+    hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, reforge_bonus = (0, 0, 0, 0, 0, 0)
 
     # Hot potato books:
     if item.hot_potatos > 0:
@@ -54,27 +70,16 @@ def calculate_item(item, print_prices=False):
     for enchantment, level in item.enchantments.items():
         enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{level}", 0)
 
+    # Reforge:
+    reforge_bonus = calculate_reforge_price(item)
+    
     price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size
-
-    #'''
-    if item.reforge is not None:
-        reforge_stone = REFORGE_DICT.get(item.reforge.lower(), None)
-        if reforge_stone is not None:
-            print(item.internal_name, " | ", item.reforge, ":", reforge_stone)
-            reforge_item = reforge_stone["INTERNAL_NAME"]
-            item_rarity = item.rarity if item.rarity != "SPECIAL" else "LEGENDARY"
-            reforge_cost = reforge_stone["REFORGE_COST"][item_rarity]
-            print(item.internal_name, reforge_item, reforge_cost)
-    #''' 
-
-    # Reforges: (Coming soon?)
-    #self.reforge = extras.get('modifier', None)
     #=================
     if print_prices:
         print("------------")
         print(f"{item.name.upper().replace(' ', '_')} (x{item.stack_size})")
-        print(f"> {price}, Recom:{recombobulated_value}, ✪: {star_value}, warped? {warped_value}, enchnts: {enchants_value}")
+        print(f"> {price}, Recom:{recombobulated_value}, ✪: {star_value}, warped? {warped_value}, enchnts: {enchants_value}, reforge: {reforge_bonus}")
     return price
