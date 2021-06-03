@@ -45,13 +45,13 @@ storage_items  = get_storage(player_data)
 pet_items      = player_data.get("pets", [])
 
 # Calculate each section
-accessories_worth = calculate_container(talisman_bag)
-inventory_worth   = calculate_container(inv_contents)
-ender_chest_worth = calculate_container(ender_chest)
-armour_worth      = calculate_container(armour)
-wardrobe_worth    = calculate_container(wardrobe, print_prices=True)
-vault_worth       = calculate_container(personal_vault)
-storage_worth     = calculate_container(storage_items)
+accessories_worth = calculate_container(talisman_bag)#, print_prices=True)
+inventory_worth   = calculate_container(inv_contents)#, print_prices=True)
+ender_chest_worth = calculate_container(ender_chest)#, print_prices=True)
+armour_worth      = calculate_container(armour)#, print_prices=True)
+wardrobe_worth    = calculate_container(wardrobe)#, print_prices=True)
+vault_worth       = calculate_container(personal_vault)#, print_prices=True)
+storage_worth     = calculate_container(storage_items)#, print_prices=True)
 
 # Other sections
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.
