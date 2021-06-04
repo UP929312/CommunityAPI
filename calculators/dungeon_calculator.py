@@ -31,5 +31,5 @@ def calculate_dungeon_item(item, print_prices=False):
     if item.star_upgrades > 5:
         for i in range(1, item.star_upgrades-4):
             master_star_value += MASTER_STARS[i]
-    print(f"The item's {item.star_upgrades} stars are worth {base_star_value}, with master stars being worth {master_star_value}")
+    #print(f"The item's {item.star_upgrades} stars are worth {base_star_value}, with master stars being worth {master_star_value}")
     return base_star_value+master_star_value

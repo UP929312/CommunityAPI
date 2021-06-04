@@ -28,6 +28,11 @@ class Item:
         self.art_of_war = extras.get("art_of_war_count", None)
         self.wood_singularity = extras.get("wood_singularity_count", 0)
 
+        # Hoes
+        self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
+        self.mined_crops = extras.get("mined_crops", 0)
+        self.farmed_cultivating = extras.get("farmed_cultivating", 0)
+
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])
         self.description[-1] = re.sub('§l§ka', '', self.description[-1])
@@ -47,7 +52,7 @@ class Item:
             self.item_group = last_desc_row[-1]
         
         # Parse item name with removed reforges (We can already get the reforges)
-        for reforge in ['strong', 'shaded', 'withered', 'fabled', 'unreal', 'unpleasant', 'precise', 'blessed', 'forceful', 'ancient', 'renowned', 'submerged', 'light', 'necrotic', 'wise', 'loving', 'pure', 'fierce', 'candied', 'treacherous', 'dirty']:
+        for reforge in ['strong', 'shaded', 'withered', 'fabled', 'unreal', 'unpleasant', 'precise', 'blessed', 'forceful', 'ancient', 'renowned', 'submerged', 'light', 'necrotic', 'wise', 'loving', 'pure', 'fierce', 'candied', 'treacherous', 'dirty', 'smart', 'heroic', 'fast', 'titanic', 'sharp', 'rapid', 'awkward', 'fine', 'heavy', 'fair', 'odd', 'gentle', 'neat', 'hasty', 'spicy', 'rich', 'clean']:
             if self.name.startswith(reforge.capitalize()+" "):
                 self.name = self.name[len(reforge+" "):]
 
@@ -61,11 +66,14 @@ class Item:
         if self.type is not None and self.type == "drill":
             self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
-            self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
+            self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()            
 
-        #if self.type is not None and "hoe" in self.type.lower():
-        #    print(nbt)
-
+        '''
+        if self.type is not None and "hoe" in self.type.lower():
+            for extra in extras:
+                if extra not in ["id", "enchantments", "originTag", "modifier"]:
+                    print(extra, extras[extra])
+        '''
     def __str__(self):
         return self.internal_name
 

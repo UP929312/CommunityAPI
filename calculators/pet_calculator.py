@@ -3,12 +3,13 @@ from constants.lowest_bin import LOWEST_BIN
 from constants.pets import PET_DICT
 
 TIERS = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
-MAX_LEVELS = {"COMMON": 5_624_785, "UNCOMMON": 8_644_220, "RARE": 12_626_665, "EPIC": 18_608_500, "LEGENDARY": 25_353_230, "MYTHIC": 25_353_230}
+#print([(TIERS.index(x), x) for x in TIERS])
+COINS_PER_XP = 0.2
 
 def get_pet_level(pet):
     #print("-"*50)
     pet_tier = pet["tier"] if pet["tier"] != "MYTHIC" else "LEGENDARY"
-    pet_xp = int(pet["exp"])
+    pet_xp = pet["exp"]
     xp_offset = PET_DICT["pet_rarity_offset"][pet_tier]
     
     pet_level = 1
@@ -16,16 +17,14 @@ def get_pet_level(pet):
         pet_xp -= PET_DICT['pet_levels'][pet_level+xp_offset]
         pet_level += 1
 
-    if len(PET_DICT['pet_levels']) == (pet_level+xp_offset):
-        return 100, PET_DICT['pet_levels'][98+xp_offset]
+    if len(PET_DICT['pet_levels']) == (pet_level+xp_offset):  # Edge case for level 100s (There is no xp required when ranking up to Level 101
+        return 100
 
-    xp_required_at_pet_level = PET_DICT['pet_levels'][pet_level+xp_offset]
-
-    return pet_level, xp_required_at_pet_level
+    return pet_level
     
     
 def calculate_pet(pet):
-    pet_level, xp_required = get_pet_level(pet)
+    pet_level = get_pet_level(pet)    
 
     #print(f"{pet['type']} ({pet['tier']}) with level {pet_level}")
 
@@ -40,7 +39,7 @@ def calculate_pet(pet):
 
     pet_held_item = pet.get("heldItem", "")
     held_item_price = LOWEST_BIN.get(pet_held_item, 0)
-    pet_level_bonus = int(xp_required/10)
+    pet_level_bonus = int(pet["exp"]*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
 
-    #print(f"Estimated value: {base_pet_price+pet_level_bonus+held_item_price}")# made up of {base_pet_price}+{held_item_price} bonus.")
+    #print(f"{pet['type']}'s total estimated value: {base_pet_price+pet_level_bonus+held_item_price}, made up of Base: {base_pet_price}, Held item ({pet_held_item}): {held_item_price} and {pet_level_bonus} level bonus.")
     return base_pet_price+pet_level_bonus+held_item_price

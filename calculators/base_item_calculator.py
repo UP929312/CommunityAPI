@@ -19,6 +19,9 @@ def calculate_reforge_price(item):
     return 0
 
 def calculate_item(item, print_prices=False):
+
+    hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, tali_enrichment_bonus, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
     #print("BASE ITEM CALC:", item.type)
     #print(item.internal_name)
 
@@ -37,8 +40,11 @@ def calculate_item(item, print_prices=False):
         if base_price == 0:
             price_source = "None"
 
-    hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, tali_enrichment_bonus, art_of_war_bonus, wood_singularty_bonus = (0, 0, 0, 0, 0, 0, 0, 0)
-
+    #=============================================================================
+    # Hoe calculations
+    if item.mined_crops:
+        base_price = 1_000_000+10**len(f"{item.mined_crops+item.farmed_cultivating}")
+    #=============================================================================
     # Hot potato books:
     if item.hot_potatos > 0:
         if item.hot_potatos <= 10:
@@ -66,7 +72,9 @@ def calculate_item(item, print_prices=False):
     # Wood singularty
     if item.wood_singularity:
         wood_singularty_bonus = LOWEST_BIN.get("WOOD_SINGULARITY", 0)
-
+    # Farming for dummies books on hoes
+    if item.farming_for_dummies:
+        farming_for_dummies_bonus += item.farming_for_dummies*LOWEST_BIN.get("FARMING_FOR_DUMMIES", 0)
     # Drills (upgrades)
     if item.type is not None and item.type == "drill":
         drill_upgrades = LOWEST_BIN.get(item.drill_module_upgrade, 0)
@@ -74,7 +82,7 @@ def calculate_item(item, print_prices=False):
         drill_upgrades += LOWEST_BIN.get(item.drill_tank_upgrade, 0)
 
     # Total
-    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, art_of_war_bonus, wood_singularty_bonus])
+    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size    
@@ -82,6 +90,7 @@ def calculate_item(item, print_prices=False):
     if print_prices:# or price_source == "Jerry":#and price > 50_000_000:
         print(f"{converted_name} (x{item.stack_size})")
         print("".join([f"> {int(price/1_000_000)} million, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, reforge: {reforge_bonus}\n",
-              f"enchnts: {enchants_value}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}, enrichment: {tali_enrichment_bonus}"]))
+              f"enchnts: {enchants_value}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}, enrichment: {tali_enrichment_bonus}",
+              f"farming 4 Dummies: {farming_for_dummies_bonus}, drills: {drill_upgrades}"]))
         print("------------")
     return price
