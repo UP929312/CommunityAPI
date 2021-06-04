@@ -13,15 +13,18 @@ class Item:
         self.internal_name = extras.get('id', None)
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
-
+                             
         self.recombobulated = 1 if extras.get('rarity_upgrades', False) else 0
         self.hot_potatos = extras.get('hot_potato_count', 0)
         
         self.enchantments = extras.get('enchantments', {})
         self.reforge = extras.get('modifier', None)
         self.star_upgrades = min(5, extras.get("dungeon_item_level", 0))  # Cap at 5, data doesn't allow
+
+        # Little extras
         self.talisman_enrichment = extras.get("talisman_enrichment", None)
         self.art_of_war = extras.get("art_of_war_count", None)
+        self.wood_singularity = extras.get("wood_singularity_count", 0)
 
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])

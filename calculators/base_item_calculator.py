@@ -13,11 +13,11 @@ def calc_stars(item):
     #print("Calc stars:", item.name, item.star_upgrades)
     essence_object = ESSENCE_DICT.get(item.internal_name.removeprefix("STARRED_"), None)
     if essence_object is None:
-        print("CALC STARS FAILED:", item.internal_name, item.name)
+        print("CALC STARS FAILED:", item.internal_name, item.star_upgrades)
         return 0
     essence_required = sum([essence_object[f"{i}"] for i in range(1, item.star_upgrades)])
     essence_value = ESSENCE_PRICE[essence_object.get("type", "Spider")]*essence_required
-    #print(f"Dungeon item! Required: {essence_required}, Type: {essence_type}, Value: {essence_value}")
+    #print(f"Dungeon item! Required: {essence_required}, Value: {essence_value}")
     return essence_value
 
 def calculate_reforge_price(item):
@@ -33,7 +33,6 @@ def calculate_reforge_price(item):
         return reforge_item_cost + reforge_cost
 
 def calculate_item(item, print_prices=False):
-
     #print("BASE ITEM CALC:", item.type)
     #print(item.internal_name)
     
@@ -47,7 +46,7 @@ def calculate_item(item, print_prices=False):
         #if base_price == 0:
             #print("No price found ):")
 
-    hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, reforge_bonus, art_of_war_bonus = (0, 0, 0, 0, 0, 0, 0)
+    hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, reforge_bonus, tali_enrichment_bonus, art_of_war_bonus, wood_singularty_bonus = (0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     # Hot potato books:
     if item.hot_potatos > 0:
@@ -67,11 +66,20 @@ def calculate_item(item, print_prices=False):
     # Reforge:
     if item.item_group is not None:
         reforge_bonus = calculate_reforge_price(item)
+    # Talisman enrichments
+    if item.talisman_enrichment:
+        tali_enrichment_bonus = LOWEST_BIN.get("TALISMAN_ENRICHMENT_"+item.talisman_enrichment, 0)
+        if tali_enrichment_bonus != 0:
+            print(tali_enrichment_bonus, "TALISMAN_ENRICHMENT_"+item.talisman_enrichment)
     # Art of war
     if item.art_of_war:
         art_of_war_bonus = LOWEST_BIN.get("THE_ART_OF_WAR", 0)  # Get's the art of war book from BIN
-    
-    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, art_of_war_bonus])
+    # Wood singularty
+    if item.wood_singularity:
+        wood_singularty_bonus = LOWEST_BIN.get("WOOD_SINGULARITY", 0)
+
+    # Total
+    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, art_of_war_bonus, wood_singularty_bonus])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size
@@ -80,5 +88,6 @@ def calculate_item(item, print_prices=False):
         print("------------")
         print(f"{item.name.upper().replace(' ', '_')} (x{item.stack_size})")
         print(f"> {price}, Recom:{recombobulated_value}, ✪: {star_value}, warped? {warped_value}, \
-                enchnts: {enchants_value}, reforge: {reforge_bonus}, Art War: {art_of_war_bonus}")
+                enchnts: {enchants_value}, reforge: {reforge_bonus}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}\
+                talisman enrichment: {tali_enrichment_bonus}")
     return price

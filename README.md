@@ -26,5 +26,6 @@ Then we calculate some extras for base items:
 - If it's been recombobulated, add the price of a recombobulator 3000 to the value.\
 - If it's a dungeon item, give the rough value in essence for each item (and each star).\
 - It it has a reforge stone applied to it, calculate the cost of the reforge stone, as well as the cost to apply it.\
-- For each enchantment, add the cost of the enchanted book from BIN to the item.
+- If it has a talisman enrichment, add the price of that enrichment.\
+- For each enchantment, add the cost of the enchanted book from BIN to the item.\
 - And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.
