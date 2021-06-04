@@ -29,7 +29,7 @@ Then we calculate some extras for base items:
 - It it has a reforge stone applied to it, calculate the cost of the reforge stone, as well as the cost to apply it.
 - If it has a talisman enrichment, add the price of that enrichment from BIN.
 - If it's a Wooden Sword with a "Wood Singularity" added to it, add the price of that item from the BIN.
-- If it has an "Art Of War" books added to it, add the price of that book from the BIN to the value.
+- If it has an "Art Of War" book added to it, add the price of that book from the BIN to the value.
 - For each enchantment, add the cost of the enchanted book from BIN to the item.
 - If the item is a drill, add the cost of each upgrade from the BIN to the value.
 - If it's a hoe, 1,000,000 for a mathematical blueprint, plus the number of digits on the counter, rounded down to the nearest power of 10.
