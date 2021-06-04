@@ -1,24 +1,9 @@
-from constants.essence import ESSENCE_DICT
 from constants.jerry_price_list import PRICES
 from constants.lowest_bin import LOWEST_BIN
 from constants.bazaar import BAZAAR
 from constants.reforges import REFORGE_DICT
 
-ESSENCE_PRICE = {"Wither": 5000, "Gold": 3000,
-                 "Ice": 3000,    "Diamond": 3000,
-                 "Dragon": 1000, "Spider": 3000,
-                 "Undead": 2000}
-
-def calc_stars(item):
-    #print("Calc stars:", item.name, item.star_upgrades)
-    essence_object = ESSENCE_DICT.get(item.internal_name.removeprefix("STARRED_"), None)
-    if essence_object is None:
-        print("> CALC STARS FAILED:", item.internal_name, item.star_upgrades)
-        return 0
-    essence_required = sum([essence_object[f"{i}"] for i in range(1, min(5, item.star_upgrades))])
-    essence_value = ESSENCE_PRICE[essence_object.get("type", "Spider")]*essence_required
-    #print(f"Dungeon item! Required: {essence_required}, Value: {essence_value}")
-    return essence_value
+from calculators.dungeon_calculator import calculate_dungeon_item
 
 def calculate_reforge_price(item):
     # This "+;item.item_group prevents warped for armor and AOTE breaking
@@ -63,9 +48,6 @@ def calculate_item(item, print_prices=False):
     # Recombobulation
     if item.recombobulated:
         recombobulated_value = BAZAAR["RECOMBOBULATOR_3000"]
-    # Dungeon items/stars
-    if item.star_upgrades:
-        star_value = calc_stars(item)
     # Enchantments
     for enchantment, level in item.enchantments.items():
         enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{level}", 0)
@@ -75,6 +57,9 @@ def calculate_item(item, print_prices=False):
     # Talisman enrichments
     if item.talisman_enrichment:
         tali_enrichment_bonus = LOWEST_BIN.get("TALISMAN_ENRICHMENT_"+item.talisman_enrichment, 0)
+    # Dungeon items/stars
+    if item.star_upgrades:
+        star_value = calculate_dungeon_item(item)
     # Art of war
     if item.art_of_war:
         art_of_war_bonus = LOWEST_BIN.get("THE_ART_OF_WAR", 0)  # Get's the art of war book from BIN
