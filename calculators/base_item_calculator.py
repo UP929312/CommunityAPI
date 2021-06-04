@@ -69,8 +69,6 @@ def calculate_item(item, print_prices=False):
     # Talisman enrichments
     if item.talisman_enrichment:
         tali_enrichment_bonus = LOWEST_BIN.get("TALISMAN_ENRICHMENT_"+item.talisman_enrichment, 0)
-        if tali_enrichment_bonus != 0:
-            print(tali_enrichment_bonus, "TALISMAN_ENRICHMENT_"+item.talisman_enrichment)
     # Art of war
     if item.art_of_war:
         art_of_war_bonus = LOWEST_BIN.get("THE_ART_OF_WAR", 0)  # Get's the art of war book from BIN
