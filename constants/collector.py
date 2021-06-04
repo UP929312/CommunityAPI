@@ -25,16 +25,15 @@ with open(f"{file}.py", 'w') as file:
         reforge_name = result[internal_name]["reforgeName"].lower()
         item_type = result[internal_name]["itemTypes"]
         if "/" in item_type:
-            for item in item_type.split("/"):
-                REFORGE_DICT[reforge_name+";"+item] = {"INTERNAL_NAME": internal_name,
-                                                       "REFORGE_COST": result[internal_name]["reforgeCosts"],}
+            item_list = item_type.split("/")
         elif item_type == "ARMOR":
-            for item in ["HELMET", "CHESTPLATE", "LEGGINGS", "BOOTS"]:
-                REFORGE_DICT[reforge_name+";"+item] = {"INTERNAL_NAME": internal_name,
-                                                       "REFORGE_COST": result[internal_name]["reforgeCosts"],}
+            item_list = ("HELMET", "CHESTPLATE", "LEGGINGS", "BOOTS")
         else:
-            REFORGE_DICT[reforge_name+";"+item_type] = {"INTERNAL_NAME": internal_name,
-                                                        "REFORGE_COST": result[internal_name]["reforgeCosts"],}
+            item_list = (item_type, )
+            
+        for item in item_list:
+            REFORGE_DICT[reforge_name+";"+item] = {"INTERNAL_NAME": internal_name,
+                                           "REFORGE_COST": result[internal_name]["reforgeCosts"],}
     file.write(f"{var_name} = "+json.dumps(REFORGE_DICT))
 print(f"Loaded in {var_name}")
 #==================================================================
