@@ -30,7 +30,9 @@ def get_storage(player_data):
 
 # Setup
 username = "56ms"  # ------------------
-#username = "Skezza"  # ------------------
+#username = "nonbunary"
+#username = "Poroknights"
+#username = "Skezza"
 
 # Parse/Grab data
 player_data, other_data = get_data(username)

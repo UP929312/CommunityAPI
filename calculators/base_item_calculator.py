@@ -21,16 +21,17 @@ def calc_stars(item):
     return essence_value
 
 def calculate_reforge_price(item):
-    if item.reforge is not None and item.type is not None:
-        reforge_stone = REFORGE_DICT.get(item.reforge.lower()+";"+item.type.upper(), None)
-        if reforge_stone is not None:
-            reforge_item = reforge_stone["INTERNAL_NAME"]
-            item_rarity = item.rarity if item.rarity != "SPECIAL" else "LEGENDARY"
-            reforge_cost = reforge_stone["REFORGE_COST"][item_rarity]
-            reforge_item_cost = LOWEST_BIN.get(f"{reforge_item}", 0)
-            
-            return reforge_item_cost + reforge_cost
-    return 0
+    #print(item.reforge)
+    # This "+;item.item_group prevents warped for armor and AOTE breaking
+    reforge_data = REFORGE_DICT.get(item.reforge+";"+item.item_group, None)
+    # This will not calculate reforges that are from the blacksmith, e.g. "Wise", "Demonic", they're just not worth anything.
+    if reforge_data is not None:
+        reforge_item = reforge_data["INTERNAL_NAME"]  # Gets the item, e.g. BLESSED_FRUIT
+        item_rarity = item.rarity if item.rarity != "SPECIAL" else "LEGENDARY"  # The dataset doesn't include special, use LEGEND instead
+        reforge_cost = reforge_data["REFORGE_COST"][item_rarity]  # Cost to apply for each rarity
+        reforge_item_cost = LOWEST_BIN.get(f"{reforge_item}", 0)  # How much does the reforge stone cost
+        
+        return reforge_item_cost + reforge_cost
 
 def calculate_item(item, print_prices=False):
 
@@ -54,24 +55,19 @@ def calculate_item(item, print_prices=False):
         if item.hot_potatos <= 10:
             hot_potato_value += item.hot_potatos*BAZAAR["HOT_POTATO_BOOK"]
         else:
-            hot_potato_value += 10*BAZAAR["HOT_POTATO_BOOK"]+(10-item.hot_potatos)*BAZAAR["FUMING_POTATO_BOOK"]
-     # Recombobulation
+            hot_potato_value += 10*BAZAAR["HOT_POTATO_BOOK"]+(item.hot_potatos-10)*BAZAAR["FUMING_POTATO_BOOK"]
+    # Recombobulation
     if item.recombobulated:
         recombobulated_value = BAZAAR["RECOMBOBULATOR_3000"]
     # Dungeon items/stars
     if item.star_upgrades:
         star_value = calc_stars(item)
-    # Warped aspect of the end
-    if ('warped', 1) in item.enchantments:
-        warped_stone_price = LOWEST_BIN.get("AOTE_STONE", 5_000_000)
-        warped_value = warped_stone_price+10_000_000 if item.rarity == "epic" else warped_stone_price+5_000_000  # 10m and 5m = apply cost (fixed)
-
     # Enchantments
     for enchantment, level in item.enchantments.items():
         enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{level}", 0)
-
     # Reforge:
-    reforge_bonus = calculate_reforge_price(item)
+    if item.item_group is not None:
+        reforge_bonus = calculate_reforge_price(item)
     
     price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value])
 
@@ -81,5 +77,6 @@ def calculate_item(item, print_prices=False):
     if print_prices:
         print("------------")
         print(f"{item.name.upper().replace(' ', '_')} (x{item.stack_size})")
-        print(f"> {price}, Recom:{recombobulated_value}, ✪: {star_value}, warped? {warped_value}, enchnts: {enchants_value}, reforge: {reforge_bonus}")
+        print(f"> {price}, Recom:{recombobulated_value}, ✪: {star_value}, warped? {warped_value}, \
+                enchnts: {enchants_value}, reforge: {reforge_bonus}")
     return price
