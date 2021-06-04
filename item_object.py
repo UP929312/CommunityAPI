@@ -19,8 +19,9 @@ class Item:
         
         self.enchantments = extras.get('enchantments', {})
         self.reforge = extras.get('modifier', None)
-        self.star_upgrades = display.get('Name', "").count("✪")
+        self.star_upgrades = min(5, extras.get("dungeon_item_level", 0))  # Cap at 5, data doesn't allow
         self.talisman_enrichment = extras.get("talisman_enrichment", None)
+        self.art_of_war = extras.get("art_of_war_count", None)
 
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])
@@ -51,9 +52,6 @@ class Item:
                 self.reforge = "warped"
             if self.reforge.lower() == "jerry_stone":
                 self.reforge = "jerry's"
-
-        if self.reforge == "odd_sword":
-            print(nbt)
 
     def __str__(self):
         return self.internal_name

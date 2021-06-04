@@ -21,7 +21,6 @@ def calc_stars(item):
     return essence_value
 
 def calculate_reforge_price(item):
-    #print(item.reforge)
     # This "+;item.item_group prevents warped for armor and AOTE breaking
     reforge_data = REFORGE_DICT.get(item.reforge+";"+item.item_group, None)
     # This will not calculate reforges that are from the blacksmith, e.g. "Wise", "Demonic", they're just not worth anything.
@@ -48,7 +47,7 @@ def calculate_item(item, print_prices=False):
         #if base_price == 0:
             #print("No price found ):")
 
-    hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, reforge_bonus = (0, 0, 0, 0, 0, 0)
+    hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, reforge_bonus, art_of_war_bonus = (0, 0, 0, 0, 0, 0, 0)
 
     # Hot potato books:
     if item.hot_potatos > 0:
@@ -68,8 +67,11 @@ def calculate_item(item, print_prices=False):
     # Reforge:
     if item.item_group is not None:
         reforge_bonus = calculate_reforge_price(item)
+    # Art of war
+    if item.art_of_war:
+        art_of_war_bonus = LOWEST_BIN.get("THE_ART_OF_WAR", 0)  # Get's the art of war book from BIN
     
-    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value])
+    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, art_of_war_bonus])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size
@@ -78,5 +80,5 @@ def calculate_item(item, print_prices=False):
         print("------------")
         print(f"{item.name.upper().replace(' ', '_')} (x{item.stack_size})")
         print(f"> {price}, Recom:{recombobulated_value}, ✪: {star_value}, warped? {warped_value}, \
-                enchnts: {enchants_value}, reforge: {reforge_bonus}")
+                enchnts: {enchants_value}, reforge: {reforge_bonus}, Art War: {art_of_war_bonus}")
     return price
