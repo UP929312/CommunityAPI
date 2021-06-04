@@ -68,12 +68,6 @@ class Item:
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
             self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()            
 
-        '''
-        if self.type is not None and "hoe" in self.type.lower():
-            for extra in extras:
-                if extra not in ["id", "enchantments", "originTag", "modifier"]:
-                    print(extra, extras[extra])
-        '''
     def __str__(self):
         return self.internal_name
 

@@ -7,7 +7,7 @@ def calculate_container(elements, print_prices=False):
     total = 0
     for element in elements:            
         if isinstance(element, dict) and 'uuid' in element.keys() and 'active' in element.keys():
-            price = calculate_pet(element)
+            price = calculate_pet(element, print_prices)
         elif element.internal_name == "ENCHANTED_BOOK":
             price = calculate_enchantment(element)
         else:

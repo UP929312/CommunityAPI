@@ -34,3 +34,8 @@ Then we calculate some extras for base items:
 - If the item is a drill, add the cost of each upgrade from the BIN to the value.
 - If it's a hoe, 1,000,000 for a mathematical blueprint, plus the number of digits on the counter, rounded down to the nearest power of 10.
 - And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.
+
+For pets:
+- We calculate the price of the pet from BIN (average for that tier)
+- We add the cost of the pet's held item
+- We add the amount of pet xp by 0.2, to get it's level's value (this is partially subjective)

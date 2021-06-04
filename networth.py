@@ -55,7 +55,7 @@ armour_worth      = calculate_container(armour)#, print_prices=True)
 wardrobe_worth    = calculate_container(wardrobe)#, print_prices=True)
 vault_worth       = calculate_container(personal_vault)#, print_prices=True)
 storage_worth     = calculate_container(storage_items)#, print_prices=True)
-pets              = calculate_container(pet_items)#, print_prices=True)
+pets              = calculate_container(pet_items, print_prices=True)
 
 # Other sections
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.
