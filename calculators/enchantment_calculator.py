@@ -1,4 +1,4 @@
-from constants.manual_price_checking_prices import PRICES as prices
+from constants.jerry_price_list import PRICES
 from constants.lowest_bin import LOWEST_BIN
 
 ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "XI", "X"]
@@ -22,6 +22,6 @@ def calculate_enchantment(element):
             return LOWEST_BIN[f"{enchantment_type};{enchantment_level}"]
         else:
             #print("Enchanted book will be tried on Jerry's price list")
-            return prices.get(f"{enchantment_type.lower()}_{enchantment_level}", 0)
+            return PRICES.get(f"{enchantment_type.lower()}_{enchantment_level}", 0)
 
         

@@ -1,7 +1,5 @@
-import requests
 from math import log10
 
-#=========================================================
 letter_values = {"": 1,
                  "K": 1000,
                  "M": 1000000,
@@ -26,20 +24,4 @@ def human_number(num):
         new_num = new_num[:-2]
     return str(new_num)+suffix
 
-#=========================================================
-'''
-LOWEST_BIN = {}
-
-request = requests.get(f"http://moulberry.codes/lowestbin.json")
-if request.status_code == 200:
-    data = request.json()
-
-    for key, value in data.items():
-        LOWEST_BIN[key] = value
-
-else:
-    print("Error getting lowest bin data!")
-
-print("Loaded BIN")
-'''
 

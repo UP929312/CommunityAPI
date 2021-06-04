@@ -1,5 +1,5 @@
 from constants.essence import ESSENCE_DICT
-from constants.manual_price_checking_prices import PRICES as prices
+from constants.jerry_price_list import PRICES
 from constants.lowest_bin import LOWEST_BIN
 from constants.bazaar import BAZAAR
 from constants.reforges import REFORGE_DICT
@@ -13,9 +13,9 @@ def calc_stars(item):
     #print("Calc stars:", item.name, item.star_upgrades)
     essence_object = ESSENCE_DICT.get(item.internal_name.removeprefix("STARRED_"), None)
     if essence_object is None:
-        print("CALC STARS FAILED:", item.internal_name, item.star_upgrades)
+        print("> CALC STARS FAILED:", item.internal_name, item.star_upgrades)
         return 0
-    essence_required = sum([essence_object[f"{i}"] for i in range(1, item.star_upgrades)])
+    essence_required = sum([essence_object[f"{i}"] for i in range(1, min(5, item.star_upgrades))])
     essence_value = ESSENCE_PRICE[essence_object.get("type", "Spider")]*essence_required
     #print(f"Dungeon item! Required: {essence_required}, Value: {essence_value}")
     return essence_value
@@ -31,22 +31,28 @@ def calculate_reforge_price(item):
         reforge_item_cost = LOWEST_BIN.get(f"{reforge_item}", 0)  # How much does the reforge stone cost
         
         return reforge_item_cost + reforge_cost
+    return 0
 
 def calculate_item(item, print_prices=False):
     #print("BASE ITEM CALC:", item.type)
     #print(item.internal_name)
+
+    converted_name = item.name.upper().replace("- ", "").replace(" ", "_") # The Jerry price list uses the item name, not the internal_id.
     
     if item.internal_name in BAZAAR:
         base_price = BAZAAR[item.internal_name]
+        price_source = "Bazaar"
     elif item.internal_name in LOWEST_BIN:
         base_price = LOWEST_BIN[item.internal_name]
+        price_source = "BIN"
     else:
-        #print(f"Jerry's list: {item.internal_name}")
-        base_price = prices.get(item.name.upper().replace(" ", "_"), 0)  # The price list uses the item name, not the internal_id.
-        #if base_price == 0:
-            #print("No price found ):")
+        price_source = "Jerry"
+        #print(converted_name)
+        base_price = PRICES.get(converted_name, 0)  
+        if base_price == 0:
+            price_source = "None"
 
-    hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, reforge_bonus, tali_enrichment_bonus, art_of_war_bonus, wood_singularty_bonus = (0, 0, 0, 0, 0, 0, 0, 0, 0)
+    hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, tali_enrichment_bonus, art_of_war_bonus, wood_singularty_bonus = (0, 0, 0, 0, 0, 0, 0, 0)
 
     # Hot potato books:
     if item.hot_potatos > 0:
@@ -77,21 +83,20 @@ def calculate_item(item, print_prices=False):
         wood_singularty_bonus = LOWEST_BIN.get("WOOD_SINGULARITY", 0)
 
     # Drills (upgrades)
-    if item.type is not None and item.type.upper() == "DRILL":
+    if item.type is not None and item.type == "drill":
         drill_upgrades = LOWEST_BIN.get(item.drill_module_upgrade, 0)
         drill_upgrades += LOWEST_BIN.get(item.drill_engine_upgrade, 0)
         drill_upgrades += LOWEST_BIN.get(item.drill_tank_upgrade, 0)
 
     # Total
-    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, art_of_war_bonus, wood_singularty_bonus])
+    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, art_of_war_bonus, wood_singularty_bonus])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
-    price *= item.stack_size
+    price *= item.stack_size    
     #=================
-    if print_prices:
+    if print_prices:# or price_source == "Jerry":#and price > 50_000_000:
+        print(f"{converted_name} (x{item.stack_size})")
+        print("".join([f"> {int(price/1_000_000)} million, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, reforge: {reforge_bonus}\n",
+              f"enchnts: {enchants_value}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}, enrichment: {tali_enrichment_bonus}"]))
         print("------------")
-        print(f"{item.name.upper().replace(' ', '_')} (x{item.stack_size})")
-        print(f"> {price}, Recom:{recombobulated_value}, ✪: {star_value}, warped? {warped_value}, \
-                enchnts: {enchants_value}, reforge: {reforge_bonus}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}\
-                talisman enrichment: {tali_enrichment_bonus}")
     return price

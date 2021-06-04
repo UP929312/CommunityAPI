@@ -6,20 +6,22 @@ class Item:
         self.__nbt__ = nbt
 
         #print(nbt)
-	
+
+        # Generic data
         tag = nbt['tag']
         extras = tag.get('ExtraAttributes', {})
         display = tag.get('display', {})
-        self.internal_name = extras.get('id', None)
+        self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
-                             
+            
         self.recombobulated = 1 if extras.get('rarity_upgrades', False) else 0
         self.hot_potatos = extras.get('hot_potato_count', 0)
-        
+
+        # Unique to tools
         self.enchantments = extras.get('enchantments', {})
         self.reforge = extras.get('modifier', None)
-        self.star_upgrades = min(5, extras.get("dungeon_item_level", 0))  # Cap at 5, data doesn't allow
+        self.star_upgrades = extras.get("dungeon_item_level", 0)  # Gets number of stars for dungeon items.
 
         # Little extras
         self.talisman_enrichment = extras.get("talisman_enrichment", None)
@@ -60,7 +62,9 @@ class Item:
             self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
             self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
-            print(self.drill_module_upgrade, self.drill_engine_upgrade, self.drill_tank_upgrade)
+
+        #if self.type is not None and "hoe" in self.type.lower():
+        #    print(nbt)
 
     def __str__(self):
         return self.internal_name

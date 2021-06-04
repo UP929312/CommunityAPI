@@ -1,4 +1,4 @@
-from constants.manual_price_checking_prices import PRICES as prices
+from constants.jerry_price_list import PRICES
 from constants.lowest_bin import LOWEST_BIN
 from constants.pets import PET_DICT
 
@@ -35,7 +35,7 @@ def calculate_pet(pet):
     else:
         # Try from Jerry's list
         level = 100 if pet_level >= 100 else 1
-        base_pet_price = prices.get(f"LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()}", 0)  # LVL_x_COMMON_ENDERMAN
+        base_pet_price = PRICES.get(f"LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()}", 0)  # LVL_x_COMMON_ENDERMAN
         #print(f"Pet at LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()} priced at {price}")
 
     pet_held_item = pet.get("heldItem", "")
