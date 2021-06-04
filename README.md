@@ -30,4 +30,5 @@ Then we calculate some extras for base items:
 - If it's a Wooden Sword with a "Wood Singularity" added to it, add the price of that item from the BIN.
 - If it has an "Art Of War" books added to it, add the price of that book from the BIN to the value.
 - For each enchantment, add the cost of the enchanted book from BIN to the item.
+- If the item is a drill, add the cost of each upgrade from the BIN to the value.
 - And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.

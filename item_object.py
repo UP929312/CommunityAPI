@@ -56,6 +56,12 @@ class Item:
             if self.reforge.lower() == "jerry_stone":
                 self.reforge = "jerry's"
 
+        if self.type is not None and self.type == "drill":
+            self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()
+            self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
+            self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
+            print(self.drill_module_upgrade, self.drill_engine_upgrade, self.drill_tank_upgrade)
+
     def __str__(self):
         return self.internal_name
 

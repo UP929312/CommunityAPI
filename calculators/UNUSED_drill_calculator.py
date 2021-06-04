@@ -4,22 +4,6 @@ from constants.lowest_bin import LOWEST_BIN
 from constants.bazaar import BAZAAR
 from constants.reforges import REFORGE_DICT
 
-ESSENCE_PRICE = {"Wither": 5000, "Gold": 3000,
-                 "Ice": 3000,    "Diamond": 3000,
-                 "Dragon": 1000, "Spider": 3000,
-                 "Undead": 2000}
-
-def calc_stars(item):
-    #print("Calc stars:", item.name, item.star_upgrades)
-    essence_object = ESSENCE_DICT.get(item.internal_name.removeprefix("STARRED_"), None)
-    if essence_object is None:
-        print("CALC STARS FAILED:", item.internal_name, item.star_upgrades)
-        return 0
-    essence_required = sum([essence_object[f"{i}"] for i in range(1, item.star_upgrades)])
-    essence_value = ESSENCE_PRICE[essence_object.get("type", "Spider")]*essence_required
-    #print(f"Dungeon item! Required: {essence_required}, Value: {essence_value}")
-    return essence_value
-
 def calculate_reforge_price(item):
     # This "+;item.item_group prevents warped for armor and AOTE breaking
     reforge_data = REFORGE_DICT.get(item.reforge+";"+item.item_group, None)
@@ -75,12 +59,6 @@ def calculate_item(item, print_prices=False):
     # Wood singularty
     if item.wood_singularity:
         wood_singularty_bonus = LOWEST_BIN.get("WOOD_SINGULARITY", 0)
-
-    # Drills (upgrades)
-    if item.type is not None and item.type.upper() == "DRILL":
-        drill_upgrades = LOWEST_BIN.get(item.drill_module_upgrade, 0)
-        drill_upgrades += LOWEST_BIN.get(item.drill_engine_upgrade, 0)
-        drill_upgrades += LOWEST_BIN.get(item.drill_tank_upgrade, 0)
 
     # Total
     price = sum([base_price, hot_potato_value, recombobulated_value, star_value, warped_value, enchants_value, art_of_war_bonus, wood_singularty_bonus])
