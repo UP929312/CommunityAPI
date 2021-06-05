@@ -19,16 +19,14 @@ def get_pet_level(pet):
     return pet_level    
     
 def calculate_pet(pet, print_prices):
-    pet_level = get_pet_level(pet)    
+    pet_level = get_pet_level(pet)
 
     if f"{pet['type']};{TIERS.index(pet['tier'])}" in LOWEST_BIN:
         # Try from LOWEST_BIN
         base_pet_price = LOWEST_BIN[f"{pet['type']};{TIERS.index(pet['tier'])}"]
     else:
         # Try from Jerry's list
-        level = 100 if pet_level >= 100 else 1
-        base_pet_price = PRICES.get(f"LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()}", 0)  # LVL_x_COMMON_ENDERMAN
-        #print(f"Pet at LVL_{level}_{pet['tier'].upper()}_{pet['type'].upper()} priced at {price}")
+        base_pet_price = PRICES.get(f"LVL_1_{pet['tier']}_{pet['type']}", 0)  # LVL_1_COMMON_ENDERMAN
 
     pet_held_item = pet.get("heldItem", "")
     held_item_price = LOWEST_BIN.get(pet_held_item, 0)
