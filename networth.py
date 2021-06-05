@@ -30,12 +30,15 @@ def get_storage(player_data):
 
 # Setup
 username = "56ms"  # ------------------
-#username = "nonbunary"
+username = "nonbunary"
 #username = "Poroknights"
 #username = "Skezza"
 
 # Parse/Grab data
 player_data, other_data = get_data(username)
+
+# For testing:
+accessories_worth, inventory_worth, ender_chest_worth, armour_worth, wardrobe_worth, vault_worth, storage_worth, pets_worth = (0, 0, 0, 0, 0, 0, 0, 0)
 
 # Get item groupings
 talisman_bag   = parse_container(player_data.get("talisman_bag", {"data": []})['data'])
@@ -55,7 +58,7 @@ armour_worth      = calculate_container(armour)#, print_prices=True)
 wardrobe_worth    = calculate_container(wardrobe)#, print_prices=True)
 vault_worth       = calculate_container(personal_vault)#, print_prices=True)
 storage_worth     = calculate_container(storage_items)#, print_prices=True)
-pets              = calculate_container(pet_items, print_prices=True)
+pets_worth        = calculate_container(pet_items)#, print_prices=True)
 
 # Other sections
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.
@@ -63,11 +66,11 @@ banking = int(other_data.get("banking", {"balance": 0}).get("balance", 0))  # Sa
 
 #'''
 # Total
-total = purse+banking+pets+inventory_worth+accessories_worth+ender_chest_worth+armour_worth+wardrobe_worth+vault_worth+storage_worth
+total = purse+banking+pets_worth+inventory_worth+accessories_worth+ender_chest_worth+armour_worth+wardrobe_worth+vault_worth+storage_worth
 
 data = [f"Purse: {hf(purse)}",
         f"Bank: {hf(banking)}",
-        f"Pets: {hf(pets)}",
+        f"Pets: {hf(pets_worth)}",
         f"Inventory: {hf(inventory_worth)}",
         f"Accessories: {hf(accessories_worth)}",
         f"Ender chest: {hf(ender_chest_worth)}",

@@ -5,14 +5,22 @@ import json
 # CONSTANTS
 ENCHANTS = ("enchants", "ENCHANTS_DICT", "https://raw.githubusercontent.com/Moulberry/NotEnoughUpdates-REPO/master/constants/enchants.json")
 ESSENCE = ("essence", "ESSENCE_DICT", "https://raw.githubusercontent.com/Moulberry/NotEnoughUpdates-REPO/master/constants/essencecosts.json")
-PETS = ("pets", "PET_DICT", "https://raw.githubusercontent.com/Moulberry/NotEnoughUpdates-REPO/master/constants/pets.json")
 
-for file, var_name, link in (ENCHANTS, ESSENCE, PETS):
+for file, var_name, link in (ENCHANTS, ESSENCE):
     result = requests.get(link).json()
 
     with open(f"{file}.py", 'w') as file:
         file.write(f"{var_name} = "+json.dumps(result))
     print(f"Loaded in {var_name}")
+
+#==================================================================
+# REFORGE STONES
+file, var_name, link = ("pets", "PET_LEVELS", "https://raw.githubusercontent.com/Moulberry/NotEnoughUpdates-REPO/master/constants/pets.json")
+result = requests.get(link).json()
+
+with open(f"{file}.py", 'w') as file:
+    file.write(f"{var_name} = "+json.dumps(result['pet_levels']))
+print(f"Loaded in {var_name}")
 
 #==================================================================
 # REFORGE STONES

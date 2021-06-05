@@ -1,27 +1,22 @@
 from constants.jerry_price_list import PRICES
 from constants.lowest_bin import LOWEST_BIN
-from constants.pets import PET_DICT
+from constants.pets import PET_LEVELS
 
+RARITY_OFFSET = {"COMMON": 0, "UNCOMMON": 6, "RARE": 11, "EPIC": 16, "LEGENDARY": 20, "MYTHIC": 20}
 TIERS = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
-#print([(TIERS.index(x), x) for x in TIERS])
-COINS_PER_XP = 0.2
+
+COINS_PER_XP = 0.01
 
 def get_pet_level(pet):
-    #print("-"*50)
-    pet_tier = pet["tier"] if pet["tier"] != "MYTHIC" else "LEGENDARY"
     pet_xp = pet["exp"]
-    xp_offset = PET_DICT["pet_rarity_offset"][pet_tier]
+    xp_offset = RARITY_OFFSET[pet["tier"]]
     
-    pet_level = 1
-    while pet_xp > 0 and pet_level < 99:
-        pet_xp -= PET_DICT['pet_levels'][pet_level+xp_offset]
+    pet_level = 1  
+    while pet_xp > 0 and pet_level < 100:
+        pet_xp -= (PET_LEVELS+[5000000000000])[pet_level+xp_offset]
         pet_level += 1
 
-    if len(PET_DICT['pet_levels']) == (pet_level+xp_offset):  # Edge case for level 100s (There is no xp required when ranking up to Level 101
-        return 100
-
-    return pet_level
-    
+    return pet_level    
     
 def calculate_pet(pet, print_prices):
     pet_level = get_pet_level(pet)    
