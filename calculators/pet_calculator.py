@@ -5,7 +5,7 @@ from constants.pets import PET_LEVELS
 RARITY_OFFSET = {"COMMON": 0, "UNCOMMON": 6, "RARE": 11, "EPIC": 16, "LEGENDARY": 20, "MYTHIC": 20}
 TIERS = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
 
-COINS_PER_XP = 0.01
+COINS_PER_XP = 0.2
 
 def get_pet_level(pet):
     pet_xp = pet["exp"]
@@ -32,7 +32,9 @@ def calculate_pet(pet, print_prices):
     held_item_price = LOWEST_BIN.get(pet_held_item, 0)
     pet_level_bonus = int(pet["exp"]*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
 
-    if print_prices:
+    pet_skin_price = LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0) if pet.get("skin", None) is not None else 0
+
+    if print_prices and base_pet_price+pet_level_bonus+held_item_price > 50_000_000:
         print(f"{pet['type']} ({pet['tier']}) with level {pet_level}")
-        print(f"Total estimated value: {base_pet_price+pet_level_bonus+held_item_price}, made up of Base: {base_pet_price}, Held item ({pet_held_item}): {held_item_price} and {pet_level_bonus} level bonus.")
+        print(f"Total estimated value: {base_pet_price+pet_level_bonus+held_item_price+pet_skin_price}, made up of Base: {base_pet_price}, Held item ({pet_held_item}): {held_item_price}, Level {pet_level_bonus} bonus and Skin price: {pet_skin_price}.")
     return base_pet_price+pet_level_bonus+held_item_price

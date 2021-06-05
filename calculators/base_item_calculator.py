@@ -56,7 +56,11 @@ def calculate_item(item, print_prices=False):
         recombobulated_value = BAZAAR["RECOMBOBULATOR_3000"]
     # Enchantments
     for enchantment, level in item.enchantments.items():
-        enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{level}", 0)
+        if f"{enchantment.upper()};{level}" in LOWEST_BIN:
+            enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{level}", 0)
+        else:
+            # If we can't find Sharpness 5, get 2^4 books (16), and add them together.
+            enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};1", 0)*(2**(level-1))
     # Reforge:
     if item.item_group is not None:
         reforge_bonus = calculate_reforge_price(item)
@@ -87,10 +91,12 @@ def calculate_item(item, print_prices=False):
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size    
     #=================
-    if print_prices:# or price_source == "Jerry":#and price > 50_000_000:
+    if print_prices and price > 100_000_000:
         print(f"{converted_name} (x{item.stack_size})")
         print("".join([f"> {int(price/1_000_000)} million, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, reforge: {reforge_bonus}\n",
               f"enchnts: {enchants_value}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}, enrichment: {tali_enrichment_bonus}",
               f"farming 4 Dummies: {farming_for_dummies_bonus}, drills: {drill_upgrades}"]))
+        print("--")
+        print(repr(item))
         print("------------")
     return price

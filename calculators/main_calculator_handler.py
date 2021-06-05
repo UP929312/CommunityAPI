@@ -2,7 +2,6 @@ from calculators.enchantment_calculator import calculate_enchantment
 from calculators.pet_calculator import calculate_pet
 from calculators.base_item_calculator import calculate_item
 
-
 def calculate_container(elements, print_prices=False):
     total = 0
     for element in elements:            
