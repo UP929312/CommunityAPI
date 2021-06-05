@@ -66,8 +66,10 @@ class Item:
         if self.type == "drill":
             self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
-            self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()            
+            self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
 
+        self.ability_scrolls = extras.get("ability_scroll", None)
+        
     def __str__(self):
         return self.internal_name
 

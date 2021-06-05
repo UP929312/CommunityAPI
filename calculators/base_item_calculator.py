@@ -20,7 +20,7 @@ def calculate_reforge_price(item):
 
 def calculate_item(item, print_prices=False):
 
-    hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, tali_enrichment_bonus, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, tali_enrichment_bonus, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades, scroll_bonus = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     #print("BASE ITEM CALC:", item.type)
     #print(item.internal_name)
@@ -84,9 +84,12 @@ def calculate_item(item, print_prices=False):
         drill_upgrades = LOWEST_BIN.get(item.drill_module_upgrade, 0)
         drill_upgrades += LOWEST_BIN.get(item.drill_engine_upgrade, 0)
         drill_upgrades += LOWEST_BIN.get(item.drill_tank_upgrade, 0)
-
+    # Hyperion scrolls
+    if item.ability_scrolls:
+        scroll_bonus = sum([LOWEST_BIN.get(scroll, 0) for scroll in item.ability_scrolls])
+        
     # Total
-    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades])
+    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades, scroll_bonus])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size    
@@ -95,7 +98,7 @@ def calculate_item(item, print_prices=False):
         print(f"{converted_name} (x{item.stack_size})")
         print("".join([f"> {int(price/1_000_000)} million, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, reforge: {reforge_bonus}\n",
               f"enchnts: {enchants_value}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}, enrichment: {tali_enrichment_bonus}",
-              f"farming 4 Dummies: {farming_for_dummies_bonus}, drills: {drill_upgrades}"]))
+              f"farming 4 Dummies: {farming_for_dummies_bonus}, drills: {drill_upgrades}, scroll bonus: {scroll_bonus}"]))
         print("--")
         print(repr(item))
         print("------------")

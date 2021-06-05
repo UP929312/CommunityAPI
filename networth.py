@@ -23,8 +23,8 @@ def get_data(username):
 
 def get_storage(player_data):
     storage_items = []
-    for i in ("1", "2", "3", "4"):
-        page = player_data["backpack_contents"].get(i, {"data": []})
+    for i in range(1, 19):
+        page = player_data["backpack_contents"].get(str(i), {"data": []})
         storage_items.extend(parse_container(page["data"]))
     return storage_items
 
@@ -32,6 +32,7 @@ def get_storage(player_data):
 username = "56ms"  # ------------------
 #username = "nonbunary"
 #username = "Poroknights"
+#username = "UrMinecraftDoggo"
 #username = "Skezza"
 
 # Parse/Grab data
@@ -58,7 +59,7 @@ armour_worth      = calculate_container(armour)#, print_prices=True)
 wardrobe_worth    = calculate_container(wardrobe)#, print_prices=True)
 vault_worth       = calculate_container(personal_vault)#, print_prices=True)
 storage_worth     = calculate_container(storage_items)#, print_prices=True)
-pets_worth        = calculate_container(pet_items, print_prices=True)
+pets_worth        = calculate_container(pet_items)#, print_prices=True)
 
 # Other sections
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.
