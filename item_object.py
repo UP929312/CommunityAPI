@@ -8,12 +8,20 @@ class Item:
         #print(nbt)
 
         # Generic data
-        tag = nbt['tag']
+        tag = nbt['tag']  # No idea why this fails for a very small number of people... If I use get, the whole thing breaks
         extras = tag.get('ExtraAttributes', {})
         display = tag.get('display', {})
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
+
+        '''
+        if self.internal_name is None or self.internal_name.isdigit():
+            print(self.name, "|", self.internal_name)
+            print("Return")
+            print(nbt)
+            return  # Some weird bugged items show up here
+        '''
             
         self.recombobulated = 1 if extras.get('rarity_upgrades', False) else 0
         self.hot_potatos = extras.get('hot_potato_count', 0)
@@ -69,6 +77,8 @@ class Item:
             self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
 
         self.ability_scrolls = extras.get("ability_scroll", None)
+
+        self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
         
     def __str__(self):
         return self.internal_name
@@ -109,5 +119,7 @@ class Item:
             list_of_elems.append(f"{self.mined_crops} mined crops")
         if self.farmed_cultivating:
             list_of_elems.append(f"{self.farmed_cultivating} farmed cultivating")
+        if self.livid_fragments:
+            list_of_elems.append(f"{self.livid_fragments} livid fragments")
         
         return ", ".join(list_of_elems)

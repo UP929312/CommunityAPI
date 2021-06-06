@@ -34,7 +34,9 @@ def calculate_pet(pet, print_prices):
 
     pet_skin_price = LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0) if pet.get("skin", None) is not None else 0
 
-    if print_prices and base_pet_price+pet_level_bonus+held_item_price > 50_000_000:
+    total = base_pet_price+pet_level_bonus+held_item_price+pet_skin_price
+
+    if print_prices and total > 50_000_000:
         print(f"{pet['type']} ({pet['tier']}) with level {pet_level}")
         print(f"Total estimated value: {base_pet_price+pet_level_bonus+held_item_price+pet_skin_price}, made up of Base: {base_pet_price}, Held item ({pet_held_item}): {held_item_price}, Level {pet_level_bonus} bonus and Skin price: {pet_skin_price}.")
-    return base_pet_price+pet_level_bonus+held_item_price
+    return total

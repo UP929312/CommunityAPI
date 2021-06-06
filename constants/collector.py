@@ -51,7 +51,7 @@ BAZAAR = {}
 
 result = requests.get(link).json()
 for product in result["products"]:
-    BAZAAR[product] = int(result["products"][product]['quick_status']['sellPrice'])
+    BAZAAR[product] = int(result["products"][product]['quick_status']['buyPrice'])
 
 with open(f"{file}.py", 'w') as file:
     file.write(f"{var_name} = "+json.dumps(BAZAAR))
