@@ -23,7 +23,9 @@ def get_data(username):
 
 def get_storage(player_data):
     storage_items = []
-    for i in range(1, 19):
+    if not player_data.get("backpack_contents", False):
+        return []
+    for i in range(0, 19):
         page = player_data["backpack_contents"].get(str(i), {"data": []})
         storage_items.extend(parse_container(page["data"]))
     return storage_items
@@ -36,6 +38,7 @@ username = "nonbunary"
 #username = "Skezza"
 #username = "Refraction"
 username = "seattle72"
+#username = "kori_100"
 
 # Parse/Grab data
 player_data, other_data = get_data(username)
@@ -54,14 +57,14 @@ storage_items  = get_storage(player_data)
 pet_items      = player_data.get("pets", [])
 
 # Calculate each section
-accessories_worth = calculate_container(talisman_bag, print_prices=True)
+accessories_worth = calculate_container(talisman_bag)#, print_prices=True)
 inventory_worth   = calculate_container(inv_contents)#, print_prices=True)
 ender_chest_worth = calculate_container(ender_chest)#, print_prices=True)
 armour_worth      = calculate_container(armour)#, print_prices=True)
 wardrobe_worth    = calculate_container(wardrobe)#, print_prices=True)
 vault_worth       = calculate_container(personal_vault)#, print_prices=True)
 storage_worth     = calculate_container(storage_items)#, print_prices=True)
-pets_worth        = calculate_container(pet_items, print_prices=True)
+pets_worth        = calculate_container(pet_items)#, print_prices=True)
 
 # Other sections
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.

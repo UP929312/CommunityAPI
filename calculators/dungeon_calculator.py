@@ -2,7 +2,7 @@ from constants.essence import ESSENCE_DICT
 from constants.jerry_price_list import PRICES
 from constants.lowest_bin import LOWEST_BIN
 
-ESSENCE_PRICE = {"Wither": 5000, "Gold": 3000,
+ESSENCE_PRICE = {"Wither": 4000, "Gold": 3000,
                  "Ice": 3000,    "Diamond": 3000,
                  "Dragon": 1000, "Spider": 3000,
                  "Undead": 2000}

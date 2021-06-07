@@ -4,6 +4,7 @@ from constants.bazaar import BAZAAR
 from constants.reforges import REFORGE_DICT
 
 from calculators.dungeon_calculator import calculate_dungeon_item
+from calculators.enchantment_calculator import calculate_enchantments
 
 def calculate_reforge_price(item):
     # This "+;item.item_group prevents warped for armor and AOTE breaking
@@ -13,12 +14,11 @@ def calculate_reforge_price(item):
         reforge_item = reforge_data["INTERNAL_NAME"]  # Gets the item, e.g. BLESSED_FRUIT
         item_rarity = item.rarity if item.rarity != "SPECIAL" else "LEGENDARY"  # The dataset doesn't include special, use LEGEND instead
         #print(reforge_data)
-        #print(item.internal_name)
+        #print("ITEM:",item.internal_name)
         #print(reforge_data["REFORGE_COST"], item_rarity)
         reforge_cost = reforge_data["REFORGE_COST"][item_rarity]  # Cost to apply for each rarity
         reforge_item_cost = LOWEST_BIN.get(f"{reforge_item}", 0)  # How much does the reforge stone cost
-        
-        return reforge_item_cost + reforge_cost
+        return (reforge_item_cost + reforge_cost)
     return 0
 
 def calculate_item(item, print_prices=False):
@@ -58,12 +58,8 @@ def calculate_item(item, print_prices=False):
     if item.recombobulated:
         recombobulated_value = BAZAAR["RECOMBOBULATOR_3000"]
     # Enchantments
-    for enchantment, level in item.enchantments.items():
-        if f"{enchantment.upper()};{level}" in LOWEST_BIN:
-            enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{level}", 0)
-        else:
-            # If we can't find Sharpness 5, get 2^4 books (16), and add them together.
-            enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};1", 0)*(2**(level-1))
+    if item.enchantments:
+        enchants_value = calculate_enchantments(item.enchantments)
     # Reforge:
     if item.item_group is not None:
         reforge_bonus = calculate_reforge_price(item)
@@ -95,16 +91,16 @@ def calculate_item(item, print_prices=False):
         livid_fragment_bonus = item.livid_fragments*LOWEST_BIN.get("LIVID_FRAGMENT", 0)
         
     # Total
-    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades, scroll_bonus, livid_fragment_bonus])
+    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades, scroll_bonus, livid_fragment_bonus])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size    
     #=================
-    if print_prices and price > 100_000_000:
+    if print_prices or "stonk" in item.internal_name.lower():# and price > 100_000_000:
         print(f"{converted_name} (x{item.stack_size})")
-        print("".join([f"> {int(price/1_000_000)} million, Base: {base_price}, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, reforge: {reforge_bonus}\n",
-              f"enchnts: {enchants_value}, Art War: {art_of_war_bonus}, wood singul: {wood_singularty_bonus}, enrichment: {tali_enrichment_bonus},\n",
-              f"farming 4 Dummies: {farming_for_dummies_bonus}, drills: {drill_upgrades}, scroll bonus: {scroll_bonus}, Livid Frags: {livid_fragment_bonus}"]))
+        print("".join([f"> {int(price/1_000_000)} million, Base: {base_price}, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, Reforge: {reforge_bonus}\n",
+              f"Enchants: {enchants_value}, Art of War: {art_of_war_bonus}, Wood Singularity: {wood_singularty_bonus}, Enrichment: {tali_enrichment_bonus},\n",
+              f"Farming for Dummies: {farming_for_dummies_bonus}, Drills: {drill_upgrades}, Scroll bonus: {scroll_bonus}, Livid Frags: {livid_fragment_bonus}"]))
         print("--")
         print(repr(item))
         print("------------")
