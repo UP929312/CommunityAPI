@@ -5,10 +5,6 @@ class Price:
         self.source = "None"
         self.total = 0
 
-        
-        
-        self.enchants_value = 0
-
     def __init__(self):
         total = 0
         for key, value in self.values.items():

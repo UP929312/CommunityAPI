@@ -14,14 +14,6 @@ class Item:
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
-
-        '''
-        if self.internal_name is None or self.internal_name.isdigit():
-            print(self.name, "|", self.internal_name)
-            print("Return")
-            print(nbt)
-            return  # Some weird bugged items show up here
-        '''
             
         self.recombobulated = 1 if extras.get('rarity_upgrades', False) else 0
         self.hot_potatos = extras.get('hot_potato_count', 0)
@@ -49,8 +41,8 @@ class Item:
 
         # Extract rarity and type
         last_desc_row = self.description_clean[-1].split()
-        self.rarity = last_desc_row[0].upper()
-        self.type = last_desc_row[1].lower() if len(last_desc_row) > 1 else None
+        self.rarity = last_desc_row[0] if last_desc_row[0] != "VERY" else "VERY_SPECIAL"
+        self.type = last_desc_row[1] if len(last_desc_row) > 1 else None
 
         # self.item_group = Stuff such as "ARMOR", "SWORD", "ROD", "ACCESSORY
         self.item_group = None
@@ -60,24 +52,33 @@ class Item:
             self.item_group = last_desc_row[-1]
         
         # Parse item name with removed reforges (We can already get the reforges)
-        for reforge in ['strong', 'shaded', 'withered', 'fabled', 'unreal', 'unpleasant', 'precise', 'blessed', 'forceful', 'ancient', 'renowned', 'submerged', 'light', 'necrotic', 'wise', 'loving', 'pure', 'fierce', 'candied', 'treacherous', 'dirty', 'smart', 'heroic', 'fast', 'titanic', 'sharp', 'rapid', 'awkward', 'fine', 'heavy', 'fair', 'odd', 'gentle', 'neat', 'hasty', 'spicy', 'rich', 'clean']:
-            if self.name.startswith(reforge.capitalize()+" "):
-                self.name = self.name[len(reforge+" "):]
+        if self.reforge is not None:
+            for reforge in ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ']:
+                self.name = self.name.removeprefix(reforge)       
 
         # A little edge case handling, because Hypixel are great...
         if self.reforge is not None:
-            if self.reforge.lower() == "aote_stone":
+            if self.reforge == "aote_stone":
                 self.reforge = "warped"
-            if self.reforge.lower() == "jerry_stone":
+            if self.reforge == "jerry_stone":
                 self.reforge = "jerry's"
 
-        if self.type == "drill":
-            self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()
+        # Drills
+        if self.type == "DRILL":
+            self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()  # Not sure why this is lowercase
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
             self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
 
+        # Hoes
+        self.hoe_level, self.hoe_material = (None, None)
+        if self.type == "HOE" and "THEORETICAL" in self.internal_name:
+            self.material = "_".join(self.name.split(" ")[1:-1]).upper()  # Turing Sugar Cane Hoe
+            self.hoe_level = self.internal_name[-1]  # THEORETICAL_HOE_WHEAT_1 -> 1
+
+        # For Hyperions
         self.ability_scrolls = extras.get("ability_scroll", None)
 
+        # Livid Fragments
         self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
         
     def __str__(self):
@@ -90,13 +91,15 @@ class Item:
             list_of_elems.append(f"Type: {self.type}")
         if self.item_group is not None:
             list_of_elems.append(f"Group: {self.item_group}")
-        if self.type == "drill":
+        if self.type == "DRILL":
             if self.drill_module_upgrade:
                 list_of_elems.append(f"Drill module: {self.drill_module_upgrade}")
             if self.drill_engine_upgrade:
                 list_of_elems.append(f"Drill engine: {self.drill_engine_upgrade}")
             if self.drill_tank_upgrade:
                 list_of_elems.append(f"Drill tank: {self.drill_tank_upgrade}")
+        if self.type == "HOE":
+            list_of_elems.append(f"Level: {self.hoe_level}, Type: {self.hoe_material}")
         if self.stack_size > 1:
             list_of_elems.append(f"Amount: {self.stack_size}")
         if self.recombobulated:
@@ -110,7 +113,7 @@ class Item:
         if self.talisman_enrichment:
             list_of_elems.append(f"Enrichment: {self.talisman_enrichment}")
         if self.art_of_war:
-                list_of_elems.append("+Art of War")
+            list_of_elems.append("+Art of War")
         if self.wood_singularity:
             list_of_elems.append("+Wood Singularity")
         if self.farming_for_dummies > 0:

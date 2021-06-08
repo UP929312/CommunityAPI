@@ -5,6 +5,7 @@ from constants.reforges import REFORGE_DICT
 
 from calculators.dungeon_calculator import calculate_dungeon_item
 from calculators.enchantment_calculator import calculate_enchantments
+from utils import human_number as hf
 
 def calculate_reforge_price(item):
     # This "+;item.item_group prevents warped for armor and AOTE breaking
@@ -12,7 +13,9 @@ def calculate_reforge_price(item):
     # This will not calculate reforges that are from the blacksmith, e.g. "Wise", "Demonic", they're just not worth anything.
     if reforge_data is not None:
         reforge_item = reforge_data["INTERNAL_NAME"]  # Gets the item, e.g. BLESSED_FRUIT
-        item_rarity = item.rarity if item.rarity != "SPECIAL" else "LEGENDARY"  # The dataset doesn't include special, use LEGEND instead
+        item_rarity = item.rarity 
+        if item_rarity in ["SPECIAL", "VERY_SPECIAL"]:  # The dataset doesn't include special, use LEGEND instead
+            item_rarity = "LEGENDARY"
         #print(reforge_data)
         #print("ITEM:",item.internal_name)
         #print(reforge_data["REFORGE_COST"], item_rarity)
@@ -38,15 +41,16 @@ def calculate_item(item, print_prices=False):
         price_source = "BIN"
     else:
         price_source = "Jerry"
-        #print(converted_name)
         base_price = PRICES.get(converted_name, 0)  
         if base_price == 0:
             price_source = "None"
 
     #=============================================================================
     # Hoe calculations
-    if item.mined_crops:
-        base_price = 1_000_000+10**(len(f"{item.mined_crops+item.farmed_cultivating}")-2)
+    if self.type == "HOE":
+        base_material_cost = 256*(BAZAAR[self.hoe_material]*(144**self.hoe_level))
+        if item.mined_crops:
+            base_price = (1_000_000)+(base_material_cost)+10**(len(f"{item.mined_crops+item.farmed_cultivating}")-4)
     #=============================================================================
     # Hot potato books:
     if item.hot_potatos > 0:
@@ -79,7 +83,7 @@ def calculate_item(item, print_prices=False):
     if item.farming_for_dummies:
         farming_for_dummies_bonus += item.farming_for_dummies*LOWEST_BIN.get("FARMING_FOR_DUMMIES", 0)
     # Drills (upgrades)
-    if item.type is not None and item.type == "drill":
+    if item.type == "DRILL":
         drill_upgrades = LOWEST_BIN.get(item.drill_module_upgrade, 0)
         drill_upgrades += LOWEST_BIN.get(item.drill_engine_upgrade, 0)
         drill_upgrades += LOWEST_BIN.get(item.drill_tank_upgrade, 0)
@@ -96,9 +100,9 @@ def calculate_item(item, print_prices=False):
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size    
     #=================
-    if print_prices or "stonk" in item.internal_name.lower():# and price > 100_000_000:
+    if print_prices:# and price > 100_000_000:
         print(f"{converted_name} (x{item.stack_size})")
-        print("".join([f"> {int(price/1_000_000)} million, Base: {base_price}, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, Reforge: {reforge_bonus}\n",
+        print("".join([f"> {hf(price)} million, Base: {base_price}, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, Reforge: {reforge_bonus}\n",
               f"Enchants: {enchants_value}, Art of War: {art_of_war_bonus}, Wood Singularity: {wood_singularty_bonus}, Enrichment: {tali_enrichment_bonus},\n",
               f"Farming for Dummies: {farming_for_dummies_bonus}, Drills: {drill_upgrades}, Scroll bonus: {scroll_bonus}, Livid Frags: {livid_fragment_bonus}"]))
         print("--")

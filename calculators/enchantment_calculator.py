@@ -27,26 +27,26 @@ def calculate_enchantments(element):
             return PRICES.get(f"{enchantment_type.lower()}_{enchantment_level}", 0)
     else:
         # For enchantments on items
-        print("Calculating item enchantments")
+        #print("Calculating item enchantments")
         if isinstance(element, dict):
             enchants_value = 0
             for enchantment, level in element.items():
-                print(f"Trying level {level} {enchantment}")
+                #print(f"Trying level {level} {enchantment}")
                 if f"{enchantment.upper()};{level}" in LOWEST_BIN:
-                    print("Found on LOWEST_BIN")
+                    #print("Found on LOWEST_BIN")
                     enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{level}", 0)
                 else:
-                    print("Not on LOWEST_BIN")
+                    #print("Not on LOWEST_BIN")
                     for i in range(level, 0, -1):
                         if f"{enchantment.upper()};{i}" in LOWEST_BIN:
                             break
                     else:
-                        print("No enchantments of lower value")
+                        #print("No enchantments of lower value")
                         return 0
                     # If we can't find Sharpness 5, we try Sharpness 4
-                    print(f"Found enchantment of level {i}")
+                    #print(f"Found enchantment of level {i}")
                     enchants_value += LOWEST_BIN.get(f"{enchantment.upper()};{i}", 0)*(2**(level-i))
-                    print("It cost ",LOWEST_BIN.get(f'{enchantment.upper()};{i}', 0)*(2**(level-i)))
+                    #print("It cost ",LOWEST_BIN.get(f'{enchantment.upper()};{i}', 0)*(2**(level-i)))
                     
             return enchants_value
         
