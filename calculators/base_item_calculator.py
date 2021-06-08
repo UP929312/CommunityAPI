@@ -44,11 +44,10 @@ def calculate_item(item, print_prices=False):
         base_price = PRICES.get(converted_name, 0)  
         if base_price == 0:
             price_source = "None"
-
     #=============================================================================
     # Hoe calculations
-    if self.type == "HOE":
-        base_material_cost = 256*(BAZAAR[self.hoe_material]*(144**self.hoe_level))
+    if item.type == "HOE" and item.hoe_material != None:
+        base_material_cost = 256*(BAZAAR[item.hoe_material]*(144**item.hoe_level))
         if item.mined_crops:
             base_price = (1_000_000)+(base_material_cost)+10**(len(f"{item.mined_crops+item.farmed_cultivating}")-4)
     #=============================================================================
