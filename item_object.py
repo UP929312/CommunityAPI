@@ -1,5 +1,6 @@
 import re
 
+BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ']
 
 class Item:
     def __init__(self, nbt, slot_number):
@@ -53,7 +54,7 @@ class Item:
         
         # Parse item name with removed reforges (We can already get the reforges)
         if self.reforge is not None:
-            for reforge in ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ']:
+            for reforge in BASE_REFORGES:
                 self.name = self.name.removeprefix(reforge)       
 
         # A little edge case handling, because Hypixel are great...
@@ -68,6 +69,8 @@ class Item:
             self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()  # Not sure why this is lowercase
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
             self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
+            
+            self.has_drill_upgrade = self.drill_module_upgrade or self.drill_engine_upgrade or self.drill_tank_upgrade
 
         # Hoes
         self.hoe_level, self.hoe_material = (None, None)
