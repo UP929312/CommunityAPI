@@ -24,6 +24,10 @@ class Price:
 
     def __int__(self):
         print_output = False
+        
+        if "stars" in self.value:
+            print_output = True
+                 
         if print_output:
             print(self.item.internal_name)
         price = print_tree(self.value, "  ", print_output)
