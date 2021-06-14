@@ -102,9 +102,6 @@ def calculate_item(price, print_prices=False):
     # For Livid fragments
     #if item.livid_fragments:
     #    value["livid_fragment_value"] = item.livid_fragments*LOWEST_BIN.get("LIVID_FRAGMENT", 0)
-
-    if item.internal_name is not None and "BONZO" in item.internal_name:
-        print(item.__nbt__)
     #=================
     price.value = value
     return price
