@@ -9,7 +9,7 @@ test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
                   6: "XD_Zaptro_XD", 7: "seattle72", 8: "Refraction"}
                   #Zap breaks it, but why?
 
-user = 0
+user = 7#6#8
 username = test_usernames[user]
 
 # Parse/Grab data

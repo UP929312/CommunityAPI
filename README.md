@@ -34,7 +34,7 @@ Then we calculate some extras for base items:
 - For each enchantment, if it's not on BIN, try doing 2 of the level below, or 4 of two levels below, etc.
 - If the item is a drill, add the cost of each upgrade from the BIN to the value.
 - If it has scrolls (e.g. on a Hyperion), add the price of all of them to the value.
-- If it's got livid fragments applied to it, add those 8 to the value.
+~~- If it's got livid fragments applied to it, add those 8 to the value.~~ Currently disabled.
 - And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.
 
 For pets:

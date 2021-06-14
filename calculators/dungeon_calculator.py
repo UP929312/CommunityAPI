@@ -1,6 +1,6 @@
 from constants.essence import ESSENCE_DICT
-from constants.jerry_price_list import PRICES
 from constants.lowest_bin import LOWEST_BIN
+#from constants.jerry_price_list import PRICES
 
 ESSENCE_PRICE = {"Wither": 4000, "Gold": 3000,
                  "Ice":    3000, "Diamond": 3000,

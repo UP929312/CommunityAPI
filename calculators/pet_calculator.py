@@ -34,7 +34,7 @@ def calculate_pet(price, print_prices):
     else:
         # Try from Jerry's list
         value["base_price"] = PRICES.get(f"LVL_1_{pet['tier']}_{pet['type']}", 0)  # LVL_1_COMMON_ENDERMAN
-        value["price_source"] = "Jerry's List"
+        value["price_source"] = "Jerry"
 
     #######################################################################################
     # PET ITEM VALUE
@@ -50,16 +50,13 @@ def calculate_pet(price, print_prices):
     if pet_skin:
         value["pet_skin"] = {}
         value["pet_skin"]["value"] = LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0)
-        value["pet_skin"]["price_source"] = "BIN" if pet_skin else "Unknown"
+        value["pet_skin"]["price_source"] = "BIN"
 
     #######################################################################################
-
     # PET LEVEL BONUS
-    pet_level_bonus = int(pet["exp"]*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
-
     value["pet_level_bonus"] = {}
     value["pet_level_bonus"]["amount"] = f"{int(pet['exp'])} xp"
-    value["pet_level_bonus"]["worth"] = pet_level_bonus
+    value["pet_level_bonus"]["worth"] = int(pet["exp"]*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
 
     #######################################################################################
 

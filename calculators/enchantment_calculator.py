@@ -20,7 +20,7 @@ def calculate_enchanted_book(price):  # For enchanted books
         price.value["enchantments_value"] = LOWEST_BIN[f"{enchantment_type};{enchantment_level}"]
     else:
         #print("Enchanted book will be tried on Jerry's price list")
-        price.value["price_source"] = "Jerry's List"
+        price.value["price_source"] = "Jerry"
         price.value["enchantments_value"] = PRICES.get(f"{enchantment_type.lower()}_{enchantment_level}", 0)
 
     return price

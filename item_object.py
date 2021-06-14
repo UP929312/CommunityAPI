@@ -3,13 +3,16 @@ import re
 BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ']
 
 class Item:
-    def __init__(self, nbt, slot_number):
+    def __init__(self, nbt):
         self.__nbt__ = nbt
 
         #print(nbt)
 
         # Generic data
-        tag = nbt['tag']  # No idea why this fails for a very small number of people... If I use get, the whole thing breaks
+        try:
+            tag = nbt['tag']  # No idea why this fails for a very small number of people... If I use get, the whole thing breaks
+        except:
+            print(nbt)
         # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0} What is this...
         
         extras = tag.get('ExtraAttributes', {})
@@ -84,7 +87,7 @@ class Item:
         self.ability_scrolls = extras.get("ability_scroll", None)
 
         # Livid Fragments
-        self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
+        #self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
         
     def __str__(self):
         return self.internal_name

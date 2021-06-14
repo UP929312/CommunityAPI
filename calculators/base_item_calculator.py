@@ -44,7 +44,6 @@ def calculate_item(price, print_prices=False):
         value["price_source"] = "BIN"
     else:
         value["price_source"] = "Jerry"
-        #print(converted_name)
         value["base_price"] = PRICES.get(converted_name, None) 
         if value["base_price"] is None:
             value["base_price"] = 0
@@ -101,8 +100,11 @@ def calculate_item(price, print_prices=False):
     if item.ability_scrolls:
         value["ability_scrolls_value"] = sum([LOWEST_BIN.get(scroll, 0) for scroll in item.ability_scrolls])
     # For Livid fragments
-    if item.livid_fragments:
-        value["livid_fragment_value"] = item.livid_fragments*LOWEST_BIN.get("LIVID_FRAGMENT", 0)
+    #if item.livid_fragments:
+    #    value["livid_fragment_value"] = item.livid_fragments*LOWEST_BIN.get("LIVID_FRAGMENT", 0)
+
+    if item.internal_name is not None and "BONZO" in item.internal_name:
+        print(item.__nbt__)
     #=================
     price.value = value
     return price

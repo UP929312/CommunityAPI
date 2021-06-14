@@ -62,4 +62,4 @@ def parse_container(raw):
     raw.read(3)  # Remove file header (we ingore footer)
     root = {}
     parse_next_tag(root)
-    return [Item(x, i) for i, x in enumerate(root['i']) if x]
+    return [Item(x) for x in root['i'] if x]
