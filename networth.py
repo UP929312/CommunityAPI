@@ -23,19 +23,19 @@ inventory_worth, accessories_worth, ender_chest_worth, armour_worth, wardrobe_wo
 
 # Get item groupings
 inv_contents   = parse_container(player_data.get("inv_contents", {"data": []})['data'])
-talisman_bag   = parse_container(player_data.get("talisman_bag", {"data": []})['data'])
 #'''
+talisman_bag   = parse_container(player_data.get("talisman_bag", {"data": []})['data'])
 ender_chest    = parse_container(player_data.get("ender_chest_contents", {"data": []})['data'])
 armour         = parse_container(player_data.get("inv_armor", {"data": []})['data'])
 wardrobe       = parse_container(player_data.get("wardrobe_contents", {"data": []})['data'])
 personal_vault = parse_container(player_data.get("personal_vault_contents", {"data": []})['data'])
+#'''
 storage_items  = get_storage(player_data)
 pet_items      = player_data.get("pets", [])
-#'''
+
 
 # Calculate each section
-inventory_worth   = calculate_container(inv_contents[:5])#, print_prices=True)
-#'''
+inventory_worth   = calculate_container(inv_contents)#, print_prices=True) # [:5]
 accessories_worth = calculate_container(talisman_bag)#, print_prices=True)
 ender_chest_worth = calculate_container(ender_chest)#, print_prices=True)
 armour_worth      = calculate_container(armour)#, print_prices=True)
@@ -43,7 +43,7 @@ wardrobe_worth    = calculate_container(wardrobe)#, print_prices=True)
 vault_worth       = calculate_container(personal_vault)#, print_prices=True)
 storage_worth     = calculate_container(storage_items)#, print_prices=True)
 pets_worth        = calculate_container(pet_items)#, print_prices=True)
-#'''
+
 # Other sections
 purse = int(player_data.get("coin_purse", 0))  # For some reason, purse contains a bunch of extra decimal places.
 banking = int(other_data.get("banking", {"balance": 0}).get("balance", 0))  # Same with Bank
@@ -52,7 +52,8 @@ banking = int(other_data.get("banking", {"balance": 0}).get("balance", 0))  # Sa
 total = sum([purse, banking, pets_worth, inventory_worth, accessories_worth, ender_chest_worth,
              armour_worth, wardrobe_worth, vault_worth, storage_worth])
 
-data = [f"Purse: {hf(purse)}",
+data = ["="*10,
+        f"Purse: {hf(purse)}",
         f"Bank: {hf(banking)}",
         f"Pets: {hf(pets_worth)}",
         f"Inventory: {hf(inventory_worth)}",

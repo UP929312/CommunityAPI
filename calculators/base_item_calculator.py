@@ -94,7 +94,7 @@ def calculate_item(item, print_prices=False):
         livid_fragment_bonus = item.livid_fragments*LOWEST_BIN.get("LIVID_FRAGMENT", 0)
         
     # Total
-    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, art_of_war_bonus, wood_singularty_bonus, farming_for_dummies_bonus, drill_upgrades, scroll_bonus, livid_fragment_bonus])
+    price = sum([base_price, hot_potato_value, recombobulated_value, star_value, enchants_value, reforge_bonus, art_of_war_bonus, wood_singularty_bonus, tali_enrichment_bonus, farming_for_dummies_bonus, drill_upgrades, scroll_bonus, livid_fragment_bonus])
 
     # 2 items (e.g. Enchanted Diamond Blocks) need to be worth twice as much
     price *= item.stack_size    
@@ -102,7 +102,7 @@ def calculate_item(item, print_prices=False):
     if print_prices:# and price > 100_000_000:
         print(f"{converted_name} (x{item.stack_size})")
         print("".join([f"> {hf(price)} million, Base: {base_price}, Source: {price_source}, Recom:{recombobulated_value}, ✪: {star_value}, Reforge: {reforge_bonus}\n",
-              f"Enchants: {enchants_value}, Art of War: {art_of_war_bonus}, Wood Singularity: {wood_singularty_bonus}, Enrichment: {tali_enrichment_bonus},\n",
+              f"Enchants: {enchants_value}, Hot Potatos: {hot_potato_value}, Art of War: {art_of_war_bonus}, Wood Singularity: {wood_singularty_bonus}, Enrichment: {tali_enrichment_bonus},\n",
               f"Farming for Dummies: {farming_for_dummies_bonus}, Drills: {drill_upgrades}, Scroll bonus: {scroll_bonus}, Livid Frags: {livid_fragment_bonus}"]))
         print("--")
         print(repr(item))
