@@ -51,8 +51,8 @@ def calculate_item(price, print_prices=False):
             value["price_source"] = "None"
     #=============================================================================
     # Hoe calculations
-    if item.mined_crops:
-        value["base_price"] = 1_000_000+10**(len(f"{item.mined_crops+item.farmed_cultivating}")-2)
+    if item.type == "HOE" and item.hoe_material != None:
+        value["base_price"] = 1_000_000+256*(BAZAAR[item.hoe_material]*(144**item.hoe_level))
         value["price_source"] = "Calculated"
     #=============================================================================
     # Hot potato books:

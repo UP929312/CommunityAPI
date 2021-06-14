@@ -33,8 +33,8 @@ class Item:
 
         # Hoes
         self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
-        self.mined_crops = extras.get("mined_crops", 0)
-        self.farmed_cultivating = extras.get("farmed_cultivating", 0)
+        #self.mined_crops = extras.get("mined_crops", 0)
+        #self.farmed_cultivating = extras.get("farmed_cultivating", 0)
 
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])

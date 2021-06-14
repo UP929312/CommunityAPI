@@ -23,7 +23,7 @@ With these (excluding pets), it will do the following:
 3. If it's not on either of these, check Jerry's list, it's not always entirely accurate, but has much more items.
 
 Then we calculate some extras for base items:
-- If it's a hoe, 1,000,000 for a mathematical blueprint, plus the cost of materials to get it to it's tier (e.g. tier 3), plus 10 to the power of the number of digits on the counter minus 4.
+- If it's a theoretical hoe, 1,000,000 for a mathematical blueprint, plus the cost of materials to get it to it's tier (e.g. tier 3)
 - If it has hot potato books, add the price of a HPB for each book, and the price of a FPB for each fuming potato book.
 - If it's been recombobulated, add the price of a recombobulator 3000 to the value.
 - If it's a dungeon item, give the rough value in essence for each item (and each star), including the price of the Master Stars.
@@ -38,6 +38,7 @@ Then we calculate some extras for base items:
 - And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.
 
 For pets:
-- We calculate the price of the pet from BIN (average for that tier)
-- We add the cost of the pet's held item
+- Calculate the price of the pet from BIN (average for that tier)
+- Add the cost of the pet's held item from BIN
+- Add the cost of the pet's skin from BIN
 - We add the amount of pet xp by 0.2, to get it's level's value (this is partially subjective)
