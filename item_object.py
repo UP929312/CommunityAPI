@@ -10,6 +10,8 @@ class Item:
 
         # Generic data
         tag = nbt['tag']  # No idea why this fails for a very small number of people... If I use get, the whole thing breaks
+        # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0} What is this...
+        
         extras = tag.get('ExtraAttributes', {})
         display = tag.get('display', {})
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...

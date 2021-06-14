@@ -25,8 +25,8 @@ class Price:
     def __int__(self):
         print_output = False
         
-        if "stars" in self.value:
-            print_output = True
+        #if "stars" in self.value:
+        #    print_output = True
                  
         if print_output:
             print(self.item.internal_name)
@@ -37,4 +37,8 @@ class Price:
         if isinstance(self.item, dict):
             return price
         else:
-            return price * self.item.stack_size            
+            return price * self.item.stack_size
+
+    def __str__(self):
+        import json
+        return json.dumps(self.value)
