@@ -22,22 +22,18 @@ class Price:
         self.value = {}  # need this
         self.total = 0
 
-    def __int__(self):
-        print_output = False
-        
-        #if "stars" in self.value:
-        #    print_output = True
-                 
-        if print_output:
-            print(self.item.internal_name)
-        price = print_tree(self.value, "  ", print_output)
-        if print_output:
-            print(f"Total: {price}")
-        
-        if isinstance(self.item, dict):
-            return price
-        else:
-            return price * self.item.stack_size
+    def display_output(self):
+        print(self.item.internal_name)
+        print_tree(self.value, "  ", True)
+        print(f"Total: {price}")
+
+    def calculate_total(self):
+        self.total = print_tree(self.value, "  ", False)
+            
+        if not isinstance(self.item, dict):
+            self.total *= self.item.stack_size
+
+        return self.total
 
     def __str__(self):
         import json

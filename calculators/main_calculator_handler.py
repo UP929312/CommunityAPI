@@ -5,7 +5,6 @@ from price_object import Price
 
 def calculate_container(elements, print_prices=False):
     prices = []
-    total = 0
     for element in elements:
 
         price = Price(element)
@@ -18,8 +17,8 @@ def calculate_container(elements, print_prices=False):
             
         else:
             price_object = calculate_item(price, print_prices)
-            
-        price = int(price_object)
-        total += price
 
-    return total
+        if price_object is not None:
+            prices.append(price_object)
+
+    return prices

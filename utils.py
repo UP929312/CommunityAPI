@@ -52,8 +52,7 @@ def human_number(num):
     rounded = round(num, 3 - int(log10(num)) - 1)
     suffix = ends[int(log10(rounded)/3)]
     new_num = str(rounded / letter_values[suffix])
-    if new_num.endswith(".0"):
-        new_num = new_num[:-2]
+    #new_num = new_num.remove_prefix(".0")
     return str(new_num)+suffix
 
 
