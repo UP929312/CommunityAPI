@@ -84,4 +84,4 @@ async def debug(request: Request, username: str):
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host='127.0.0.0', port=8000, debug=True)
+    uvicorn.run(app, host='127.0.0.1', port=8000, debug=True)
