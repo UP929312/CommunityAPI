@@ -1,4 +1,3 @@
 data/api_key.txt
-*.pyo
-*.pyc
+*.py[cod]
 dead_code
