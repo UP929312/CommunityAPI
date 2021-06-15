@@ -1,9 +1,9 @@
 import requests
 from math import log10
 
-from decode_container import parse_container
+from data.decode_container import parse_container
 
-with open("api_key.txt", 'r') as file:
+with open("data/api_key.txt", 'r') as file:
     API_KEY = file.read()
 
 #=======================================================

@@ -2,6 +2,17 @@ import re
 
 BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ']
 
+DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",
+                "stack_size": 1,                    "type": "Default",
+                "item_group": "Misc",               "rarity": "Common",
+                "recombobulated": 0,                "hot_potatos": 0,
+                "enchantments": {},                 "reforge": None,
+                "star_upgrades": 0,                 "talisman_enrichment": None,
+                "art_of_war": None,                 "wood_singularity": None,
+                "farming_for_dummies": 0,           "ability_scrolls": [],
+               }
+                
+
 class Item:
     def __init__(self, nbt):
         self.__nbt__ = nbt
@@ -9,12 +20,14 @@ class Item:
         #print(nbt)
 
         # Generic data
-        try:
-            tag = nbt['tag']  # No idea why this fails for a very small number of people... If I use get, the whole thing breaks
-        except:
-            print(nbt)
+        if "tag" not in nbt or "Lore" not in nbt["tag"]["display"]:
+            for tag_name, value in DEFAULT_ITEM.items():
+                setattr(self, tag_name, value)
+            return
+            
+        tag = nbt['tag']  # No idea why this fails for a very small number of people... If I use get, the whole thing breaks
         # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0} What is this...
-        
+        #{'id': 160, 'Count': 1, 'tag': {'display': {'Name': ' '}}, 'Damage': 15}
         extras = tag.get('ExtraAttributes', {})
         display = tag.get('display', {})
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
@@ -89,10 +102,50 @@ class Item:
         # Livid Fragments
         #self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
         
-    def __str__(self):
-        return self.internal_name
+    def to_dict(self):
+        data = {
+                "name": self.name,
+                "internal_name": self.internal_name,
+                "rarity": self.rarity if self.rarity is not None else 'Misc',
+                "stack_size": self.stack_size,
+               }
 
-    def __repr__(self):
+        if self.type is not None:
+            data["type"] = self.type
+        if self.item_group is not None:
+            data["item_group"] = self.item_group
+        if self.type == "DRILL":
+            if self.drill_module_upgrade:
+                data["drill_module_upgrade"] = self.drill_module_upgrade
+            if self.drill_engine_upgrade:
+                data["drill_engine_upgrade"] = self.drill_engine_upgrade
+            if self.drill_tank_upgrade:
+                data["drill_tank_upgrade"] = self.drill_tank_upgrade
+                
+        if self.type == "HOE":
+            data["hoe_level"] = self.hoe_level
+            data["hoe_material"] = self.hoe_material
+
+        if self.recombobulated:
+            data["recombobulated"] = True
+        if self.hot_potatos:
+            data["hot_potatos"] = self.hot_potatos
+        if self.reforge is not None:
+            data["reforge"] = self.reforge
+        if self.star_upgrades:
+            data["star_upgrades"] = self.star_upgrades
+        if self.talisman_enrichment:
+            data["talisman_enrichment"] = self.talisman_enrichment
+        if self.art_of_war:
+            data["art_of_war"] = True
+        if self.wood_singularity:
+            data["wood_singularity"] = True
+        if self.farming_for_dummies > 0:
+            data["farming_for_dummies"] = self.farming_for_dummies
+
+        return data
+
+    def __str__(self):
         list_of_elems = [f"{self.name} ({self.internal_name})"]
         list_of_elems.append(f"Rarity: {self.rarity if self.rarity is not None else 'Misc'}")
         if self.type is not None:
@@ -126,11 +179,7 @@ class Item:
             list_of_elems.append("+Wood Singularity")
         if self.farming_for_dummies > 0:
             list_of_elems.append(f"{self.farming_for_dummies} Farming for Dummies")
-        if self.mined_crops:
-            list_of_elems.append(f"{self.mined_crops} mined crops")
-        if self.farmed_cultivating:
-            list_of_elems.append(f"{self.farmed_cultivating} farmed cultivating")
-        if self.livid_fragments:
-            list_of_elems.append(f"{self.livid_fragments} livid fragments")
+        #if self.livid_fragments:
+        #    list_of_elems.append(f"{self.livid_fragments} livid fragments")
         
         return ", ".join(list_of_elems)

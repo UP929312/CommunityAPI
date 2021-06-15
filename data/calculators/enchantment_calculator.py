@@ -1,5 +1,5 @@
-from constants.jerry_price_list import PRICES
-from constants.lowest_bin import LOWEST_BIN
+from data.constants.jerry_price_list import PRICES
+from data.constants.lowest_bin import LOWEST_BIN
 
 ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "XI", "X"]
 

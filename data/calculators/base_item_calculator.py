@@ -1,11 +1,11 @@
-from constants.jerry_price_list import PRICES
-from constants.lowest_bin import LOWEST_BIN
-from constants.bazaar import BAZAAR
-from constants.reforges import REFORGE_DICT
+from data.constants.jerry_price_list import PRICES
+from data.constants.lowest_bin import LOWEST_BIN
+from data.constants.bazaar import BAZAAR
+from data.constants.reforges import REFORGE_DICT
 
 
-from calculators.dungeon_calculator import calculate_dungeon_item
-from calculators.enchantment_calculator import calculate_enchantments
+from data.calculators.dungeon_calculator import calculate_dungeon_item
+from data.calculators.enchantment_calculator import calculate_enchantments
 
 def calculate_reforge_price(price):
     item = price.item
@@ -20,7 +20,7 @@ def calculate_reforge_price(price):
         #print(reforge_data)
         #print(item.internal_name)
         #print(reforge_data["REFORGE_COST"], item_rarity)
-        reforge_cost = reforge_data["REFORGE_COST"][item_rarity]  # Cost to apply for each rarity
+        reforge_cost = reforge_data["REFORGE_COST"].get(item_rarity, 0)  # Cost to apply for each rarity
         reforge_item_cost = LOWEST_BIN.get(f"{reforge_item}", 0)  # How much does the reforge stone cost
 
         price.value["reforge"] = {}

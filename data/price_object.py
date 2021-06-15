@@ -1,3 +1,5 @@
+import json
+
 def print_tree(info_dict, current_indent, print_output):
     branch_value = 0
     if isinstance(info_dict, dict):
@@ -16,7 +18,7 @@ def print_tree(info_dict, current_indent, print_output):
     return branch_value
 
 
-class Price:
+class Price(object):
     def __init__(self, item):
         self.item = item
         self.value = {}  # need this
@@ -35,6 +37,20 @@ class Price:
 
         return self.total
 
+    def to_dict(self):
+        if not isinstance(self.item, dict):
+            item = self.item.to_dict()
+        else:
+            item = self.item
+
+        return {"total": self.total,
+                "value": self.value,
+                "item":  item,
+               }
+
     def __str__(self):
-        import json
-        return json.dumps(self.value)
+        return json.dumps({"total": self.total,
+                           "value": self.value,
+                           "item":  self.item.to_dict(),
+                         })
+

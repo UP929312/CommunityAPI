@@ -3,7 +3,7 @@ from gzip import decompress
 from io import BytesIO
 from struct import unpack
 
-from item_object import Item
+from data.item_object import Item
 
 def parse_container(raw):
     """Takes a raw string representing inventory data. Returns a json object with the inventory's contents"""

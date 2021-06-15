@@ -1,7 +1,7 @@
-from calculators.enchantment_calculator import calculate_enchanted_book
-from calculators.pet_calculator import calculate_pet
-from calculators.base_item_calculator import calculate_item
-from price_object import Price
+from data.calculators.enchantment_calculator import calculate_enchanted_book
+from data.calculators.pet_calculator import calculate_pet
+from data.calculators.base_item_calculator import calculate_item
+from data.price_object import Price
 
 def calculate_container(elements, print_prices=False):
     prices = []
@@ -19,6 +19,7 @@ def calculate_container(elements, print_prices=False):
             price_object = calculate_item(price, print_prices)
 
         if price_object is not None:
+            price_object.calculate_total()
             prices.append(price_object)
 
     return prices

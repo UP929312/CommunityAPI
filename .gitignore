@@ -1,4 +1,4 @@
-api_key.txt
-__pycache__
-calculators_dev
+data/api_key.txt
+*.pyo
+*.pyc
 dead_code
