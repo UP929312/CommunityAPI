@@ -3,9 +3,9 @@ from data.constants.lowest_bin import LOWEST_BIN
 from data.constants.bazaar import BAZAAR
 from data.constants.reforges import REFORGE_DICT
 
-
 from data.calculators.dungeon_calculator import calculate_dungeon_item
 from data.calculators.enchantment_calculator import calculate_enchantments
+
 
 def calculate_reforge_price(price):
     item = price.item
