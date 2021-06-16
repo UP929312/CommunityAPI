@@ -56,7 +56,11 @@ def calculate_pet(price, print_prices):
     # PET LEVEL BONUS
     value["pet_level_bonus"] = {}
     value["pet_level_bonus"]["amount"] = f"{int(pet['exp'])} xp"
-    value["pet_level_bonus"]["worth"] = int(pet["exp"]*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
+
+    offset = RARITY_OFFSET[pet["tier"]]-1
+    level_100_amount = sum((PET_LEVELS+[5000000000000])[offset:100+offset])
+    pet_xp_capped = min(pet["exp"], level_100_amount)
+    value["pet_level_bonus"]["worth"] = int(pet_xp_capped*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
 
     #######################################################################################
     value["pet_level"] = str(pet_level)

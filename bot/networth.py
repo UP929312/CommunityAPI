@@ -43,12 +43,6 @@ class networth_cog(commands.Cog):
 
         embed = discord.Embed(title=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}", colour=0x3498DB)
 
-
-        '''
-        {'total': 542169215, 'value': {'base_price': 3500000, 'price_source': 'BIN', 'held_item': {'value': 34000000, 'price_source': 'BIN'}, 'pet_skin': {'value': 499000000, 'price_source': 'BIN'}, 'pet_level_bonus': {'amount': '28346078 xp', 'worth': 5669215}},
-        'item': {'uuid': None, 'type': 'SHEEP', 'exp': 28346078.6142195, 'active': False, 'tier': 'LEGENDARY', 'heldItem': 'MINOS_RELIC', 'candyUsed': 0, 'skin': 'SHEEP_BLACK'}}
-        '''
-
         if page == "main":
             pass
         else:
