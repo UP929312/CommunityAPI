@@ -44,7 +44,7 @@ class networth_cog(commands.Cog):
 
         #embed = discord.Embed(title=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}", colour=0x3498DB)
         embed = discord.Embed(colour=0x3498DB)
-        embed.set_author(icon_url="https://media.discordapp.net/attachments/854829960974565396/854830138311180298/unknown.png", name=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}")
+        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}")
 
         if page == "main":
             pass
