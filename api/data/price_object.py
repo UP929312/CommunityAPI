@@ -49,8 +49,13 @@ class Price(object):
                }
 
     def __str__(self):
+        if isinstance(self.item, dict):
+            item = self.item
+        else:
+            item = self.item.to_dict()
+            
         return json.dumps({"total": self.total,
                            "value": self.value,
-                           "item":  self.item.to_dict(),
-                         })
-
+                           "item":  item,
+                          })
+  

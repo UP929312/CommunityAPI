@@ -39,9 +39,9 @@ def calculate_dungeon_item(price, print_prices=False):
     price = calculate_base_stars(price)
     
     if item.star_upgrades > 5:
-        price.value["stars"]["master_stars"] = 0
+        price.value["stars"]["master_stars"] = {}
         for i in range(1, item.star_upgrades-4):
-            price.value["stars"]["master_stars"] += MASTER_STARS[i]
+            price.value["stars"]["master_stars"][MASTER_STAR_NAMES[i-1]] = MASTER_STARS[i]
 
     return price
 

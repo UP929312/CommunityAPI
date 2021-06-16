@@ -1,6 +1,7 @@
 import re
+import json
 
-BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ', 'Suspicious ', 'Strange ']
+BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ', 'Suspicious ', 'Strange ', 'Salty ', 'Stiff ', 'Lucky ', 'Gilded ', 'Warped ', 'Deadly ', 'Grand ', 'Neat ', 'Spiritual ', 'Headstrong ', 'Clean ', 'Perfect ', 'Spiked ', 'Cubic ', 'Reinforced ', 'Ridiculous ', 'Giant ', 'Bizarre ', 'Itchy ', 'Ominous ', 'Pleasant ', 'Pretty ', 'Shiny ', 'Simple ', 'Strange ', 'Vivid ', 'Godly ', 'Demonic ', 'Hurtful ', 'Keen ', 'Superior ', 'Zealous ', 'Silky ', 'Bloody ', 'Sweet ', 'Fruitful ', 'Magnetic ', 'Refined ', 'Moil ', 'Toil ', 'Fleet ', 'Stellar ', 'Mithraic ', 'Auspicious ',]
 
 DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",
                 "stack_size": 1,                    "type": "Default",
@@ -81,6 +82,9 @@ class Item:
         if self.reforge is not None:
             for reforge in BASE_REFORGES:
                 self.name = self.name.removeprefix(reforge)       
+
+        if self.internal_name == "PET":
+            self.pet_info = json.loads(extras["petInfo"])
 
         # A little edge case handling, because Hypixel are great...
         if self.reforge is not None:

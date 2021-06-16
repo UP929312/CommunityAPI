@@ -1,22 +1,10 @@
 from utils import human_number as hf
+from emojis import *
 
-PRICE_SOURCE = "<:price_source:854752333299974174>"
-RECOMBOBULATOR = "<:recombobulator:854750106376339477>"
-ART_OF_WAR = "<:art_of_war:854750132721811466>"
-HOT_POTATO_BOOK = "<:hot_potatos:854753109305065482>"
-ENCHANTMENTS = "<:enchantments:854756289010728970>"
-REGULAR_STARS = "<:regular_stars:854752631741480990>"
-MASTER_STARS = "<:master_stars:854750116066230323>"
-REFORGE = "<:reforge:854750152048246824>"
-
-PET_ITEM = "<:minosrelic:854768366014169129>"
-PET_SKIN = "<:petskin:854768054424305684>"
-LEVEL = "<:level:854767687623639080>"
-
-
-def do_description(value):
+def generate_item_description(value, item):
     elems = []
     v = value
+    #elems.append(f"{BASE_PRICE} - Base cost: {v['base_price']}")
     elems.append(f"{PRICE_SOURCE} - Price source: {v['price_source']}")
     if "recombobulator_value" in v:
         elems.append(f"{RECOMBOBULATOR} - Recomobulator: +{hf(v['recombobulator_value'])}")
@@ -35,22 +23,33 @@ def do_description(value):
         stars = v["stars"]
         elems.append(f"{REGULAR_STARS} - Regular stars: +{hf(stars['regular_stars']['total_essence_value'])}")
         if "master_stars" in stars:
-            elems.append(f"{MASTER_STARS} - Master stars: +{hf(stars['master_stars'])}")
+            master_stars = stars["master_stars"]
+            elems.append(f"{MASTER_STARS} - Master stars: ({len(master_stars)} stars - {hf(sum(stars['master_stars'].values()))})")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
         reforge_item = list(v['reforge']['item'].keys())[0]
         reforge_item_cost = hf(list(v['reforge']['item'].values())[0])
-        elems.append(f"{REFORGE} - Reforge ({reforge_item}) - +{reforge_item_cost}")
+        elems.append(f"{REFORGE} - Reforge: ({reforge_item.replace('_', ' ').title()} - {reforge_item_cost})")
         
     return "\n".join(elems)
 
-def generate_pet_description(value):
+def generate_pet_description(value, item):
     elems = []
     v = value
     elems.append(f"{PRICE_SOURCE} - Price source: {v['price_source']}")
     if "held_item" in v:
-        elems.append(f"{PET_ITEM} - Pet item: {hf(v['held_item']['value'])}")
+        pet_item_formatted = item['heldItem'].removeprefix("PET_ITEM_")
+        for rarity in ["UNCOMMON", "COMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC", "VERY_SPECIAL", "SPECIAL"]:  # Uncommon has to come first otherwise it'll trim COMMON and be left with UN
+            pet_item_formatted = pet_item_formatted.removesuffix(rarity)
+        pet_item_formatted = pet_item_formatted.replace("_", " ")
+        elems.append(f"{PET_ITEM} - Pet item: ({pet_item_formatted.title()} - {hf(v['held_item']['value'])})")
     if "pet_skin" in v:
-        elems.append(f"{PET_SKIN} - Pet skin: {hf(v['pet_skin']['value'])}")
+        elems.append(f"{PET_SKIN} - Pet skin: ({item['skin'].replace('_', ' ').title()} - {hf(v['pet_skin']['value'])})")
     if "pet_level_bonus" in v:
         elems.append(f"{LEVEL} - Pet level bonus: {hf(v['pet_level_bonus']['worth'])}")
     return "\n".join(elems)
+
+def generate_description(value, item):
+    if "candyUsed" in item:  # For pets only
+        return generate_pet_description(value, item)
+    else:
+        return generate_item_description(value, item)

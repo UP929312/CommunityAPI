@@ -5,7 +5,8 @@ import requests
 
 from utils import error
 from utils import human_number as hf
-from generate_description import do_description, generate_pet_description
+from generate_description import generate_description
+from emojis import *
 
 page_names = ["main", "inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"]
 
@@ -26,7 +27,7 @@ class networth_cog(commands.Cog):
             username = nick.split("]")[1] if "]" in nick else nick
 
         if page.lower() not in page_names:
-            return await ctx.send("Invalid page, please pick from:", ", ".join(page_names))
+            return await ctx.send("Invalid page, please pick from: "+", ".join(page_names))
 
         request = requests.get(f"http://127.0.0.1:8000/pages/{username}")
         if request.status_code != 200:
@@ -41,19 +42,22 @@ class networth_cog(commands.Cog):
         total = data[page]["total"]
         top_x = data[page]["prices"]
 
-        embed = discord.Embed(title=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}", colour=0x3498DB)
+        #embed = discord.Embed(title=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}", colour=0x3498DB)
+        embed = discord.Embed(colour=0x3498DB)
+        embed.set_author(icon_url="https://media.discordapp.net/attachments/854829960974565396/854830138311180298/unknown.png", name=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}")
 
         if page == "main":
             pass
         else:
             for price_object in top_x:
                 item = price_object["item"]
-                if page == "pets":
-                    value = generate_pet_description(price_object["value"])
+                value = generate_description(price_object["value"], item)
+                
+                if "candyUsed" in item: # For pets only
                     embed.add_field(name=f"Level {price_object['value']['pet_level']} {item['type'].replace('_', ' ').title()} ➜ {hf(price_object['total'])}", value=value, inline=False)
                 else:
-                    value = do_description(price_object["value"])
-                    embed.add_field(name=f"{item['name']} ➜ {hf(price_object['total'])}", value=value, inline=False)
+                    name = f"{item.get('reforge', '').title()} {item['name']}"
+                    embed.add_field(name=f"{name} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
         embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")    
