@@ -15,7 +15,7 @@ from endpoints.debug import get_debug_values
 
 import uvicorn
 
-limiter = Limiter(key_func=get_remote_address, default_limits=["10/minute"])
+limiter = Limiter(key_func=get_remote_address, default_limits=["5/minute"])
 
 app = FastAPI()
 app.state.limiter = limiter
