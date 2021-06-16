@@ -34,7 +34,7 @@ def calculate_item(price, print_prices=False):
     item = price.item
     value = price.value
 
-    converted_name = item.name.upper().replace("- ", "").replace(" ", "_") # The Jerry price list uses the item name, not the internal_id.
+    converted_name = item.name.upper().replace("- ", "").replace(" ", "_").replace("✪", "").replace("'", "").rstrip("_") # The Jerry price list uses the item name, not the internal_id.
     
     if item.internal_name in BAZAAR:
         value["base_price"] = BAZAAR[item.internal_name]

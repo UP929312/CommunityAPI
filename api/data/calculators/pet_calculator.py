@@ -59,6 +59,7 @@ def calculate_pet(price, print_prices):
     value["pet_level_bonus"]["worth"] = int(pet["exp"]*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
 
     #######################################################################################
+    value["pet_level"] = str(pet_level)
 
     price.value = value
     return price

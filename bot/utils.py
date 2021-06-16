@@ -7,9 +7,9 @@ async def error(ctx, title, description):
     await ctx.send(embed=embed)
 
 letter_values = {"": 1,
-                 "K": 1000,
-                 "M": 1000000,
-                 "B": 1000000000}
+                 "k": 1000,
+                 "m": 1000000,
+                 "b": 1000000000}
 
 ends = list(letter_values.keys())
 

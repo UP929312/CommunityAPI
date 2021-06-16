@@ -5,7 +5,7 @@ import requests
 
 from utils import error
 from utils import human_number as hf
-from generate_description import do_description
+from generate_description import do_description, generate_pet_description
 
 page_names = ["main", "inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"]
 
@@ -41,14 +41,25 @@ class networth_cog(commands.Cog):
         total = data[page]["total"]
         top_x = data[page]["prices"]
 
-        if page == "main":
-            return
-
         embed = discord.Embed(title=f"{username}'s {page.replace('_', ' ').title()} Networth {hf(float(total))}", colour=0x3498DB)
-        for price_object in top_x:
-            item = price_object["item"]
-            print(price_object)
-            embed.add_field(name=f"{item['name']} ➜ {hf(price_object['total'])}", value=do_description(price_object["value"]), inline=False)
+
+
+        '''
+        {'total': 542169215, 'value': {'base_price': 3500000, 'price_source': 'BIN', 'held_item': {'value': 34000000, 'price_source': 'BIN'}, 'pet_skin': {'value': 499000000, 'price_source': 'BIN'}, 'pet_level_bonus': {'amount': '28346078 xp', 'worth': 5669215}},
+        'item': {'uuid': None, 'type': 'SHEEP', 'exp': 28346078.6142195, 'active': False, 'tier': 'LEGENDARY', 'heldItem': 'MINOS_RELIC', 'candyUsed': 0, 'skin': 'SHEEP_BLACK'}}
+        '''
+
+        if page == "main":
+            pass
+        else:
+            for price_object in top_x:
+                item = price_object["item"]
+                if page == "pets":
+                    value = generate_pet_description(price_object["value"])
+                    embed.add_field(name=f"Level {price_object['value']['pet_level']} {item['type'].replace('_', ' ').title()} ➜ {hf(price_object['total'])}", value=value, inline=False)
+                else:
+                    value = do_description(price_object["value"])
+                    embed.add_field(name=f"{item['name']} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
         embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")    
