@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from slowapi.middleware import SlowAPIMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -14,11 +15,12 @@ from endpoints.debug import get_debug_values
 
 import uvicorn
 
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter(key_func=get_remote_address, default_limits=["10/minute"])
 
 app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(SlowAPIMiddleware)
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,7 +29,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/")
 @limiter.limit("20/minute")
@@ -47,7 +48,6 @@ async def error(request: Request):
 
 
 @app.get("/total/{username}")
-@limiter.limit("5/minute")
 async def total(request: Request, username: str):
     total = await get_total_value(username)
     if isinstance(total, dict):
@@ -56,7 +56,6 @@ async def total(request: Request, username: str):
 
 
 @app.get("/groups/{username}")
-@limiter.limit("5/minute")
 async def groups(request: Request, username: str):
     groups = await get_groups_value(username)
     if isinstance(groups, dict):
@@ -65,7 +64,6 @@ async def groups(request: Request, username: str):
 
 
 @app.get("/pages/{username}")
-@limiter.limit("5/minute")
 async def pages(request: Request, username: str):
     pages = await get_pages_dict(username)
     if isinstance(pages, dict):
@@ -74,7 +72,6 @@ async def pages(request: Request, username: str):
 
 
 @app.get("/dump/{username}")
-@limiter.limit("5/minute")
 async def dump(request: Request, username: str):
     dump = await get_dump_dict(username)
     if isinstance(dump, dict):
@@ -83,7 +80,6 @@ async def dump(request: Request, username: str):
 
 
 @app.get("/debug/{username}")
-@limiter.limit("5/minute")
 async def debug(request: Request, username: str):
     debug_values = await get_debug_values(username)
     if isinstance(debug_values, dict):
