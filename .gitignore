@@ -1,3 +1,4 @@
-data/api_key.txt
+api/data/api_key.txt
 **/__pycache__
 dead_code
+bot/bot_key.txt

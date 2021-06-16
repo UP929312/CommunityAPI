@@ -1,8 +1,11 @@
-from data.networth import get_containers
+from data.container_handler import get_containers
 
 async def get_groups_value(username, containers=None, extras=None):
     if containers is None and extras is None:
         containers, extras = get_containers(username)
+
+    if containers is None:
+        return None
 
     inventory_total   = sum(x.total for x in containers["inventory"])
     accessories_total = sum(x.total for x in containers["accessories"])

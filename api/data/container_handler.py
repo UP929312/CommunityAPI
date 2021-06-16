@@ -7,6 +7,9 @@ def get_containers(username):
     # Parse/Grab data
     player_data, other_data = get_data(username)
 
+    #if player_data is None:
+    #    return None, None
+
     # Get item groupings
     inv_contents   = parse_container(player_data.get("inv_contents", {"data": []})['data'])
     talisman_bag   = parse_container(player_data.get("talisman_bag", {"data": []})['data'])

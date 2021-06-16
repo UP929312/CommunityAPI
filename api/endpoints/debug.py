@@ -2,7 +2,10 @@ from endpoints.groups import get_groups_value
 from data.utils import human_number as hf
 
 async def get_debug_values(username):
-    containers = await get_groups_value(username)    
+    containers = await get_groups_value(username)
+
+    if containers is None:
+        return None
 
     # Total
     total = sum(

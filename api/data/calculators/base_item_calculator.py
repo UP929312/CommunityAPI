@@ -51,17 +51,17 @@ def calculate_item(price, print_prices=False):
     #=============================================================================
     # Hoe calculations
     if item.type == "HOE" and item.hoe_material != None:
-        value["base_price"] = 1_000_000+256*(BAZAAR[item.hoe_material]*(144**item.hoe_level))
+        value["base_price"] = 1_000_000+256*(BAZAAR[item.hoe_material]*(144**(item.hoe_level-1)))
         value["price_source"] = "Calculated"
     #=============================================================================
     # Hot potato books:
-    if item.hot_potatos > 0:
-        value["hot_potatos"] = {}
-        if item.hot_potatos <= 10:
-            value["hot_potatos"]["hot_potato_books"] = item.hot_potatos*BAZAAR["HOT_POTATO_BOOK"]
+    if item.hot_potatoes > 0:
+        value["hot_potatoes"] = {}
+        if item.hot_potatoes <= 10:
+            value["hot_potatoes"]["hot_potato_books"] = item.hot_potatoes*BAZAAR["HOT_POTATO_BOOK"]
         else:
-            value["hot_potatos"]["hot_potato_books"] = 10*BAZAAR["HOT_POTATO_BOOK"]
-            value["hot_potatos"]["fuming_potato_books"] = (item.hot_potatos-10)*BAZAAR["FUMING_POTATO_BOOK"]
+            value["hot_potatoes"]["hot_potato_books"] = 10*BAZAAR["HOT_POTATO_BOOK"]
+            value["hot_potatoes"]["fuming_potato_books"] = (item.hot_potatoes-10)*BAZAAR["FUMING_POTATO_BOOK"]
     # Recombobulation
     if item.recombobulated:
         value["recombobulator_value"] = BAZAAR["RECOMBOBULATOR_3000"]

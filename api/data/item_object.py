@@ -1,17 +1,24 @@
 import re
 
-BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ']
+BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ', 'Suspicious ']
 
 DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",
                 "stack_size": 1,                    "type": "Default",
                 "item_group": "Misc",               "rarity": "Common",
-                "recombobulated": 0,                "hot_potatos": 0,
+                "recombobulated": 0,                "hot_potatoes": 0,
                 "enchantments": {},                 "reforge": None,
                 "star_upgrades": 0,                 "talisman_enrichment": None,
                 "art_of_war": None,                 "wood_singularity": None,
                 "farming_for_dummies": 0,           "ability_scrolls": [],
                }
                 
+HOE_MATERIAL_TO_INTERNAL_NAME = {
+    "POTATO": "POTATO_ITEM",
+    "CARROT": "CARROT_ITEM",
+    "NETHER_WARTS": "NETHER_STALK",
+    "SUGAR_CANE": "SUGAR_CANE",
+    "WHEAT": "WHEAT",
+}
 
 class Item:
     def __init__(self, nbt):
@@ -35,7 +42,7 @@ class Item:
         self.stack_size = self.__nbt__.get('Count', 1)
             
         self.recombobulated = 1 if extras.get('rarity_upgrades', False) else 0
-        self.hot_potatos = extras.get('hot_potato_count', 0)
+        self.hot_potatoes = extras.get('hot_potato_count', 0)
 
         # Unique to tools
         self.enchantments = extras.get('enchantments', {})
@@ -93,8 +100,9 @@ class Item:
         # Hoes
         self.hoe_level, self.hoe_material = (None, None)
         if self.type == "HOE" and "THEORETICAL" in self.internal_name:
-            self.material = "_".join(self.name.split(" ")[1:-1]).upper()  # Turing Sugar Cane Hoe
-            self.hoe_level = self.internal_name[-1]  # THEORETICAL_HOE_WHEAT_1 -> 1
+            hoe_material = "_".join(self.name.split(" ")[1:-1]).upper()  # Turing Sugar Cane Hoe
+            self.hoe_material = HOE_MATERIAL_TO_INTERNAL_NAME[hoe_material]
+            self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
 
         # For Hyperions
         self.ability_scrolls = extras.get("ability_scroll", None)
@@ -128,8 +136,8 @@ class Item:
 
         if self.recombobulated:
             data["recombobulated"] = True
-        if self.hot_potatos:
-            data["hot_potatos"] = self.hot_potatos
+        if self.hot_potatoes:
+            data["hot_potatoes"] = self.hot_potatoes
         if self.reforge is not None:
             data["reforge"] = self.reforge
         if self.star_upgrades:
@@ -165,8 +173,8 @@ class Item:
             list_of_elems.append(f"Amount: {self.stack_size}")
         if self.recombobulated:
             list_of_elems.append(f"+Recombobulated")
-        if self.hot_potatos:
-            list_of_elems.append(f"{self.hot_potatos} Hot Potatos")
+        if self.hot_potatoes:
+            list_of_elems.append(f"{self.hot_potatoes} Hot Potatoes")
         if self.reforge is not None:
             list_of_elems.append(f"Reforge: {self.reforge}")
         if self.star_upgrades:
