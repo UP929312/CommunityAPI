@@ -52,7 +52,6 @@ def generate_page(command_author, data, username, page):
             value = generate_description(price_object["value"], item)
             
             if "candyUsed" in item: # For pets only
-                print(price_object)
                 embed.add_field(name=f"Level {price_object['value']['pet_level']} {item['type'].replace('_', ' ').title()} ➜ {hf(price_object['total'])}", value=value, inline=False)
             else:
                 name = f"{item.get('reforge', '').title()} {item['name']}"
