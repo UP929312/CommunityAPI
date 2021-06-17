@@ -73,7 +73,7 @@ def calculate_item(price, print_prices=False):
         price = calculate_reforge_price(price)
     # Talisman enrichments
     if item.talisman_enrichment:
-        value["enrichment"] = {item.talisman_enrichment: LOWEST_BIN.get("TALISMAN_ENRICHMENT_"+item.talisman_enrichment, 0)} 
+        value["talisman_enrichment"] = {item.talisman_enrichment: LOWEST_BIN.get("TALISMAN_ENRICHMENT_"+item.talisman_enrichment, 0)} 
     # Dungeon items/stars
     if item.star_upgrades:
         #value["star_value"] = calculate_dungeon_item(item)

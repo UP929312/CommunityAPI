@@ -11,8 +11,9 @@ async def get_pages_dict(username):
     
     container_values = await get_groups_value(username, containers, extras)
 
-    data = {"purse":   container_values["purse"],
-            "banking": container_values["banking"]}
+    data = {"purse":   {"total": str(container_values["purse"])},
+            "banking": {"total": str(container_values["banking"])},
+           }
 
     for container in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
         top_x = sorted(containers[container], key=lambda x: x.total, reverse=True)[:5]
