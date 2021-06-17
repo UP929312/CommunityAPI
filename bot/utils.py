@@ -19,7 +19,10 @@ def human_number(num):
     '''
 
     if isinstance(num, str):
-        return num
+        if num.isdigit():
+            num = float(num)
+        else:
+            return num
     
     if num < 1: return 0
 

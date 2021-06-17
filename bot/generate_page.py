@@ -18,10 +18,12 @@ def generate_page(command_author, data, username, page):
     # MAIN MENu
     if page == "main":
         total = hf(sum([int(x["total"]) for x in data.values()]))
-        
-        embed.add_field(name="**Purse**", value=f"{hf(data['purse']['total'])}", inline=True)
-        embed.add_field(name="**Bank**", value=f"{hf(data['banking']['total'])}", inline=True)
-        embed.add_field(name="**Combined**", value=f"{hf(data['purse']['total']+data['banking']['total'])}", inline=True)
+
+        purse = float(data['purse']['total'])
+        bank = float(data['banking']['total'])
+        embed.add_field(name="**Purse**", value=f"{hf(purse)}", inline=True)
+        embed.add_field(name="**Bank**", value=f"{hf(bank)}", inline=True)
+        embed.add_field(name="**Combined**", value=f"{hf(purse+bank)}", inline=True)
         
         for page_string in page_names[2:-1]:  # Remove purse and banking
             if data[page_string]["total"] == "0":
@@ -40,7 +42,7 @@ def generate_page(command_author, data, username, page):
         embed.add_field(name="**3**: Some values are subjective", value="While almost all items calculated have set prices (mostly from the auction house's BIN), some, such as pet levels, have internal values that may not line up with your idea, but this should be a mostly minor issue.", inline=False)  
     # All the rest
     else:
-        total = hf(float(data[page]["total"]))
+        total = hf(data[page]["total"])
         top_x = data[page]["prices"]
 
         if top_x == []:  # For disabled APIs or empty containers

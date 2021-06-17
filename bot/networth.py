@@ -22,6 +22,8 @@ class MenuButton(discord.ui.Button['MenuView']):
         if view.command_author.id == interaction.user.id or interaction.user.id == 244543752889303041:
             view.page = EMOJI_TO_PAGE[f"<:{self.emoji.name}:{self.emoji.id}>"]
             await self.view.update_embed(interaction)
+        else:
+            await interaction.response.send_message("This isn't your command!\nYou can run this command yourself to change the pages!", ephemeral=True)
         
 
 class MenuView(discord.ui.View):
@@ -38,11 +40,8 @@ class MenuView(discord.ui.View):
     async def update_embed(self, interaction: discord.Interaction):
         embed = generate_page(self.command_author, self.data, self.username, self.page)
         await interaction.response.edit_message(content="", view=self, embed=embed)
+
         
-
-
-#embed = 
-
 class networth_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
