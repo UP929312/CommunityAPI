@@ -7,10 +7,9 @@ from utils import error
 from generate_page import generate_page
 from constants import *
 
-##########
-ip = "http://db.superbonecraft.dk:8000"
-ip = "127.0.0.1"
-#########
+with open("api_address.txt") as file:
+    ip = file.read()
+
 
 class MenuButton(discord.ui.Button['MenuView']):
     def __init__(self, page: str, index: int):
@@ -46,7 +45,9 @@ class networth_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
+    # discord staff, Admin, Booster, Donator 10$, giveaway contri, don 50, 20, 30
     @commands.command(aliases=["nw", "n", "net", "worth"])
+    @commands.has_any_role(701205423742648350, "Admin", 591691127694819350, 784041616444882954, 743950132931723349, 794541062134824971, 793070309213208606, 793070744829296670)
     async def networth(self, ctx, username=None):
 
         if username is None:
@@ -60,7 +61,7 @@ class networth_cog(commands.Cog):
             if request.status_code != 400:  # !400 = Meh
                 return await error(ctx, "Error, no connection", "The bot couldn't connect to the API, it may be down or failing")
             # 400 = Username not found
-            return await error("ctx", "Error, that person could not be found", "Perhaps you input the incorrect name?")
+            return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?")
 
         main_embed = generate_page(ctx.author, request.json(), username, "main")
         await ctx.send(embed=main_embed, view=MenuView(command_author=ctx.author, data=request.json(), username=username))

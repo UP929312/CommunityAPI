@@ -7,8 +7,8 @@ def get_containers(username):
     # Parse/Grab data
     player_data, other_data = get_data(username)
 
-    #if player_data is None:
-    #    return None, None
+    if player_data is None:
+        return None, None
 
     # Get item groupings
     inv_contents   = parse_container(player_data.get("inv_contents", {"data": []})['data'])

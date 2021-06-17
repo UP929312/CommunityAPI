@@ -32,7 +32,7 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.NotOwner):
         await ctx.author.send("The is a developer command and cannot be used by you.")
     else:
-        raise error   
+        raise error 
 #====================================================
 
 print("Loading cogs...")
