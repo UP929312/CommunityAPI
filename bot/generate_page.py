@@ -8,7 +8,7 @@ from constants import *
 def format_info(total, item, value):
     name = item['name'] if 'name' in item else "[Lvl "+value['pet_level']+"] "+item['tier'].title() + " " + item['type'].replace("_", " ").title()
     reforge = "" if "reforge" not in item else item['reforge'].title()
-    value = f"{reforge} {name} -> {hf(total)}"
+    value = f"{reforge} {name} ➜ {hf(total)}"
     return value
 
 def generate_page(command_author, data, username, page):
@@ -32,7 +32,7 @@ def generate_page(command_author, data, username, page):
             top_x = data[page_string]["prices"]
             
             value = [format_info(x['total'], x['item'], x['value']) for x in top_x]
-            embed.add_field(name=f"**{PAGE_TO_EMOJI[page_string]} Most valuable items from {page_string.replace('_', ' ')}:**", value="\n".join(value), inline=False)
+            embed.add_field(name=f"**{PAGE_TO_EMOJI[page_string]} {page_string.replace('_', ' ').title()} ➜ {hf(data[page_string]['total'])}:**", value="\n".join(value), inline=False)
 
     # MISC
     elif page == "misc":
@@ -60,7 +60,7 @@ def generate_page(command_author, data, username, page):
                 embed.add_field(name=f"{name} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
     if page != "misc":    
-        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {page.replace('_', ' ').title()} Networth {total}")
+        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {page.replace('_', ' ').title()} Networth - {total}")
         
     embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
     embed.set_footer(text=f" Command executed by {command_author} | Community Bot. By the community, for the community.")    
