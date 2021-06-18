@@ -33,7 +33,7 @@ def calculate_enchantments(price):  # For enchantments on items
     #print("Calculating item enchantments")
     for enchantment, level in price.item.enchantments.items():
         # Special case for enchants obtained through doing tasks such as breaking crops
-        if enchantment in ENCHANTS_TOP:
+        if enchantment in ENCHANTS_TOP and ENCHANTS_TOP[enchantment] > 5:
             price.value["enchantments"][enchantment+f"_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{1}", 0)
             continue
         
