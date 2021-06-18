@@ -45,6 +45,28 @@ with open(f"{file}.py", 'w') as file:
     file.write(f"{var_name} = "+json.dumps(REFORGE_DICT))
 print(f"Loaded in {var_name}")
 #==================================================================
+# BUY IT NOW
+file, var_name, link = ("lowest_bin", "LOWEST_BIN", "http://moulberry.codes/lowestbin.json")
+request = requests.get(link).json()
+
+LOWEST_BIN = dict([(k, int(v)) for k, v in request.items()])
+        
+with open(f"{file}.py", 'w') as file:
+    file.write(f"{var_name} = "+json.dumps(LOWEST_BIN))
+
+print(f"Loaded in {var_name}")
+#==================================================================
+# ENCHANTS TOP NORMALLY ACHIEVABLE LEVEL
+file, var_name, link = ("enchants_top", "ENCHANTS_TOP", "https://raw.githubusercontent.com/Moulberry/NotEnoughUpdates-REPO/master/constants/enchants.json")
+result = requests.get(link).json()
+
+ENCHANTS_TOP = result["enchants_min_level"])
+
+with open(f"{file}.py", 'w') as file:
+    file.write(f"{var_name} = "+json.dumps(ENCHANTS_TOP))
+
+print(f"Loaded in {var_name}")
+#==================================================================
 # BAZAAR
 file, var_name, link = ("bazaar", "BAZAAR", "https://api.hypixel.net/skyblock/bazaar")
 BAZAAR = {}
@@ -55,17 +77,7 @@ for product in result["products"]:
 
 with open(f"{file}.py", 'w') as file:
     file.write(f"{var_name} = "+json.dumps(BAZAAR))
-#==================================================================
-# BIN IT NOW
-file, var_name, link = ("lowest_bin", "LOWEST_BIN", "http://moulberry.codes/lowestbin.json")
-request = requests.get(link).json()
 
-LOWEST_BIN = dict([(k, int(v)) for k, v in request.items()])
-        
-with open(f"{file}.py", 'w') as file:
-    file.write(f"{var_name} = "+json.dumps(LOWEST_BIN))
-
-print(f"Loaded in {var_name}")
 #==================================================================
 # JERRY'S PRICE LIST
 file, var_name, link = ("jerry_price_list", "PRICES", "https://raw.githubusercontent.com/skyblockz/pricecheckbot/master/data.json")

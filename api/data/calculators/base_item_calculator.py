@@ -76,7 +76,6 @@ def calculate_item(price, print_prices=False):
         value["talisman_enrichment"] = {item.talisman_enrichment: LOWEST_BIN.get("TALISMAN_ENRICHMENT_"+item.talisman_enrichment, 0)} 
     # Dungeon items/stars
     if item.star_upgrades:
-        #value["star_value"] = calculate_dungeon_item(item)
         price = calculate_dungeon_item(price)
     # Art of war
     if item.art_of_war:

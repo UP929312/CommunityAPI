@@ -46,8 +46,8 @@ class networth_cog(commands.Cog):
         self.client = bot
 
     # discord staff, Admin, Booster, Donator 10$, giveaway contri, don 50, 20, 30
+    #@commands.has_any_role(701205423742648350, "Admin", 591691127694819350, 784041616444882954, 743950132931723349, 794541062134824971, 793070309213208606, 793070744829296670)
     @commands.command(aliases=["nw", "n", "net", "worth"])
-    @commands.has_any_role(701205423742648350, "Admin", 591691127694819350, 784041616444882954, 743950132931723349, 794541062134824971, 793070309213208606, 793070744829296670)
     async def networth(self, ctx, username=None):
 
         if username is None:

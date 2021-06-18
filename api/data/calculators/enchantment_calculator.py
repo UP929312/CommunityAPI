@@ -1,5 +1,6 @@
 from data.constants.jerry_price_list import PRICES
 from data.constants.lowest_bin import LOWEST_BIN
+from data.constants.enchants_top import ENCHANTS_TOP
 
 ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "XI", "X"]
 
@@ -31,6 +32,11 @@ def calculate_enchantments(price):  # For enchantments on items
 
     #print("Calculating item enchantments")
     for enchantment, level in price.item.enchantments.items():
+        # Special case for enchants obtained through doing tasks such as breaking crops
+        if enchantment in ENCHANTS_TOP:
+            price.value["enchantments"][enchantment+f"_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{1}", 0)
+            continue
+        
         for i in range(level, 0, -1):
             if f"{enchantment.upper()};{i}" in LOWEST_BIN:
                 break
@@ -39,4 +45,5 @@ def calculate_enchantments(price):  # For enchantments on items
         # If we can't find Sharpness 5, we try Sharpness 4
         # If the starting level is level 4, and we've found a level 2 book, we need 2**2 (4-2) books
         price.value["enchantments"][enchantment+f"_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{i}", 0)*(2**(level-i))
+        
     return price       

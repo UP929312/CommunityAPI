@@ -20,13 +20,15 @@ async def on_ready():
         
 @client.event
 async def on_command_error(ctx, error):
-    '''
     if isinstance(error, commands.CommandNotFound):
+        '''
         try:
             await ctx.send("Command not recognised!", delete_after=30.0)
         except discord.errors.Forbidden:
             pass
-    '''# This caused issues with CarlBot
+        '''
+        pass
+    # This caused issues with CarlBot
     if False:
         pass
     elif isinstance(error, commands.NotOwner):

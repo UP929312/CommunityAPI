@@ -56,6 +56,7 @@ def calculate_pet(price, print_prices):
     # PET LEVEL BONUS
     value["pet_level_bonus"] = {}
     value["pet_level_bonus"]["amount"] = f"{int(pet['exp'])} xp"
+    value["pet_level_bonus"]["price_source"] = "Calculated"
 
     if pet_level == 100:
         offset = RARITY_OFFSET[pet["tier"]]-1

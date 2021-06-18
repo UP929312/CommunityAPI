@@ -25,7 +25,7 @@ def generate_page(command_author, data, username, page):
         embed.add_field(name="**Bank**", value=f"{hf(bank)}", inline=True)
         embed.add_field(name="**Combined**", value=f"{hf(purse+bank)}", inline=True)
         
-        for page_string in page_names[2:-1]:  # Remove purse and banking
+        for page_string in page_names[1:-1]:  # Remove purse and banking
             if data[page_string]["total"] == "0":
                 continue
             page_total = data[page_string]["total"]
