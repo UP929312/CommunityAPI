@@ -1,5 +1,5 @@
-from utils import human_number as hf, clean
-from constants import *
+from utils import hf, clean
+from constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, REFORGE, PET_ITEM, PET_SKIN, LEVEL
 
 def generate_item_description(value, item):
     elems = []

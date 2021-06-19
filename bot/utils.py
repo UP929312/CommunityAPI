@@ -16,7 +16,7 @@ ends = list(letter_values.keys())
 def clean(string):
     return string.replace("_", " ").title().replace("'S", "'s")
 
-def human_number(num):
+def hf(num):
     '''
     Takes an int/float e.g. 10000 and returns a formatted version e.g. 10k
     '''

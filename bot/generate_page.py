@@ -1,7 +1,6 @@
 import discord
 
-from utils import error
-from utils import human_number as hf, clean
+from utils import hf, clean
 from generate_description import generate_description
 from constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
 
