@@ -1,8 +1,5 @@
-from utils import human_number as hf
+from utils import human_number as hf, clean
 from constants import *
-
-def clean(string):
-    return string.replace("_", " ").title()
 
 def generate_item_description(value, item):
     elems = []
@@ -29,8 +26,7 @@ def generate_item_description(value, item):
         stars = v["stars"]
         elems.append(f"{REGULAR_STARS} - Regular stars: +{hf(stars['regular_stars']['total_essence_value'])}")
         if "master_stars" in stars:
-            master_stars = stars["master_stars"]
-            elems.append(f"{MASTER_STARS} - Master stars: ({len(master_stars)} stars - {hf(sum(stars['master_stars'].values()))})")
+            elems.append(f"{MASTER_STARS} - Master stars: ({len(stars['master_stars'])} stars - {hf(sum(stars['master_stars'].values()))})")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
         reforge_item = list(v['reforge']['item'].keys())[0]
         reforge_item_cost = hf(list(v['reforge']['item'].values())[0])

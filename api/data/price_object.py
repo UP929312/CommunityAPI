@@ -1,15 +1,16 @@
 import json
 
-def print_tree(info_dict, current_indent):
+def generate_tree(info_dict, current_list, current_indent):
     if isinstance(info_dict, dict):
         if len(list(info_dict.keys())) == 0:
             return 0
         for key, value in info_dict.items():
             if isinstance(value, dict):
-                print(f"{current_indent}{key}")
-                print_tree(value, current_indent+"  ")
+                current_list.append(f"{current_indent}{key}")
+                generate_tree(value, current_list, current_indent+"  ")
             else:
-                print(f"{current_indent}{key}: {value}")
+                current_list.append(f"{current_indent}{key}: {value}")
+    return current_list
 
 def search_tree(info_dict):
     branch_value = 0
@@ -18,7 +19,7 @@ def search_tree(info_dict):
             return 0
         for key, value in info_dict.items():
             if isinstance(value, dict):
-                branch_value += print_tree(value)
+                branch_value += search_tree(value)
             else:
                 if not isinstance(value, str):
                     branch_value += value
@@ -33,9 +34,10 @@ class Price(object):
 
     def display_output(self):
         print(self.item.internal_name)
-        print_tree(self.value, "  ")
-        total = calculate_total(self.value)
-        print(f"Total: {price}")
+        lines = generate_tree(self.value, [], "  ")
+        print("\n".join(lines))
+        total = search_tree(self.value)
+        print(f"Total: {total}")
 
     def calculate_total(self):
         self.total = search_tree(self.value)

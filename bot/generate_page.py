@@ -1,9 +1,9 @@
 import discord
 
 from utils import error
-from utils import human_number as hf
+from utils import human_number as hf, clean
 from generate_description import generate_description
-from constants import *
+from constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
 
 def format_info(total, item, value):
     name = item['name'] if 'name' in item else "[Lvl "+value['pet_level']+"] "+item['tier'].title() + " " + item['type'].replace("_", " ").title()
@@ -32,7 +32,7 @@ def generate_page(command_author, data, username, page):
             top_x = data[page_string]["prices"]
             
             value = [format_info(x['total'], x['item'], x['value']) for x in top_x]
-            embed.add_field(name=f"**{PAGE_TO_EMOJI[page_string]} {page_string.replace('_', ' ').title()} ➜ {hf(data[page_string]['total'])}:**", value="\n".join(value), inline=False)
+            embed.add_field(name=f"**{PAGE_TO_EMOJI[page_string]} {clean(page_string)} ➜ {hf(data[page_string]['total'])}:**", value="\n".join(value), inline=False)
 
     # MISC
     elif page == "misc":
@@ -54,13 +54,13 @@ def generate_page(command_author, data, username, page):
             value = generate_description(price_object["value"], item)
             
             if "candyUsed" in item: # For pets only
-                embed.add_field(name=f"Level {price_object['value']['pet_level']} {item['type'].replace('_', ' ').title()} ➜ {hf(price_object['total'])}", value=value, inline=False)
+                embed.add_field(name=f"Level {price_object['value']['pet_level']} {clean(item['type'])} ➜ {hf(price_object['total'])}", value=value, inline=False)
             else:
-                name = f"{item.get('reforge', '').title()} {item['name']}"
+                name = f"{clean(item.get('reforge', ''))} {item['name']}"
                 embed.add_field(name=f"{name} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
     if page != "misc":    
-        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {page.replace('_', ' ').title()} Networth - {total}")
+        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}")
         
     embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
     embed.set_footer(text=f" Command executed by {command_author} | Community Bot. By the community, for the community.")    

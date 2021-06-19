@@ -33,5 +33,5 @@ def get_containers(username):
            {
             "purse": int(player_data.get("coin_purse", 0)),  # For some reason, purse contains a bunch of extra decimal places.
             "banking": int(other_data.get("banking", {"balance": 0}).get("balance", 0))
-           }
+           },
            )
