@@ -33,6 +33,8 @@ def generate_item_description(value, item):
         elems.append(f"{REFORGE} - Reforge: ({clean(reforge_item)} - {reforge_item_cost})")
     if "tuned_transmission" in v:
         elems.append(f"{TRANSMISSIONS} - Tuned Transmissions: {hf(v['tuned_transmission'])}")
+    if "ethermerge" in v:
+        elems.append(f"{ETHERMERGE} - Ethermerge: {hf(v['ethermerge'])}")
     if "winning_bid" in v:
         elems.append(f"{WINNING_BID} - Winning bid: {hf(v['winning_bid'])}")
         

@@ -3,14 +3,12 @@ import json
 
 BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ', 'Suspicious ', 'Strange ', 'Salty ', 'Stiff ', 'Lucky ', 'Gilded ', 'Warped ', 'Deadly ', 'Grand ', 'Neat ', 'Spiritual ', 'Headstrong ', 'Clean ', 'Perfect ', 'Spiked ', 'Cubic ', 'Reinforced ', 'Ridiculous ', 'Giant ', 'Bizarre ', 'Itchy ', 'Ominous ', 'Pleasant ', 'Pretty ', 'Shiny ', 'Simple ', 'Strange ', 'Vivid ', 'Godly ', 'Demonic ', 'Hurtful ', 'Keen ', 'Superior ', 'Zealous ', 'Silky ', 'Bloody ', 'Sweet ', 'Fruitful ', 'Magnetic ', 'Refined ', 'Moil ', 'Toil ', 'Fleet ', 'Stellar ', 'Mithraic ', 'Auspicious ',]
 
-DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",
-                "stack_size": 1,                    "type": "Default",
-                "item_group": "Misc",               "rarity": "Common",
-                "recombobulated": 0,                "hot_potatoes": 0,
-                "enchantments": {},                 "reforge": None,
-                "star_upgrades": 0,                 "talisman_enrichment": None,
-                "art_of_war": None,                 "wood_singularity": None,
-                "farming_for_dummies": 0,           "tuned_transmission": 0,
+DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",         "stack_size": 1,
+                "type": "Default",                  "item_group": "Misc",          "rarity": "Common",
+                "recombobulated": 0,                "hot_potatoes": 0,             "enchantments": {},
+                "reforge": None,                    "star_upgrades": 0,            "talisman_enrichment": None,
+                "art_of_war": None,                 "wood_singularity": None,      "farming_for_dummies": 0,
+                "tuned_transmission": 0,            "ethermerge": False,           "winning_bid": 0,
                 "ability_scrolls": [],
                }
                 
@@ -113,6 +111,9 @@ class Item:
         # Ender slayer items
         self.tuned_transmission = extras.get('tuned_transmission', 0)
 
+        # Ethermerge
+        self.ethermerge = extras.get("ethermerge", False)
+
         # Winning bid on Midas Staff/Sword
         self.winning_bid = extras.get("winning_bid", 0)
 
@@ -120,6 +121,7 @@ class Item:
         self.ability_scrolls = extras.get("ability_scroll", None)
 
         # Livid Fragments
+        self.livid_fragments = 0
         #self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
         
     def to_dict(self):
@@ -164,8 +166,14 @@ class Item:
             data["farming_for_dummies"] = self.farming_for_dummies
         if self.tuned_transmission:
             data["tuned_transmission"] = self.tuned_transmission
+        if self.ethermerge:
+            data["ethermerge"] = self.ethermerge
         if self.winning_bid > 0:
             data["winning_bid"] = self.winning_bid
+        if self.ability_scrolls:
+            data["ability_scrolls"] = self.ability_scrolls
+        if self.livid_fragments:
+            data["livid_fragments"] = self.livid_fragments
 
         return data
 
@@ -205,9 +213,13 @@ class Item:
             list_of_elems.append(f"{self.farming_for_dummies} Farming for Dummies")
         if self.tuned_transmission > 0:
             list_of_elems.append(f"{self.tuned_transmission} Transmission tuners")
+        if self.ethermerge:
+            list_of_elems.append(f"+Ethermerged")
+        if self.ability_scrolls:
+            ist_of_elems.append(f"Ability scrolls: {self.ability_scrolls}")
         if self.winning_bid > 0:
             list_of_elems.append(f"Winning bid of {self.winning_bid}")
-        #if self.livid_fragments:
-        #    list_of_elems.append(f"{self.livid_fragments} livid fragments")
+        if self.livid_fragments:
+            list_of_elems.append(f"{self.livid_fragments} livid fragments")
         
         return ", ".join(list_of_elems)

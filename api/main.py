@@ -11,6 +11,7 @@ from endpoints.total import get_total_value
 from endpoints.groups import get_groups_value
 from endpoints.pages import get_pages_dict
 from endpoints.dump import get_dump_dict
+from endpoints.lines import get_lines_dict
 from endpoints.debug import get_debug_values
 
 import uvicorn
@@ -85,6 +86,15 @@ async def debug(request: Request, username: str):
     if isinstance(debug_values, dict):
         return JSONResponse(status_code=200, content=debug_values)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
+
+
+@app.get("/lines/{username}")
+async def lines(request: Request, username: str):
+    lines = await get_lines_dict(username)
+    if isinstance(lines, dict):
+        return JSONResponse(status_code=200, content=lines)
+    return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
+
 
 if __name__ == "__main__":
     print("Done")

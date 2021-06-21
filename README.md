@@ -35,6 +35,7 @@ Then we calculate some extras for base items:
 - If the item is a drill, add the cost of each upgrade from the BIN to the value.
 - If it has scrolls (e.g. on a Hyperion), add the price of all of them to the value.
 - If it's got transmission tuners, add the value from BIN of each one to the value.
+- If it's an Aspect of the Void, and is Ethermerged, add the value of the Etherwarp merger and conduit to the value.
 - If it's a Midas Staff or Sword, add the amount of the winning bid to it.
 - ~~If it's got livid fragments applied to it, add those 8 to the value.~~ Currently disabled.
 - And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.

@@ -98,6 +98,9 @@ def calculate_item(price, print_prices=False):
     # Tuned transmission:
     if item.tuned_transmission:
         value["tuned_transmission"] = item.tuned_transmission*LOWEST_BIN.get("TRANSMISSION_TUNER", 0)
+    # Ethermerge
+    if item.ethermerge:
+        value["ethermerge"] = LOWEST_BIN.get("ETHERWARP_MERGER", 0)+LOWEST_BIN.get("ETHERWARP_CONDUIT", 0)
     # Winning bid for Midas Staff/Sword
     if item.winning_bid > 0:
         value["winning_bid"] = item.winning_bid
