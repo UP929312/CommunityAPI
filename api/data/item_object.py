@@ -10,7 +10,8 @@ DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",
                 "enchantments": {},                 "reforge": None,
                 "star_upgrades": 0,                 "talisman_enrichment": None,
                 "art_of_war": None,                 "wood_singularity": None,
-                "farming_for_dummies": 0,           "ability_scrolls": [],
+                "farming_for_dummies": 0,           "tuned_transmission": 0,
+                "ability_scrolls": [],
                }
                 
 HOE_MATERIAL_TO_INTERNAL_NAME = {
@@ -27,22 +28,23 @@ class Item:
 
         #print(nbt)
 
-        # Generic data
+        # Default minecraft items don't have anything special, so just leave them basically
+        # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0} What is this...
+        #{'id': 160, 'Count': 1, 'tag': {'display': {'Name': ' '}}, 'Damage': 15}
         if "tag" not in nbt or "Lore" not in nbt["tag"]["display"]:
             for tag_name, value in DEFAULT_ITEM.items():
                 setattr(self, tag_name, value)
             return
-            
-        tag = nbt['tag']  # No idea why this fails for a very small number of people... If I use get, the whole thing breaks
-        # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0} What is this...
-        #{'id': 160, 'Count': 1, 'tag': {'display': {'Name': ' '}}, 'Damage': 15}
+
+        # Generic data            
+        tag = nbt['tag']
         extras = tag.get('ExtraAttributes', {})
         display = tag.get('display', {})
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
             
-        self.recombobulated = 1 if extras.get('rarity_upgrades', False) else 0
+        self.recombobulated = True if extras.get('rarity_upgrades', False) else False
         self.hot_potatoes = extras.get('hot_potato_count', 0)
 
         # Unique to tools
@@ -54,11 +56,6 @@ class Item:
         self.talisman_enrichment = extras.get("talisman_enrichment", None)
         self.art_of_war = extras.get("art_of_war_count", None)
         self.wood_singularity = extras.get("wood_singularity_count", None)
-
-        # Hoes
-        self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
-        #self.mined_crops = extras.get("mined_crops", 0)
-        #self.farmed_cultivating = extras.get("farmed_cultivating", 0)
 
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])
@@ -108,6 +105,17 @@ class Item:
             self.hoe_material = HOE_MATERIAL_TO_INTERNAL_NAME[hoe_material]
             self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
 
+        # Hoes
+        self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
+        #self.mined_crops = extras.get("mined_crops", 0)
+        #self.farmed_cultivating = extras.get("farmed_cultivating", 0)
+
+        # Ender slayer items
+        self.tuned_transmission = extras.get('tuned_transmission', 0)
+
+        # Winning bid on Midas Staff/Sword
+        self.winning_bid = extras.get("winning_bid", 0)
+
         # For Hyperions
         self.ability_scrolls = extras.get("ability_scroll", None)
 
@@ -154,6 +162,10 @@ class Item:
             data["wood_singularity"] = True
         if self.farming_for_dummies > 0:
             data["farming_for_dummies"] = self.farming_for_dummies
+        if self.tuned_transmission:
+            data["tuned_transmission"] = self.tuned_transmission
+        if self.winning_bid > 0:
+            data["winning_bid"] = self.winning_bid
 
         return data
 
@@ -191,6 +203,10 @@ class Item:
             list_of_elems.append("+Wood Singularity")
         if self.farming_for_dummies > 0:
             list_of_elems.append(f"{self.farming_for_dummies} Farming for Dummies")
+        if self.tuned_transmission > 0:
+            list_of_elems.append(f"{self.tuned_transmission} Transmission tuners")
+        if self.winning_bid > 0:
+            list_of_elems.append(f"Winning bid of {self.winning_bid}")
         #if self.livid_fragments:
         #    list_of_elems.append(f"{self.livid_fragments} livid fragments")
         

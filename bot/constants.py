@@ -1,5 +1,7 @@
 page_names = page_names = ["main", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets", "misc"]
 
+# Item descriptive icons
+
 PRICE_SOURCE = "<:price_source:854752333299974174>"
 RECOMBOBULATOR = "<:recombobulator:854750106376339477>"
 ART_OF_WAR = "<:art_of_war:854750132721811466>"
@@ -9,6 +11,8 @@ ENCHANTMENTS = "<:enchantments:854756289010728970>"
 REGULAR_STARS = "<:regular_stars:854752631741480990>"
 MASTER_STARS = "<:master_stars:854750116066230323>"
 REFORGE = "<:reforge:854750152048246824>"
+TRANSMISSIONS = "<:transmission_tuner:856491122736758814>"
+WINNING_BID = "<:winning_bid:856491169750712320> "
 
 PET_ITEM = "<:pet_item:854768366014169129>"
 PET_SKIN = "<:pet_skin:854768054424305684>"
@@ -16,6 +20,7 @@ LEVEL = "<:level:854767687623639080>"
 
 MISSING = "<:missing:854823285825208372>"
 
+# PAGES ICONS
 
 MAIN = "<:main:854797453223657505>"
 INVENTORY = "<:inventory:854797467726643210>"

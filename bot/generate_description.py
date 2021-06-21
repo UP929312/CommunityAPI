@@ -1,5 +1,5 @@
 from utils import hf, clean
-from constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, REFORGE, PET_ITEM, PET_SKIN, LEVEL
+from constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, REFORGE, TRANSMISSIONS, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
 
 def generate_item_description(value, item):
     elems = []
@@ -31,6 +31,10 @@ def generate_item_description(value, item):
         reforge_item = list(v['reforge']['item'].keys())[0]
         reforge_item_cost = hf(list(v['reforge']['item'].values())[0])
         elems.append(f"{REFORGE} - Reforge: ({clean(reforge_item)} - {reforge_item_cost})")
+    if "tuned_transmission" in v:
+        elems.append(f"{TRANSMISSIONS} - Tuned Transmissions: {hf(v['tuned_transmission'])}")
+    if "winning_bid" in v:
+        elems.append(f"{WINNING_BID} - Winning bid: {hf(v['winning_bid'])}")
         
     return "\n".join(elems)
 

@@ -95,6 +95,12 @@ def calculate_item(price, print_prices=False):
             value["drill_upgrades"][item.drill_engine_upgrade] = LOWEST_BIN.get(item.drill_engine_upgrade, 0)
         if item.drill_tank_upgrade:
             value["drill_upgrades"][item.drill_tank_upgrade] = LOWEST_BIN.get(item.drill_tank_upgrade, 0)
+    # Tuned transmission:
+    if item.tuned_transmission:
+        value["tuned_transmission"] = item.tuned_transmission*LOWEST_BIN.get("TRANSMISSION_TUNER", 0)
+    # Winning bid for Midas Staff/Sword
+    if item.winning_bid > 0:
+        value["winning_bid"] = item.winning_bid
     # Hyperion scrolls
     if item.ability_scrolls:
         value["ability_scrolls_value"] = sum([LOWEST_BIN.get(scroll, 0) for scroll in item.ability_scrolls])
