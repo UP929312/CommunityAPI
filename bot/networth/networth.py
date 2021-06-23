@@ -54,7 +54,7 @@ class networth_cog(commands.Cog):
             nick = ctx.author.nick
             username = nick.split("]")[1] if "]" in nick else nick
         try:
-            request = requests.get(f"http://127.0.0.1:8000/pages/{username}")
+            request = requests.get(f"http://{ip}:8000/pages/{username}")
         except Exception as e:
             print(e)
             return await error(ctx, "Error, the bot could not connect to the API", "This could be because the API is down for maintenance, because it's restarting, or because there are issues. Try again later.")

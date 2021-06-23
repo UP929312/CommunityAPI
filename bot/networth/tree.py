@@ -21,6 +21,7 @@ class tree_cog(commands.Cog):
         if username is None:
             nick = ctx.author.nick
             username = nick.split("]")[1] if "]" in nick else nick
+            
         try:
             request = requests.get(f"http://127.0.0.1:8000/tree/{username}")
         except Exception as e:

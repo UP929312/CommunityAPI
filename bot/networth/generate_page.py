@@ -5,8 +5,8 @@ from networth.generate_description import generate_description
 from networth.constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
 
 def format_info(total, item, value):
-    name = item['name'] if 'name' in item else "[Lvl "+value['pet_level']+"] "+item['tier'].title() + " " + item['type'].replace("_", " ").title()
-    reforge = "" if "reforge" not in item else item['reforge'].title()
+    name = item['name'] if 'name' in item else f"[Lvl {value['pet_level']}] {clean(item['tier'])} {clean(item['type'])}"
+    reforge = "" if "reforge" not in item else clean(item['reforge'])
     value = f"{reforge} {name} ➜ {hf(total)}"
     return value
 

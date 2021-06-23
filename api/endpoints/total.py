@@ -6,9 +6,9 @@ async def get_total_value(username):
     if containers is None:
         return None
     
-    total = sum([x[1] for x in extras.items()])
+    total = sum([x for x in extras.values()])
 
-    for name, item_list in containers.items():
+    for item_list in containers.values():
         total += sum(x.total for x in item_list)
 
     return {"total": total}
