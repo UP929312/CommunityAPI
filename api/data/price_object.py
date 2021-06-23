@@ -26,7 +26,7 @@ def search_tree(info_dict):
     return branch_value
 
 
-class Price(object):
+class Price(object):  # Pretty sure I don't need this?
     def __init__(self, item):
         self.item = item
         self.value = {}  # need this
@@ -39,6 +39,15 @@ class Price(object):
         total = search_tree(self.value)
         print(f"Total: {total}")
 
+    def to_dump_string(self):
+        if isinstance(self.item, dict):
+            start = f"Level {self.value['pet_level']} {self.item['type'].replace('_', ' ').title()}\n"
+        else:
+            start = f"{self.item.internal_name}\n"
+            
+        return start+"\n".join(generate_tree(self.value, [], "  "))+f"\nTotal Value: {search_tree(self.value)}"+"\n"
+
+       
     def calculate_total(self):
         self.total = search_tree(self.value)
             

@@ -6,7 +6,8 @@ intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_re
 intents = discord.Intents.default()
 print("Importing packages done...")
 
-from networth import networth_cog
+from networth.networth import networth_cog
+from networth.tree import tree_cog
 
 print("Importing .py files done...")
 
@@ -29,8 +30,6 @@ async def on_command_error(ctx, error):
         '''
         pass
     # This caused issues with CarlBot
-    if False:
-        pass
     elif isinstance(error, commands.NotOwner):
         await ctx.author.send("The is a developer command and cannot be used by you.")
     else:
@@ -38,7 +37,7 @@ async def on_command_error(ctx, error):
 #====================================================
 
 print("Loading cogs...")
-all_cogs = [networth_cog]
+all_cogs = [networth_cog, tree_cog]
 print("Adding cogs...")
 
 for cog in all_cogs:

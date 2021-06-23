@@ -1,9 +1,8 @@
 from utils import hf, clean
-from constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, REFORGE, TRANSMISSIONS, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
+from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
 
-def generate_item_description(value, item):
+def generate_item_description(v):
     elems = []
-    v = value
     #elems.append(f"{BASE_PRICE} - Base cost: {v['base_price']}")
     elems.append(f"{PRICE_SOURCE} - Price source: {v['price_source']}")
     if "recombobulator_value" in v:
@@ -22,9 +21,10 @@ def generate_item_description(value, item):
     if "enchantments" in v:
         enchants_value = sum(v["enchantments"].values())
         elems.append(f"{ENCHANTMENTS} - Enchantments: +{hf(enchants_value)}")
-    if "stars" in v:
+    if "stars" in v:  # This can sometimes be {}
         stars = v["stars"]
-        elems.append(f"{REGULAR_STARS} - Regular stars: +{hf(stars['regular_stars']['total_essence_value'])}")
+        if "regular_stars" in stars:
+            elems.append(f"{REGULAR_STARS} - Regular stars: +{hf(stars['regular_stars']['total_essence_value'])}")
         if "master_stars" in stars:
             elems.append(f"{MASTER_STARS} - Master stars: ({len(stars['master_stars'])} stars - {hf(sum(stars['master_stars'].values()))})")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
@@ -59,4 +59,4 @@ def generate_description(value, item):
     if "candyUsed" in item:  # For pets only
         return generate_pet_description(value, item)
     else:
-        return generate_item_description(value, item)
+        return generate_item_description(value)

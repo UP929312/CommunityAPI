@@ -1,8 +1,8 @@
 import discord
 
 from utils import hf, clean
-from generate_description import generate_description
-from constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
+from networth.generate_description import generate_description
+from networth.constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
 
 def format_info(total, item, value):
     name = item['name'] if 'name' in item else "[Lvl "+value['pet_level']+"] "+item['tier'].title() + " " + item['type'].replace("_", " ").title()

@@ -1,0 +1,1714 @@
+LIVID_DAGGER
+  base_price: 6300000
+  price_source: BIN
+  hot_potatoes
+    hot_potato_books: 433690
+  recombobulator_value: 4890761
+  enchantments
+    impaling_3: 39999
+    luck_6: 20000
+    critical_6: 120000
+    looting_3: 19999
+    smite_6: 39000
+    syphon_3: 21000
+    telekinesis_1: 97000
+    ender_slayer_5: 20000
+    scavenger_4: 29900
+    fire_aspect_2: 33000
+    experience_3: 2000
+    vampirism_5: 28000
+    execute_5: 10000
+    giant_killer_5: 19000
+    venomous_5: 40000
+    first_strike_4: 2500
+    thunderlord_6: 10000
+    cubism_5: 30000
+    lethality_5: 10000
+  reforge
+    item
+      WITHER_BLOOD: 1900000
+    apply_cost: 60000
+  stars
+    regular_stars
+      essence_required: 460
+      essence_type: Wither (4000 each)
+      total_essence_value: 1840000
+Total Value: 16015849
+
+ASPECT_OF_THE_END
+  base_price: 178000
+  price_source: BIN
+  enchantments
+    ultimate_wise_5: 2550000
+    telekinesis_1: 97000
+Total Value: 2825000
+
+FLORID_ZOMBIE_SWORD
+  base_price: 2700000
+  price_source: BIN
+  enchantments
+    ultimate_wise_3: 670000
+Total Value: 3370000
+
+GRAPPLING_HOOK
+  price_source: Jerry
+  base_price: 3500
+Total Value: 3500
+
+RUNAANS_BOW
+  base_price: 370000
+  price_source: BIN
+  hot_potatoes
+    hot_potato_books: 433690
+  enchantments
+    dragon_hunter_2: 2999999
+    piercing_1: 10000
+    infinite_quiver_5: 94000
+    power_5: 25000
+    snipe_3: 70000
+    telekinesis_1: 97000
+    aiming_5: 85000
+    cubism_5: 30000
+  reforge
+    item
+      SALMON_OPAL: 2000
+    apply_cost: 250000
+Total Value: 4466689
+
+DUNGEON_STONE
+  base_price: 500
+  price_source: BIN
+  recombobulator_value: 4890761
+Total Value: 4891261
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+SKYBLOCK_MENU
+  price_source: None
+  base_price: 0
+Total Value: 0
+
+HEALING_RING
+  price_source: Jerry
+  base_price: 400000
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 899000
+
+NEW_YEAR_CAKE_BAG
+  base_price: 400000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 899000
+
+FARMER_ORB
+  price_source: Jerry
+  base_price: 93000
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 592000
+
+WOLF_PAW
+  base_price: 470000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 969000
+
+EMERALD_RING
+  base_price: 38000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 537000
+
+PIGGY_BANK
+  base_price: 78000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 577000
+
+WOOD_TALISMAN
+  price_source: Jerry
+  base_price: 300
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 499300
+
+GRAVITY_TALISMAN
+  price_source: Jerry
+  base_price: 2800
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 501800
+
+MAGNETIC_TALISMAN
+  price_source: None
+  base_price: 0
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 499000
+
+NIGHT_VISION_CHARM
+  price_source: Jerry
+  base_price: 25000
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 499000
+
+JINGLE_BELLS
+  base_price: 470000
+  price_source: BIN
+Total Value: 470000
+
+AATROX_BATPHONE
+  base_price: 799000
+  price_source: BIN
+Total Value: 799000
+
+SUPERBOOM_TNT
+  base_price: 781
+  price_source: BIN
+Total Value: 781
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+SPIRIT_LEAP
+  base_price: 4375
+  price_source: BIN
+Total Value: 4375
+
+LUCKY_HOOF
+  base_price: 100000
+  price_source: BIN
+Total Value: 100000
+
+CAMPFIRE_TALISMAN_21
+  price_source: None
+  base_price: 0
+Total Value: 0
+
+PERSONAL_COMPACTOR_7000
+  base_price: 6300000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 400000
+Total Value: 7149000
+
+FEATHER_ARTIFACT
+  base_price: 169000
+  price_source: BIN
+Total Value: 169000
+
+MINE_TALISMAN
+  price_source: Jerry
+  base_price: 6500
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 480500
+
+SEA_CREATURE_ARTIFACT
+  base_price: 349000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 898000
+
+LAVA_TALISMAN
+  base_price: 23000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 50000
+Total Value: 522000
+
+ZOMBIE_TALISMAN
+  price_source: Jerry
+  base_price: 500
+Total Value: 500
+
+RED_CLAW_TALISMAN
+  base_price: 17000
+  price_source: BIN
+Total Value: 17000
+
+JERRY_TALISMAN_GREEN
+  base_price: 550000
+  price_source: BIN
+Total Value: 550000
+
+SPEED_ARTIFACT
+  base_price: 2725000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 3274000
+
+FISH_AFFINITY_TALISMAN
+  base_price: 90000
+  price_source: BIN
+Total Value: 90000
+
+ZOMBIE_RING
+  base_price: 13999
+  price_source: BIN
+Total Value: 13999
+
+WEDDING_RING_7
+  price_source: None
+  base_price: 0
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 200000
+Total Value: 649000
+
+ARTIFACT_POTION_AFFINITY
+  base_price: 190000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 739000
+
+PIGS_FOOT
+  base_price: 350000
+  price_source: BIN
+Total Value: 350000
+
+WOLF_RING
+  base_price: 1600000
+  price_source: BIN
+Total Value: 1600000
+
+HASTE_RING
+  base_price: 345000
+  price_source: BIN
+Total Value: 345000
+
+DEVOUR_RING
+  base_price: 2100000
+  price_source: BIN
+Total Value: 2100000
+
+PERSONAL_DELETOR_5000
+  price_source: Jerry
+  base_price: 1050000
+Total Value: 1050000
+
+BITS_TALISMAN
+  base_price: 4500000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 5049000
+
+CHEETAH_TALISMAN
+  price_source: None
+  base_price: 0
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 200000
+Total Value: 649000
+
+TREASURE_RING
+  base_price: 2899999
+  price_source: BIN
+Total Value: 2899999
+
+SPIDER_TALISMAN
+  price_source: Jerry
+  base_price: 82500
+Total Value: 82500
+
+SHARP_SHARK_TOOTH_NECKLACE
+  base_price: 377000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 200000
+Total Value: 1026000
+
+MELODY_HAIR
+  price_source: Jerry
+  base_price: 1500000
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 200000
+Total Value: 2149000
+
+SCARF_THESIS
+  base_price: 2222222
+  price_source: BIN
+Total Value: 2222222
+
+BAT_ARTIFACT
+  base_price: 710000
+  price_source: BIN
+Total Value: 710000
+
+FROZEN_CHICKEN
+  base_price: 499999
+  price_source: BIN
+Total Value: 499999
+
+MINERAL_TALISMAN
+  base_price: 848000
+  price_source: BIN
+Total Value: 848000
+
+INTIMIDATION_ARTIFACT
+  base_price: 734000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 1283000
+
+DAY_CRYSTAL
+  price_source: Jerry
+  base_price: 2250000
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 2799000
+
+NIGHT_CRYSTAL
+  price_source: Jerry
+  base_price: 145000
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 694000
+
+EXPERIENCE_ARTIFACT
+  base_price: 699999
+  price_source: BIN
+Total Value: 699999
+
+WOOD_TALISMAN
+  price_source: Jerry
+  base_price: 300
+Total Value: 300
+
+BEASTMASTER_CREST_RARE
+  base_price: 2700000
+  price_source: BIN
+Total Value: 2700000
+
+CANDY_ARTIFACT
+  base_price: 295000
+  price_source: BIN
+Total Value: 295000
+
+DANTE_TALISMAN
+  price_source: Jerry
+  base_price: 125000
+Total Value: 125000
+
+KING_TALISMAN
+  price_source: Jerry
+  base_price: 250000
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 724000
+
+FIRE_TALISMAN
+  price_source: Jerry
+  base_price: 27500
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 501500
+
+FARMING_TALISMAN
+  price_source: Jerry
+  base_price: 750
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 474750
+
+POTATO_TALISMAN
+  base_price: 3990000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 4464000
+
+VILLAGE_TALISMAN
+  price_source: Jerry
+  base_price: 1500
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 475500
+
+PARTY_HAT_CRAB
+  base_price: 6666666
+  price_source: BIN
+Total Value: 6666666
+
+SCAVENGER_TALISMAN
+  price_source: Jerry
+  base_price: 5250
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 479250
+
+BAT_PERSON_TALISMAN
+  base_price: 100000
+  price_source: BIN
+Total Value: 100000
+
+COIN_TALISMAN
+  price_source: Jerry
+  base_price: 191
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 474191
+
+SKELETON_TALISMAN
+  price_source: Jerry
+  base_price: 500
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 474500
+
+VACCINE_TALISMAN
+  price_source: Jerry
+  base_price: 155
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 25000
+Total Value: 474155
+
+BLOOD_GOD_CREST
+  base_price: 700000
+  price_source: BIN
+Total Value: 700000
+
+ZOMBIE_ARTIFACT
+  base_price: 2280000
+  price_source: BIN
+  reforge
+    item
+      DARK_ORB: 449000
+    apply_cost: 100000
+Total Value: 2829000
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+ANCESTRAL_SPADE
+  base_price: 19000
+  price_source: BIN
+Total Value: 19000
+
+ECHOLOCATOR
+  base_price: 16000
+  price_source: BIN
+Total Value: 16000
+
+TRICK_OR_TREAT_BAG
+  base_price: 2000
+  price_source: BIN
+Total Value: 2000
+
+TACTICIAN_SWORD
+  base_price: 100000
+  price_source: BIN
+  enchantments
+    looting_4: 45000
+    knockback_2: 75000
+    sharpness_5: 40000
+    telekinesis_1: 97000
+    ender_slayer_4: 20000
+    scavenger_4: 29900
+    fire_aspect_1: 150000
+    cubism_4: 3000
+    execute_4: 39000
+    giant_killer_5: 19000
+Total Value: 617900
+
+ENCHANTED_BOOK
+  price_source: BIN
+  enchantments_value: 29900
+Total Value: 29900
+
+BATTLE_DISC
+  base_price: 2000
+  price_source: BIN
+Total Value: 2000
+
+WINTER_DISC
+  base_price: 1000
+  price_source: BIN
+Total Value: 1000
+
+ENCHANTED_BOOK
+  price_source: BIN
+  enchantments_value: 29900
+Total Value: 29900
+
+ENCHANTED_BOOK
+  price_source: BIN
+  enchantments_value: 29900
+Total Value: 29900
+
+ENCHANTED_BOOK
+  price_source: BIN
+  enchantments_value: 29900
+Total Value: 29900
+
+ROGUE_SWORD
+  price_source: Jerry
+  base_price: 10500
+  stars
+    regular_stars
+      essence_required: 50
+      essence_type: Gold (3000 each)
+      total_essence_value: 150000
+Total Value: 160500
+
+GOLD_SPADE
+  price_source: None
+  base_price: 0
+Total Value: 0
+
+CHAMP_ROD
+  base_price: 250000
+  price_source: BIN
+  enchantments
+    caster_5: 69000
+    spiked_hook_5: 5000
+    looting_3: 19999
+    frail_5: 4000
+    telekinesis_1: 97000
+    angler_5: 3000
+    luck_of_the_sea_5: 3000
+    magnet_5: 2000
+    lure_5: 5000
+    blessing_5: 30000
+Total Value: 487999
+
+SHINY_ORB
+  base_price: 1562
+  price_source: BIN
+Total Value: 1562
+
+SHINY_ORB
+  base_price: 1562
+  price_source: BIN
+Total Value: 1562
+
+SHINY_ORB
+  base_price: 1562
+  price_source: BIN
+Total Value: 1562
+
+ENDER_PEARL
+  base_price: 7
+  price_source: Bazaar
+Total Value: 7
+
+ENDER_PEARL
+  base_price: 7
+  price_source: Bazaar
+Total Value: 7
+
+ENDER_PEARL
+  base_price: 7
+  price_source: Bazaar
+Total Value: 7
+
+ENDER_PEARL
+  base_price: 7
+  price_source: Bazaar
+Total Value: 7
+
+SMALL_BACKPACK
+  base_price: 4900
+  price_source: BIN
+Total Value: 4900
+
+ENDERMAN_MASK
+  price_source: Jerry
+  base_price: 1000
+Total Value: 1000
+
+SQUID_BOOTS
+  price_source: Jerry
+  base_price: 525
+  hot_potatoes
+    hot_potato_books: 433690
+    fuming_potato_books: 4612840
+  recombobulator_value: 4890761
+  enchantments
+    depth_strider_3: 50000
+    sugar_rush_3: 1300000
+    ultimate_legion_5: 17950000
+    feather_falling_10: 140000
+    rejuvenate_5: 724999
+  reforge
+    item
+      DRAGON_HORN: 6249000
+    apply_cost: 0
+Total Value: 36351815
+
+TARANTULA_HELMET
+  base_price: 730000
+  price_source: BIN
+  enchantments
+    growth_5: 14000
+    protection_5: 15000
+    aqua_affinity_1: 850000
+  reforge
+    item
+      PRECURSOR_GEAR: 590000
+    apply_cost: 40000
+Total Value: 2239000
+
+GOBLIN_HELMET
+  base_price: 10000
+  price_source: BIN
+Total Value: 10000
+
+WATER_HYDRA_HEAD
+  base_price: 40000
+  price_source: BIN
+Total Value: 40000
+
+CRYSTAL_HELMET
+  base_price: 285000
+  price_source: BIN
+Total Value: 285000
+
+MINER_OUTFIT_HELMET
+  price_source: Jerry
+  base_price: 625
+Total Value: 625
+
+FAIRY_HELMET
+  base_price: 9000
+  price_source: BIN
+Total Value: 9000
+
+REVIVED_HEART
+  base_price: 2899999
+  price_source: BIN
+  enchantments
+    growth_5: 14000
+    protection_5: 15000
+    respiration_3: 19000
+    aqua_affinity_1: 850000
+  reforge
+    item
+      GIANT_TOOTH: 395000
+    apply_cost: 500000
+  stars
+    regular_stars
+      essence_required: 210
+      essence_type: Undead (1000 each)
+      total_essence_value: 210000
+Total Value: 4902999
+
+WISE_DRAGON_HELMET
+  base_price: 490000
+  price_source: BIN
+  enchantments
+    protection_5: 15000
+    growth_4: 8000
+  stars
+    regular_stars
+      essence_required: 200
+      essence_type: Dragon (1000 each)
+      total_essence_value: 200000
+Total Value: 713000
+
+GOBLIN_CHESTPLATE
+  base_price: 4000
+  price_source: BIN
+Total Value: 4000
+
+SALMON_CHESTPLATE_NEW
+  base_price: 55000
+  price_source: BIN
+Total Value: 55000
+
+CRYSTAL_CHESTPLATE
+  base_price: 345000
+  price_source: BIN
+Total Value: 345000
+
+MINER_OUTFIT_CHESTPLATE
+  price_source: Jerry
+  base_price: 625
+Total Value: 625
+
+FAIRY_CHESTPLATE
+  base_price: 8000
+  price_source: BIN
+Total Value: 8000
+
+NECROMANCER_LORD_CHESTPLATE
+  base_price: 8000000
+  price_source: BIN
+  recombobulator_value: 4890761
+  enchantments
+    rejuvenate_4: 320000
+    protection_5: 15000
+    growth_5: 14000
+  reforge
+    item
+      GIANT_TOOTH: 395000
+    apply_cost: 2000000
+  stars
+    regular_stars
+      essence_required: 470
+      essence_type: Wither (4000 each)
+      total_essence_value: 1880000
+Total Value: 17514761
+
+WISE_DRAGON_CHESTPLATE
+  base_price: 599000
+  price_source: BIN
+  hot_potatoes
+    hot_potato_books: 43369
+  enchantments
+    growth_5: 14000
+    protection_5: 15000
+  stars
+    regular_stars
+      essence_required: 30
+      essence_type: Dragon (1000 each)
+      total_essence_value: 30000
+Total Value: 701369
+
+GOBLIN_LEGGINGS
+  base_price: 3999
+  price_source: BIN
+Total Value: 3999
+
+SALMON_LEGGINGS_NEW
+  base_price: 22000
+  price_source: BIN
+Total Value: 22000
+
+CRYSTAL_LEGGINGS
+  base_price: 390000
+  price_source: BIN
+Total Value: 390000
+
+MINER_OUTFIT_LEGGINGS
+  price_source: Jerry
+  base_price: 625
+Total Value: 625
+
+FAIRY_LEGGINGS
+  base_price: 9999
+  price_source: BIN
+Total Value: 9999
+
+NECROMANCER_LORD_LEGGINGS
+  base_price: 2600000
+  price_source: BIN
+  hot_potatoes
+    hot_potato_books: 433690
+  recombobulator_value: 4890761
+  enchantments
+    rejuvenate_5: 724999
+    growth_5: 14000
+    protection_5: 15000
+  reforge
+    item
+      GIANT_TOOTH: 395000
+    apply_cost: 2000000
+  stars
+    regular_stars
+      essence_required: 560
+      essence_type: Wither (4000 each)
+      total_essence_value: 2240000
+Total Value: 13313450
+
+WISE_DRAGON_LEGGINGS
+  base_price: 900000
+  price_source: BIN
+  hot_potatoes
+    hot_potato_books: 433690
+  enchantments
+    rejuvenate_1: 26000
+    growth_5: 14000
+    protection_5: 15000
+    ultimate_no_pain_no_gain_1: 10000
+  stars
+    regular_stars
+      essence_required: 240
+      essence_type: Dragon (1000 each)
+      total_essence_value: 240000
+Total Value: 1638690
+
+GOBLIN_BOOTS
+  base_price: 5000
+  price_source: BIN
+Total Value: 5000
+
+SALMON_BOOTS_NEW
+  base_price: 38888
+  price_source: BIN
+Total Value: 38888
+
+CRYSTAL_BOOTS
+  base_price: 135000
+  price_source: BIN
+  enchantments
+    feather_falling_6: 3000
+Total Value: 138000
+
+MINER_OUTFIT_BOOTS
+  price_source: Jerry
+  base_price: 625
+Total Value: 625
+
+FAIRY_BOOTS
+  base_price: 15000
+  price_source: BIN
+Total Value: 15000
+
+PERFECT_BOOTS_12
+  base_price: 5800000
+  price_source: BIN
+  hot_potatoes
+    hot_potato_books: 433690
+  recombobulator_value: 4890761
+  enchantments
+    depth_strider_3: 50000
+    ultimate_wisdom_5: 2795000
+    feather_falling_10: 140000
+    protection_5: 15000
+    growth_5: 14000
+  reforge
+    item
+      GIANT_TOOTH: 395000
+    apply_cost: 2000000
+  stars
+Total Value: 16533451
+
+WISE_DRAGON_BOOTS
+  base_price: 549000
+  price_source: BIN
+  enchantments
+    thorns_3: 55000
+    growth_5: 14000
+    protection_5: 15000
+  reforge
+    item
+      NECROMANCER_BROOCH: 50000
+    apply_cost: 300000
+  stars
+    regular_stars
+      essence_required: 180
+      essence_type: Dragon (1000 each)
+      total_essence_value: 180000
+Total Value: 1163000
+
+END_HELMET
+  base_price: 39000
+  price_source: BIN
+  enchantments
+    growth_5: 14000
+    protection_5: 15000
+Total Value: 68000
+
+ANGLER_HELMET
+  price_source: Jerry
+  base_price: 650
+Total Value: 650
+
+OBSIDIAN_CHESTPLATE
+  base_price: 6000
+  price_source: BIN
+Total Value: 6000
+
+END_CHESTPLATE
+  base_price: 39000
+  price_source: BIN
+  enchantments
+    growth_5: 14000
+    protection_5: 15000
+Total Value: 68000
+
+ANGLER_CHESTPLATE
+  price_source: Jerry
+  base_price: 1000
+Total Value: 1000
+
+SNOW_SUIT_LEGGINGS
+  base_price: 20000
+  price_source: BIN
+Total Value: 20000
+
+END_LEGGINGS
+  base_price: 10000
+  price_source: BIN
+  enchantments
+    growth_5: 14000
+    protection_5: 15000
+Total Value: 39000
+
+ANGLER_LEGGINGS
+  price_source: Jerry
+  base_price: 875
+Total Value: 875
+
+FARMER_BOOTS
+  base_price: 219000
+  price_source: BIN
+  enchantments
+    feather_falling_5: 10000
+    growth_5: 14000
+    protection_5: 15000
+Total Value: 258000
+
+END_BOOTS
+  base_price: 43000
+  price_source: BIN
+  enchantments
+    growth_5: 14000
+    protection_5: 15000
+Total Value: 72000
+
+ANGLER_BOOTS
+  price_source: Jerry
+  base_price: 575
+Total Value: 575
+
+RUNE
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+RUNE
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+RUNE
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+STONK_PICKAXE
+  base_price: 529974
+  price_source: BIN
+  enchantments
+    efficiency_6: 17776
+    compact_5: 1300000
+    telekinesis_1: 97000
+  reforge
+    item
+      REFINED_AMBER: 1198000
+    apply_cost: 10000
+Total Value: 3152750
+
+SLIME_HAT
+  price_source: Jerry
+  base_price: 112
+Total Value: 112
+
+MELODY_HAIR
+  price_source: Jerry
+  base_price: 1500000
+Total Value: 1500000
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+ENDERMAN_MASK
+  price_source: Jerry
+  base_price: 1000
+Total Value: 1000
+
+TREECAPITATOR_AXE
+  base_price: 2100000
+  price_source: BIN
+  enchantments
+    efficiency_5: 8888
+    telekinesis_1: 97000
+    replenish_1: 1169999
+  reforge
+    item
+      TOIL_LOG: 1050000
+    apply_cost: 10000
+Total Value: 4435887
+
+FISH_HAT
+  price_source: Jerry
+  base_price: 200
+Total Value: 200
+
+CHICKEN_HEAD
+  price_source: Jerry
+  base_price: 500
+Total Value: 500
+
+LEATHER_BOOTS
+  price_source: None
+  base_price: 0
+  enchantments
+    frost_walker_2: 20000
+Total Value: 20000
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+GOLD_PICKAXE
+  price_source: None
+  base_price: 0
+  enchantments
+    efficiency_5: 8888
+    silk_touch_1: 2500
+    telekinesis_1: 97000
+Total Value: 108388
+
+ENCHANTING_PLUS
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+BIG_XTREE
+  base_price: 2333
+  price_source: BIN
+Total Value: 2333
+
+GINGERBREAD_PERSONALITY
+  base_price: 2142
+  price_source: BIN
+Total Value: 2142
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+NEW_YEAR_CAKE
+  base_price: 215000
+  price_source: BIN
+Total Value: 215000
+
+INFLATABLE_JERRY
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+INFLATABLE_JERRY
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+INFLATABLE_JERRY
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+FEL_PEARL
+  base_price: 5000
+  price_source: BIN
+Total Value: 5000
+
+DUNGEON_TRAP
+  base_price: 125
+  price_source: BIN
+Total Value: 125
+
+INFLATABLE_JERRY
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+SPIRIT_LEAP
+  base_price: 4375
+  price_source: BIN
+Total Value: 4375
+
+SCARF_FRAGMENT
+  base_price: 5000
+  price_source: BIN
+Total Value: 5000
+
+DUNGEON_DECOY
+  base_price: 700
+  price_source: BIN
+Total Value: 700
+
+DUNGEON_CHEST_KEY
+  base_price: 100000
+  price_source: BIN
+Total Value: 100000
+
+FEL_PEARL
+  base_price: 5000
+  price_source: BIN
+Total Value: 5000
+
+SPIRIT_LEAP
+  base_price: 4375
+  price_source: BIN
+Total Value: 4375
+
+DEFUSE_KIT
+  price_source: Jerry
+  base_price: 3
+Total Value: 3
+
+SHEARS
+  price_source: None
+  base_price: 0
+  enchantments
+    efficiency_5: 8888
+    telekinesis_1: 97000
+Total Value: 105888
+
+DUNGEON_DECOY
+  base_price: 700
+  price_source: BIN
+Total Value: 700
+
+MIMIC_FRAGMENT
+  base_price: 5000
+  price_source: BIN
+Total Value: 5000
+
+SPIRIT_LEAP
+  base_price: 4375
+  price_source: BIN
+Total Value: 4375
+
+DUNGEON_DECOY
+  base_price: 700
+  price_source: BIN
+Total Value: 700
+
+END_SWORD
+  price_source: Jerry
+  base_price: 150
+  enchantments
+    luck_6: 20000
+    dragon_hunter_3: 5290000
+    critical_5: 34000
+    first_strike_4: 2500
+    looting_4: 45000
+    thunderlord_5: 19000
+    ender_slayer_6: 1750000
+    sharpness_5: 40000
+    vampirism_5: 28000
+    execute_5: 10000
+    giant_killer_5: 19000
+Total Value: 7257650
+
+SPIRIT_LEAP
+  base_price: 4375
+  price_source: BIN
+Total Value: 4375
+
+SPIRIT_LEAP
+  base_price: 4375
+  price_source: BIN
+Total Value: 4375
+
+MAXOR_THE_FISH
+  base_price: 50000
+  price_source: BIN
+Total Value: 50000
+
+MAXOR_THE_FISH
+  base_price: 50000
+  price_source: BIN
+Total Value: 50000
+
+STORM_THE_FISH
+  base_price: 50000
+  price_source: BIN
+Total Value: 50000
+
+DUNGEON_CHEST_KEY
+  base_price: 100000
+  price_source: BIN
+Total Value: 100000
+
+SPIRIT_LEAP
+  base_price: 4375
+  price_source: BIN
+Total Value: 4375
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+REMNANT_OF_THE_EYE
+  base_price: 45000
+  price_source: BIN
+Total Value: 45000
+
+RED_CLAW_EGG
+  base_price: 290000
+  price_source: BIN
+Total Value: 290000
+
+RUNE
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+RUNE
+  base_price: 250
+  price_source: BIN
+Total Value: 250
+
+ENCHANTED_BOOK
+  price_source: BIN
+  enchantments_value: 39000
+Total Value: 39000
+
+ENCHANTED_BOOK
+  price_source: BIN
+  enchantments_value: 39000
+Total Value: 39000
+
+BEHEADED_HORROR
+  base_price: 39999
+  price_source: BIN
+Total Value: 39999
+
+BEHEADED_HORROR
+  base_price: 39999
+  price_source: BIN
+Total Value: 39999
+
+BEHEADED_HORROR
+  base_price: 39999
+  price_source: BIN
+Total Value: 39999
+
+BEHEADED_HORROR
+  base_price: 39999
+  price_source: BIN
+Total Value: 39999
+
+BEHEADED_HORROR
+  base_price: 39999
+  price_source: BIN
+Total Value: 39999
+
+VOODOO_DOLL
+  base_price: 800000
+  price_source: BIN
+Total Value: 800000
+
+SUPERIOR_FRAGMENT
+  base_price: 111974
+  price_source: Bazaar
+  recombobulator_value: 4890761
+Total Value: 5002735
+
+UNDEAD_CATALYST
+  base_price: 2000
+  price_source: BIN
+Total Value: 2000
+
+REVENANT_CATALYST
+  base_price: 8000
+  price_source: BIN
+Total Value: 8000
+
+BEHEADED_HORROR
+  base_price: 39999
+  price_source: BIN
+Total Value: 39999
+
+REVENANT_VISCERA
+  base_price: 49314
+  price_source: Bazaar
+Total Value: 49314
+
+REVENANT_VISCERA
+  base_price: 49314
+  price_source: Bazaar
+Total Value: 49314
+
+ENCHANTED_STRING
+  base_price: 1359
+  price_source: Bazaar
+Total Value: 1359
+
+Level 44 Pig
+  base_price: 500000
+  price_source: BIN
+  held_item
+    value: 40000
+    price_source: BIN
+  pet_level_bonus
+    amount: 353577 xp
+    price_source: Calculated
+    worth: 70715
+  pet_level: 44
+Total Value: 610715
+
+Level 4 Chicken
+  base_price: 590000
+  price_source: BIN
+  pet_level_bonus
+    amount: 2154 xp
+    price_source: Calculated
+    worth: 430
+  pet_level: 4
+Total Value: 590430
+
+Level 91 Wolf
+  base_price: 1899999
+  price_source: BIN
+  held_item
+    value: 185000
+    price_source: BIN
+  pet_level_bonus
+    amount: 13409971 xp
+    price_source: Calculated
+    worth: 2681994
+  pet_level: 91
+Total Value: 4766993
+
+Level 88 Wither Skeleton
+  base_price: 3250000
+  price_source: BIN
+  held_item
+    value: 30000
+    price_source: BIN
+  pet_level_bonus
+    amount: 10758169 xp
+    price_source: Calculated
+    worth: 2151633
+  pet_level: 88
+Total Value: 5431633
+
+Level 41 Horse
+  base_price: 700000
+  price_source: BIN
+  pet_level_bonus
+    amount: 272422 xp
+    price_source: Calculated
+    worth: 54484
+  pet_level: 41
+Total Value: 754484
+
+Level 86 Mithril Golem
+  base_price: 260000
+  price_source: BIN
+  pet_level_bonus
+    amount: 6810384 xp
+    price_source: Calculated
+    worth: 1362076
+  pet_level: 86
+Total Value: 1622076
+
+Level 9 Endermite
+  base_price: 350000
+  price_source: BIN
+  pet_level_bonus
+    amount: 4756 xp
+    price_source: Calculated
+    worth: 951
+  pet_level: 9
+Total Value: 350951
+
+Level 17 Flying Fish
+  base_price: 185000
+  price_source: BIN
+  pet_level_bonus
+    amount: 16605 xp
+    price_source: Calculated
+    worth: 3321
+  pet_level: 17
+Total Value: 188321
+
+Level 52 Enderman
+  base_price: 70000
+  price_source: BIN
+  held_item
+    value: 100000
+    price_source: BIN
+  pet_level_bonus
+    amount: 498127 xp
+    price_source: Calculated
+    worth: 99625
+  pet_level: 52
+Total Value: 269625
+
+Level 47 Hound
+  base_price: 690000
+  price_source: BIN
+  held_item
+    value: 75000
+    price_source: BIN
+  pet_level_bonus
+    amount: 324450 xp
+    price_source: Calculated
+    worth: 64890
+  pet_level: 47
+Total Value: 829890
+
+Level 6 Lion
+  base_price: 185999
+  price_source: BIN
+  pet_level_bonus
+    amount: 1537 xp
+    price_source: Calculated
+    worth: 307
+  pet_level: 6
+Total Value: 186306
+
+Level 1 Ocelot
+  base_price: 389000
+  price_source: BIN
+  pet_level_bonus
+    amount: 0 xp
+    price_source: Calculated
+    worth: 0
+  pet_level: 1
+Total Value: 389000
+
+Level 2 Skeleton
+  base_price: 149000
+  price_source: BIN
+  pet_level_bonus
+    amount: 275 xp
+    price_source: Calculated
+    worth: 55
+  pet_level: 2
+Total Value: 149055
+
+Level 14 Grandma Wolf
+  base_price: 0
+  price_source: Jerry
+  pet_level_bonus
+    amount: 15298 xp
+    price_source: Calculated
+    worth: 3059
+  pet_level: 14
+Total Value: 3059
+
+Level 1 Squid
+  base_price: 680000
+  price_source: BIN
+  pet_level_bonus
+    amount: 0 xp
+    price_source: Calculated
+    worth: 0
+  pet_level: 1
+Total Value: 680000
+
+Level 100 Silverfish
+  base_price: 865000
+  price_source: BIN
+  held_item
+    value: 589999
+    price_source: BIN
+  pet_level_bonus
+    amount: 62924561 xp
+    price_source: Calculated
+    worth: 5070766
+  pet_level: 100
+Total Value: 6525765
+
+Level 77 Tiger
+  base_price: 2000000
+  price_source: BIN
+  held_item
+    value: 685000
+    price_source: BIN
+  pet_level_bonus
+    amount: 3531483 xp
+    price_source: Calculated
+    worth: 706296
+  pet_level: 77
+Total Value: 3391296
+
+Level 47 Blue Whale
+  base_price: 17400000
+  price_source: BIN
+  pet_level_bonus
+    amount: 454113 xp
+    price_source: Calculated
+    worth: 90822
+  pet_level: 47
+Total Value: 17490822
+
+Level 1 Pigman
+  base_price: 649000
+  price_source: BIN
+  pet_level_bonus
+    amount: 0 xp
+    price_source: Calculated
+    worth: 0
+  pet_level: 1
+Total Value: 649000
+
+Level 1 Pig
+  base_price: 100000
+  price_source: BIN
+  pet_level_bonus
+    amount: 0 xp
+    price_source: Calculated
+    worth: 0
+  pet_level: 1
+Total Value: 100000
+
+Level 1 Rock
+  base_price: 80000
+  price_source: BIN
+  pet_level_bonus
+    amount: 0 xp
+    price_source: Calculated
+    worth: 0
+  pet_level: 1
+Total Value: 80000
+
+Level 1 Rock
+  base_price: 100000
+  price_source: BIN
+  pet_level_bonus
+    amount: 0 xp
+    price_source: Calculated
+    worth: 0
+  pet_level: 1
+Total Value: 100000
+
+Level 100 Jellyfish
+  base_price: 850000
+  price_source: BIN
+  held_item
+    value: 150000
+    price_source: BIN
+  pet_level_bonus
+    amount: 19391932 xp
+    price_source: Calculated
+    worth: 3721780
+  pet_level: 100
+Total Value: 4721780
+

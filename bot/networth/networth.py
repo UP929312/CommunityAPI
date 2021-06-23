@@ -4,8 +4,8 @@ from discord.ext import commands
 import requests
 
 from utils import error
-from generate_page import generate_page
-from constants import *
+from networth.generate_page import generate_page
+from networth.constants import *
 
 with open("api_address.txt") as file:
     ip = file.read()
