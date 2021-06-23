@@ -9,7 +9,7 @@ DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",      
                 "reforge": None,                    "star_upgrades": 0,            "talisman_enrichment": None,
                 "art_of_war": None,                 "wood_singularity": None,      "farming_for_dummies": 0,
                 "tuned_transmission": 0,            "ethermerge": False,           "winning_bid": 0,
-                "ability_scrolls": [],
+                "ability_scrolls": [],              "livid_fragments": 0,
                }
                 
 HOE_MATERIAL_TO_INTERNAL_NAME = {
@@ -66,6 +66,12 @@ class Item:
         self.rarity = last_desc_row[0] if last_desc_row[0] != "VERY" else "VERY_SPECIAL"
         self.type = last_desc_row[1] if len(last_desc_row) > 1 else None
 
+        '''
+        self.dungeon_item = "DUNGEON" in last_desc_row
+        if self.dungeon_item:
+            print(self.internal_name)
+        '''
+        
         # self.item_group = Stuff such as "ARMOR", "SWORD", "ROD", "ACCESSORY
         self.item_group = None
         if self.reforge:
@@ -123,6 +129,8 @@ class Item:
         # Livid Fragments
         self.livid_fragments = 0
         #self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
+
+    #=========================================================================
         
     def to_dict(self):
         data = {

@@ -20,6 +20,11 @@ class MenuButton(discord.ui.Button['MenuView']):
         view: MenuView = self.view
         if view.command_author.id == interaction.user.id or interaction.user.id == 244543752889303041:
             view.page = EMOJI_TO_PAGE[f"<:{self.emoji.name}:{self.emoji.id}>"]
+
+            for child in self.view.children:
+                child.disabled = False
+            self.disabled = True
+            
             await self.view.update_embed(interaction)
         else:
             await interaction.response.send_message("This isn't your command!\nYou can run this command yourself to change the pages!", ephemeral=True)

@@ -3,8 +3,8 @@ import json
 import unittest
 from parameterized import parameterized, parameterized_class
 
-ip = "http://127.0.0.1:8000"  #  For running locally
-#ip = "http://db.superbonecraft.dk:8000"  # For the server
+#ip = "http://127.0.0.1:8000"  #  For running locally
+ip = "http://db.superbonecraft.dk:8000"  # For the server
 
 test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
                   3: "UrMinecraftDoggo", 4: "Skezza", 5: "kori_100",
