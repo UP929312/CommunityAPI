@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 import requests
-from io import BytesIO
+from io import StringIO
 
 from utils import error
 
@@ -35,11 +35,9 @@ class tree_cog(commands.Cog):
             # 400 = Username not found
             return await error(ctx, "Error, that person could not be found", f"Perhaps you input the incorrect name? Status code: {request.status_code}")
 
-        with open("temp.txt", "wb") as file:
-            data = request.json()
-            file.write(data.encode('ascii'))
-
-        with open("temp.txt", "rb") as file:
-            file = discord.File(file, filename=f"{username}_dump.txt")
+        string_io = StringIO()
+        string_io.write(request.json())
+        string_io.seek(0)
+        file = discord.File(string_io, filename=f"{username}_dump.txt")
 
         await ctx.send(file=file)
