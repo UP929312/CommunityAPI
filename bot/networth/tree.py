@@ -33,8 +33,9 @@ class tree_cog(commands.Cog):
             # 400 = Username not found
             return await error(ctx, "Error, that person could not be found", f"Perhaps you input the incorrect name? Status code: {request.status_code}")
 
+        data = request.json()["data"]
         string_io = StringIO()
-        string_io.write(request.json())
+        string_io.write(data)
         string_io.seek(0)
         file = discord.File(string_io, filename=f"{username}_dump.txt")
 
