@@ -6,9 +6,6 @@ from io import StringIO
 
 from utils import error
 
-with open("api_address.txt") as file:
-    ip = file.read()
-        
 class tree_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
@@ -23,7 +20,7 @@ class tree_cog(commands.Cog):
             username = nick.split("]")[1] if "]" in nick else nick
             
         try:
-            request = requests.get(f"http://127.0.0.1:8000/tree/{username}")
+            request = requests.get(f"http://{self.client.ip_address}:8000/tree/{username}")
         except Exception as e:
             print(e)
             return await error(ctx, "Error, the bot could not connect to the API", "This could be because the API is down for maintenance, because it's restarting, or because there are issues. Try again later.")

@@ -12,4 +12,4 @@ async def get_tree(username):
             item = item_object.to_dump_string()
             items += item+"\n"
         
-    return items
+    return {"data": items}

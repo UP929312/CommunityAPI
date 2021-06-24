@@ -7,9 +7,6 @@ from utils import error
 from networth.generate_page import generate_page
 from networth.constants import *
 
-with open("api_address.txt") as file:
-    ip = file.read()
-
 
 class MenuButton(discord.ui.Button['MenuView']):
     def __init__(self, page: str, index: int):
@@ -59,7 +56,7 @@ class networth_cog(commands.Cog):
             nick = ctx.author.nick
             username = nick.split("]")[1] if "]" in nick else nick
         try:
-            request = requests.get(f"http://{ip}:8000/pages/{username}")
+            request = requests.get(f"http://{self.client.ip_address}:8000/pages/{username}")
         except Exception as e:
             print(e)
             return await error(ctx, "Error, the bot could not connect to the API", "This could be because the API is down for maintenance, because it's restarting, or because there are issues. Try again later.")

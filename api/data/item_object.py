@@ -27,7 +27,7 @@ class Item:
         #print(nbt)
 
         # Default minecraft items don't have anything special, so just leave them basically
-        # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0} What is this...
+        # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0}
         #{'id': 160, 'Count': 1, 'tag': {'display': {'Name': ' '}}, 'Damage': 15}
         if "tag" not in nbt or "Lore" not in nbt["tag"]["display"]:
             for tag_name, value in DEFAULT_ITEM.items():
@@ -58,7 +58,7 @@ class Item:
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])
         self.description[-1] = re.sub('§l§ka', '', self.description[-1])
-        # We do this because Hypixel put the changing text before and after special items, which messes with the rarity/type parsing
+        # We do this ^ because Hypixel put the changing text before and after special items, which messes with the rarity/type parsing
         self.description_clean = [re.sub('§.', '', line) for line in self.description]
 
         # Extract rarity and type
@@ -66,11 +66,7 @@ class Item:
         self.rarity = last_desc_row[0] if last_desc_row[0] != "VERY" else "VERY_SPECIAL"
         self.type = last_desc_row[1] if len(last_desc_row) > 1 else None
 
-        '''
-        self.dungeon_item = "DUNGEON" in last_desc_row
-        if self.dungeon_item:
-            print(self.internal_name)
-        '''
+        self.dungeon_drop = extras.get("item_tier", None)  # dungeon_item_level
         
         # self.item_group = Stuff such as "ARMOR", "SWORD", "ROD", "ACCESSORY
         self.item_group = None
@@ -80,7 +76,7 @@ class Item:
             self.item_group = last_desc_row[-1]
         
         # Parse item name with removed reforges (We can already get the reforges)
-        if self.reforge is not None:
+        if self.reforge:
             for reforge in BASE_REFORGES:
                 self.name = self.name.removeprefix(reforge)       
 
@@ -111,8 +107,6 @@ class Item:
 
         # Hoes
         self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
-        #self.mined_crops = extras.get("mined_crops", 0)
-        #self.farmed_cultivating = extras.get("farmed_cultivating", 0)
 
         # Ender slayer items
         self.tuned_transmission = extras.get('tuned_transmission', 0)
@@ -184,50 +178,3 @@ class Item:
             data["livid_fragments"] = self.livid_fragments
 
         return data
-
-    def __str__(self):
-        list_of_elems = [f"{self.name} ({self.internal_name})"]
-        list_of_elems.append(f"Rarity: {self.rarity if self.rarity is not None else 'Misc'}")
-        if self.type is not None:
-            list_of_elems.append(f"Type: {self.type}")
-        if self.item_group is not None:
-            list_of_elems.append(f"Group: {self.item_group}")
-        if self.type == "DRILL":
-            if self.drill_module_upgrade:
-                list_of_elems.append(f"Drill module: {self.drill_module_upgrade}")
-            if self.drill_engine_upgrade:
-                list_of_elems.append(f"Drill engine: {self.drill_engine_upgrade}")
-            if self.drill_tank_upgrade:
-                list_of_elems.append(f"Drill tank: {self.drill_tank_upgrade}")
-        if self.type == "HOE":
-            list_of_elems.append(f"Level: {self.hoe_level}, Type: {self.hoe_material}")
-        if self.stack_size > 1:
-            list_of_elems.append(f"Amount: {self.stack_size}")
-        if self.recombobulated:
-            list_of_elems.append(f"+Recombobulated")
-        if self.hot_potatoes:
-            list_of_elems.append(f"{self.hot_potatoes} Hot Potatoes")
-        if self.reforge is not None:
-            list_of_elems.append(f"Reforge: {self.reforge}")
-        if self.star_upgrades:
-            list_of_elems.append(f"Stars: {self.star_upgrades}")
-        if self.talisman_enrichment:
-            list_of_elems.append(f"Enrichment: {self.talisman_enrichment}")
-        if self.art_of_war:
-            list_of_elems.append("+Art of War")
-        if self.wood_singularity:
-            list_of_elems.append("+Wood Singularity")
-        if self.farming_for_dummies > 0:
-            list_of_elems.append(f"{self.farming_for_dummies} Farming for Dummies")
-        if self.tuned_transmission > 0:
-            list_of_elems.append(f"{self.tuned_transmission} Transmission tuners")
-        if self.ethermerge:
-            list_of_elems.append(f"+Ethermerged")
-        if self.ability_scrolls:
-            ist_of_elems.append(f"Ability scrolls: {self.ability_scrolls}")
-        if self.winning_bid > 0:
-            list_of_elems.append(f"Winning bid of {self.winning_bid}")
-        if self.livid_fragments:
-            list_of_elems.append(f"{self.livid_fragments} livid fragments")
-        
-        return ", ".join(list_of_elems)

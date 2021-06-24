@@ -91,7 +91,7 @@ async def debug(request: Request, username: str):
 @app.get("/tree/{username}")
 async def tree(request: Request, username: str):
     tree_data = await get_tree(username)
-    if isinstance(tree_data, str):
+    if isinstance(tree_data, dict):
         return JSONResponse(status_code=200, content=tree_data)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
 
