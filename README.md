@@ -1,10 +1,10 @@
-# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-0.9.2-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
+# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
 
 This is a bot made partially by the community, with the lead dev being Skezza#1139.\
-Special mention to Mega_Pi for the research and knowledge on a lot of the content!\
+Special mention to Mega_Pi+Seattle72 for the research and knowledge on a lot of the content!\
 This bot will remain open source, and provide fun information about your profile, such as it's value.\
 Anyone can make a pull request, and it'll be reviewed and possibly added.\
-If you make good suggestions, you'll be invited into a special community-bot-dev channel, where we can further discuss ideas.
+Any future things that should be counted will generally be added quite quickly, as the system is very flexible.\
 
 Here's what the code currently does to get the value.\
 It gets a collection of items, from your:
