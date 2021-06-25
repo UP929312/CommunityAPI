@@ -10,7 +10,7 @@ from networth.constants import *
 
 class MenuButton(discord.ui.Button['MenuView']):
     def __init__(self, page: str, index: int):
-        super().__init__(style=discord.ButtonStyle.secondary if index%2==0 else discord.ButtonStyle.primary, emoji=PAGE_TO_EMOJI[page], row=index//5)
+        super().__init__(style=discord.ButtonStyle.grey if index%2==0 else discord.ButtonStyle.blurple, emoji=PAGE_TO_EMOJI[page], row=index//5)
         self.page = page
 
     async def callback(self, interaction: discord.Interaction):

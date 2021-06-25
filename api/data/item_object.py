@@ -9,7 +9,7 @@ DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",      
                 "reforge": None,                    "star_upgrades": 0,            "talisman_enrichment": None,
                 "art_of_war": None,                 "wood_singularity": None,      "farming_for_dummies": 0,
                 "tuned_transmission": 0,            "ethermerge": False,           "winning_bid": 0,
-                "ability_scrolls": [],              "livid_fragments": 0,
+                "ability_scrolls": [],              "origin_tag": "UNKNOWN",
                }
                 
 HOE_MATERIAL_TO_INTERNAL_NAME = {
@@ -41,6 +41,7 @@ class Item:
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
+        self.origin_tag = extras.get("originTag", "UNKNOWN")
             
         self.recombobulated = True if extras.get('rarity_upgrades', False) else False
         self.hot_potatoes = extras.get('hot_potato_count', 0)
@@ -65,8 +66,6 @@ class Item:
         last_desc_row = self.description_clean[-1].split()
         self.rarity = last_desc_row[0] if last_desc_row[0] != "VERY" else "VERY_SPECIAL"
         self.type = last_desc_row[1] if len(last_desc_row) > 1 else None
-
-        self.dungeon_drop = extras.get("item_tier", None)  # dungeon_item_level
         
         # self.item_group = Stuff such as "ARMOR", "SWORD", "ROD", "ACCESSORY
         self.item_group = None
@@ -120,10 +119,6 @@ class Item:
         # For Hyperions
         self.ability_scrolls = extras.get("ability_scroll", None)
 
-        # Livid Fragments
-        self.livid_fragments = 0
-        #self.livid_fragments = 8 if self.internal_name is not None and self.internal_name.startswith("STARRED") else 0 # STARRED = 8 LIVID_FRAGMENTS
-
     #=========================================================================
         
     def to_dict(self):
@@ -132,6 +127,7 @@ class Item:
                 "internal_name": self.internal_name,
                 "rarity": self.rarity if self.rarity is not None else 'Misc',
                 "stack_size": self.stack_size,
+                "origin_tag": self.origin_tag,
                }
 
         if self.type is not None:
@@ -174,7 +170,5 @@ class Item:
             data["winning_bid"] = self.winning_bid
         if self.ability_scrolls:
             data["ability_scrolls"] = self.ability_scrolls
-        if self.livid_fragments:
-            data["livid_fragments"] = self.livid_fragments
 
         return data

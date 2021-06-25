@@ -41,6 +41,7 @@ def calculate_pet(price, print_prices):
     pet_held_item = pet.get("heldItem", "")
     if pet_held_item:
         value["held_item"] = {}
+        value["held_item"]["item"] = pet_held_item
         value["held_item"]["value"] = LOWEST_BIN.get(pet_held_item, 0)
         value["held_item"]["price_source"] = "BIN"
         
@@ -49,6 +50,7 @@ def calculate_pet(price, print_prices):
     pet_skin = pet.get("skin", False)
     if pet_skin:
         value["pet_skin"] = {}
+        value["pet_skin"]["item"] = "PET_SKIN"+pet['skin']
         value["pet_skin"]["value"] = LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0)
         value["pet_skin"]["price_source"] = "BIN"
 

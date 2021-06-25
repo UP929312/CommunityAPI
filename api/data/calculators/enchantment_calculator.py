@@ -32,9 +32,14 @@ def calculate_enchantments(price):  # For enchantments on items
 
     #print("Calculating item enchantments")
     for enchantment, level in price.item.enchantments.items():
+        # These are on dungeon items, but have to be bought for 15m on their own.
+        # If they're dropped from regular dungeon mobs, it's "UNKNOWN", else it's like QUICK_CRAFT
+        if enchantment == "scavenger" and level == 5 and price.item.origin_tag == "UNKNOWN":
+            price.value["enchantments"][f"{enchantment}_{level}"] = 50_000
+            continue
         # Special case for enchants obtained through doing tasks such as breaking crops
         if enchantment in ENCHANTS_TOP and ENCHANTS_TOP[enchantment] > 5:
-            price.value["enchantments"][enchantment+f"_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{1}", 0)
+            price.value["enchantments"][f"{enchantment}_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{1}", 0)
             continue
         
         for i in range(level, 0, -1):
@@ -44,6 +49,6 @@ def calculate_enchantments(price):  # For enchantments on items
             continue  # No break, when we can't find any of that enchantment whatsoever.
         # If we can't find Sharpness 5, we try Sharpness 4
         # If the starting level is level 4, and we've found a level 2 book, we need 2**2 (4-2) books
-        price.value["enchantments"][enchantment+f"_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{i}", 0)*(2**(level-i))
+        price.value["enchantments"][f"{enchantment}_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{i}", 0)*(2**(level-i))
         
     return price       

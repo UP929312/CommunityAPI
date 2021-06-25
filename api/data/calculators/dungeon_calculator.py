@@ -6,7 +6,7 @@ ESSENCE_PRICE = {"Wither": 4000, "Gold": 3000,
                  "Dragon": 1000, "Spider": 3000,
                  "Undead": 1000}
 
-MASTER_STAR_NAMES = ["FIRST_MASTER_STAR", "SECOND_MASTER_STAR", "THIRD_MASTER_STAR", "FOURTH_MASTER_STAR"]
+MASTER_STAR_NAMES = ['first_master_star', 'second_master_star', 'third_master_star', 'fourth_master_star']
 
 MASTER_STARS = {1: LOWEST_BIN["FIRST_MASTER_STAR"],
                 2: LOWEST_BIN["SECOND_MASTER_STAR"],

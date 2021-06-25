@@ -59,7 +59,7 @@ def generate_page(command_author, data, username, page):
                 embed.add_field(name=f"{name} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
     if page != "misc":    
-        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}")
+        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}", url=f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}")
         
     embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
     embed.set_footer(text=f" Command executed by {command_author} | Community Bot. By the community, for the community.")    
