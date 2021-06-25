@@ -25,7 +25,7 @@ With these (excluding pets), it will do the following:
 Then we calculate some extras for base items:
 - If it's a Theoretical hoe, 1,000,000 for a Mathematical Blueprint, plus the cost of materials to get it to it's tier (e.g. Tier 3)
 - If it has hot potato books, add the price of a HPB for each book, and the price of a FPB for each fuming potato book.
-- If it's been recombobulated, add the price of a recombobulator 3000 from BIN to the value.
+- If it's been recombobulated, add the price of a recombobulator 3000 from Bazzar to the value.
 - If it's a dungeon item, give the rough value in essence for each item (and each star), including the price of the Master Stars.
 - It it has a reforge stone applied to it, calculate the cost of the reforge stone, as well as the cost to apply it. *Partially subjective with the cost of essence.
 - If it has a talisman enrichment, add the price of that enrichment from BIN.
