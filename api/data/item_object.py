@@ -101,8 +101,9 @@ class Item:
         self.hoe_level, self.hoe_material = (None, None)
         if self.type == "HOE" and "THEORETICAL" in self.internal_name:
             hoe_material = "_".join(self.name.split(" ")[1:-1]).upper()  # Turing Sugar Cane Hoe
-            self.hoe_material = HOE_MATERIAL_TO_INTERNAL_NAME[hoe_material]
-            self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
+            if hoe_material != "HOE":
+                self.hoe_material = HOE_MATERIAL_TO_INTERNAL_NAME[hoe_material]
+                self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
 
         # Hoes
         self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
