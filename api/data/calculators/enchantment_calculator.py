@@ -2,17 +2,20 @@ from data.constants.jerry_price_list import PRICES
 from data.constants.lowest_bin import LOWEST_BIN
 from data.constants.enchants_top import ENCHANTS_TOP
 
-ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "XI", "X"]
+ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"]
 
 def calculate_enchanted_book(price):  # For enchanted books
 
     element = price.item
+
+    if "Anvil" in element.description_clean[0]:
+        return price
     
     rarity = element.description_clean[-1]
     first_line_of_desc = element.description_clean[0].split(" ")
     enchantment_type = " ".join(first_line_of_desc[:-1]).replace(" ", "_").upper()
     numeral_enchantment_level = first_line_of_desc[-1]
-    
+
     enchantment_level = ROMAN_NUMERALS.index(numeral_enchantment_level)+1
     
     if f"{enchantment_type};{enchantment_level}" in LOWEST_BIN:

@@ -1,7 +1,7 @@
 import re
 import json
 
-BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ', 'Suspicious ', 'Strange ', 'Salty ', 'Stiff ', 'Lucky ', 'Gilded ', 'Warped ', 'Deadly ', 'Grand ', 'Neat ', 'Spiritual ', 'Headstrong ', 'Clean ', 'Perfect ', 'Spiked ', 'Cubic ', 'Reinforced ', 'Ridiculous ', 'Giant ', 'Bizarre ', 'Itchy ', 'Ominous ', 'Pleasant ', 'Pretty ', 'Shiny ', 'Simple ', 'Strange ', 'Vivid ', 'Godly ', 'Demonic ', 'Hurtful ', 'Keen ', 'Superior ', 'Zealous ', 'Silky ', 'Bloody ', 'Sweet ', 'Fruitful ', 'Magnetic ', 'Refined ', 'Moil ', 'Toil ', 'Fleet ', 'Stellar ', 'Mithraic ', 'Auspicious ',]
+BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ', 'Suspicious ', 'Strange ', 'Salty ', 'Stiff ', 'Lucky ', 'Gilded ', 'Warped ', 'Deadly ', 'Grand ', 'Neat ', 'Spiritual ', 'Headstrong ', 'Clean ', 'Perfect ', 'Spiked ', 'Cubic ', 'Reinforced ', 'Ridiculous ', 'Giant ', 'Bizarre ', 'Itchy ', 'Ominous ', 'Pleasant ', 'Pretty ', 'Shiny ', 'Simple ', 'Strange ', 'Vivid ', 'Godly ', 'Demonic ', 'Hurtful ', 'Keen ', 'Superior ', 'Zealous ', 'Silky ', 'Bloody ', 'Sweet ', 'Fruitful ', 'Magnetic ', 'Refined ', 'Moil ', 'Toil ', 'Fleet ', 'Stellar ', 'Mithraic ', 'Auspicious ', 'Bountiful ',]
 
 DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",         "stack_size": 1,
                 "type": "Default",                  "item_group": "Misc",          "rarity": "Common",
@@ -101,7 +101,7 @@ class Item:
         self.hoe_level, self.hoe_material = (None, None)
         if self.type == "HOE" and "THEORETICAL" in self.internal_name:
             hoe_material = "_".join(self.name.split(" ")[1:-1]).upper()  # Turing Sugar Cane Hoe
-            if hoe_material != "HOE":
+            if hoe_material != "HOE":  # Remove Mathematical Hoe
                 self.hoe_material = HOE_MATERIAL_TO_INTERNAL_NAME[hoe_material]
                 self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
 

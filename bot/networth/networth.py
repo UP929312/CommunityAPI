@@ -53,8 +53,8 @@ class networth_cog(commands.Cog):
     async def networth(self, ctx, username=None):
 
         if username is None:
-            nick = ctx.author.nick
-            username = nick.split("]")[1] if "]" in nick else nick
+            nick = ctx.author.display_name
+            username = nick.split("] ")[1] if "]" in nick else nick
             username = username.replace(" ឵឵", "")
         try:
             request = requests.get(f"http://{self.client.ip_address}:8000/pages/{username}")
