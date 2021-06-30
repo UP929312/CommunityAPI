@@ -9,7 +9,8 @@ async def error(ctx, title, description):
 letter_values = {"": 1,
                  "k": 1000,
                  "m": 1000000,
-                 "b": 1000000000}
+                 "b": 1000000000,
+                 "t": 1000000000000}
 
 ends = list(letter_values.keys())
 
@@ -34,6 +35,19 @@ def hf(num):
     new_num = str(rounded / letter_values[suffix])
     #new_num = new_num.remove_prefix(".0")
     return str(new_num)+suffix
+
+def load_prefix(guild_id):
+    try:
+        mydb = mysql.connector.connect(host="db.superbonecraft.dk", user="u17_EMewYqtloo", password="AssXX253fqTadf=1pZN.ydFj", database="s17_verify", port=3306)
+        cursor = mydb.cursor()
+
+        cursor.execute(*args)
+        mydb.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+    
 
 
 

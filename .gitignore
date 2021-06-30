@@ -1,4 +1,5 @@
 api/data/api_key.txt
 **/__pycache__
 dead_code
+bot/database_creds.txt
 bot/bot_key.txt
