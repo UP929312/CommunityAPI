@@ -32,7 +32,7 @@ async def on_ready():
         
 @client.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole):
+    if isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole) or isinstance(error, commands.errors.CheckFailure):
         pass
     else:
         raise error
