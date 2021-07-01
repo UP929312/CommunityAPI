@@ -8,7 +8,7 @@ class set_prefix_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.has_any_role("Administrator", "Admin", "Owner")
+    @commands.has_any_role("Administrator", "Admin", "Owner", "administrator", "admin", "owner")
     @commands.command(aliases=["setprefix"])
     async def set_prefix(self, ctx, prefix=None):
 
