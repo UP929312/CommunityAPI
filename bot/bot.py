@@ -32,7 +32,12 @@ async def on_ready():
         
 @client.event
 async def on_command_error(ctx, error):
-    raise error
+    if isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole):
+        pass
+    else:
+        raise error
+
+
 #====================================================
 
 print("Loading cogs...")
