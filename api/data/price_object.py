@@ -51,8 +51,8 @@ class Price():  # Pretty sure I don't need this?
     def calculate_total(self):
         self.total = search_tree(self.value)
             
-        if not isinstance(self.item, dict):
-            self.total *= self.item.stack_size
+        #if not isinstance(self.item, dict):
+        #    self.total *= self.item.stack_size
 
         return self.total
 

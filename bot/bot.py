@@ -1,17 +1,30 @@
 import discord
 from discord.ext import commands#, tasks
 intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, emojis=False, integrations=False, webhooks=False,
-                          members=False, messages=True, guild_reactions=False, guilds=False, presences=False,)
+                          members=False, messages=True, guild_reactions=False, guilds=True, presences=False,)
 
-intents = discord.Intents.default()
+from utils import load_guild_prefix
+
 print("Importing packages done...")
 
 from networth.networth import networth_cog
 from networth.tree import tree_cog
+from set_prefix import set_prefix_cog
 
 print("Importing .py files done...")
 
-client = commands.Bot(command_prefix = ["."], help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
+#async def get_pre(bot, message):
+    
+async def get_prefix(bot, message):
+    if message.guild is None:
+        print("In get_prefix, message.guild=", message.guild)
+        return "."
+    print("Returning custom prefix:")
+    prefix = load_guild_prefix(message.guild.id)
+    print(f"Prefix = {prefix}, and it's now: {prefix if prefix is not None else '.'}")
+    return prefix if prefix is not None else "."
+
+client = commands.Bot(command_prefix = get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 #====================================================
 @client.event
 async def on_ready():
@@ -37,7 +50,7 @@ async def on_command_error(ctx, error):
 #====================================================
 
 print("Loading cogs...")
-all_cogs = [networth_cog, tree_cog]
+all_cogs = [networth_cog, tree_cog, set_prefix_cog]
 print("Adding cogs...")
 
 for cog in all_cogs:
@@ -45,8 +58,8 @@ for cog in all_cogs:
     
 print("Cogs all added successfully!")
 
-#client.ip_address = "db.superbonecraft.dk"
-client.ip_address = "127.0.0.1"
+client.ip_address = "db.superbonecraft.dk"
+#client.ip_address = "127.0.0.1"
 
 bot_key = open("bot_key.txt","r").read()
 client.run(bot_key)

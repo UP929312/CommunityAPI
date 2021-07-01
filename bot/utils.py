@@ -1,5 +1,6 @@
-from math import log10
 import discord
+from math import log10
+import mysql.connector
 
 async def error(ctx, title, description):
     embed = discord.Embed(title=title, description=description, colour=0xe74c3c)
@@ -33,21 +34,50 @@ def hf(num):
     rounded = round(num, 3 - int(log10(num)) - 1)
     suffix = ends[int(log10(rounded)/3)]
     new_num = str(rounded / letter_values[suffix])
-    #new_num = new_num.remove_prefix(".0")
     return str(new_num)+suffix
 
-def load_prefix(guild_id):
+
+with open("database_creds.txt") as file:
+    data = [x.rstrip("\n") for x in file.readlines()]
+
+host, user, password = data
+
+def load_guild_prefix(guild_id):
     try:
-        mydb = mysql.connector.connect(host="db.superbonecraft.dk", user="u17_EMewYqtloo", password="AssXX253fqTadf=1pZN.ydFj", database="s17_verify", port=3306)
+        mydb = mysql.connector.connect(host=host, user=user, password=password, database="s27_community_bot", port=3306)
         cursor = mydb.cursor()
 
-        cursor.execute(*args)
+        cursor.execute("SELECT prefix FROM guild_prefixes WHERE guild_id=%s", (guild_id,))
+        records = cursor.fetchall()
+        return (None if records == [] else records[0][0])
+        
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+
+        
+def set_guild_prefix(guild_id, prefix):
+    try:
+        mydb = mysql.connector.connect(host=host, user=user, password=password, database="s27_community_bot", port=3306)
+        cursor = mydb.cursor()
+
+        cursor.execute("INSERT INTO guild_prefixes (guild_id, prefix) VALUES (%s, %s)", (guild_id, prefix))
         mydb.commit()
     except Exception as e:
         print(e)
     finally:
         cursor.close()
-    
 
 
+def update_guild_prefix(guild_id, prefix):
+    try:
+        mydb = mysql.connector.connect(host=host, user=user, password=password, database="s27_community_bot", port=3306)
+        cursor = mydb.cursor()
 
+        cursor.execute("UPDATE guild_prefixes SET prefix=%s WHERE guild_id=%s", (prefix, guild_id))
+        mydb.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
