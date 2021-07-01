@@ -10,6 +10,7 @@ print("Importing packages done...")
 from networth.networth import networth_cog
 from networth.tree import tree_cog
 from set_prefix import set_prefix_cog
+from help_command import help_cog
 
 print("Importing .py files done...")
     
@@ -20,7 +21,7 @@ async def get_prefix(bot, message):
     #print(f"Prefix = {prefix}, and it's now: {prefix if prefix is not None else '.'}")
     return prefix if prefix is not None else "."
 
-client = commands.Bot(command_prefix = get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
+client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 #====================================================
 @client.event
 async def on_ready():
@@ -38,7 +39,7 @@ async def on_command_error(ctx, error):
 #====================================================
 
 print("Loading cogs...")
-all_cogs = [networth_cog, tree_cog, set_prefix_cog]
+all_cogs = [networth_cog, tree_cog, set_prefix_cog, help_cog]
 print("Adding cogs...")
 
 for cog in all_cogs:
