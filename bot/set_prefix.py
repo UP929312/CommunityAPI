@@ -11,7 +11,9 @@ class set_prefix_cog(commands.Cog):
     @commands.has_any_role("Administrator", "Admin", "Owner")
     @commands.command(aliases=["setprefix"])
     async def set_prefix(self, ctx, prefix=None):
-        print("Setting prefix!")
+
+        print(f"------ Request made in from guild: {ctx.guild.id if ctx.guild is not None else 'DMs'}, from user: {ctx.author.id}, sometimes known as {ctx.author.display_name}\nThey set their guild/dm prefix to {prefix}")
+         
         if prefix is None:
             return await error(ctx, "Command set_prefix must have a prefix", f"Example usage: `{ctx.prefix}set_prefix %`")
         if len(prefix) > 8:

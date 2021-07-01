@@ -17,11 +17,9 @@ print("Importing .py files done...")
     
 async def get_prefix(bot, message):
     if message.guild is None:
-        print("In get_prefix, message.guild=", message.guild)
         return "."
-    print("Returning custom prefix:")
     prefix = load_guild_prefix(message.guild.id)
-    print(f"Prefix = {prefix}, and it's now: {prefix if prefix is not None else '.'}")
+    #print(f"Prefix = {prefix}, and it's now: {prefix if prefix is not None else '.'}")
     return prefix if prefix is not None else "."
 
 client = commands.Bot(command_prefix = get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
@@ -34,19 +32,7 @@ async def on_ready():
         
 @client.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        '''
-        try:
-            await ctx.send("Command not recognised!", delete_after=30.0)
-        except discord.errors.Forbidden:
-            pass
-        '''
-        pass
-    # This caused issues with CarlBot
-    elif isinstance(error, commands.NotOwner):
-        await ctx.author.send("The is a developer command and cannot be used by you.")
-    else:
-        raise error 
+    raise error
 #====================================================
 
 print("Loading cogs...")

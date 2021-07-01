@@ -56,6 +56,9 @@ class networth_cog(commands.Cog):
             nick = ctx.author.display_name
             username = nick.split("] ")[1] if "]" in nick else nick
             username = username.replace(" ឵឵", "")
+
+        print(f"------ Request made in from guild: {ctx.guild.id if ctx.guild is not None else 'DMs'}, from user: {ctx.author.id}, sometimes known as {ctx.author.display_name}")
+            
         try:
             request = requests.get(f"http://{self.client.ip_address}:8000/pages/{username}")
         except Exception as e:
