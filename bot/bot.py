@@ -12,8 +12,6 @@ from networth.tree import tree_cog
 from set_prefix import set_prefix_cog
 
 print("Importing .py files done...")
-
-#async def get_pre(bot, message):
     
 async def get_prefix(bot, message):
     if message.guild is None:
@@ -36,7 +34,6 @@ async def on_command_error(ctx, error):
         pass
     else:
         raise error
-
 
 #====================================================
 
