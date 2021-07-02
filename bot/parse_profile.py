@@ -1,0 +1,42 @@
+from utils import error
+
+with open("text_files/hypixel_api_key.txt") as file:
+    API_KEY = file.read()
+
+
+def get_profile_data(ctx, username):
+    """
+    This returns a dictionary of all the player's profile data.
+    It also supports parsing player's ign from their discord nicks, by trimming off their tag,
+    e.g. [Admin] Notch will get parsed as Notch.
+    """
+    if username is None:
+        nick = ctx.author.display_name
+        username = nick.split("]")[1] if "]" in nick else nick
+        username = "".join([char for char in username_or_uuid if char.lower() in ALLOWED_CHARS])
+
+    uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
+    if uuid_request.status_code > 200:
+        return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly")
+
+    try:
+        uuid = uuid_request.json()["id"]
+    except KeyError:
+        return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly")
+
+
+     profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
+
+    if profile_list['profiles'] is None:  # If we can't find any profiles, they never made one
+        return await error(ctx, "That user has never joined Skyblock before!", "Make sure you typed the name correctly and try again.")
+
+    valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]
+    profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
+
+    #profile_name = profile["cute_name"]
+
+    player_data = profile["members"][uuid]
+
+    return player_data
+
+

@@ -12,6 +12,8 @@ from networth.tree import tree_cog
 from set_prefix import set_prefix_cog
 from help_command import help_cog
 
+from player_commands import *
+
 print("Importing .py files done...")
     
 async def get_prefix(bot, message):
@@ -40,6 +42,7 @@ async def on_command_error(ctx, error):
 
 print("Loading cogs...")
 all_cogs = [networth_cog, tree_cog, set_prefix_cog, help_cog]
+all_cogs.extend(player_commands)
 print("Adding cogs...")
 
 for cog in all_cogs:
@@ -50,5 +53,5 @@ print("Cogs all added successfully!")
 client.ip_address = "db.superbonecraft.dk"
 #client.ip_address = "127.0.0.1"
 
-bot_key = open("bot_key.txt","r").read()
+bot_key = open("text_files/bot_key.txt","r").read()
 client.run(bot_key)

@@ -36,11 +36,7 @@ def hf(num):
     new_num = str(rounded / letter_values[suffix])
     return str(new_num)+suffix
 
-def get_profile_data(username):
-    pass
-
-
-with open("database_creds.txt") as file:
+with open("text_files/database_creds.txt") as file:
     data = [x.rstrip("\n") for x in file.readlines()]
 
 host, user, password = data

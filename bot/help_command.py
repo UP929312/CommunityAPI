@@ -5,10 +5,11 @@ data_dict = {
     "nw": ("[username]", "Checks the total value of a profile for a user"),
     "set_prefix": ("<prefix>", "Allows an admin to change the prefix of the bot"),
     "ah": ("[username]", "Shows someone's active auctions (Coming soon)"),
-    "bazaar": ("<item>", "Shows the bazaar price for a certain item, e.g. cobblestone (Coming soon)"),
+    "bazaar": ("<item>", "Shows the bazaar price for a certain item, e.g. cobblestone"),
     "dungeons": ("[username]", "Shows data about someone's dungeon level, including what floors they've beaten (Coming soon)"),
     "kills": ("[username]", "Shows the most mobs a player has killed (Coming soon)"),
     "skills": ("[username]", "Shows a summary of all a users skills, including average (Coming Soon)"),
+    "sky": ("[username]", "Links you to someone's sky.lea.moe page, for convenience"),
     "slayer": ("[username]", "Shows a summary of someone's slayer data, including how many of each tier someone's killed (Coming soon)"),
     "wiki": ("[wiki page]", "Shows a page from the Hypixel wiki, to assist in finding a page or item."),
     }

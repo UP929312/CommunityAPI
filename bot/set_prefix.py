@@ -3,26 +3,11 @@ from discord.ext import commands
 
 from utils import *
 
-def can_use():      
-    async def predicate(ctx):
-        if ctx.guild is None:
-            return False
-        roles = [x.name.lower() for x in ctx.author.roles]
-        return ("admin" in roles or
-                "owner" in roles or
-                "management" in roles or
-                "staff" in roles or
-                "ruminant" in roles
-               )
-    
-    return commands.check(predicate)
-
-
 class set_prefix_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @can_use() #@commands.has_any_role("Administrator", "Admin", "Owner", "administrator", "admin", "owner")
+    @commands.has_permissions(administrator=True)
     @commands.command(aliases=["setprefix"])
     async def set_prefix(self, ctx, prefix=None):
 
