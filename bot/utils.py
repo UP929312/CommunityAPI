@@ -12,12 +12,7 @@ letter_values = {"": 1,
                  "k": 1000,
                  "m": 1000000,
                  "b": 1000000000,
-                 "t": 1000000000000,
-                 
-                 "q": 1000000000000000,
-                 "Q": 1000000000000000000,
-                 "s": 1000000000000000000000,
-                 "S": 1000000000000000000000000}
+                 "t": 1000000000000}
 
 ends = list(letter_values.keys())
 
@@ -26,7 +21,7 @@ def clean(string):
 
 def hf(num):
     '''
-    Takes an int/float e.g. 10000 and returns a formatted version e.g. 10k
+    Takes an int/float e.g. 10000 and returns a formatted version i.e. 10k
     '''
 
     if isinstance(num, str):
@@ -38,8 +33,6 @@ def hf(num):
     if num < 1: return 0
 
     rounded = round(num, 3 - int(log10(num)) - 1)
-    #print(num)
-    #print(int(log10(rounded)/3))
     suffix = ends[int(log10(rounded)/3)]
     new_num = str(rounded / letter_values[suffix])
     return str(new_num)+suffix
