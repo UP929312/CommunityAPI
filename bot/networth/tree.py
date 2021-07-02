@@ -33,6 +33,9 @@ class tree_cog(commands.Cog):
             # 400 = Username not found
             return await error(ctx, "Error, that person could not be found", f"Perhaps you input the incorrect name? Status code: {request.status_code}")
 
+        if request.json() is None:
+            return await error(ctx, "Error, no profiles detected", "This could be because they have their api disabled.")
+        
         data = request.json()["data"]
         string_io = StringIO()
         string_io.write(data)

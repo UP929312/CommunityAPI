@@ -1,10 +1,12 @@
+import requests
+
 from utils import error
 
 with open("text_files/hypixel_api_key.txt") as file:
     API_KEY = file.read()
 
 
-def get_profile_data(ctx, username):
+async def get_profile_data(ctx, username):
     """
     This returns a dictionary of all the player's profile data.
     It also supports parsing player's ign from their discord nicks, by trimming off their tag,
@@ -25,18 +27,19 @@ def get_profile_data(ctx, username):
         return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly")
 
 
-     profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
+    profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
 
     if profile_list['profiles'] is None:  # If we can't find any profiles, they never made one
         return await error(ctx, "That user has never joined Skyblock before!", "Make sure you typed the name correctly and try again.")
 
     valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]
+
+    if not valid_profiles:
+        return await error(ctx, "Error, cannot find profiles for this user!", "Make sure you spelled the target player's name correctly")
+    
     profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
 
-    #profile_name = profile["cute_name"]
+    return profile["members"][uuid]
 
-    player_data = profile["members"][uuid]
-
-    return player_data
 
 

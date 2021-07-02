@@ -1,6 +1,7 @@
 import discord
 from math import log10
 import mysql.connector
+from datetime import datetime, timedelta
 
 async def error(ctx, title, description):
     embed = discord.Embed(title=title, description=description, colour=0xe74c3c)
@@ -11,7 +12,12 @@ letter_values = {"": 1,
                  "k": 1000,
                  "m": 1000000,
                  "b": 1000000000,
-                 "t": 1000000000000}
+                 "t": 1000000000000,
+                 
+                 "q": 1000000000000000,
+                 "Q": 1000000000000000000,
+                 "s": 1000000000000000000000,
+                 "S": 1000000000000000000000000}
 
 ends = list(letter_values.keys())
 
@@ -32,9 +38,47 @@ def hf(num):
     if num < 1: return 0
 
     rounded = round(num, 3 - int(log10(num)) - 1)
+    #print(num)
+    #print(int(log10(rounded)/3))
     suffix = ends[int(log10(rounded)/3)]
     new_num = str(rounded / letter_values[suffix])
     return str(new_num)+suffix
+
+def format_duration(duration, include_millis=False):
+
+    if isinstance(duration, (str, int)):
+        t = timedelta(milliseconds=int(duration))
+    else:
+        t = duration
+
+    dur = timedelta(milliseconds=int(duration))
+
+    days, dur = divmod(dur, timedelta(days=1))
+    hours, dur = divmod(dur, timedelta(hours=1))
+    mins, dur = divmod(dur, timedelta(minutes=1))
+    secs, dur = divmod(dur, timedelta(seconds=1))
+    millis = int((dur / timedelta(microseconds=1)) / 1000)
+
+    if (days, hours, mins, secs, millis) == (0, 0, 0, 0, 0):
+        return "0ms (No time given)"
+    
+    parts = []
+    if days > 0:
+        parts.append(f"{days}d")
+    if hours > 0:
+        parts.append(f"{hours}h")             
+    if mins > 0:
+        parts.append(f"{mins}m")
+    if secs > 0:
+        parts.append(f"{secs}s")
+    if millis > 0:
+        if include_millis:
+            parts.append(f"{millis}ms")
+        
+    formatted_string = ", ".join(parts)    
+    return formatted_string
+
+#=============================================================
 
 with open("text_files/database_creds.txt") as file:
     data = [x.rstrip("\n") for x in file.readlines()]

@@ -6,7 +6,7 @@ from data.utils import get_data, get_storage
 def get_containers(username):
     # Parse/Grab data
     player_data, other_data = get_data(username)
-
+    
     if player_data is None:
         return None, None
 
@@ -19,6 +19,7 @@ def get_containers(username):
     personal_vault = parse_container(player_data.get("personal_vault_contents", {"data": []})['data'])
     storage_items  = get_storage(player_data)
     pet_items      = player_data.get("pets", [])
+
 
     return ({
             "inventory":     calculate_container(inv_contents),

@@ -12,9 +12,13 @@ def get_data(username):
         uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
         
         profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
-        valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]
+        if profile_list is None:
+            return None, None
+        
+        valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]        
         profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
         player_data = profile["members"][uuid]; other_data = profile
+
     except Exception as e:
         print(e)
         return None, None

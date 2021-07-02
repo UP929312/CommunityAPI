@@ -4,7 +4,7 @@ async def get_tree(username):
     containers, extras = get_containers(username)
 
     if containers is None:
-        return {}
+        return None
 
     items = ""
     for container in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
