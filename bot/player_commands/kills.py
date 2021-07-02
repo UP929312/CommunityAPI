@@ -21,6 +21,7 @@ class kills_cog(commands.Cog):
             return
 
         stats = player_data["stats"]
+        total_mobs_killed = "**{:,}**".format(int(stats['kills'])) if "kills" in stats else "Unknown"
 
         kills_stats = {k: v for k, v in stats.items() if k.startswith("kills_")}
         sorted_kills = dict(sorted(kills_stats.items(), key=lambda mob: mob[1], reverse=True)[:12])
@@ -28,8 +29,7 @@ class kills_cog(commands.Cog):
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
 
-        total_number_of_kills = "Total Mobs Killed **{:,}**".format(int(stats['kills']))
-        embed.add_field(name=f"Kills Data", value=total_number_of_kills, inline=False)
+        embed.add_field(name=f"Kills Data", value=f"Total Mobs Killed {total_mobs_killed}", inline=False)
 
         for index, (key, value) in enumerate(sorted_kills.items(), 1):
             formatted_name = key[6:].replace('_', ' ').title().replace('Unburried Zombie', 'Crypt Ghoul')

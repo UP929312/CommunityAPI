@@ -5,17 +5,19 @@ from utils import error
 with open("text_files/hypixel_api_key.txt") as file:
     API_KEY = file.read()
 
+ALLOWED_CHARS = {"_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
+
 
 async def get_profile_data(ctx, username):
     """
     This returns a dictionary of all the player's profile data.
     It also supports parsing player's ign from their discord nicks, by trimming off their tag,
-    e.g. [Admin] Notch will get parsed as Notch.
+    e.g. '[Admin] Notch' will get parsed as 'Notch'.
     """
     if username is None:
         nick = ctx.author.display_name
         username = nick.split("]")[1] if "]" in nick else nick
-        username = "".join([char for char in username_or_uuid if char.lower() in ALLOWED_CHARS])
+        username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])
 
     uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
     if uuid_request.status_code > 200:

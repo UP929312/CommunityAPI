@@ -35,9 +35,10 @@ def calculate_enchantments(price):  # For enchantments on items
 
     #print("Calculating item enchantments")
     for enchantment, level in price.item.enchantments.items():
-        # These are on dungeon items, but have to be bought for 15m on their own.
-        # If they're dropped from regular dungeon mobs, it's "UNKNOWN", else it's like QUICK_CRAFT
+        level = min(level, 10)  # cap at 10 for admin items so they don't cost Septillions
         if enchantment == "scavenger" and level == 5 and price.item.origin_tag == "UNKNOWN":
+            # These are on dungeon items, but have to be bought for 15m on their own.
+            # If they're dropped from regular dungeon mobs, it's "UNKNOWN", else it's like QUICK_CRAFT
             price.value["enchantments"][f"{enchantment}_{level}"] = 50_000
             continue
         # Special case for enchants obtained through doing tasks such as breaking crops

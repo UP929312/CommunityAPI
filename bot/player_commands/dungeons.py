@@ -40,14 +40,10 @@ class dungeons_cog(commands.Cog):
 
         dungeon_data = player_data["dungeons"]["dungeon_types"]["catacombs"]
 
-        if dungeon_data == {}:
-            return await error(ctx, "Error, cannot fetch dungeon data for this user.", "This is possibly because their API settings are disabled, or they've not attempted dungeons before.")
+        if dungeon_data == {} or "tier_completions" not in dungeon_data:
+            return await error(ctx, "Error, this player hasn't played enough dungeons", "The player you have looked up hasn't completed any dungeons runs, so their data can't be shown.")
 
-        try:
-            tiers_completed = max(dungeon_data["tier_completions"].keys(), key=lambda x: x)
-        except ValueError:
-            return await error(ctx, "Error, this player hasn't player enough dungeons", "The play you have looked up hasn't completed any dungeons runs, so their data can't be shown")
-            
+        tiers_completed = max(dungeon_data["tier_completions"].keys(), key=lambda x: x)           
         level = bisect(catacombs_levels, dungeon_data['experience'])
         
         #secrets_found = requests.get(f"https://sky.shiiyu.moe/api/v2/dungeons/{username}/{player_object.profile['cute_name']}").json()
