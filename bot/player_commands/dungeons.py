@@ -51,7 +51,7 @@ class dungeons_cog(commands.Cog):
         secrets_found = "???"
         
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
-        embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
+        embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
         
         embed.add_field(name=f"Dungeon Data:", value=f"Catacombs Level: **{level}**\nSecrets Found: **{secrets_found}**", inline=False)
 

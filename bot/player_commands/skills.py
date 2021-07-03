@@ -57,7 +57,7 @@ class skills_cog(commands.Cog):
         skill_data = player_data
 
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
-        embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
+        embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
 
         total_skill_xp = sum(skill_data.get(f'experience_skill_{skill}', 0) for skill in SKILLS)
         total_counted_levels = sum(get_level(skill_data, skill) for skill in COUNTED_SKILLS)

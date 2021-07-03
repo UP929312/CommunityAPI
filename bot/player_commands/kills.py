@@ -27,7 +27,7 @@ class kills_cog(commands.Cog):
         sorted_kills = dict(sorted(kills_stats.items(), key=lambda mob: mob[1], reverse=True)[:12])
 
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
-        embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
+        embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
 
         embed.add_field(name=f"Kills Data", value=f"Total Mobs Killed {total_mobs_killed}", inline=False)
 
