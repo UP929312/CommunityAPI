@@ -42,6 +42,10 @@ class MenuView(discord.ui.View):
         embed = generate_page(self.command_author, self.data, self.username, self.page)
         await interaction.response.edit_message(content="", view=self, embed=embed)
 
+    async def on_timeout(self):
+        for button in self.children:
+            button.disabled = True
+        await self.message.edit(view=self)
         
 class networth_cog(commands.Cog):
     def __init__(self, bot):
@@ -74,4 +78,6 @@ class networth_cog(commands.Cog):
             return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?")
 
         main_embed = generate_page(ctx.author, request.json(), username, "main")
-        await ctx.send(embed=main_embed, view=MenuView(command_author=ctx.author, data=request.json(), username=username))
+        
+        view = MenuView(command_author=ctx.author, data=request.json(), username=username)
+        view.message = await ctx.send(embed=main_embed, view=view)

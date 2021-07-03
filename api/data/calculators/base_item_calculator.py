@@ -102,7 +102,7 @@ def calculate_item(price, print_prices=False):
     if item.ethermerge:
         value["ethermerge"] = LOWEST_BIN.get("ETHERWARP_MERGER", 0)+LOWEST_BIN.get("ETHERWARP_CONDUIT", 0)
     # Winning bid for Midas Staff/Sword
-    if item.winning_bid > 0:
+    if item.winning_bid > 0 and item.internal_name in ["MIDAS_STAFF", "MIDAS_SWORD"]:
         value["winning_bid"] = item.winning_bid
     # Hyperion scrolls
     if item.ability_scrolls:
