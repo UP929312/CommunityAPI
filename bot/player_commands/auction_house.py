@@ -67,9 +67,9 @@ def format_auction(auction):
 
     if sell_type == "auction":
         bid_count = f"↳ Bids: {len(auction.get('bids', []))}\n"
-        price = f"{price} (Currently)"
+        price = f"{price} ({'Currently' if not expired else 'Final Price'})"
     else:  # For BINS
-        price = f"{price} (Buy it now)"
+        price = f"{price} {'(Buy it now)' if not expired else ''}"
 
 
     list_of_elems = [f"**{title}**\n",

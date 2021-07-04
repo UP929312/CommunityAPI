@@ -25,10 +25,10 @@ BOSSES = list(MOB_EMOJI_DICT.keys())  # For doing [:3]
 
 #=====================
 def get_mob_data(mob, slayer_bosses):
-    xp = slayer_bosses.get(mob).get('xp', 0)
+    xp = slayer_bosses[mob].get('xp', 0)
     level = bisect(slayer_level_requirements[mob], xp)
-    next_level_xp = 0 if level >= len(slayer_level_requirements)-1 else slayer_level_requirements[mob][min(level, 8)]
-    progress = "MAX" if level >= len(slayer_level_requirements)-1 else f"{round((xp/next_level_xp)*100, 2)}%"
+    next_level_xp = 0 if level > 8 else slayer_level_requirements[mob][min(level, 8)]
+    progress =  "MAX" if level > 8 else f"{round((xp/next_level_xp)*100, 2)}%"
     return level, xp, next_level_xp, progress
 
 def add_mob_table(mob, slayer_bosses):
@@ -62,7 +62,7 @@ class slayer_cog(commands.Cog):
         #=====================
         for mob in BOSSES[:3]:
             current_level, current_xp, next_level_xp, progress = get_mob_data(mob, slayer_bosses)
-            embed.add_field(name=f"{MOB_EMOJI_DICT[mob]} {mob.title()} ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nTotal XP: (**{hf(current_xp)}**)\nProgress: **{progress}**", inline=True)
+            embed.add_field(name=f"{MOB_EMOJI_DICT[mob]} {mob.title()} ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nProgress: **{progress}**", inline=True)  # Total XP: (**{hf(current_xp)}**)\n
 
         for mob in BOSSES[:3]:
             string = add_mob_table(mob, slayer_bosses)
@@ -70,7 +70,7 @@ class slayer_cog(commands.Cog):
 
         # Because endermen make this annoying
         current_level, current_xp, next_level_xp, progress = get_mob_data('enderman', slayer_bosses)
-        embed.add_field(name=f"{MOB_EMOJI_DICT['enderman']} Enderman ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nTotal XP: (**{hf(current_xp)}**)\nProgress: **{progress}**", inline=True)
+        embed.add_field(name=f"{MOB_EMOJI_DICT['enderman']} Enderman ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nProgress: **{progress}**", inline=True)
 
         embed.insert_field_at(index=8, name='\u200b', value='\u200b', inline=True)
         embed.insert_field_at(index=9, name='\u200b', value='\u200b', inline=True)
