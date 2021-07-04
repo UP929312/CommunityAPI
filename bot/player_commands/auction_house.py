@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import re
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from utils import error, hf, strfdelta
 from parse_profile import get_profile_data
@@ -14,12 +14,6 @@ with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
 
 #===================================================================
-
-def to_time(time):
-    return datetime.fromtimestamp(time/1000)
-
-#===================================================================
-
 def get_enchantments(lore):
     list_of_matches = re.finditer(r"((?<=§9)|(?<=§d§l))([A-Za-z]+ )+(X|IX|VIII|VII|VI|V|IV|III|II|I)", lore)
 
@@ -40,6 +34,9 @@ def get_enchantments(lore):
 ```
 '''
     return formatted_enchants
+
+def to_time(time):
+    return datetime.fromtimestamp(time/1000)
 
 #===================================================================
 
