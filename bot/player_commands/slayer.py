@@ -44,6 +44,7 @@ class slayer_cog(commands.Cog):
         player_data = await get_profile_data(ctx, username)
         if player_data is None:
             return
+        username = player_data["username"]
 
         slayer_bosses = player_data["slayer_bosses"]
         #=====================

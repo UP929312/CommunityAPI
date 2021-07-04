@@ -37,6 +37,7 @@ class dungeons_cog(commands.Cog):
         player_data = await get_profile_data(ctx, username)
         if player_data is None:
             return
+        username = player_data["username"]
 
         dungeon_data = player_data["dungeons"]["dungeon_types"]["catacombs"]
 

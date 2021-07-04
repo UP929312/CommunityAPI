@@ -1,12 +1,25 @@
 import discord
 from math import log10
 import mysql.connector
+from string import Formatter
 from datetime import datetime, timedelta
 
 async def error(ctx, title, description):
     embed = discord.Embed(title=title, description=description, colour=0xe74c3c)
     embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
     await ctx.send(embed=embed)
+
+async def safe_delete(message):
+    try:
+        await message.delete()
+    except (discord.errors.NotFound, discord.errors.Forbidden):
+        pass
+
+async def safe_send(user, content):
+    try:
+        await user.send(content)
+    except (discord.errors.NotFound, discord.errors.Forbidden):
+        pass
 
 letter_values = {"": 1,
                  "k": 1000,
@@ -70,6 +83,30 @@ def format_duration(duration, include_millis=False):
         
     formatted_string = ", ".join(parts)    
     return formatted_string
+
+#=============================================================
+
+def strfdelta(tdelta, fmt):
+    f = Formatter()
+    d = {}
+    l = {'D': 86400, 'H': 3600, 'M': 60, 'S': 1}
+    k = map( lambda x: x[1], list(f.parse(fmt)))
+    rem = int(tdelta.total_seconds())
+
+    for i in ('D', 'H', 'M', 'S'):
+        if i in k and i in l.keys():
+            d[i], rem = divmod(rem, l[i])
+
+    pre_return_string = f.format(fmt, **d)
+    
+    pre_return_string = pre_return_string.replace(" 0h ", " ")
+    pre_return_string = pre_return_string.replace(" 0s ", " ")
+    if pre_return_string.startswith("0d"):
+        pre_return_string = pre_return_string.lstrip("0d ")
+    if pre_return_string.endswith("0s"):
+        pre_return_string = pre_return_string.rstrip(" 0s")
+
+    return pre_return_string
 
 #=============================================================
 

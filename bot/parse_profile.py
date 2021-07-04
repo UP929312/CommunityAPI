@@ -41,7 +41,11 @@ async def get_profile_data(ctx, username):
     
     profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
 
-    return profile["members"][uuid]
+    profile_dict = profile["members"][uuid]
 
+    profile_dict["uuid"] = uuid
+    profile_dict["profile_id"] = profile["profile_id"]
+    profile_dict["username"] = username
 
+    return profile_dict
 

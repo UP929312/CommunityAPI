@@ -19,6 +19,7 @@ class kills_cog(commands.Cog):
         player_data = await get_profile_data(ctx, username)
         if player_data is None:
             return
+        username = player_data["username"]
 
         stats = player_data["stats"]
         total_mobs_killed = "**{:,}**".format(int(stats['kills'])) if "kills" in stats else "Unknown"

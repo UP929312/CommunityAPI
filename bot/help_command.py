@@ -4,7 +4,7 @@ from discord.ext import commands
 data_dict = {
     "nw": ("[username]", "Checks the total value of a profile for a user."),
     "set_prefix": ("<prefix>", "Allows an admin to change the prefix of the bot."),
-    "ah": ("[username]", "Shows someone's active auctions (Coming soon)."),
+    "ah": ("[username]", "Shows someone's active auction and BINs."),
     "bazaar": ("<item>", "Shows the bazaar price for a certain item, e.g. 'cobblestone'."),
     "dungeons": ("[username]", "Shows data about someone's dungeon level, including what floors they've beaten."),
     "kills": ("[username]", "Shows the most mobs a player has killed."),

@@ -3,7 +3,7 @@ from discord.ext import commands#, tasks
 intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, emojis=False, integrations=False, webhooks=False,
                           members=False, messages=True, guild_reactions=False, guilds=True, presences=False,)
 
-from utils import load_guild_prefix
+from utils import load_guild_prefix, safe_delete, safe_send
 
 print("Importing packages done...")
 
@@ -33,10 +33,22 @@ async def on_ready():
         
 @client.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole) or isinstance(error, commands.errors.CheckFailure):
+    if (isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole)
+        or isinstance(error, commands.errors.CheckFailure)): # or isinstance(error, commands.Forbidden)
         pass
+    elif isinstance(error, commands.CommandOnCooldown):
+        # ALLOW PEOPLE WITH MANAGE MESSAGES TO BYPASS THE COOLDOWN
+        if ctx.guild is not None and ctx.author.guild_permissions.manage_messages: 
+            await ctx.reinvoke()
+        else:
+            await safe_delete(ctx.message)
+            await safe_send(ctx.author, error)
     else:
         raise error
+
+@client.event
+async def on_command_completion(ctx):
+    print(f"-- User {ctx.author.id} ({ctx.author.display_name}), performed `{ctx.prefix}{ctx.invoked_with}` in {ctx.guild.id if ctx.guild is not None else 'DMs'} ({'DMs' if ctx.guild is None else ctx.guild.name})")
 
 #====================================================
 

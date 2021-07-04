@@ -51,8 +51,6 @@ class networth_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    # discord staff, Admin, Booster, Donator 10$, giveaway contri, don 50, 20, 30
-    #@commands.has_any_role(701205423742648350, "Admin", 591691127694819350, 784041616444882954, 743950132931723349, 794541062134824971, 793070309213208606, 793070744829296670)
     @commands.command(aliases=["nw", "n", "net", "worth"])
     async def networth(self, ctx, username=None):
 
@@ -60,9 +58,7 @@ class networth_cog(commands.Cog):
             nick = ctx.author.display_name
             username = nick.split("] ")[1] if "]" in nick else nick
             username = username.replace(" ឵឵", "")
-
-        print(f"------ Request made in from guild: {ctx.guild.id if ctx.guild is not None else 'DMs'}, from user: {ctx.author.id}, sometimes known as {ctx.author.display_name}")
-            
+ 
         try:
             request = requests.get(f"http://{self.client.ip_address}:8000/pages/{username}")
         except Exception as e:

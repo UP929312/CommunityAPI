@@ -53,6 +53,7 @@ class skills_cog(commands.Cog):
         player_data = await get_profile_data(ctx, username)
         if player_data is None:
             return
+        username = player_data["username"]
 
         skill_data = player_data
 
