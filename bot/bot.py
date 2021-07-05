@@ -3,7 +3,7 @@ from discord.ext import commands#, tasks
 intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, emojis=False, integrations=False, webhooks=False,
                           members=False, messages=True, guild_reactions=False, guilds=True, presences=False,)
 
-from utils import load_guild_prefix, safe_delete, safe_send
+from utils import load_guild_prefix, load_prefixes, safe_delete, safe_send
 
 print("Importing packages done...")
 
@@ -15,15 +15,16 @@ from help_command import help_cog
 from player_commands import *
 
 print("Importing .py files done...")
-    
-async def get_prefix(bot, message):
-    if message.guild is None:
-        return "."
-    prefix = load_guild_prefix(message.guild.id)
-    #print(f"Prefix = {prefix}, and it's now: {prefix if prefix is not None else '.'}")
-    return prefix if prefix is not None else "."
+
+
+prefixes = dict(load_prefixes())
+
+def get_prefix(bot, msg):
+    prefix = bot.prefixes.get(f"{msg.guild.id}", ".") if msg.guild else "."
+    return prefix#commands.when_mentioned_or(prefix)(bot, msg) 
 
 client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
+client.prefixes = prefixes
 #====================================================
 @client.event
 async def on_ready():
@@ -36,6 +37,9 @@ async def on_command_error(ctx, error):
     if (isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole)
         or isinstance(error, commands.errors.CheckFailure)): # or isinstance(error, commands.Forbidden)
         pass
+    elif isinstance(error, commands.errors.CommandInvokeError):
+        await ctx.send("There was an error doing that command, uh oh")
+        print(error)
     elif isinstance(error, commands.CommandOnCooldown):
         # ALLOW PEOPLE WITH MANAGE MESSAGES TO BYPASS THE COOLDOWN
         if ctx.guild is not None and ctx.author.guild_permissions.manage_messages: 
@@ -48,7 +52,7 @@ async def on_command_error(ctx, error):
 
 @client.event
 async def on_command_completion(ctx):
-    print(f"-- User {ctx.author.id} ({ctx.author.display_name}), performed `{ctx.prefix}{ctx.invoked_with}` in {ctx.guild.id if ctx.guild is not None else 'DMs'} ({'DMs' if ctx.guild is None else ctx.guild.name})")
+    print(f"-- User {ctx.author.id} ({ctx.author.display_name}), performed `{ctx.message.content}` in {ctx.guild.id if ctx.guild is not None else 'DMs'} ({'DMs' if ctx.guild is None else ctx.guild.name})")
 
 #====================================================
 

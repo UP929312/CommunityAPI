@@ -18,14 +18,14 @@ class set_prefix_cog(commands.Cog):
         if len(prefix) > 8:
             return await error(ctx, "Error, invalid prefix set!", "The prefix to start the community bot must be at most 8 characters long.")
         
-        current_prefix = load_guild_prefix(ctx.guild.id)
+        current_prefix = self.client.prefixes.get(f"{ctx.guild.id}", None)
 
-        print(f"Current prefix: {current_prefix}, guild_id: {ctx.guild.id}, prefix: {prefix}")
-        
         if current_prefix is None:
             set_guild_prefix(ctx.guild.id, prefix)
         else:
             update_guild_prefix(ctx.guild.id, prefix)
+
+        self.client.prefixes[f"{ctx.guild.id}"] = prefix        
 
         embed = discord.Embed(title=f"The prefix for Community Bot has been updated.", description=f"{ctx.author.display_name} has updated the prefix for community bot, it's now triggered by `{prefix}`", colour=0xe67e22)
         embed.set_footer(text=f"Use set_prefix to change the prefix for Community Bot")        

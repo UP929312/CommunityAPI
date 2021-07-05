@@ -154,3 +154,18 @@ def update_guild_prefix(guild_id, prefix):
         print(e)
     finally:
         cursor.close()
+
+def load_prefixes():
+    try:
+        mydb = mysql.connector.connect(host=host, user=user, password=password, database="s27_community_bot", port=3306)
+        cursor = mydb.cursor()
+
+        cursor.execute("SELECT guild_id, prefix FROM guild_prefixes")
+        records = cursor.fetchall()
+        return records
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+
+
