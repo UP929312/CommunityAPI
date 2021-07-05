@@ -21,7 +21,7 @@ prefixes = dict(load_prefixes())
 
 def get_prefix(bot, msg):
     prefix = bot.prefixes.get(f"{msg.guild.id}", ".") if msg.guild else "."
-    return prefix#commands.when_mentioned_or(prefix)(bot, msg) 
+    return commands.when_mentioned_or(prefix)(bot, msg) #prefix#
 
 client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = prefixes
