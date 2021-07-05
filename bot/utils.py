@@ -4,6 +4,8 @@ import mysql.connector
 from string import Formatter
 from datetime import datetime, timedelta
 
+#=============================================================
+# Errors and safe methods
 async def error(ctx, title, description):
     embed = discord.Embed(title=title, description=description, colour=0xe74c3c)
     embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
@@ -21,6 +23,8 @@ async def safe_send(user, content):
     except (discord.errors.NotFound, discord.errors.Forbidden):
         pass
 
+#=============================================================
+# Formatting numbers, datetime and timedeltas
 letter_values = {"": 1,
                  "k": 1000,
                  "m": 1000000,
@@ -84,8 +88,6 @@ def format_duration(duration, include_millis=False):
     formatted_string = ", ".join(parts)    
     return formatted_string
 
-#=============================================================
-
 def strfdelta(tdelta, fmt):
     f = Formatter()
     d = {}
@@ -109,6 +111,23 @@ def strfdelta(tdelta, fmt):
     return pre_return_string
 
 #=============================================================
+# Get master accessory list
+def get_master_accessories():
+    from text_files.accessory_list import talisman_upgrades
+
+    dupes = []
+
+    for key, value in talisman_upgrades.items():
+        dupes.append(key)
+        for v2 in value:
+            dupes.append(v2)
+
+    all_accessories = list(set(dupes))
+    [all_accessories.remove(key) for key in talisman_upgrades.keys()]
+    return all_accessories
+
+#=============================================================
+# Per guild prefixes
 
 with open("text_files/database_creds.txt") as file:
     data = [x.rstrip("\n") for x in file.readlines()]
@@ -167,5 +186,8 @@ def load_prefixes():
         print(e)
     finally:
         cursor.close()
+
+#=============================================================
+
 
 
