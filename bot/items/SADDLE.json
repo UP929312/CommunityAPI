@@ -1,0 +1,13 @@
+{
+  "itemid": "minecraft:saddle",
+  "displayname": "§aSaddle",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§a§lUNCOMMON\"],Name:\"§aSaddle\"},ExtraAttributes:{id:\"SADDLE\"}}",
+  "damage": 0,
+  "lore": [
+    "§a§lUNCOMMON"
+  ],
+  "internalname": "SADDLE",
+  "modver": "2.0.0-REL",
+  "vanilla": true,
+  "clickcommand": ""
+}

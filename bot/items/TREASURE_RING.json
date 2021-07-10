@@ -1,0 +1,34 @@
+{
+  "itemid": "minecraft:skull",
+  "displayname": "§f§f§5Treasure Ring",
+  "nbttag": "{overrideMeta:1b,HideFlags:254,SkullOwner:{Id:\"c43ff87a-4f75-3680-9e09-235bdd316892\",Properties:{textures:[0:{Value:\"ewogICJ0aW1lc3RhbXAiIDogMTU5NTk1MzgyNTcyMywKICAicHJvZmlsZUlkIiA6ICIwNmE4NjAyZDAwODk0YWQxOTcyMGQ3NGE1OGU1MDZjZiIsCiAgInByb2ZpbGVOYW1lIiA6ICJfMW5kcmFfIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzZhMWNjNTUyNWEyMTdhMzk5YjViODZjMzJmMGYyMmRkOTEzNzg4NzRiNWY0NGQ1YTM4M2UxOGJjMGYzYmMzMDEiCiAgICB9CiAgfQp9\"}]}},display:{Lore:[0:\"§7Grants §a+2% §7extra loot to end\",1:\"§7of dungeon chests.\",2:\"\",3:\"§eRight-click to view recipes!\",4:\"\",5:\"§7§8This item can be reforged!\",6:\"§5§lEPIC DUNGEON ACCESSORY\"],Name:\"§f§f§5Treasure Ring\"},ExtraAttributes:{id:\"TREASURE_RING\"},AttributeModifiers:[]}",
+  "damage": 3,
+  "lore": [
+    "§7Grants §a+2% §7extra loot to end",
+    "§7of dungeon chests.",
+    "",
+    "§eRight-click to view recipes!",
+    "",
+    "§7§8This item can be reforged!",
+    "§5§lEPIC DUNGEON ACCESSORY"
+  ],
+  "recipe": {
+    "A1": "TREASURE_TALISMAN:1",
+    "A2": "TREASURE_TALISMAN:1",
+    "A3": "TREASURE_TALISMAN:1",
+    "B1": "TREASURE_TALISMAN:1",
+    "B2": "",
+    "B3": "TREASURE_TALISMAN:1",
+    "C1": "TREASURE_TALISMAN:1",
+    "C2": "TREASURE_TALISMAN:1",
+    "C3": "TREASURE_TALISMAN:1"
+  },
+  "internalname": "TREASURE_RING",
+  "crafttext": "",
+  "clickcommand": "viewrecipe",
+  "modver": "1.1-REL",
+  "infoType": "WIKI_URL",
+  "info":[
+    "https://hypixel-skyblock.fandom.com/wiki/Treasure_Ring"
+  ]
+}

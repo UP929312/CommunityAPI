@@ -111,22 +111,6 @@ def strfdelta(tdelta, fmt):
     return pre_return_string
 
 #=============================================================
-# Get master accessory list
-def get_master_accessories():
-    from text_files.accessory_list import talisman_upgrades
-
-    dupes = []
-
-    for key, value in talisman_upgrades.items():
-        dupes.append(key)
-        for v2 in value:
-            dupes.append(v2)
-
-    all_accessories = list(set(dupes))
-    [all_accessories.remove(key) for key in talisman_upgrades.keys()]
-    return all_accessories
-
-#=============================================================
 # Per guild prefixes
 
 with open("text_files/database_creds.txt") as file:

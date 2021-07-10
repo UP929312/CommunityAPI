@@ -1,0 +1,36 @@
+{
+  "itemid": "minecraft:fishing_rod",
+  "displayname": "§6Rod of the Sea",
+  "nbttag": "{Unbreakable:1b,HideFlags:254,display:{Lore:[0:\"§7Damage: §c+150\",1:\"§7Strength: §c+150\",2:\"§7Sea Creature Chance: §c+7%\",3:\"\",4:\"§7Increases fishing speed by §975%\",5:\"\",6:\"§7§8This item can be reforged!\",7:\"§4❣ §cRequires §aFishing Skill 24\",8:\"§6§lLEGENDARY FISHING ROD\"],Name:\"§6Rod of the Sea\"},ExtraAttributes:{id:\"ROD_OF_THE_SEA\"}}",
+  "damage": 0,
+  "lore": [
+    "§7Damage: §c+150",
+    "§7Strength: §c+150",
+    "§7Sea Creature Chance: §c+7%",
+    "",
+    "§7Increases fishing speed by §975%",
+    "",
+    "§7§8This item can be reforged!",
+    "§4❣ §cRequires §aFishing Skill 24",
+    "§6§lLEGENDARY FISHING ROD"
+  ],
+  "recipe": {
+    "A1": "ENCHANTED_SHARK_FIN:1",
+    "A2": "GREAT_WHITE_SHARK_TOOTH:1",
+    "A3": "ENCHANTED_SHARK_FIN:1",
+    "B1": "GREAT_WHITE_SHARK_TOOTH:1",
+    "B2": "LEGEND_ROD:1",
+    "B3": "GREAT_WHITE_SHARK_TOOTH:1",
+    "C1": "ENCHANTED_SHARK_FIN:1",
+    "C2": "GREAT_WHITE_SHARK_TOOTH:1",
+    "C3": "ENCHANTED_SHARK_FIN:1"
+  },
+  "internalname": "ROD_OF_THE_SEA",
+  "crafttext": "",
+  "clickcommand": "viewrecipe",
+  "modver": "2.0.0-REL",
+  "infoType": "WIKI_URL",
+  "info": [
+    "https://hypixel-skyblock.fandom.com/wiki/Rod_of_the_Sea"
+  ]
+}

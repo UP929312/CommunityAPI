@@ -1,0 +1,18 @@
+{
+  "internalname": "SNOWFLAKE_THE_FISH",
+  "itemid": "minecraft:cooked_fish",
+  "displayname": "§cFlake the Fish",
+  "clickcommand": "",
+  "damage": 1,
+  "nbttag": "{ench:[],HideFlags:254,display:{Lore:[0:\"§7I'm a special snowflake\",1:\"\",2:\"§c§lSPECIAL\"],Name:\"§cFlake the Fish\"},ExtraAttributes:{id:\"SNOWFLAKE_THE_FISH\"}}",
+  "modver": "1.0.0",
+  "lore": [
+    "§7I'm a special snowflake",
+    "",
+    "§c§lSPECIAL"
+  ],
+  "infoType": "WIKI_URL",
+  "info": [
+    "https://hypixel-skyblock.fandom.com/wiki/Flake_the_Fish"
+  ]
+}

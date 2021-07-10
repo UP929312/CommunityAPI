@@ -1,0 +1,40 @@
+{
+  "itemid": "minecraft:golden_leggings",
+  "displayname": "§6Diver's Trunks",
+  "nbttag": "{Unbreakable:1,HideFlags:254,display:{Lore:[0:\"§7Sea Creature Chance: §c+2%\",1:\"\",2:\"§7Health: §a+75 HP\",3:\"§7Defense: §a+170\",4:\"\",5:\"§6Full Set Bonus: One with the Fish\",6:\"§7While touching water you move\",7:\"§7§9incredibly fast§7 and can\",8:\"§7breathe §9permanently (sneak to\",9:\"§9slow down).\",10:\"\",11:\"§7§8This item can be reforged!\",12:\"§6§lLEGENDARY LEGGINGS\"],Name:\"§6Diver's Trunks\"},ExtraAttributes:{originTag:\"QUICK_CRAFTING\",id:\"DIVER_LEGGINGS\"}}",
+  "damage": 0,
+  "lore": [
+    "§7Sea Creature Chance: §c+2%",
+    "",
+    "§7Health: §a+75 HP",
+    "§7Defense: §a+170",
+    "",
+    "§6Full Set Bonus: One with the Fish",
+    "§7While touching water you move",
+    "§7§9incredibly fast§7 and can",
+    "§7breathe §9permanently (sneak to",
+    "§9slow down).",
+    "",
+    "§7§8This item can be reforged!",
+    "§4❣ §cRequires §aFishing Skill 20",
+    "§6§lLEGENDARY LEGGINGS"
+  ],
+  "recipe": {
+    "A1": "DIVER_FRAGMENT:1",
+    "A2": "DIVER_FRAGMENT:1",
+    "A3": "DIVER_FRAGMENT:1",
+    "B1": "DIVER_FRAGMENT:1",
+    "B2": "",
+    "B3": "DIVER_FRAGMENT:1",
+    "C1": "DIVER_FRAGMENT:1",
+    "C2": "",
+    "C3": "DIVER_FRAGMENT:1"
+  },
+  "internalname": "DIVER_LEGGINGS",
+  "clickcommand": "viewrecipe",
+  "modver": "1.0.0",
+  "infoType": "WIKI_URL",
+  "info": [
+    "https://hypixel-skyblock.fandom.com/wiki/Diver's_Armor"
+  ]
+}

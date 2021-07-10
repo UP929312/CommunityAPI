@@ -7,6 +7,10 @@ from player_commands.skills import skills_cog
 from player_commands.slayer import slayer_cog
 from player_commands.invite import invite_cog
 from player_commands.auction_house import auction_house_cog
+from player_commands.missing import missing_cog
 
 
-player_commands = [bazaar_cog, sky_cog, wiki_cog, dungeons_cog, kills_cog, skills_cog, slayer_cog, invite_cog, auction_house_cog]
+player_commands = [bazaar_cog, sky_cog, wiki_cog,
+                   dungeons_cog, kills_cog, skills_cog,
+                   slayer_cog, invite_cog, auction_house_cog,
+                   missing_cog]

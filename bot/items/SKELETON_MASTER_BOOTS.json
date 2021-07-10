@@ -1,0 +1,33 @@
+{
+  "itemid": "minecraft:leather_boots",
+  "displayname": "§5Skeleton Master Boots",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§7Gear Score: §d90\",1:\"§7Crit Chance: §c+2%\",2:\"§7Crit Damage: §c+22%\",3:\"\",4:\"§7Health: §a+14 HP\",5:\"§7Defense: §a+22\",6:\"\",7:\"§7Increase the damage you deal\",8:\"§7with arrows by §c5%§7.\",9:\"§6Full Set Bonus: Skeleton Master\",10:\"§7Increase the damage you deal\",11:\"§7with arrows by §c25%§7.\",12:\"\",13:\"§7§8This item can be reforged!\",14:\"§aPerfect 52500 / 52500\",15:\"§7§4❣ §cRequires §aCatacombs Level 12\",16:\"§5§lEPIC DUNGEON BOOTS\"],color:16739083,Name:\"§5Skeleton Master Boots\"},ExtraAttributes:{dungeon_item_level:0,id:\"SKELETON_MASTER_BOOTS\"}}",
+  "damage": 0,
+  "lore": [
+    "§7Gear Score: §d90",
+    "§7Crit Chance: §c+2%",
+    "§7Crit Damage: §c+22%",
+    "",
+    "§7Health: §a+14 HP",
+    "§7Defense: §a+22",
+    "",
+    "§7Increase the damage you deal",
+    "§7with arrows by §c5%§7.",
+    "§6Full Set Bonus: Skeleton Master",
+    "§7Increase the damage you deal",
+    "§7with arrows by §c25%§7.",
+    "",
+    "§7§8This item can be reforged!",
+    "§aPerfect 52500 / 52500",
+    "§7§4❣ §cRequires §aCatacombs Level 12",
+    "§5§lEPIC DUNGEON BOOTS"
+  ],
+  "internalname": "SKELETON_MASTER_BOOTS",
+  "crafttext": "",
+  "clickcommand": "",
+  "modver": "1.1-REL",
+  "infoType": "WIKI_URL",
+  "info": [
+    "https://hypixel-skyblock.fandom.com/wiki/Skeleton_Master_Armor"
+  ]
+}

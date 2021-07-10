@@ -1,0 +1,24 @@
+{
+  "itemid": "minecraft:glowstone",
+  "displayname": "§fGlowstone",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§f§lCOMMON\"],Name:\"§fGlowstone\"},ExtraAttributes:{id:\"GLOWSTONE\"}}",
+  "damage": 0,
+  "lore": [
+    "§f§lCOMMON"
+  ],
+  "internalname": "GLOWSTONE",
+  "modver": "1.3-REL",
+  "vanilla": true,
+  "clickcommand": "viewrecipe",
+  "recipe": {
+    "A1": "GLOWSTONE_DUST:1",
+    "A2": "GLOWSTONE_DUST:1",
+    "A3": "",
+    "B1": "GLOWSTONE_DUST:1",
+    "B2": "GLOWSTONE_DUST:1",
+    "B3": "",
+    "C1": "",
+    "C2": "",
+    "C3": ""
+  }
+}

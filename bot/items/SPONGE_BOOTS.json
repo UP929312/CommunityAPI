@@ -1,0 +1,38 @@
+{
+  "itemid": "minecraft:leather_boots",
+  "displayname": "§5Spongy Shoes",
+  "nbttag": "{Unbreakable:1,HideFlags:254,display:{Lore:[0:\"§7Sea Creature Chance: §c+1.8%\",1:\"\",2:\"§7Defense: §a+60\",3:\"\",4:\"§6Full Set Bonus: Absorb\",5:\"§7§9Doubles§7 your §a❈ Defense§7\",6:\"§7while in water.\",7:\"\",8:\"§8This item can be reforged!\",9:\"§4❣ §cRequires §aFishing Skill 17\",10:\"§5§lEPIC BOOTS\"],color:16768081,Name:\"§5Spongy Shoes\"},ExtraAttributes:{color:\"255:220:81\",modifier:\"unpleasant\",originTag:\"CRAFTING_GRID_SHIFT\",id:\"SPONGE_BOOTS\"}}",
+  "damage": 0,
+  "lore": [
+    "§7Sea Creature Chance: §c+1.8%",
+    "",
+    "§7Defense: §a+60",
+    "",
+    "§6Full Set Bonus: Absorb",
+    "§7§9Doubles§7 your §a❈ Defense§7",
+    "§7while in water.",
+    "",
+    "§8This item can be reforged!",
+    "§4❣ §cRequires §aFishing Skill 17",
+    "§5§lEPIC BOOTS"
+  ],
+  "recipe": {
+    "A1": "",
+    "A2": "",
+    "A3": "",
+    "B1": "ENCHANTED_WET_SPONGE:1",
+    "B2": "",
+    "B3": "ENCHANTED_WET_SPONGE:1",
+    "C1": "ENCHANTED_WET_SPONGE:1",
+    "C2": "",
+    "C3": "ENCHANTED_WET_SPONGE:1"
+  },
+  "internalname": "SPONGE_BOOTS",
+  "clickcommand": "viewrecipe",
+  "modver": "2.0.0-REL",
+  "infoType": "WIKI_URL",
+  "info": [
+    "https://hypixel-skyblock.fandom.com/wiki/Sponge_Armor"
+  ],
+  "crafttext": "Requires: Sponge IX"
+}

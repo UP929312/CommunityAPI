@@ -1,0 +1,13 @@
+{
+  "itemid": "minecraft:name_tag",
+  "displayname": "§aName Tag",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§a§lUNCOMMON\"],Name:\"§aName Tag\"},ExtraAttributes:{id:\"NAME_TAG\"}}",
+  "damage": 0,
+  "lore": [
+    "§a§lUNCOMMON"
+  ],
+  "internalname": "NAME_TAG",
+  "modver": "2.0.0-REL",
+  "vanilla": true,
+  "clickcommand": ""
+}

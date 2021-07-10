@@ -1,0 +1,24 @@
+{
+  "itemid": "minecraft:coal_block",
+  "displayname": "§fBlock of Coal",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§f§lCOMMON\"],Name:\"§fBlock of Coal\"},ExtraAttributes:{id:\"COAL_BLOCK\"}}",
+  "damage": 0,
+  "lore": [
+    "§f§lCOMMON"
+  ],
+  "internalname": "COAL_BLOCK",
+  "modver": "1.3-REL",
+  "vanilla": true,
+  "clickcommand": "viewrecipe",
+  "recipe": {
+    "A1": "COAL:1",
+    "A2": "COAL:1",
+    "A3": "COAL:1",
+    "B1": "COAL:1",
+    "B2": "COAL:1",
+    "B3": "COAL:1",
+    "C1": "COAL:1",
+    "C2": "COAL:1",
+    "C3": "COAL:1"
+  }
+}

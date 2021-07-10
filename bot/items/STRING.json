@@ -1,0 +1,13 @@
+{
+  "itemid": "minecraft:string",
+  "displayname": "§fString",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§f§lCOMMON\"],Name:\"§fString\"},ExtraAttributes:{id:\"STRING\"}}",
+  "damage": 0,
+  "lore": [
+    "§f§lCOMMON"
+  ],
+  "internalname": "STRING",
+  "modver": "1.3-REL",
+  "vanilla": true,
+  "clickcommand": ""
+}

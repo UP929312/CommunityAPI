@@ -1,0 +1,17 @@
+{
+  "itemid": "minecraft:stone",
+  "displayname": "§fStone",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§f§lCOMMON\"],Name:\"§fStone\"},ExtraAttributes:{id:\"STONE\"}}",
+  "damage": 0,
+  "lore": [
+    "§f§lCOMMON"
+  ],
+  "internalname": "STONE",
+  "modver": "1.3-REL",
+  "vanilla": true,
+  "clickcommand": "",
+  "infoType": "WIKI_URL",
+  "info": [
+    "https://hypixel-skyblock.fandom.com/wiki/Stone"
+  ]
+}

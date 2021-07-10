@@ -1,0 +1,25 @@
+{
+  "itemid": "minecraft:fireworks",
+  "displayname": "§fFirework Rocket",
+  "nbttag": "{HideFlags:254,display:{Lore:[0:\"§f§lCOMMON\"],Name:\"§fFirework Rocket\"},ExtraAttributes:{id:\"FIREWORK\"}}",
+  "damage": 0,
+  "lore": [
+    "§f§lCOMMON"
+  ],
+  "recipe": {
+    "A1": "PAPER:1",
+    "A2": "SULPHUR:1",
+    "A3": "",
+    "B1": "",
+    "B2": "",
+    "B3": "",
+    "C1": "",
+    "C2": "",
+    "C3": ""
+  },
+  "internalname": "FIREWORK",
+  "modver": "2.0.0-REL",
+  "vanilla": true,
+  "clickcommand": "viewrecipe",
+  "useneucraft": true
+}
