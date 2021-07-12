@@ -88,7 +88,8 @@ def format_duration(duration, include_millis=False):
     formatted_string = ", ".join(parts)    
     return formatted_string
 
-def strfdelta(tdelta, fmt):
+def strfdelta(tdelta):
+    fmt = '{D}d {H}h {M}m {S:02.0f}s'
     f = Formatter()
     d = {}
     l = {'D': 86400, 'H': 3600, 'M': 60, 'S': 1}
@@ -101,12 +102,8 @@ def strfdelta(tdelta, fmt):
 
     pre_return_string = f.format(fmt, **d)
     
-    pre_return_string = pre_return_string.replace(" 0h ", " ")
-    pre_return_string = pre_return_string.replace(" 0s ", " ")
-    if pre_return_string.startswith("0d"):
-        pre_return_string = pre_return_string.lstrip("0d ")
-    if pre_return_string.endswith("0s"):
-        pre_return_string = pre_return_string.rstrip(" 0s")
+    pre_return_string = pre_return_string.replace(" 0h ", " ").replace(" 0s ", " ")
+    pre_return_string = pre_return_string.removeprefix("0d ").removesuffix(" 0s")
 
     return pre_return_string
 
@@ -132,7 +129,6 @@ def load_guild_prefix(guild_id):
     finally:
         cursor.close()
 
-        
 def set_guild_prefix(guild_id, prefix):
     try:
         mydb = mysql.connector.connect(host=host, user=user, password=password, database="s27_community_bot", port=3306)
@@ -172,6 +168,11 @@ def load_prefixes():
         cursor.close()
 
 #=============================================================
-
-
-
+def xp_to_level(xp_table, current_xp):
+    level = 0
+    for xp_value in xp_table:
+        current_xp -= xp_value
+        if current_xp < 0:
+            return level
+        level += 1
+    return level

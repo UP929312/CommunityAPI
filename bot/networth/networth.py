@@ -43,9 +43,12 @@ class MenuView(discord.ui.View):
         await interaction.response.edit_message(content="", view=self, embed=embed)
 
     async def on_timeout(self):
-        for button in self.children:
-            button.disabled = True
-        await self.message.edit(view=self)
+        try:
+            for button in self.children:
+                button.disabled = True
+            await self.message.edit(view=self)
+        except discord.errors.NotFound:
+            print("Message to disable buttons on was deleted (/networth)")
         
 class networth_cog(commands.Cog):
     def __init__(self, bot):

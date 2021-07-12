@@ -63,7 +63,7 @@ def format_auction(auction):
         status = "PURCHASABLE"
         
     if not expired:
-        time_left = "↳ Time left: "+strfdelta(to_time(auction["end"]) - datetime.now(), '{D}d {H}h {M}m {S:02.0f}s')+"\n"
+        time_left = "↳ Time left: "+strfdelta(to_time(auction["end"]) - datetime.now())+"\n"
 
     if sell_type == "auction":
         bid_count = f"↳ Bids: {len(auction.get('bids', []))}\n"

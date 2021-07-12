@@ -41,13 +41,13 @@ class missing_cog(commands.Cog):
             return await error(ctx, f"Completion!", f"{username} already has all accessories!")
         sorted_accessories = sorted(missing, key=lambda x: x[1])[:42]
 
-        extra = "" if len(missing) <= 36 else f", showing top {len(sorted_accessories)}"
+        extra = "" if len(missing) <= 36 else f", showing the first {len(sorted_accessories)}"
         embed = discord.Embed(title=f"Missing {len(missing)} accessories for {username}{extra}", colour=0x3498DB)
 
         if len(sorted_accessories) < 6:  # For people with only a few missing
             text = ""
             for _, name, rarity, wiki_link in sorted_accessories:
-                text += f"{RARITY_DICT[rarity]} {name}\nLink: [here]({wiki_link})\n" 
+                text += f"{RARITY_DICT[rarity]} {name}\nLink: [wiki]({wiki_link})\n" 
             embed.add_field(name=f"{sorted_accessories[0][1][0]}-{sorted_accessories[-1][1][0]}", value=text, inline=True) 
         else:
             list_length = int(len(sorted_accessories)/6)
@@ -56,7 +56,7 @@ class missing_cog(commands.Cog):
                 text = ""
                 for accessory in row_accessories:
                     _, name, rarity, wiki_link = accessory
-                    text += f"{RARITY_DICT[rarity]} {name}\nLink: [here]({wiki_link})\n"
+                    text += f"{RARITY_DICT[rarity]} {name}\nLink: [wiki]({wiki_link})\n"
                             
                 embed.add_field(name=f"{row_accessories[0][1][0]}-{row_accessories[-1][1][0]}", value=text, inline=True) 
 

@@ -66,8 +66,8 @@ for cog in all_cogs:
     
 print("Cogs all added successfully!")
 
-client.ip_address = "db.superbonecraft.dk"
-#client.ip_address = "127.0.0.1"
+#client.ip_address = "db.superbonecraft.dk"
+client.ip_address = "127.0.0.1"
 
 bot_key = open("text_files/bot_key.txt","r").read()
 client.run(bot_key)
