@@ -43,3 +43,33 @@ DUNGEON_WEIGHTS = {
         return new Weight(weight, overflow);
     }
     '''
+
+
+'''
+public Weight calculateWeight(double experience) {
+        double level = getLevelFromExperience(experience);
+        double base = Math.pow(level, 4.5) * exponent;
+
+        if (experience <= level50Exp) {
+            return new Weight(base, 0D);
+        }
+
+        return new Weight(
+            Math.floor(base),
+            Math.pow((experience - level50Exp) / (4 * level50Exp / base), 0.968)
+        );
+    }
+
+    private double getLevelFromExperience(double experience) {
+        int level = 0;
+        for (int toRemove : Constants.DUNGEON_EXPERIENCE) {
+            experience -= toRemove;
+            if (experience < 0) {
+                return level + (1D - (experience * -1) / (double) toRemove);
+            }
+            level++;
+        }
+        return level;
+    }
+}
+'''

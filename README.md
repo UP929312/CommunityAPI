@@ -1,4 +1,4 @@
-# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-1.2.0-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
+# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-1.2.5-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
 
 This is a bot made partially by the community, with the lead dev being Skezza#1139.\
 Special mention to Mega_Pi+Seattle72 for the research and knowledge on a lot of the content!\

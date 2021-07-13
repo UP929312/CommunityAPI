@@ -38,7 +38,8 @@ SKILL_EMOJI_DICT = {
     "alchemy": "<:alchemy:832359758236876832>",
     "taming": "<:taming:832360479300648961>",
     "carpentry": "<:carpentry:832359758635597875>",
-    "runecrafting": "<:runecrafting:832359758442004551>"}
+    "runecrafting": "<:runecrafting:832359758442004551>"
+}
 
 def get_level(skill_data, skill):
     return min(bisect(cumulative_xp_reqs, skill_data.get(f'experience_skill_{skill}', 0)), max_levels[skill])
@@ -59,6 +60,9 @@ class skills_cog(commands.Cog):
 
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
+
+        #print(skill_data.get(f'experience_skill_{skill}', 0) for skill in COUNTED_SKILLS)# ####
+        #print(get_level(skill_data, skill) for skill in COUNTED_SKILLS) ###########
 
         total_skill_xp = sum(skill_data.get(f'experience_skill_{skill}', 0) for skill in SKILLS)
         total_counted_levels = sum(get_level(skill_data, skill) for skill in COUNTED_SKILLS)

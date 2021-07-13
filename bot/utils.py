@@ -168,6 +168,7 @@ def load_prefixes():
         cursor.close()
 
 #=============================================================
+# Currently unused:
 def xp_to_level(xp_table, current_xp):
     level = 0
     for xp_value in xp_table:
