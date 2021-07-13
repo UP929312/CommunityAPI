@@ -14,6 +14,9 @@ def get_data(username):
         profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
         if profile_list is None:
             return None, None
+        if profile_list == {'success': False, 'cause': 'Invalid API key'}:
+            print("Data/utils: Invalid API key, apparently?")
+            return None, None
         
         valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]        
         profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
