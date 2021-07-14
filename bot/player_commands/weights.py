@@ -33,14 +33,15 @@ EMOJI_DICT = {
     "sven": "<:wolf:832251786059579473>",
     "enderman": "<:enderman:860902315347148801>",
 }
-PAGE_URLS = {"skills":   ["mining", "foraging", "enchanting", "farming", "combat", "fishing", "alchemy", "taming", "carpentry"],
-             "dungeons": ["healer", "mage", "berserker", "archer", "tank"],
-             "slayers":  ["revenant", "tarantula", "sven", "enderman"],}
+PAGE_URLS = {"dungeons": ["healer", "mage", "berserker", "archer", "tank"],
+             "skills":   ["mining", "foraging", "enchanting", "farming", "combat", "fishing", "alchemy", "taming", "carpentry"],
+             "slayers":  ["revenant", "tarantula", "sven", "enderman"],
+             "info": []}
 
-PAGE_TO_EMOJI = {"main": "",
-                 "slayers": "<:slayers:864588648111276072>",
+PAGE_TO_EMOJI = {"dungeons": "<:dungeons:864588623394897930>",
                  "skills": "<:skills:864588638066311200>",
-                 "dungeons": "<:dungeons:864588623394897930>",}
+                 "slayers": "<:slayers:864588648111276072>",
+                 "info": "<:misc:854801277489774613>"}
 
 EMOJI_TO_PAGE = dict((v,k) for k,v in PAGE_TO_EMOJI.items())
 
@@ -88,44 +89,47 @@ class MenuView(discord.ui.View):
 
 def generate_page(ctx, response, username, page):
     if page == "main":
-        embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"Click the buttons to start",
+        embed = discord.Embed(title=f"Weights Calculator For {username}:", description="\n".join([f"Click the buttons to start!",
+                                                                                                   "<:dungeons:864588623394897930> Dungeons",
+                                                                                                   "<:skills:864588638066311200> Skills",
+                                                                                                   "<:slayers:864588648111276072> Slayer",
+                                                                                                   "<:misc:854801277489774613> Info"]),
                           url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
-        embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
-        embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-        return embed
+    elif page == "info":
+        embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to calculate how far into the game you're at, whether that be in slayer, dungeons, or your skills. It uses a extensive formula to decide this, however this isn't made by CommunityBot, so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
+    else:  
+        data_start = response["data"][page]
+        data = response["data"][page]
+        total_weight = round(data["weight"]+data["weight_overflow"], 2)
 
-    data_start = response["data"][page]
-    data = response["data"][page]
-    total_weight = round(data["weight"]+data["weight_overflow"], 2)
+        bank = PAGE_URLS[page]
+        if page == "skills":
+            description_start = f"Skill average: **{round(data['average_skills'], 2)}**"
+        elif page == "slayers":
+            description_start = f"Total coins spent: **{hf(data['total_coins_spent'])}**"
+        elif page == "dungeons":
+            description_start = f"Secrets found: **{data['secrets_found']}**"
 
-    bank = PAGE_URLS[page]
-    if page == "skills":
-        description_start = f"Skill average: **{round(data['average_skills'], 2)}**"
-    elif page == "slayers":
-        description_start = f"Total coins spent: **{hf(data['total_coins_spent'])}**"
-    elif page == "dungeons":
-        description_start = f"Secrets found: **{data['secrets_found']}**"
+        data = data.get("bosses", None) or data.get("classes", None) or data  # Remap data to be the sub list.
 
-    data = data.get("bosses", None) or data.get("classes", None) or data  # Remap data to be the sub list.
+        embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"Total {page[:-1]} weight: **{round(total_weight, 2)}**\n{description_start}",
+                              url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
 
-    embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"Total {page[:-1]} weight: **{round(total_weight, 2)}**\n{description_start}",
-                          url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+        if page == "dungeons":
+            catacombs_weight = round(data_start['types']['catacombs']['weight'], 2)
+            catacombs_overflow = round(data_start['types']['catacombs']['weight_overflow'], 2)
+            embed.add_field(name=f"{EMOJI_DICT['catacombs']} Cata ({int(data_start['types']['catacombs']['level'])})",
+                            value=f"Regular: **{catacombs_weight}**\nOverflow: **{catacombs_overflow}**\nTotal: **{round(catacombs_weight+catacombs_overflow, 2)}**", inline=True)
 
-    if page == "dungeons":
-        catacombs_weight = round(data_start['types']['catacombs']['weight'], 2)
-        catacombs_overflow = round(data_start['types']['catacombs']['weight_overflow'], 2)
-        embed.add_field(name=f"{EMOJI_DICT['catacombs']} Cata ({round(data_start['types']['catacombs']['level'])})",
-                        value=f"Regular: **{catacombs_weight}**\nOverflow: **{catacombs_overflow}**\nTotal: **{round(catacombs_weight+catacombs_overflow, 2)}**", inline=True)
+        for category in bank:
+            level = int(data[category]["level"])
+            regular = round(data[category]["weight"], 2)
+            overflow = round(data[category]["weight_overflow"], 2)
+            embed.add_field(name=f"{EMOJI_DICT[category]} {category.title()} ({level})",
+                            value=f"Regular: **{regular}**\nOverflow: **{overflow}**\nTotal: **{round(regular+overflow, 2)}**", inline=True)           
 
-    for category in bank:
-        level = round(data[category]["level"])
-        regular = round(data[category]["weight"], 2)
-        overflow = round(data[category]["weight_overflow"], 2)
-        embed.add_field(name=f"{EMOJI_DICT[category]} {category.title()} ({level})",
-                        value=f"Regular: **{regular}**\nOverflow: **{overflow}**\nTotal: **{round(regular+overflow, 2)}**", inline=True)           
-
-    if page == "dungeons":
-        embed.add_field(name='\u200b', value='\u200b', inline=True)            
+        if page == "dungeons":
+            embed.add_field(name='\u200b', value='\u200b', inline=True)            
     
     embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
     embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")

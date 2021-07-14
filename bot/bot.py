@@ -3,7 +3,8 @@ from discord.ext import commands#, tasks
 intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, emojis=False, integrations=False, webhooks=False,
                           members=False, messages=True, guild_reactions=False, guilds=True, presences=False,)
 
-from utils import load_guild_prefix, load_prefixes, safe_delete, safe_send
+from database_manager import load_guild_prefix, load_prefixes
+from utils import safe_delete, safe_send
 
 print("Importing packages done...")
 
@@ -66,8 +67,8 @@ for cog in all_cogs:
     
 print("Cogs all added successfully!")
 
-#client.ip_address = "db.superbonecraft.dk"
-client.ip_address = "127.0.0.1"
+client.ip_address = "db.superbonecraft.dk"
+#client.ip_address = "127.0.0.1"
 
 bot_key = open("text_files/bot_key.txt","r").read()
 client.run(bot_key)
