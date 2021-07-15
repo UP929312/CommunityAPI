@@ -1,4 +1,4 @@
-from player_commands.bazaar import bazaar_cog
+#from player_commands.bazaar import bazaar_cog
 from player_commands.sky import sky_cog
 from player_commands.wiki import wiki_cog
 from player_commands.dungeons import dungeons_cog
@@ -16,9 +16,13 @@ from player_commands.link_account import link_account_cog
 from player_commands.help_command import help_cog
 
 
-assistant_commands = [set_prefix_cog, link_account_cog, help_cog]
+#bazaar_cog = [bazaar_cog]
+bazaar_cog = []
 
-regular_commands = [bazaar_cog, sky_cog, wiki_cog,
+assistant_commands = [set_prefix_cog, link_account_cog, help_cog]
+assistant_commands.extend(bazaar_cog)
+
+regular_commands = [sky_cog, wiki_cog,
                    dungeons_cog, kills_cog, lowest_bin_cog,
                    skills_cog, slayer_cog, invite_cog,
                    auction_house_cog, missing_cog, weights_cog,]

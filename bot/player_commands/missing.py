@@ -1,10 +1,25 @@
 import discord
 from discord.ext import commands
+import json
 
-from text_files.master_accessories import MASTER_ACCESSORIES
 from utils import error
 from parse_profile import get_profile_data
 from extract_ids import extract_internal_names
+
+# Create the master list!
+from text_files.accessory_list import talisman_upgrades
+
+ACCESSORIES = []
+with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
+    item_dict = json.load(file)
+    for item in item_dict:
+        if item_dict[item].get("rarity", False) and item_dict[item]["rarity"] != "UNKNOWN":
+            ACCESSORIES.append(item_dict[item])
+
+MASTER_ACCESSORIES = []
+for accessory in ACCESSORIES:
+    if accessory["internal_name"] not in talisman_upgrades.keys():
+        MASTER_ACCESSORIES.append(accessory)
 
 RARITY_DICT = {   
     "COMMON":    "<:common:863390433593786369>",
@@ -35,21 +50,25 @@ class missing_cog(commands.Cog):
         accessory_bag = extract_internal_names(accessory_bag["data"])
         inventory = extract_internal_names(inv_content["data"])
 
-        missing = [x for x in MASTER_ACCESSORIES if x[0] not in accessory_bag+inventory]
+        missing = [x for x in MASTER_ACCESSORIES if x["internal_name"] not in accessory_bag+inventory]
 
         if not missing:
             return await error(ctx, f"Completion!", f"{username} already has all accessories!")
-        sorted_accessories = sorted(missing, key=lambda x: x[1])[:42]
+        sorted_accessories = sorted(missing, key=lambda x: x["name"])[:42]
 
         extra = "" if len(missing) <= 36 else f", showing the first {len(sorted_accessories)}"
         embed = discord.Embed(title=f"Missing {len(missing)} accessories for {username}{extra}", colour=0x3498DB)
 
         def make_embed(embed, acc_list):
             text = ""
-            for _, name, rarity, wiki_link in acc_list:
-                text += f"{RARITY_DICT[rarity]} {name}\nLink: [wiki]({wiki_link})\n"
+            for item in acc_list:
+                internal_name, name, rarity, wiki_link = item.values()
+                wiki_link = "<Doesn't exist>" if not wiki_link else f"[wiki]({wiki_link})"
+                if rarity == "UNKNOWN":
+                    print(item)
+                text += f"{RARITY_DICT[rarity]} {name}\nLink: {wiki_link}\n"
                             
-            embed.add_field(name=f"{acc_list[0][1][0]}-{acc_list[-1][1][0]}", value=text, inline=True)
+            embed.add_field(name=f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}", value=text, inline=True)
             
         if len(sorted_accessories) < 6:  # For people with only a few missing
             make_embed(embed, sorted_accessories)
