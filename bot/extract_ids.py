@@ -2,7 +2,6 @@ from base64 import b64decode
 from gzip import decompress
 from io import BytesIO
 from struct import unpack
-import re
 
 def parse_container(raw):
     """
@@ -62,9 +61,9 @@ def parse_container(raw):
     raw.read(3)  # Remove file header (we ingore footer)
     root = {}
     parse_next_tag(root)
-    return [make_item_dict(x) for x in root['i'] if x]
+    return [x for x in root['i'] if x]
 
-def make_item_dict(nbt):
+def extract_internal_id(nbt):
     """
     Takes the data from the decode container function and returns
     the internal_id
@@ -74,3 +73,11 @@ def make_item_dict(nbt):
     internal_name = tag.get('ExtraAttributes', {"id": "UNKNOWN"}).get('id', "UNKNOWN")
 
     return internal_name
+
+def extract_nbt_dicts(raw):
+    return [x['tag'] for x in parse_container(raw)]
+
+def extract_internal_names(raw):
+    return [extract_internal_id(x) for x in parse_container(raw)]
+
+

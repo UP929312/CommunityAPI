@@ -7,13 +7,20 @@ from difflib import SequenceMatcher
 from utils import *
 
 items = []
+
+print("Importing SlothPixel's item list for bazaar")
+#'''
 try:
     item_dict = requests.get("https://api.slothpixel.me/api/skyblock/items").json()
 
     for item in item_dict:
         items.append((item, item_dict[item]["name"].replace(" ", "_").upper()))
+        #items = [(item, item_dict[item]["name"].replace(" ", "_").upper()) for item in item_dict]
 except:
     pass
+#'''
+
+print("Imported item list complete.")
 
 def get_item_by_internal_name(internal_id):
     for key, value in item_dict.items():

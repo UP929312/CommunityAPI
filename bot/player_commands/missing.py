@@ -4,7 +4,7 @@ from discord.ext import commands
 from text_files.master_accessories import MASTER_ACCESSORIES
 from utils import error
 from parse_profile import get_profile_data
-from extract_ids import parse_container
+from extract_ids import extract_internal_names
 
 RARITY_DICT = {   
     "COMMON":    "<:common:863390433593786369>",
@@ -32,8 +32,8 @@ class missing_cog(commands.Cog):
         if not accessory_bag:
             return await error(ctx, "Error, could not find this person's accessory bag", "Do they have their API disabled for this command?")
 
-        accessory_bag = parse_container(accessory_bag["data"])
-        inventory = parse_container(inv_content["data"])
+        accessory_bag = extract_internal_names(accessory_bag["data"])
+        inventory = extract_internal_names(inv_content["data"])
 
         missing = [x for x in MASTER_ACCESSORIES if x[0] not in accessory_bag+inventory]
 

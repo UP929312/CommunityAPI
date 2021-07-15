@@ -14,7 +14,7 @@ class wiki_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command()
+    @commands.command(aliases=['wiki_links'])
     async def wiki(self, ctx, *, user_input=None):
 
         if user_input is None:

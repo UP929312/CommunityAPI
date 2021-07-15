@@ -31,7 +31,7 @@ class dungeons_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command()
+    @commands.command(aliases=['d', 'dungeon'])
     async def dungeons(self, ctx, username=None):
 
         player_data = await get_profile_data(ctx, username)
@@ -47,9 +47,8 @@ class dungeons_cog(commands.Cog):
         tiers_completed = max(dungeon_data["tier_completions"].keys(), key=lambda x: x)           
         level = bisect(catacombs_levels, dungeon_data['experience'])
         
-        #secrets_found = requests.get(f"https://sky.shiiyu.moe/api/v2/dungeons/{username}/{player_object.profile['cute_name']}").json()
-        #secrets_found = secrets_found["dungeons"]["secrets_found"]
-        secrets_found = "???"
+        secrets_found = requests.get(f"https://sky.shiiyu.moe/api/v2/dungeons/{username}/{player_data['cute_name']}").json()
+        secrets_found = secrets_found["dungeons"].get("secrets_found", "???")
         
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")

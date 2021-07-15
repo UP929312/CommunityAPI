@@ -1,23 +1,23 @@
 import discord
-from discord.ext import commands#, tasks
+from discord.ext import commands
 intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, emojis=False, integrations=False, webhooks=False,
                           members=False, messages=True, guild_reactions=False, guilds=True, presences=False,)
 
-from database_manager import load_guild_prefix, load_prefixes
+from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
 from utils import safe_delete, safe_send
 
 print("Importing packages done...")
 
 from networth.networth import networth_cog
 from networth.tree import tree_cog
-from set_prefix import set_prefix_cog
-from help_command import help_cog
+
+print("Imported all non-player_commands")
 
 from player_commands import *
 
 print("Importing .py files done...")
 
-
+linked_accounts = dict(load_linked_accounts())
 prefixes = dict(load_prefixes())
 
 def get_prefix(bot, msg):
@@ -26,6 +26,7 @@ def get_prefix(bot, msg):
 
 client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = prefixes
+client.linked_accounts = linked_accounts
 #====================================================
 @client.event
 async def on_ready():
@@ -58,7 +59,7 @@ async def on_command_completion(ctx):
 #====================================================
 
 print("Loading cogs...")
-all_cogs = [networth_cog, tree_cog, set_prefix_cog, help_cog]
+all_cogs = [networth_cog, tree_cog]
 all_cogs.extend(player_commands)
 print("Adding cogs...")
 

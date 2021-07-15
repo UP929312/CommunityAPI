@@ -89,14 +89,20 @@ class MenuView(discord.ui.View):
 
 def generate_page(ctx, response, username, page):
     if page == "main":
-        embed = discord.Embed(title=f"Weights Calculator For {username}:", description="\n".join([f"Click the buttons to start!",
+        total_regular_weight = round(response["data"]["weight"], 2)
+        total_overflow_weight = round(response["data"]["weight_overflow"], 2)
+        embed = discord.Embed(title=f"Weights Calculator For {username}:", description="\n".join([f"Total Regular Weight: **{total_regular_weight}**",
+                                                                                                  f"Total Overflow Weight: **{total_overflow_weight}**",
+                                                                                                  f"Total Weight: **{round(total_regular_weight+total_overflow_weight, 2)}**",
+                                                                                                   "",
+                                                                                                   "Click the buttons to start!",
                                                                                                    "<:dungeons:864588623394897930> Dungeons",
                                                                                                    "<:skills:864588638066311200> Skills",
                                                                                                    "<:slayers:864588648111276072> Slayer",
                                                                                                    "<:misc:854801277489774613> Info"]),
                           url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
     elif page == "info":
-        embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to calculate how far into the game you're at, whether that be in slayer, dungeons, or your skills. It uses a extensive formula to decide this, however this isn't made by CommunityBot, so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
+        embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to represent how far into the game you are, whether that be in slayer, dungeons, or your skills. It uses an extensive formula to calculate the weights. That formula however isn't made by CommunityBot, so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
     else:  
         data_start = response["data"][page]
         data = response["data"][page]
@@ -126,10 +132,7 @@ def generate_page(ctx, response, username, page):
             regular = round(data[category]["weight"], 2)
             overflow = round(data[category]["weight_overflow"], 2)
             embed.add_field(name=f"{EMOJI_DICT[category]} {category.title()} ({level})",
-                            value=f"Regular: **{regular}**\nOverflow: **{overflow}**\nTotal: **{round(regular+overflow, 2)}**", inline=True)           
-
-        if page == "dungeons":
-            embed.add_field(name='\u200b', value='\u200b', inline=True)            
+                            value=f"Regular: **{regular}**\nOverflow: **{overflow}**\nTotal: **{round(regular+overflow, 2)}**", inline=True)                    
     
     embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
     embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")

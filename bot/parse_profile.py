@@ -11,13 +11,19 @@ ALLOWED_CHARS = {"_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b"
 async def get_profile_data(ctx, username):
     """
     This returns a dictionary of all the player's profile data.
-    It also supports parsing player's ign from their discord nicks, by trimming off their tag,
+    It will take a already given username, but if one isn't given, it will
+    first check if they've linked their account, if not, it will try
+    parsing their ign from their discord nicks, by trimming off their tag,
     e.g. '[Admin] Notch' will get parsed as 'Notch'.
     """
     if username is None:
-        nick = ctx.author.display_name
-        username = nick.split("]")[1] if "]" in nick else nick
-        username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])
+        linked_account = ctx.bot.linked_accounts.get(f"{ctx.author.id}", None)
+        if linked_account:
+            username = linked_account
+        if not linked_account:
+            nick = ctx.author.display_name
+            username = nick.split("]")[1] if "]" in nick else nick
+            username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])
 
     uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
     if uuid_request.status_code > 200:
@@ -46,6 +52,7 @@ async def get_profile_data(ctx, username):
     profile_dict["uuid"] = uuid
     profile_dict["profile_id"] = profile["profile_id"]
     profile_dict["username"] = username
+    profile_dict["cute_name"] = profile["cute_name"]
 
     return profile_dict
 

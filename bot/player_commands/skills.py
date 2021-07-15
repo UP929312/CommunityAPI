@@ -48,7 +48,7 @@ class skills_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command()
+    @commands.command(aliases=['skill'])
     async def skills(self, ctx, username=None):
         
         player_data = await get_profile_data(ctx, username)

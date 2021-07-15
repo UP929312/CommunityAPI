@@ -6,14 +6,13 @@ from bisect import bisect
 
 from parse_profile import get_profile_data
 
-from utils import error
-from utils import format_duration
+from utils import error, format_duration
 
 class kills_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command()
+    @commands.command(aliases=['k', 'kill'])
     async def kills(self, ctx, username=None):
         
         player_data = await get_profile_data(ctx, username)
