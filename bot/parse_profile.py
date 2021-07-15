@@ -20,7 +20,7 @@ async def get_profile_data(ctx, username):
         linked_account = ctx.bot.linked_accounts.get(f"{ctx.author.id}", None)
         if linked_account:
             username = linked_account
-        if not linked_account:
+        else:
             nick = ctx.author.display_name
             username = nick.split("]")[1] if "]" in nick else nick
             username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])

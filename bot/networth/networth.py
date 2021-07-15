@@ -58,10 +58,14 @@ class networth_cog(commands.Cog):
     async def networth(self, ctx, username=None):
 
         if username is None:
-            nick = ctx.author.display_name
-            username = nick.split("] ")[1] if "]" in nick else nick
-            username = username.replace(" ឵឵", "")
- 
+            linked_account = self.client.linked_accounts.get(f"{ctx.author.id}", None)
+            if linked_account:
+                username = linked_account
+            else:
+                nick = ctx.author.display_name
+                username = nick.split("]")[1] if "]" in nick else nick
+                username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])
+
         try:
             request = requests.get(f"http://{self.client.ip_address}:8000/pages/{username}")
         except Exception as e:
