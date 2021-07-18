@@ -16,6 +16,7 @@ async def get_profile_data(ctx, username):
     parsing their ign from their discord nicks, by trimming off their tag,
     e.g. '[Admin] Notch' will get parsed as 'Notch'.
     """
+    nick = None  # Used to detect if we fell back on parsing nick
     if username is None:
         linked_account = ctx.bot.linked_accounts.get(f"{ctx.author.id}", None)
         if linked_account:
@@ -32,7 +33,10 @@ async def get_profile_data(ctx, username):
     try:
         uuid = uuid_request.json()["id"]
     except KeyError:
-        return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly")
+        if not nick:
+            return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly")
+        else:
+            return await error(ctx, "Error, could not parse username from discord nickname", "No linked account was found through link_account, and no username was given. Please link your account or provide a username")
 
 
     profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()

@@ -1,8 +1,6 @@
 import re
 import json
 
-BASE_REFORGES = ['Strong ', 'Shaded ', 'Withered ', 'Fabled ', 'Unreal ', 'Unpleasant ', 'Precise ', 'Blessed ', 'Forceful ', 'Ancient ', 'Renowned ', 'Submerged ', 'Light ', 'Necrotic ', 'Wise ', 'Loving ', 'Pure ', 'Fierce ', 'Candied ', 'Treacherous ', 'Dirty ', 'Smart ', 'Heroic ', 'Fast ', 'Titanic ', 'Sharp ', 'Rapid ', 'Awkward ', 'Fine ', 'Heavy ', 'Fair ', 'Odd ', 'Gentle ', 'Neat ', 'Hasty ', 'Spicy ', 'Rich ', 'Clean ', 'Suspicious ', 'Strange ', 'Salty ', 'Stiff ', 'Lucky ', 'Gilded ', 'Warped ', 'Deadly ', 'Grand ', 'Neat ', 'Spiritual ', 'Headstrong ', 'Clean ', 'Perfect ', 'Spiked ', 'Cubic ', 'Reinforced ', 'Ridiculous ', 'Giant ', 'Bizarre ', 'Itchy ', 'Ominous ', 'Pleasant ', 'Pretty ', 'Shiny ', 'Simple ', 'Strange ', 'Vivid ', 'Godly ', 'Demonic ', 'Hurtful ', 'Keen ', 'Superior ', 'Zealous ', 'Silky ', 'Bloody ', 'Sweet ', 'Fruitful ', 'Magnetic ', 'Refined ', 'Moil ', 'Toil ', 'Fleet ', 'Stellar ', 'Mithraic ', 'Auspicious ', 'Bountiful ',]
-
 DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",         "stack_size": 1,
                 "type": "Default",                  "item_group": "Misc",          "rarity": "Common",
                 "recombobulated": 0,                "hot_potatoes": 0,             "enchantments": {},
@@ -30,7 +28,6 @@ class Item:
         # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0}
         #{'id': 160, 'Count': 1, 'tag': {'display': {'Name': ' '}}, 'Damage': 15}
 
-        #if "tag" not in nbt or "Lore" not in nbt["tag"]["display"]:
         if "tag" not in nbt or "Lore" not in nbt["tag"].get("display", {}):
             for tag_name, value in DEFAULT_ITEM.items():
                 setattr(self, tag_name, value)
@@ -58,6 +55,10 @@ class Item:
         self.art_of_war = extras.get("art_of_war_count", None)
         self.wood_singularity = extras.get("wood_singularity_count", None)
 
+        # Parse item name with removed reforges (We can already get the reforges)
+        if self.reforge:            
+            self.name = self.name.removeprefix(self.reforge.title()+" ")
+
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])
         self.description[-1] = re.sub('§l§ka', '', self.description[-1])
@@ -76,11 +77,6 @@ class Item:
                 last_desc_row.remove("DUNGEON")
             self.item_group = last_desc_row[-1]
         
-        # Parse item name with removed reforges (We can already get the reforges)
-        if self.reforge:
-            for reforge in BASE_REFORGES:
-                self.name = self.name.removeprefix(reforge)       
-
         if self.internal_name == "PET":
             self.pet_info = json.loads(extras["petInfo"])
 

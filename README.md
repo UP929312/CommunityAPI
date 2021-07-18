@@ -1,4 +1,4 @@
-# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-1.2.5-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
+# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-1.3.0-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
 
 This is a bot made partially by the community, with the lead dev being Skezza#1139.\
 Special mention to Mega_Pi+Seattle72 for the research and knowledge on a lot of the content!\
@@ -37,7 +37,6 @@ Then we calculate some extras for base items:
 - If it's got Transmission Tuners, add the value from BIN of each one to the value.
 - If it's an Aspect of the Void, and is Ethermerged, add the value of the Etherwarp merger and conduit to the value.
 - If it's a Midas Staff or Sword, add the amount of the winning bid to it.
-- ~~If it's got livid fragments applied to it, add those 8 to the value.~~ Currently disabled.
 - And if there's more than one item, e.g. a stack of enchanted diamond blocks, it multiplies the value by the amount of items.
 
 For pets:

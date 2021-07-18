@@ -4,7 +4,7 @@ intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_re
                           members=False, messages=True, guild_reactions=False, guilds=True, presences=False,)
 
 from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
-from utils import safe_delete, safe_send
+from utils import safe_delete, safe_send, error as error_embed
 
 print("Importing packages done...")
 
@@ -39,9 +39,6 @@ async def on_command_error(ctx, error):
     if (isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole)
         or isinstance(error, commands.errors.CheckFailure)): # or isinstance(error, commands.Forbidden)
         pass
-    elif isinstance(error, commands.errors.CommandInvokeError):
-        await ctx.send("There was an error doing that command, uh oh")
-        print(error)
     elif isinstance(error, commands.CommandOnCooldown):
         # ALLOW PEOPLE WITH MANAGE MESSAGES TO BYPASS THE COOLDOWN
         if ctx.guild is not None and ctx.author.guild_permissions.manage_messages: 
@@ -49,8 +46,14 @@ async def on_command_error(ctx, error):
         else:
             await safe_delete(ctx.message)
             await safe_send(ctx.author, error)
+    elif isinstance(error, commands.errors.CommandInvokeError):
+        print(f"##### ERROR, The command was: {ctx.message.content}. It was done in {ctx.guild.name}, ({ctx.guild.id}) by {ctx.author.display_name} ({ctx.author.id})")
+        print(str(error))
+        return await error_embed(ctx, "Error, something failed on our side.", f"The error that occured was: {error}, if this continues, please report it to Skezza#1139,")
     else:
-        raise error
+        print(f"##### ERROR, The command was: {ctx.message.content}. It was done in {ctx.guild.name}, ({ctx.guild.id}) by {ctx.author.display_name} ({ctx.author.id})")
+        print(str(error))
+        return await error_embed(ctx, "Error, something failed on our side.", f"The error that occured was: {error}, if this continues, please report it to Skezza#1139,")
 
 @client.event
 async def on_command_completion(ctx):

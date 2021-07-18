@@ -15,13 +15,9 @@ from player_commands.set_prefix import set_prefix_cog
 from player_commands.link_account import link_account_cog
 from player_commands.help_command import help_cog
 
-
-#bazaar_cog = [bazaar_cog]
-bazaar_cog = []
-
 assistant_commands = [set_prefix_cog, link_account_cog, help_cog]
-assistant_commands.extend(bazaar_cog)
 
+#bazaar_cog
 regular_commands = [sky_cog, wiki_cog,
                    dungeons_cog, kills_cog, lowest_bin_cog,
                    skills_cog, slayer_cog, invite_cog,

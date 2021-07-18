@@ -10,8 +10,8 @@ from networth.constants import *
 ALLOWED_CHARS = {"_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
 
 class MenuButton(discord.ui.Button['MenuView']):
-    def __init__(self, page: str, index: int):
-        super().__init__(style=discord.ButtonStyle.grey if index%2==0 else discord.ButtonStyle.blurple, emoji=PAGE_TO_EMOJI[page], row=index//5)
+    def __init__(self, page: str, index: int, disabled: bool):
+        super().__init__(style=discord.ButtonStyle.grey if index%2==0 else discord.ButtonStyle.blurple, emoji=PAGE_TO_EMOJI[page], row=index//5, disabled=disabled)
         self.page = page
 
     async def callback(self, interaction: discord.Interaction):
@@ -37,7 +37,7 @@ class MenuView(discord.ui.View):
         self.username = username
 
         for i, page in enumerate(page_names):
-            self.add_item(MenuButton(page, index=i))
+            self.add_item(MenuButton(page, index=i, disabled=i==0))
 
     async def update_embed(self, interaction: discord.Interaction):
         embed = generate_page(self.command_author, self.data, self.username, self.page)
