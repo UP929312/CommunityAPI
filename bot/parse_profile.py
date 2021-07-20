@@ -41,7 +41,12 @@ async def get_profile_data(ctx, username):
 
     profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
 
-    if profile_list['profiles'] is None:  # If we can't find any profiles, they never made one
+    if profile_list == {'success': False, 'cause': 'Invalid API key'}:
+        print("############################### Error, key has failed again!")
+        return await error(ctx, "Error, the api key used to run this bot has failed.", "This may be because Hypixel removed the key. A fix is coming soon!")
+
+    # profiles can be None, or not exist as key
+    if profile_list.get('profiles') is None:  # If we can't find any profiles, they never made one
         return await error(ctx, "That user has never joined Skyblock before!", "Make sure you typed the name correctly and try again.")
 
     valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]
