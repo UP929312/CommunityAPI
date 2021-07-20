@@ -8,6 +8,17 @@ from datetime import datetime
 from utils import error, hf, strfdelta
 from parse_profile import get_profile_data
 
+RARITY_DICT = {   
+    "COMMON":    "<:common:863390433593786369>",
+    "UNCOMMON":  "<:uncommon:863390433517895690>",
+    "RARE":      "<:rare:863390433186152459>",
+    "EPIC":      "<:epic:863390433526022165>",
+    "LEGENDARY": "<:legendary:863390433493123072>",
+    "MYTHIC":    "<:mythic:867070377750167572>",
+    "SUPREME":   "<:supreme:867070395949383700>",
+    "SPECIAL":   "<:special:867070427897135144>"
+}
+
 names = ["Expired/Ended auctions", "Buy It Now", "Auctions"]
 
 with open('text_files/hypixel_api_key.txt') as file:
@@ -41,7 +52,7 @@ def to_time(time):
 #===================================================================
 
 def format_auction(auction):
-    title = f"{auction['tier']} {auction['item_name']}"
+    title = f"{RARITY_DICT[auction['tier']]} {auction['item_name']}"
     expired = to_time(auction["end"]) < datetime.now()
     sell_type = "auction" if "bin" not in auction else "bin"
 

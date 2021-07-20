@@ -26,7 +26,10 @@ RARITY_DICT = {
     "UNCOMMON":  "<:uncommon:863390433517895690>",
     "RARE":      "<:rare:863390433186152459>",
     "EPIC":      "<:epic:863390433526022165>",
-    "LEGENDARY": "<:legendary:863390433493123072> ",
+    "LEGENDARY": "<:legendary:863390433493123072>",
+    "MYTHIC":    "<:mythic:867070377750167572>",
+    "SUPREME":   "<:supreme:867070395949383700>",
+    "SPECIAL":   "<:special:867070427897135144>"
 }
 
 class missing_cog(commands.Cog):

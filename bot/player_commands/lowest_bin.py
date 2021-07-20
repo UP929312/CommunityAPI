@@ -6,6 +6,7 @@ from difflib import SequenceMatcher
 import requests
 import json
 
+from player_commands.auction_house import format_auction
 from extract_ids import extract_nbt_dicts, extract_internal_names
 from utils import error, hf
 
@@ -50,9 +51,9 @@ class lowest_bin_cog(commands.Cog):
 
         #print("Cheapest=", cheapest_item)
           
-        item_data = extract_nbt_dicts(cheapest_item['item_bytes'])
-        #print(item_data)
-
-        embed = discord.Embed(title=f"Lowest bin found for {cheapest_item['item_name']}", description=f"Starting bid: {hf(cheapest_item['starting_bid'])}", colour=0x3498DB)
+        formatted_auction = format_auction(cheapest_item)
+            
+        embed = discord.Embed(title=f"Lowest bin found for your input:", description=formatted_auction, colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
         await ctx.send(embed=embed)
+
