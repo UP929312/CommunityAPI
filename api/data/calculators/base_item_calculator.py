@@ -83,6 +83,9 @@ def calculate_item(price, print_prices=False):
     # Wood singularty
     if item.wood_singularity:
         value["wood_singularty_value"] = LOWEST_BIN.get("WOOD_SINGULARITY", 0)
+    if item.skin:
+        value["skin"] = {}
+        value["skin"][item.skin] = LOWEST_BIN.get(item.skin, 0)
     # Farming for dummies books on hoes
     if item.farming_for_dummies:
         value["farming_for_dummies_bonus"] = item.farming_for_dummies*LOWEST_BIN.get("FARMING_FOR_DUMMIES", 0)
@@ -107,9 +110,6 @@ def calculate_item(price, print_prices=False):
     # Hyperion scrolls
     if item.ability_scrolls:
         value["ability_scrolls_value"] = sum([LOWEST_BIN.get(scroll, 0) for scroll in item.ability_scrolls])
-    # For Livid fragments
-    #if item.livid_fragments:
-    #    value["livid_fragment_value"] = item.livid_fragments*LOWEST_BIN.get("LIVID_FRAGMENT", 0)
     #=================
     price.value = value
     return price

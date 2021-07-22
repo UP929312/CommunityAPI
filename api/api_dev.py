@@ -12,7 +12,7 @@ username = test_usernames[user]
 ip = "http://db.superbonecraft.dk:8000"  # For the server
 
 #a = requests.get(f"{ip}/groups/56ms")
-a = requests.get("http://db.superbonecraft.dk:8000/total/Skezza")
+a = requests.get(f"{ip}/dump/SaucySiggy")
 print(a.status_code)
 print(a.json())
 

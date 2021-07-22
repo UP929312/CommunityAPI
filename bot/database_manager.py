@@ -72,4 +72,4 @@ def get_saved_profiles_dev():
     print(fetch_data("SELECT * FROM stored_profiles"))
 
 get_saved_profiles_dev()
-'''
+#'''

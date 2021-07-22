@@ -5,9 +5,9 @@ DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",      
                 "type": "Default",                  "item_group": "Misc",          "rarity": "Common",
                 "recombobulated": 0,                "hot_potatoes": 0,             "enchantments": {},
                 "reforge": None,                    "star_upgrades": 0,            "talisman_enrichment": None,
-                "art_of_war": None,                 "wood_singularity": None,      "farming_for_dummies": 0,
-                "tuned_transmission": 0,            "ethermerge": False,           "winning_bid": 0,
-                "ability_scrolls": [],              "origin_tag": "UNKNOWN",
+                "art_of_war": None,                 "wood_singularity": None,      "skin": None,
+                "farming_for_dummies": 0,           "tuned_transmission": 0,       "ethermerge": False,
+                "winning_bid": 0,                   "ability_scrolls": [],         "origin_tag": "UNKNOWN",
                }
                 
 HOE_MATERIAL_TO_INTERNAL_NAME = {
@@ -41,7 +41,7 @@ class Item:
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
         self.origin_tag = extras.get("originTag", "UNKNOWN")
-            
+                    
         self.recombobulated = True if extras.get('rarity_upgrades', False) else False
         self.hot_potatoes = extras.get('hot_potato_count', 0)
 
@@ -54,6 +54,7 @@ class Item:
         self.talisman_enrichment = extras.get("talisman_enrichment", None)
         self.art_of_war = extras.get("art_of_war_count", None)
         self.wood_singularity = extras.get("wood_singularity_count", None)
+        self.skin = extras.get("skin", None)
 
         # Parse item name with removed reforges (We can already get the reforges)
         if self.reforge:            
@@ -159,6 +160,8 @@ class Item:
             data["art_of_war"] = True
         if self.wood_singularity:
             data["wood_singularity"] = True
+        if self.skin:
+            data["skin"] = self.skin
         if self.farming_for_dummies > 0:
             data["farming_for_dummies"] = self.farming_for_dummies
         if self.tuned_transmission:

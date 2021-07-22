@@ -1,5 +1,5 @@
 from utils import hf, clean
-from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
+from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, SKIN, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
 
 def generate_item_description(v):
     elems = []
@@ -27,6 +27,9 @@ def generate_item_description(v):
             elems.append(f"{REGULAR_STARS} - Regular stars: +{hf(stars['regular_stars']['total_essence_value'])}")
         if "master_stars" in stars:
             elems.append(f"{MASTER_STARS} - Master stars: ({len(stars['master_stars'])} stars - {hf(sum(stars['master_stars'].values()))})")
+    if "skin" in v:
+        skin_item, skin_value = list(v['skin'].items())[0]
+        elems.append(f"{SKIN} - Skin: ({clean(skin_item)} - {hf(skin_value)})")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
         reforge_item = list(v['reforge']['item'].keys())[0]
         reforge_item_cost = hf(list(v['reforge']['item'].values())[0])

@@ -30,6 +30,7 @@ Then we calculate some extras for base items:
 - It it has a reforge stone applied to it, calculate the cost of the reforge stone, as well as the cost to apply it. *Partially subjective with the cost of essence.
 - If it has a talisman enrichment, add the price of that enrichment from BIN.
 - If it's a Wooden Sword with a "Wood Singularity" added to it, add the price of that item from the BIN.
+- If the item is armor and has a armor skin on it, add the price of that skin from BIN.
 - If it has an "Art Of War" book added to it, add the price of that book from the BIN to the value.
 - For each enchantment, if it's not on BIN, try doing 2 of the level below, or 4 of two levels below, etc. This excludes: Compact, Expertise and Cultivating.
 - If the item is a drill, add the cost of each upgrade from the BIN to the value.

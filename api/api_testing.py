@@ -7,7 +7,7 @@ from parameterized import parameterized, parameterized_class
 ip = "http://db.superbonecraft.dk:8000"  # For the server
 
 test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
-                  3: "UrMinecraftDoggo", 4: "Skezza", 5: "kori_100",
+                  4: "Skezza", 5: "kori_100",
                   6: "XD_Zaptro_XD", 7: "seattle72", 8: "Refraction"}
 
 DEFAULT_KEYS = ["purse", "banking", "inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"]
