@@ -29,17 +29,17 @@ max_levels = {
     "runecrafting": 25}
 
 SKILL_EMOJI_DICT = {
-    "farming": "<:farming:832359758404386897>",
-    "mining": "<:mining:832359758631272498>",
-    "combat": "<:combat:832359758659977226>",
-    "foraging": "<:foraging:832359758694187048>",
-    "fishing": "<:fishing:832359758635597834>",
-    "enchanting": "<:enchanting:832359758329020417>",
-    "alchemy": "<:alchemy:832359758236876832>",
-    "taming": "<:taming:832360479300648961>",
-    "carpentry": "<:carpentry:832359758635597875>",
-    "runecrafting": "<:runecrafting:832359758442004551>"
-}
+    "farming": "<:farming:867330396684943390>",
+    "mining": "<:mining:867330462648762368>",
+    "combat": "<:combat:867330422018408448>",
+    "foraging": "<:foraging:867330412128501770>",
+    "fishing": "<:fishing:867330404985339924>",
+    "enchanting": "<:enchanting:867330504533606480>",
+    "alchemy": "<:alchemy:867330341697355796>",
+    "taming": "<:taming:867330484668334084>",
+    "carpentry": "<:carpentry:867361518274347039>",
+    "runecrafting": "<:runecrafting:867330494679875584>"
+}    
 
 def get_level(skill_data, skill):
     return min(bisect(cumulative_xp_reqs, skill_data.get(f'experience_skill_{skill}', 0)), max_levels[skill])
@@ -60,9 +60,6 @@ class skills_cog(commands.Cog):
 
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
-
-        #print(skill_data.get(f'experience_skill_{skill}', 0) for skill in COUNTED_SKILLS)# ####
-        #print(get_level(skill_data, skill) for skill in COUNTED_SKILLS) ###########
 
         total_skill_xp = sum(skill_data.get(f'experience_skill_{skill}', 0) for skill in SKILLS)
         total_counted_levels = sum(get_level(skill_data, skill) for skill in COUNTED_SKILLS)

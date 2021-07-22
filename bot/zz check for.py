@@ -1,6 +1,6 @@
 import os
 
-find = "gem"
+find = "strfdelta"
 
 folders = [f.path for f in os.scandir("./") if f.is_dir()]
 

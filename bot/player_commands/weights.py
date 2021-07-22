@@ -10,16 +10,16 @@ with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
 
 EMOJI_DICT = {
-    "farming": "<:farming:832359758404386897>",
-    "mining": "<:mining:832359758631272498>",
-    "combat": "<:combat:832359758659977226>",
-    "foraging": "<:foraging:832359758694187048>",
-    "fishing": "<:fishing:832359758635597834>",
-    "enchanting": "<:enchanting:832359758329020417>",
-    "alchemy": "<:alchemy:832359758236876832>",
-    "taming": "<:taming:832360479300648961>",
-    "carpentry": "<:carpentry:832359758635597875>",
-    "runecrafting": "<:runecrafting:832359758442004551>",
+    "farming": "<:farming:867330396684943390>",
+    "mining": "<:mining:867330462648762368>",
+    "combat": "<:combat:867330422018408448>",
+    "foraging": "<:foraging:867330412128501770>",
+    "fishing": "<:fishing:867330404985339924>",
+    "enchanting": "<:enchanting:867330504533606480>",
+    "alchemy": "<:alchemy:867330341697355796>",
+    "taming": "<:taming:867330484668334084>",
+    "carpentry": "<:carpentry:867361518274347039>",
+    "runecrafting": "<:runecrafting:867330494679875584>",
 
     "catacombs": "<:catacombs:864618274900410408>",
     "healer": "<:healer:864611797037350932>",
@@ -28,10 +28,10 @@ EMOJI_DICT = {
     "archer": "<:archer:864611797038530590>",
     "tank": "<:tank:864611797033156629>",
     
-    "revenant": "<:zombie:832251786316349490>",
-    "tarantula": "<:spider:832251785820504075>",
-    "sven": "<:wolf:832251786059579473>",
-    "enderman": "<:enderman:860902315347148801>",
+    "revenant": "<:revenant:867330711191158804>",
+    "tarantula": "<:tarantula:867330736368386100>",
+    "sven": "<:sven:867330745591529512>",
+    "enderman": "<:voidgloom:867330759073464360>",
 }
 PAGE_URLS = {"dungeons": ["healer", "mage", "berserker", "archer", "tank"],
              "skills":   ["mining", "foraging", "enchanting", "farming", "combat", "fishing", "alchemy", "taming", "carpentry"],

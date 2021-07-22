@@ -17,7 +17,7 @@ class lowest_bin_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command(aliases=['lb', 'bin'])
+    @commands.command(aliases=['lb', 'bin', 'lbin'])
     async def lowest_bin(self, ctx, *, input_item=None):
         if input_item is None:
             return await error(ctx, "Error, no item given!", "This command takes the name of the item you're looking for to work!")

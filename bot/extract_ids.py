@@ -68,16 +68,22 @@ def extract_internal_id(nbt):
     Takes the data from the decode container function and returns
     the internal_id
     """
-    
     tag = nbt['tag']
     internal_name = tag.get('ExtraAttributes', {"id": "UNKNOWN"}).get('id', "UNKNOWN")
 
     return internal_name
 
 def extract_nbt_dicts(raw):
+    """
+    Takes a raw compressed encoded string and returns all the items in that
+    list in an nbt dictionary
+    """
     return [x['tag'] for x in parse_container(raw)]
 
 def extract_internal_names(raw):
+    """
+    Extracts all the internal names from a container
+    """
     return [extract_internal_id(x) for x in parse_container(raw)]
 
 

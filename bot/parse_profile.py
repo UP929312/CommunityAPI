@@ -25,19 +25,21 @@ async def get_profile_data(ctx, username):
             nick = ctx.author.display_name
             username = nick.split("]")[1] if "]" in nick else nick
             username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])
-
+            
+    #############
     uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
     if uuid_request.status_code > 200:
         return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly")
 
-    try:
-        uuid = uuid_request.json()["id"]
-    except KeyError:
+    # When we can't find a username, request.text will be '', if we can, it'll be the json string
+    if not uuid_request.text:
         if not nick:
             return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly")
         else:
             return await error(ctx, "Error, could not parse username from discord nickname", "No linked account was found through link_account, and no username was given. Please link your account or provide a username")
-
+        
+    uuid = uuid_request.json()["id"]        
+    ##############
 
     profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
 
@@ -59,8 +61,8 @@ async def get_profile_data(ctx, username):
     profile_dict = profile["members"][uuid]
 
     profile_dict["uuid"] = uuid
-    profile_dict["profile_id"] = profile["profile_id"]
     profile_dict["username"] = username
+    profile_dict["profile_id"] = profile["profile_id"]
     profile_dict["cute_name"] = profile["cute_name"]
 
     return profile_dict

@@ -5,7 +5,7 @@ import re
 import requests
 from datetime import datetime
 
-from utils import error, hf, strfdelta
+from utils import error, hf, format_duration
 from parse_profile import get_profile_data
 
 RARITY_DICT = {   
@@ -35,9 +35,7 @@ def get_enchantments(lore):
     if len(enchantment_pairs[-1]) == 1:
         enchantment_pairs[-1] = (enchantment_pairs[-1][0], "")
 
-    enchantment_string = ""        
-    for first, second in enchantment_pairs:
-        enchantment_string += f"[{first} {second}]\n"
+    enchantment_string = "\n".join([f"[{first} {second}]" for first, second in enchantment_pairs])
 
     formatted_enchants = f'''```ini
 [Enchantments]
@@ -74,7 +72,7 @@ def format_auction(auction):
         status = "PURCHASABLE"
         
     if not expired:
-        time_left = "↳ Time left: "+strfdelta(to_time(auction["end"]) - datetime.now())+"\n"
+        time_left = "↳ Time left: "+format_duration(to_time(auction["end"]) - datetime.now())+"\n"
 
     if sell_type == "auction":
         bid_count = f"↳ Bids: {len(auction.get('bids', []))}\n"
@@ -117,10 +115,10 @@ class auction_house_cog(commands.Cog):
 
         data = []
 
-        for i, group in enumerate([expired_auctions, bins, auctions]):
+        for group_name, group in zip(names, [expired_auctions, bins, auctions]):
             if not group:
                 continue
-            data.append("**――――――― "+names[i]+" ―――――――**")
+            data.append(f"**――――――― {group_name} ―――――――**")
             for auction in group:                
                 auction = format_auction(auction)
                 if sum([len(x) for x in data])+len(auction) > 4000:

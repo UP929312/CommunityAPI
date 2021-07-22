@@ -9,6 +9,7 @@ from extract_ids import extract_internal_names
 # Create the master list!
 from text_files.accessory_list import talisman_upgrades
 
+# Get a list of all accessories
 ACCESSORIES = []
 with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
     item_dict = json.load(file)
@@ -16,6 +17,7 @@ with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
         if item_dict[item].get("rarity", False) and item_dict[item]["rarity"] != "UNKNOWN":
             ACCESSORIES.append(item_dict[item])
 
+# Now remove all the low tier ones
 MASTER_ACCESSORIES = []
 for accessory in ACCESSORIES:
     if accessory["internal_name"] not in talisman_upgrades.keys():
@@ -67,8 +69,6 @@ class missing_cog(commands.Cog):
             for item in acc_list:
                 internal_name, name, rarity, wiki_link = item.values()
                 wiki_link = "<Doesn't exist>" if not wiki_link else f"[wiki]({wiki_link})"
-                if rarity == "UNKNOWN":
-                    print(item)
                 text += f"{RARITY_DICT[rarity]} {name}\nLink: {wiki_link}\n"
                             
             embed.add_field(name=f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}", value=text, inline=True)

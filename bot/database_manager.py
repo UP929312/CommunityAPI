@@ -1,4 +1,5 @@
 import mysql.connector
+import datetime
 
 with open("text_files/database_creds.txt") as file:
     host, user, password = [x.rstrip("\n") for x in file.readlines()]
@@ -59,3 +60,16 @@ def load_linked_accounts():
     return fetch_data("SELECT discord_id, username FROM linked_accounts")
 
 #===========================================
+def insert_profile(uuid, purse, banking, inventory, accessories, ender_chest, armor, vault, wardrobe, storage, pets):
+    execute_command('''INSERT INTO stored_profiles (uuid, datetime, purse, banking, inventory, accessories, ender_chest, armor, vault, wardrobe, storage, pets)
+                     VALUES (%s, NOW(), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
+                    (uuid, purse, banking, inventory, accessories, ender_chest, armor, vault, wardrobe, storage, pets))
+
+def get_saved_profiles(uuid, time=datetime.datetime(2000, 1, 1)):  # Basically, a long time ago
+    return fetch_data("SELECT datetime, purse, banking, inventory, accessories, ender_chest, armor, vault, wardrobe, storage, pets FROM stored_profiles WHERE uuid=%s AND datetime > %s", (uuid, time))
+'''
+def get_saved_profiles_dev():
+    print(fetch_data("SELECT * FROM stored_profiles"))
+
+get_saved_profiles_dev()
+'''

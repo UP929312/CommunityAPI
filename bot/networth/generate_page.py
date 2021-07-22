@@ -6,8 +6,8 @@ from networth.constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
 
 def format_info(total, item, value):
     name = item['name'] if 'name' in item else f"[Lvl {value['pet_level']}] {clean(item['tier'])} {clean(item['type'])}"
-    reforge = "" if "reforge" not in item else clean(item['reforge'])
-    value = f"{reforge} {name} ➜ {hf(total)}"
+    reforge = "" if "reforge" not in item else clean(item['reforge'])+" "
+    value = f"{reforge}{name} ➜ {hf(total)}"
     return value
 
 def generate_page(command_author, data, username, page):

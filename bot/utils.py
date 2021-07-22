@@ -1,6 +1,5 @@
 import discord
 from math import log10
-from string import Formatter
 from datetime import datetime, timedelta
 
 #=============================================================
@@ -39,7 +38,6 @@ def hf(num):
     '''
     Takes an int/float e.g. 10000 and returns a formatted version i.e. 10k
     '''
-
     if isinstance(num, str):
         if num.isdigit():
             num = float(num)
@@ -50,59 +48,31 @@ def hf(num):
 
     rounded = round(num, 3 - int(log10(num)) - 1)
     suffix = ends[int(log10(rounded)/3)]
-    new_num = str(rounded / letter_values[suffix])
+    new_num = rounded / letter_values[suffix]
     return str(new_num)+suffix
 
 def format_duration(duration, include_millis=False):
 
     if isinstance(duration, (str, int)):
-        t = timedelta(milliseconds=int(duration))
+        dur = timedelta(milliseconds=int(duration))
     else:
-        t = duration
+        dur = duration
 
-    dur = timedelta(milliseconds=int(duration))
-
-    days, dur = divmod(dur, timedelta(days=1))
-    hours, dur = divmod(dur, timedelta(hours=1))
-    mins, dur = divmod(dur, timedelta(minutes=1))
-    secs, dur = divmod(dur, timedelta(seconds=1))
-    millis = int((dur / timedelta(microseconds=1)) / 1000)
-
-    if (days, hours, mins, secs, millis) == (0, 0, 0, 0, 0):
-        return "0ms (No time given)"
+    units = {}
+    units["days"], dur = divmod(dur, timedelta(days=1))
+    units["hours"], dur = divmod(dur, timedelta(hours=1))
+    units["mins"], dur = divmod(dur, timedelta(minutes=1))
+    units["secs"], dur = divmod(dur, timedelta(seconds=1))
     
+    units["millis"] = 0 if not include_millis else int((dur / timedelta(microseconds=1)) / 1000)
+
+    if not any([v for v in units.values()]):
+        return "0ms (No time given)"
+
     parts = []
-    if days > 0:
-        parts.append(f"{days}d")
-    if hours > 0:
-        parts.append(f"{hours}h")             
-    if mins > 0:
-        parts.append(f"{mins}m")
-    if secs > 0:
-        parts.append(f"{secs}s")
-    if millis > 0:
-        if include_millis:
-            parts.append(f"{millis}ms")
-        
+    for timeframe, symbol in [("days", "d"), ("hours","h"),("mins","m"),("secs","s"),("millis","ms")]:
+        if units[timeframe] > 0:
+            parts.append(f"{units[timeframe]}{symbol}")
+            
     formatted_string = ", ".join(parts)    
     return formatted_string
-
-def strfdelta(tdelta):
-    fmt = '{D}d {H}h {M}m {S:02.0f}s'
-    f = Formatter()
-    d = {}
-    l = {'D': 86400, 'H': 3600, 'M': 60, 'S': 1}
-    k = map( lambda x: x[1], list(f.parse(fmt)))
-    rem = int(tdelta.total_seconds())
-
-    for i in ('D', 'H', 'M', 'S'):
-        if i in k and i in l.keys():
-            d[i], rem = divmod(rem, l[i])
-
-    pre_return_string = f.format(fmt, **d)
-    
-    pre_return_string = pre_return_string.replace(" 0h ", " ").replace(" 0s ", " ")
-    pre_return_string = pre_return_string.removeprefix("0d ").removesuffix(" 0s")
-
-    return pre_return_string
-

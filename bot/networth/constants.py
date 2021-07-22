@@ -1,4 +1,4 @@
-page_names = page_names = ["main", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets", "misc"]
+page_names = ["main", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets", "misc"]
 
 # Item descriptive icons
 

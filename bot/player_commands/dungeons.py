@@ -17,13 +17,13 @@ BOSS_INDEX_DICT = {"1": "Bonzo",
                    "6": "Sadan",
                    "7": "Necron"}
 
-BOSS_EMOJI_DICT = {"1": "<:bonzo:832206443653758991>",
-                   "2": "<:scarf:832206443691769978>",
-                   "3": "<:the_professor:832206443661754368>",
-                   "4": "<:thorn:832206443649695744>",
-                   "5": "<:livid:832206443573805066>",
-                   "6": "<:sadan:832206443595169802>",
-                   "7": "<:necron:832206443281121351>"}
+BOSS_EMOJI_DICT = {"1": "<:bonzo:867330587345027093>",
+                   "2": "<:scarf:867330616378785793>",
+                   "3": "<:the_professor:867330626687991848>",
+                   "4": "<:thorn:867330640549380106>",
+                   "5": "<:livid:867330658032418836>",
+                   "6": "<:sadan:867330667355045888>",
+                   "7": "<:necron:867330684179316736>"}
 
 catacombs_levels = [50, 125, 235, 395, 625, 955, 1425, 2095, 3045, 4385, 6275, 8940, 12700, 17960, 25340, 35640, 50040, 70040, 97640, 135640, 188140, 259640, 356640, 488640, 668640, 911640, 1239640, 1684640, 2284640, 3084640, 4149640, 5559640, 7459640, 9959640, 13259640, 17559640, 23159640, 30359640, 39559640, 51559640, 66559640, 85559640, 109559640, 139559640, 177559640, 225559640, 285559640, 360559640, 453559640, 569809640 ]
 
@@ -59,8 +59,8 @@ class dungeons_cog(commands.Cog):
             index = str(i)
             kills = int(dungeon_data["tier_completions"][index])
             best_runs = dungeon_data["best_runs"][index]
-            best_run = max(best_runs, key=lambda x: x["score_exploration"]+x["score_speed"]+x["score_skill"]+ x["score_bonus"])
-            best_run_score = best_run["score_exploration"]+best_run["score_speed"]+best_run["score_skill"]+ best_run["score_bonus"]
+            best_run = max(best_runs, key=lambda x: x["score_exploration"]+x["score_speed"]+x["score_skill"]+x["score_bonus"])
+            best_run_score = best_run["score_exploration"]+best_run["score_speed"]+best_run["score_skill"]+best_run["score_bonus"]
             best_run_time = format_duration(best_run["elapsed_time"], include_millis=False)
 
             embed.add_field(name=f"{BOSS_EMOJI_DICT[index]} {BOSS_INDEX_DICT[index]}", value=f"Kills: **{kills}**\nTop Run Score: **{best_run_score}**\nTop Run Time: **{best_run_time}**", inline=True)

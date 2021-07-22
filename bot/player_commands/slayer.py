@@ -17,10 +17,11 @@ slayer_level_requirements = {
 
 SLAYER_COST = [2_000, 7_500, 20_000, 50_000, 100_000]  # Same for all of them
 
-MOB_EMOJI_DICT = {"zombie": "<:zombie:832251786316349490>",
-                  "spider": "<:spider:832251785820504075>",
-                  "wolf": "<:wolf:832251786059579473>",
-                  "enderman": "<:enderman:860902315347148801>",}
+MOB_EMOJI_DICT = {"zombie": "<:revenant:867330711191158804>",
+                  "spider": "<:tarantula:867330736368386100>",
+                  "wolf": "<:sven:867330745591529512>",
+                  "enderman": "<:voidgloom:867330759073464360>"}
+   
 BOSSES = list(MOB_EMOJI_DICT.keys())  # For doing [:3]
 
 #=====================

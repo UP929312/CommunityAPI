@@ -27,6 +27,6 @@ class wiki_cog(commands.Cog):
             return await error(ctx, "No wiki entry with the provided input!", "Try being more accurate, and exclude special characters.")
                 
         # Everything is fine, send it
-        embed = discord.Embed(title=f"Wiki entry for {closest['name'].replace('_', ' ').title()}:", description=f"You can find the wiki entry [here]({closest['wiki_link']}).", colour=0x3498DB)
+        embed = discord.Embed(title=f"Wiki entry for {closest['name']}:", description=f"You can find the wiki entry [here]({closest['wiki_link']}).", colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
         await ctx.send(embed=embed)

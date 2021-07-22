@@ -8,6 +8,9 @@ from parse_profile import get_profile_data
 
 from utils import error, format_duration
 
+def comma_seperate(num):
+    return f"{int(num):,}" 
+
 class kills_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
@@ -21,7 +24,7 @@ class kills_cog(commands.Cog):
         username = player_data["username"]
 
         stats = player_data["stats"]
-        total_mobs_killed = "**{:,}**".format(int(stats['kills'])) if "kills" in stats else "Unknown"
+        total_mobs_killed = f"**{comma_seperate(stats['kills'])}**" if "kills" in stats else "Unknown"  # var:, = 10,000 (the comma)
 
         kills_stats = {k: v for k, v in stats.items() if k.startswith("kills_")}
         sorted_kills = dict(sorted(kills_stats.items(), key=lambda mob: mob[1], reverse=True)[:12])
@@ -32,8 +35,8 @@ class kills_cog(commands.Cog):
         embed.add_field(name=f"Kills Data", value=f"Total Mobs Killed {total_mobs_killed}", inline=False)
 
         for index, (key, value) in enumerate(sorted_kills.items(), 1):
-            formatted_name = key[6:].replace('_', ' ').title().replace('Unburried Zombie', 'Crypt Ghoul')
-            embed.add_field(name=f"#{index} {formatted_name}", value=f":knife: {int(value)}", inline=True)
+            formatted_name = key.removeprefix("kills_").replace('_', ' ').title().replace('Unburried Zombie', 'Crypt Ghoul')
+            embed.add_field(name=f"#{index} {formatted_name}", value=f":knife: {comma_seperate(value)}", inline=True)
 
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
         await ctx.send(embed=embed)

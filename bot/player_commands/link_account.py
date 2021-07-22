@@ -8,7 +8,6 @@ class link_account_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.has_permissions()
     @commands.command(aliases=["linkaccount", "link"])
     async def link_account(self, ctx, username=None):
 
@@ -22,7 +21,7 @@ class link_account_cog(commands.Cog):
         if current_linked_account is None:
             set_linked_account(ctx.author.id, username)
         else:
-            update_linked_account(ctx.guild.id, username)
+            update_linked_account(ctx.author.id, username)
 
         self.client.linked_accounts[f"{ctx.author.id}"] = username        
 

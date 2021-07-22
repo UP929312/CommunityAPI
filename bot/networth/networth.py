@@ -4,6 +4,7 @@ from discord.ext import commands
 import requests
 
 from utils import error
+from database_manager import insert_profile
 from networth.generate_page import generate_page
 from networth.constants import *
 
@@ -85,3 +86,7 @@ class networth_cog(commands.Cog):
         
         view = MenuView(command_author=ctx.author, data=request.json(), username=username)
         view.message = await ctx.send(embed=main_embed, view=view)
+
+        uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+        data = [request.json()[page]['total'] for page in ("purse", "banking", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets")]
+        insert_profile(uuid, *data)
