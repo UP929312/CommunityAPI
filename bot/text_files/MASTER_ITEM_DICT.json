@@ -203,6 +203,36 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Items"
     },
+    "ALPHA_PICK": {
+        "internal_name": "ALPHA_PICK",
+        "name": "§cPioneer Pickaxe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pioneer_Pickaxe"
+    },
+    "AMBER_MATERIAL": {
+        "internal_name": "AMBER_MATERIAL",
+        "name": "Amber Material",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Amber_Material"
+    },
+    "AMBER_POLISHED_DRILL_ENGINE": {
+        "internal_name": "AMBER_POLISHED_DRILL_ENGINE",
+        "name": "Amber-polished Drill Engine",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Amber-polished_Drill_Engine"
+    },
+    "AMBER_POWER_SCROLL": {
+        "internal_name": "AMBER_POWER_SCROLL",
+        "name": "Amber Power Scroll",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
+    "AMETHYST_POWER_SCROLL": {
+        "internal_name": "AMETHYST_POWER_SCROLL",
+        "name": "Amethyst Power Scroll",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
     "ANCESTRAL_SPADE": {
         "internal_name": "ANCESTRAL_SPADE",
         "name": "Ancestral Spade",
@@ -363,31 +393,31 @@
         "internal_name": "ARMADILLO;0",
         "name": "§7[Lvl {LVL}] Armadillo",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armadillo_Pet"
     },
     "ARMADILLO;1": {
         "internal_name": "ARMADILLO;1",
         "name": "§7[Lvl {LVL}] Armadillo",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armadillo_Pet"
     },
     "ARMADILLO;2": {
         "internal_name": "ARMADILLO;2",
         "name": "§7[Lvl {LVL}] Armadillo",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armadillo_Pet"
     },
     "ARMADILLO;3": {
         "internal_name": "ARMADILLO;3",
         "name": "§7[Lvl {LVL}] Armadillo",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armadillo_Pet"
     },
     "ARMADILLO;4": {
         "internal_name": "ARMADILLO;4",
         "name": "§7[Lvl {LVL}] Armadillo",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armadillo_Pet"
     },
     "ARMOR_OF_MAGMA_BOOTS": {
         "internal_name": "ARMOR_OF_MAGMA_BOOTS",
@@ -441,25 +471,25 @@
         "internal_name": "ARMOR_OF_YOG_BOOTS",
         "name": "Armor of Yog Boots",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog"
     },
     "ARMOR_OF_YOG_CHESTPLATE": {
         "internal_name": "ARMOR_OF_YOG_CHESTPLATE",
         "name": "Armor of Yog Chestplate",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog"
     },
     "ARMOR_OF_YOG_HELMET": {
         "internal_name": "ARMOR_OF_YOG_HELMET",
         "name": "Armor of Yog Helmet",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog"
     },
     "ARMOR_OF_YOG_LEGGINGS": {
         "internal_name": "ARMOR_OF_YOG_LEGGINGS",
         "name": "Armor of Yog Leggings",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog"
     },
     "ARMOR_SHOWCASE": {
         "internal_name": "ARMOR_SHOWCASE",
@@ -484,6 +514,12 @@
         "name": "Potion Affinity Artifact",
         "rarity": "RARE",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Potion_Affinity_Artifact"
+    },
+    "ASCENSION_ROPE": {
+        "internal_name": "ASCENSION_ROPE",
+        "name": "Ascension Rope",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Ascension_Rope"
     },
     "ASPECT_OF_THE_DRAGON": {
         "internal_name": "ASPECT_OF_THE_DRAGON",
@@ -609,7 +645,19 @@
         "internal_name": "BAL;0",
         "name": "§7[Lvl {LVL}] Bal",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bal_Pet"
+    },
+    "BAL;3": {
+        "internal_name": "BAL;3",
+        "name": "§7[Lvl {LVL}] Bal",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bal_Pet"
+    },
+    "BAL;4": {
+        "internal_name": "BAL;4",
+        "name": "§7[Lvl {LVL}] Bal",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bal_Pet"
     },
     "BANDAGED_MITHRIL_PICKAXE": {
         "internal_name": "BANDAGED_MITHRIL_PICKAXE",
@@ -1545,7 +1593,7 @@
         "internal_name": "BOB_OMB",
         "name": "Bob-omb",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bob-omb"
     },
     "BONE": {
         "internal_name": "BONE",
@@ -3441,7 +3489,7 @@
         "internal_name": "CONTROL_SWITCH",
         "name": "Control Switch",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Automaton_Parts"
     },
     "COOKED_BEEF": {
         "internal_name": "COOKED_BEEF",
@@ -4111,7 +4159,7 @@
     },
     "DEAD_BUSH_OF_LOVE": {
         "internal_name": "DEAD_BUSH_OF_LOVE",
-        "name": "Dead Bush of Love",
+        "name": "§cDead Bush of Love",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dead_Bush_of_Love"
     },
@@ -4523,11 +4571,41 @@
         "rarity": "UNKNOWN",
         "wiki_link": null
     },
+    "DIVAN_BOOTS": {
+        "internal_name": "DIVAN_BOOTS",
+        "name": "Boots Of Divan",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Divan_Armor"
+    },
+    "DIVAN_CHESTPLATE": {
+        "internal_name": "DIVAN_CHESTPLATE",
+        "name": "Chestplate Of Divan",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Divan_Armor"
+    },
+    "DIVAN_DRILL": {
+        "internal_name": "DIVAN_DRILL",
+        "name": "Divan's Drill",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Divan%27s_Drill"
+    },
     "DIVAN_FRAGMENT": {
         "internal_name": "DIVAN_FRAGMENT",
         "name": "Divan Fragment",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Divan_Fragment"
+    },
+    "DIVAN_HELMET": {
+        "internal_name": "DIVAN_HELMET",
+        "name": "Helmet Of Divan",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Divan_Armor"
+    },
+    "DIVAN_LEGGINGS": {
+        "internal_name": "DIVAN_LEGGINGS",
+        "name": "Leggings Of Divan",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Divan_Armor"
     },
     "DIVER_BOOTS": {
         "internal_name": "DIVER_BOOTS",
@@ -4743,31 +4821,31 @@
         "internal_name": "DWARVEN_DIAMOND_AXE",
         "name": "§cScavenged Diamond Axe",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scavenged_Diamond_Axe"
     },
     "DWARVEN_EMERALD_HAMMER": {
         "internal_name": "DWARVEN_EMERALD_HAMMER",
         "name": "§cScavenged Emerald Hammer",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scavenged_Emerald_Hammer"
     },
     "DWARVEN_GOLD_HAMMER": {
         "internal_name": "DWARVEN_GOLD_HAMMER",
         "name": "§cScavenged Golden Hammer",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scavenged_Golden_Hammer"
     },
     "DWARVEN_LAPIS_SWORD": {
         "internal_name": "DWARVEN_LAPIS_SWORD",
         "name": "§cScavenged Lapis Sword",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scavenged_Lapis_Sword"
     },
     "DWARVEN_METAL_DETECTOR": {
         "internal_name": "DWARVEN_METAL_DETECTOR",
         "name": "§cMetal Detector",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Metal_Detector"
     },
     "DWARVEN_TANKARD": {
         "internal_name": "DWARVEN_TANKARD",
@@ -6309,7 +6387,7 @@
         "internal_name": "ETERNAL_FLAME_RING",
         "name": "Eternal Flame Ring",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Eternal_Flame_Ring"
     },
     "ETERNAL_HOOF": {
         "internal_name": "ETERNAL_HOOF",
@@ -6434,6 +6512,12 @@
     "EXP_BOTTLE": {
         "internal_name": "EXP_BOTTLE",
         "name": "Bottle o' Enchanting",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
+    "EXTRA_LARGE_GEMSTONE_SACK": {
+        "internal_name": "EXTRA_LARGE_GEMSTONE_SACK",
+        "name": "Extra Large Gemstone Sack",
         "rarity": "UNKNOWN",
         "wiki_link": null
     },
@@ -7047,25 +7131,25 @@
         "internal_name": "FLAMEBREAKER_BOOTS",
         "name": "Ember Ash Boots",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flamebreaker_Armor"
     },
     "FLAMEBREAKER_CHESTPLATE": {
         "internal_name": "FLAMEBREAKER_CHESTPLATE",
         "name": "Ember Ash Chestplate",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flamebreaker_Armor"
     },
     "FLAMEBREAKER_HELMET": {
         "internal_name": "FLAMEBREAKER_HELMET",
         "name": "Ember Ash Helmet",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flamebreaker_Armor"
     },
     "FLAMEBREAKER_LEGGINGS": {
         "internal_name": "FLAMEBREAKER_LEGGINGS",
         "name": "Ember Ash Leggings",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flamebreaker_Armor"
     },
     "FLAME_BREAKER_BOOTS": {
         "internal_name": "FLAME_BREAKER_BOOTS",
@@ -7096,6 +7180,12 @@
         "name": "Flaming Sword",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flaming_Sword"
+    },
+    "FLAMING_WORM_SC": {
+        "internal_name": "FLAMING_WORM_SC",
+        "name": "§3Flaming Worm (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flaming_Worm"
     },
     "FLAWED_AMBER_GEM": {
         "internal_name": "FLAWED_AMBER_GEM",
@@ -7557,7 +7647,7 @@
         "internal_name": "FTX_3070",
         "name": "FTX 3070",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Automaton_Parts"
     },
     "FUEL_TANK": {
         "internal_name": "FUEL_TANK",
@@ -7630,6 +7720,12 @@
         "name": "Topaz Drill KGR-12",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Topaz_Drill_KGR-12"
+    },
+    "GEMSTONE_DRILL_4": {
+        "internal_name": "GEMSTONE_DRILL_4",
+        "name": "Jasper Drill Model X",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jasper_Drill_Model_X"
     },
     "GEMSTONE_FUEL_TANK": {
         "internal_name": "GEMSTONE_FUEL_TANK",
@@ -8093,23 +8189,29 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Egg"
     },
+    "GOBLIN_EGG_BLUE": {
+        "internal_name": "GOBLIN_EGG_BLUE",
+        "name": "Blue Goblin Egg",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Egg"
+    },
     "GOBLIN_EGG_GREEN": {
         "internal_name": "GOBLIN_EGG_GREEN",
         "name": "Green Goblin Egg",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Egg"
     },
     "GOBLIN_EGG_RED": {
         "internal_name": "GOBLIN_EGG_RED",
         "name": "Red Goblin Egg",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Egg"
     },
     "GOBLIN_EGG_YELLOW": {
         "internal_name": "GOBLIN_EGG_YELLOW",
         "name": "Yellow Goblin Egg",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Egg"
     },
     "GOBLIN_HELMET": {
         "internal_name": "GOBLIN_HELMET",
@@ -8135,23 +8237,29 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Omelette"
     },
+    "GOBLIN_OMELETTE_BLUE_CHEESE": {
+        "internal_name": "GOBLIN_OMELETTE_BLUE_CHEESE",
+        "name": "Blue Cheese Goblin Omelette",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Blue_Cheese_Goblin_Omelette"
+    },
     "GOBLIN_OMELETTE_PESTO": {
         "internal_name": "GOBLIN_OMELETTE_PESTO",
         "name": "Pesto Goblin Omelette",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pesto_Goblin_Omelette"
     },
     "GOBLIN_OMELETTE_SPICY": {
         "internal_name": "GOBLIN_OMELETTE_SPICY",
         "name": "Spicy Goblin Omelette",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Spicy_Goblin_Omelette"
     },
     "GOBLIN_OMELETTE_SUNNY_SIDE": {
         "internal_name": "GOBLIN_OMELETTE_SUNNY_SIDE",
         "name": "Sunny Side Goblin Omelette",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Sunny_Side_Goblin_Omelette"
     },
     "GOD_POTION": {
         "internal_name": "GOD_POTION",
@@ -8191,9 +8299,9 @@
     },
     "GOLDEN_DRAGON;4": {
         "internal_name": "GOLDEN_DRAGON;4",
-        "name": "§7[Lvl 1➡200] Golden Dragon Egg",
+        "name": "§7[Lvl 1➡200] Golden Dragon",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Golden_Dragon_Pet"
     },
     "GOLDEN_GHOUL_MONSTER": {
         "internal_name": "GOLDEN_GHOUL_MONSTER",
@@ -9213,7 +9321,7 @@
         "internal_name": "HELIX",
         "name": "Helix",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Helix"
     },
     "HELMET_OF_THE_PACK": {
         "internal_name": "HELMET_OF_THE_PACK",
@@ -9292,6 +9400,12 @@
         "name": "Holy Lost Adventurer (Miniboss)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lost_Adventurer"
+    },
+    "HOLY_SHIMMER": {
+        "internal_name": "HOLY_SHIMMER",
+        "name": "Shimmer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale"
     },
     "HONED_SHARK_TOOTH_NECKLACE": {
         "internal_name": "HONED_SHARK_TOOTH_NECKLACE",
@@ -10043,6 +10157,24 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jacob's_Ticket"
     },
+    "JADERALD": {
+        "internal_name": "JADERALD",
+        "name": "Jaderald",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jaderald"
+    },
+    "JASPER_CRYSTAL": {
+        "internal_name": "JASPER_CRYSTAL",
+        "name": "Jasper Crystal",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone_Crystals"
+    },
+    "JASPER_POWER_SCROLL": {
+        "internal_name": "JASPER_POWER_SCROLL",
+        "name": "Jasper Power Scroll",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
     "JELLYFISH;3": {
         "internal_name": "JELLYFISH;3",
         "name": "§7[Lvl {LVL}] Jellyfish",
@@ -10301,17 +10433,23 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jungle_Minion"
     },
+    "JUNGLE_HEART": {
+        "internal_name": "JUNGLE_HEART",
+        "name": "Jungle Heart",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
     "JUNGLE_KEY": {
         "internal_name": "JUNGLE_KEY",
         "name": "Jungle Key",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jungle_Key"
     },
     "JUNGLE_PICKAXE": {
         "internal_name": "JUNGLE_PICKAXE",
         "name": "Jungle Pickaxe",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jungle_Pickaxe"
     },
     "JUNGLE_WOOD_STAIRS": {
         "internal_name": "JUNGLE_WOOD_STAIRS",
@@ -10619,6 +10757,12 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Foraging_Sack"
     },
+    "LARGE_GEMSTONE_SACK": {
+        "internal_name": "LARGE_GEMSTONE_SACK",
+        "name": "Large Gemstone Sack",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone_Sack"
+    },
     "LARGE_HUSBANDRY_SACK": {
         "internal_name": "LARGE_HUSBANDRY_SACK",
         "name": "Large Husbandry Sack",
@@ -10661,11 +10805,23 @@
         "rarity": "UNKNOWN",
         "wiki_link": null
     },
+    "LAVA_BLAZE_SC": {
+        "internal_name": "LAVA_BLAZE_SC",
+        "name": "§3Lava Blaze (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lava_Blaze"
+    },
     "LAVA_BUCKET": {
         "internal_name": "LAVA_BUCKET",
         "name": "Lava Bucket",
         "rarity": "UNKNOWN",
         "wiki_link": null
+    },
+    "LAVA_PIGMAN_SC": {
+        "internal_name": "LAVA_PIGMAN_SC",
+        "name": "§3Lava Pigman (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lava_Pigman"
     },
     "LAVA_TALISMAN": {
         "internal_name": "LAVA_TALISMAN",
@@ -11199,7 +11355,7 @@
         "internal_name": "MAGMA_CORE",
         "name": "Magma Core",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Magma_Core"
     },
     "MAGMA_CREAM": {
         "internal_name": "MAGMA_CREAM",
@@ -12063,7 +12219,13 @@
         "internal_name": "MITHRIL_GOURMAND",
         "name": "Tasty Mithril",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Tasty_Mithril"
+    },
+    "MITHRIL_INFUSION": {
+        "internal_name": "MITHRIL_INFUSION",
+        "name": "Mithril Infusion",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mithril_Infusion"
     },
     "MITHRIL_ORE": {
         "internal_name": "MITHRIL_ORE",
@@ -12314,6 +12476,12 @@
     "MYCEL": {
         "internal_name": "MYCEL",
         "name": "Mycelium",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
+    "MYSTERIOUS_MEAT": {
+        "internal_name": "MYSTERIOUS_MEAT",
+        "name": "Mysterious Meat",
         "rarity": "UNKNOWN",
         "wiki_link": null
     },
@@ -12875,6 +13043,12 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dragon_Fragment"
     },
+    "OLD_SHIMMER": {
+        "internal_name": "OLD_SHIMMER",
+        "name": "Shimmer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale"
+    },
     "OLD_WOLF_MONSTER": {
         "internal_name": "OLD_WOLF_MONSTER",
         "name": "Old Wolf (Monster)",
@@ -12889,7 +13063,7 @@
     },
     "OOPS_THE_FISH": {
         "internal_name": "OOPS_THE_FISH",
-        "name": "Oops the Fish",
+        "name": "§cOops the Fish",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Oops_the_Fish"
     },
@@ -13042,6 +13216,12 @@
         "name": "Penguin Minion Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Minion_Skin"
+    },
+    "PERFECTLY_CUT_FUEL_TANK": {
+        "internal_name": "PERFECTLY_CUT_FUEL_TANK",
+        "name": "Perfectly Cut Fuel Tank",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
     },
     "PERFECT_AMBER_GEM": {
         "internal_name": "PERFECT_AMBER_GEM",
@@ -13959,7 +14139,7 @@
         "internal_name": "PICKONIMBUS",
         "name": "Pickonimbus 2000",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pickonimbus_2000"
     },
     "PICNIC_SET": {
         "internal_name": "PICNIC_SET",
@@ -14200,6 +14380,12 @@
         "name": "Poison Potion",
         "rarity": "UNKNOWN",
         "wiki_link": null
+    },
+    "POISONED_WATER_WORM_SC": {
+        "internal_name": "POISONED_WATER_WORM_SC",
+        "name": "§3Poisoned Water Worm (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Poisoned_Water_Worm"
     },
     "POISONOUS_POTATO": {
         "internal_name": "POISONOUS_POTATO",
@@ -14493,7 +14679,7 @@
         "internal_name": "PREHISTORIC_EGG",
         "name": "Prehistoric Egg",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Prehistoric_Egg"
     },
     "PREMIUM_FLESH": {
         "internal_name": "PREMIUM_FLESH",
@@ -14569,7 +14755,31 @@
     },
     "PRISTINE;1": {
         "internal_name": "PRISTINE;1",
-        "name": "Enchanted Book",
+        "name": "Pristine I",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
+    "PRISTINE;2": {
+        "internal_name": "PRISTINE;2",
+        "name": "Pristine II",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
+    "PRISTINE;3": {
+        "internal_name": "PRISTINE;3",
+        "name": "Pristine III",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
+    "PRISTINE;4": {
+        "internal_name": "PRISTINE;4",
+        "name": "Pristine IV",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
+    "PRISTINE;5": {
+        "internal_name": "PRISTINE;5",
+        "name": "Pristine V",
         "rarity": "UNKNOWN",
         "wiki_link": null
     },
@@ -14758,6 +14968,12 @@
         "name": "Protector Dragon Fragment",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dragon_Fragment"
+    },
+    "PROTECTOR_SHIMMER": {
+        "internal_name": "PROTECTOR_SHIMMER",
+        "name": "Shimmer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale"
     },
     "PUFFERFISH_HAT": {
         "internal_name": "PUFFERFISH_HAT",
@@ -15358,6 +15574,12 @@
         "name": "Reaper Falchion",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Reaper_Falchion"
+    },
+    "RECALL_POTION": {
+        "internal_name": "RECALL_POTION",
+        "name": "Recall Potion",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
     },
     "RECLUSE_FANG": {
         "internal_name": "RECLUSE_FANG",
@@ -15969,7 +16191,7 @@
         "internal_name": "ROBOTRON_REFLECTOR",
         "name": "Robotron Reflector",
         "rarity": "UNKNOWN",
-        "wiki_link": null
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Automaton_Parts"
     },
     "ROCK;0": {
         "internal_name": "ROCK;0",
@@ -16373,6 +16595,18 @@
         "rarity": "UNKNOWN",
         "wiki_link": null
     },
+    "SAPPHIRE_POLISHED_DRILL_ENGINE": {
+        "internal_name": "SAPPHIRE_POLISHED_DRILL_ENGINE",
+        "name": "Sapphire-polished Drill Engine",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Sapphire-polished_Drill_Engine"
+    },
+    "SAPPHIRE_POWER_SCROLL": {
+        "internal_name": "SAPPHIRE_POWER_SCROLL",
+        "name": "§bSapphire Power Scroll",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
     "SAVANA_BIOME_STICK": {
         "internal_name": "SAVANA_BIOME_STICK",
         "name": "Savanna Biome Stick",
@@ -16444,6 +16678,36 @@
         "name": "Scary Jerry (Monster)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Spooky_Mobs"
+    },
+    "SCATHA;0": {
+        "internal_name": "SCATHA;0",
+        "name": "§7[Lvl {LVL}] Scatha",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scatha_Pet"
+    },
+    "SCATHA;1": {
+        "internal_name": "SCATHA;1",
+        "name": "§7[Lvl {LVL}] Scatha",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scatha_Pet"
+    },
+    "SCATHA;2": {
+        "internal_name": "SCATHA;2",
+        "name": "§7[Lvl {LVL}] Scatha",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scatha_Pet"
+    },
+    "SCATHA;3": {
+        "internal_name": "SCATHA;3",
+        "name": "§7[Lvl {LVL}] Scatha",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scatha_Pet"
+    },
+    "SCATHA;4": {
+        "internal_name": "SCATHA;4",
+        "name": "§7[Lvl {LVL}] Scatha",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scatha_Pet"
     },
     "SCAVENGER;1": {
         "internal_name": "SCAVENGER;1",
@@ -16975,7 +17239,7 @@
     },
     "SILEX": {
         "internal_name": "SILEX",
-        "name": "Silex",
+        "name": "Sharp Rock",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Silex"
     },
@@ -17038,6 +17302,12 @@
         "name": "Silver Fang",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Silver_Fang"
+    },
+    "SIL_EX": {
+        "internal_name": "SIL_EX",
+        "name": "Silex",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Silex"
     },
     "SIMPLE_CARROT_CANDY": {
         "internal_name": "SIMPLE_CARROT_CANDY",
@@ -19283,6 +19553,12 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dragon_Fragment"
     },
+    "STRONG_SHIMMER": {
+        "internal_name": "STRONG_SHIMMER",
+        "name": "Shimmer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale"
+    },
     "STUN": {
         "internal_name": "STUN",
         "name": "Stun Potion",
@@ -20308,6 +20584,12 @@
         "name": "Titanium Drill DR-X555",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Titanium_Drill_DR-X555"
+    },
+    "TITANIUM_DRILL_4": {
+        "internal_name": "TITANIUM_DRILL_4",
+        "name": "Titanium Drill DR-X655",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Titanium_Drill_DR-X655"
     },
     "TITANIUM_DRILL_ENGINE": {
         "internal_name": "TITANIUM_DRILL_ENGINE",
@@ -21347,6 +21629,12 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lost_Adventurer"
     },
+    "UNSTABLE_SHIMMER": {
+        "internal_name": "UNSTABLE_SHIMMER",
+        "name": "Shimmer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale"
+    },
     "VACCINE_TALISMAN": {
         "internal_name": "VACCINE_TALISMAN",
         "name": "Vaccine Talisman",
@@ -21755,6 +22043,12 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture"
     },
+    "WATER_WORM_SC": {
+        "internal_name": "WATER_WORM_SC",
+        "name": "§3Water Worm (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Water_Worm"
+    },
     "WEAKNESS": {
         "internal_name": "WEAKNESS",
         "name": "Weakness Potion",
@@ -22049,6 +22343,12 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dragon_Fragment"
     },
+    "WISE_SHIMMER": {
+        "internal_name": "WISE_SHIMMER",
+        "name": "Shimmer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale"
+    },
     "WISE_WITHER_BOOTS": {
         "internal_name": "WISE_WITHER_BOOTS",
         "name": "Storm's Boots",
@@ -22072,6 +22372,12 @@
         "name": "Storm's Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Storm%27s_Armor"
+    },
+    "WISHING_COMPASS": {
+        "internal_name": "WISHING_COMPASS",
+        "name": "Wishing Compass",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wishing_Compass"
     },
     "WITCH_MASK": {
         "internal_name": "WITCH_MASK",
@@ -22505,6 +22811,12 @@
         "rarity": "UNKNOWN",
         "wiki_link": null
     },
+    "WORM_MEMBRANE": {
+        "internal_name": "WORM_MEMBRANE",
+        "name": "Worm Membrane",
+        "rarity": "UNKNOWN",
+        "wiki_link": null
+    },
     "WOUNDED": {
         "internal_name": "WOUNDED",
         "name": "Wounded Potion",
@@ -22630,6 +22942,12 @@
         "name": "Young Lost Adventurer (Miniboss)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lost_Adventurer"
+    },
+    "YOUNG_SHIMMER": {
+        "internal_name": "YOUNG_SHIMMER",
+        "name": "Shimmer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale"
     },
     "ZEALOT_MONSTER": {
         "internal_name": "ZEALOT_MONSTER",
@@ -22888,6 +23206,12 @@
         "name": "Zombie Lord Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Zombie_Lord_Armor"
+    },
+    "ZOMBIE_MINER_SC": {
+        "internal_name": "ZOMBIE_MINER_SC",
+        "name": "§3Zombie Miner (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Zombie_Miner"
     },
     "ZOMBIE_MONSTER": {
         "internal_name": "ZOMBIE_MONSTER",

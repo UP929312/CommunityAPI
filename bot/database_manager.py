@@ -67,9 +67,28 @@ def insert_profile(uuid, purse, banking, inventory, accessories, ender_chest, ar
 
 def get_saved_profiles(uuid, time=datetime.datetime(2000, 1, 1)):  # Basically, a long time ago
     return fetch_data("SELECT datetime, purse, banking, inventory, accessories, ender_chest, armor, vault, wardrobe, storage, pets FROM stored_profiles WHERE uuid=%s AND datetime > %s", (uuid, time))
-'''
-def get_saved_profiles_dev():
-    print(fetch_data("SELECT * FROM stored_profiles"))
 
-get_saved_profiles_dev()
-#'''
+def get_max_networth_all_time():
+    return fetch_data('''
+        SELECT uuid, MAX(purse+banking+inventory+accessories+ender_chest+armor+vault+wardrobe+storage+pets) as total
+        FROM stored_profiles
+        GROUP BY uuid
+        ORDER BY total
+        DESC
+        LIMIT 12
+    ''')
+
+def get_max_current_networth():
+    return fetch_data('''
+        SELECT t1.uuid, (t1.purse+t1.banking+t1.inventory+t1.accessories+t1.ender_chest+t1.armor+t1.vault+t1.wardrobe+t1.storage+t1.pets) AS total FROM 
+        stored_profiles AS t1 INNER JOIN (
+          SELECT t3.uuid, MAX(t3.datetime) AS datetime
+          FROM stored_profiles AS t3
+          GROUP BY t3.uuid
+        ) AS t2 ON t1.uuid = t2.uuid AND t1.datetime = t2.datetime
+        ORDER BY total DESC LIMIT 12
+    ''')
+
+#print(get_max_current_networth())
+
+

@@ -1,4 +1,5 @@
 import requests
+#import re
 
 from utils import error
 
@@ -16,6 +17,7 @@ async def get_profile_data(ctx, username):
     parsing their ign from their discord nicks, by trimming off their tag,
     e.g. '[Admin] Notch' will get parsed as 'Notch'.
     """
+    print("Test")
     nick = None  # Used to detect if we fell back on parsing nick
     if username is None:
         linked_account = ctx.bot.linked_accounts.get(f"{ctx.author.id}", None)

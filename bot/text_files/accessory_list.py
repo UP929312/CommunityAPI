@@ -786,5 +786,12 @@ talisman_upgrades = {
     ],
     "ENDER_ARTIFACT": [
       "ENDER_RELIC"
+    ],
+    "POWER_TALISMAN": [
+      "POWER_RING",
+      "POWER_ARTIFACT"
+    ],
+    "POWER_RING": [
+      "POWER_ARTIFACT"
     ]
 }

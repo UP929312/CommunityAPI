@@ -5,8 +5,6 @@ from database_manager import get_saved_profiles
 from parse_profile import get_profile_data
 from utils import error, hf
 
-#import matplotlib.pyplot as plt
-#import pandas as pd
 import io
 
 class graph_cog(commands.Cog):
@@ -16,6 +14,8 @@ class graph_cog(commands.Cog):
     @commands.command(aliases=["g", "plot"])
     async def graph(self, ctx, username=None):
         return
+        import matplotlib.pyplot as plt
+        import pandas as pd
 
         player_data = await get_profile_data(ctx, username)
         if player_data is None:

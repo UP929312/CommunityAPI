@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
-intents = discord.Intents(invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, emojis=False, integrations=False, webhooks=False,
-                          members=False, messages=True, guild_reactions=False, guilds=True, presences=False,)
+intents = discord.Intents(guild_reactions=False, members=False, invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, presences=False, integrations=False, webhooks=False,
+                          messages=True, guilds=True, emojis=True)
 
 from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
 from utils import safe_delete, safe_send, error as error_embed
@@ -27,6 +27,7 @@ def get_prefix(bot, msg):
 client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = prefixes
 client.linked_accounts = linked_accounts
+client.uuid_conversion_cache = {}
 #====================================================
 @client.event
 async def on_ready():

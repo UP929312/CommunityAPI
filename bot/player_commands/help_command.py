@@ -8,6 +8,7 @@ data_dict = {
     "dungeons":   ("[username]",  "Shows data about someone's dungeon level, including what floors they've beaten."),
     "graph":      ("[username]",  "Shows how someone's networth over time has changed, requires 5 datapoints (COMING SOON)"),
     "kills":      ("[username]",  "Shows the most mobs a player has killed."),
+    "leaderboard":(" (or use .l)", "Shows the top 12 players with the highest combined networth!"),
     "link":       ("[ign]",       "Links your in-game name to your discord id so you can leave it out in commands."),
     "lowest_bin": ("[item]",      "Shows the lowest bin on auction house with that name, use .lb for short!"),
     "missing":    ("[username]",  "Shows the top tier accessories that the player is missing."),
