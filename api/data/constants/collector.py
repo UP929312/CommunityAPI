@@ -11,7 +11,7 @@ def fetch_constants():
         result = requests.get(link).json()
 
         with open(f"{file}.py", 'w') as file:
-            file.write(f"{var_name} = "+json.dumps(result))
+            file.write(f"{var_name} = "+json.dumps(result, indent=4))
         print(f"Loaded in {var_name}")
 
     #==================================================================
@@ -20,7 +20,7 @@ def fetch_constants():
     result = requests.get(link).json()
 
     with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(result['pet_levels']))
+        file.write(f"{var_name} = "+json.dumps(result['pet_levels'], indent=4))
     print(f"Loaded in {var_name}")
 
     #==================================================================
@@ -43,7 +43,7 @@ def fetch_constants():
             for item in item_list:
                 REFORGE_DICT[reforge_name+";"+item] = {"INTERNAL_NAME": internal_name,
                                                "REFORGE_COST": result[internal_name]["reforgeCosts"],}
-        file.write(f"{var_name} = "+json.dumps(REFORGE_DICT))
+        file.write(f"{var_name} = "+json.dumps(REFORGE_DICT, indent=4))
     print(f"Loaded in {var_name}")
     #==================================================================
     # BUY IT NOW
@@ -53,7 +53,7 @@ def fetch_constants():
     LOWEST_BIN = dict([(k, int(v)) for k, v in request.items()])
             
     with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(LOWEST_BIN))
+        file.write(f"{var_name} = "+json.dumps(LOWEST_BIN, indent=4))
 
     print(f"Loaded in {var_name}")
     #==================================================================
@@ -64,7 +64,16 @@ def fetch_constants():
     ENCHANTS_TOP = result["enchants_min_level"]
 
     with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(ENCHANTS_TOP))
+        file.write(f"{var_name} = "+json.dumps(ENCHANTS_TOP, indent=4))
+
+    print(f"Loaded in {var_name}")
+    #=========================
+    # Enchants that can be got at the enchanting table (not bin anymore)
+    file, var_name = ("enchantment_levels", "ENCHANTMENT_LEVELS")
+    ENCHANTS_LEVELS = result["enchants_xp_cost"]
+
+    with open(f"{file}.py", 'w') as file:
+        file.write(f"{var_name} = "+json.dumps(ENCHANTS_LEVELS, indent=4))
 
     print(f"Loaded in {var_name}")
     #==================================================================
@@ -77,7 +86,7 @@ def fetch_constants():
         BAZAAR[product] = int(result["products"][product]['quick_status']['buyPrice'])
 
     with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(BAZAAR))
+        file.write(f"{var_name} = "+json.dumps(BAZAAR, indent=4))
 
     #==================================================================
     # JERRY'S PRICE LIST
@@ -91,7 +100,7 @@ def fetch_constants():
         PRICES[name] = price
         
     with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(PRICES))
+        file.write(f"{var_name} = "+json.dumps(PRICES, indent=4))
 
     print(f"Loaded in {var_name}")
 

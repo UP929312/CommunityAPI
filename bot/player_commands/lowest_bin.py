@@ -1,17 +1,27 @@
 import discord
 from discord.ext import commands
 
-from difflib import SequenceMatcher
+import requests  # For making the api call
+from datetime import datetime  # To convert hypixel time string to object
 
-import requests
-import json
+from utils import error, hf, format_duration, RARITY_DICT, find_closest
 
-from player_commands.auction_house import format_auction
-from extract_ids import extract_nbt_dicts, extract_internal_names
-from utils import error, hf
+def format_enchantments(enchantments):
+    if not enchantments:
+        return ""
+    enchantment_pairs = [enchantments[i:i + 2] for i in range(0, len(enchantments), 2)]
+    if len(enchantment_pairs[-1]) == 1:
+        enchantment_pairs[-1] = (enchantment_pairs[-1][0], "")
 
-with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
-    ITEMS = json.load(file)
+    enchantment_string = "\n".join([f"[{first} {second}]" for first, second in enchantment_pairs])
+
+    formatted_enchants = f'''```ini
+[Enchantments]
+{enchantment_string}
+```
+'''
+    return formatted_enchants
+
 
 class lowest_bin_cog(commands.Cog):
     def __init__(self, bot):
@@ -19,41 +29,24 @@ class lowest_bin_cog(commands.Cog):
 
     @commands.command(aliases=['lb', 'bin', 'lbin'])
     async def lowest_bin(self, ctx, *, input_item=None):
-        if input_item is None:
-            return await error(ctx, "Error, no item given!", "This command takes the name of the item you're looking for to work!")
+        closest = await find_closest(ctx, input_item)
+        if closest is None:
+            return
 
-        # Convert input into internal name
-        closest = max(ITEMS.values(), key=lambda item: SequenceMatcher(None, input_item.lower(), item["name"].lower()).ratio())
+        response = requests.get(f"https://sky-preview.coflnet.com/api/item/price/{closest['internal_name']}/bin").json()
 
-        #print("Closest=", closest)
-
-        # Check if we found something somewhat similar:
-        if SequenceMatcher(None, input_item.lower(), closest["name"].lower()).ratio() < 0.6:
-            return await error(ctx, "No item found with that name!", "Try being more accurate, and exclude special characters.")
-
-        internal_name = closest["internal_name"]
-
-        #print("Internal_name:", internal_name)
-
-        response = requests.get('https://api.eastarcti.ca/auctions/?query={"bin":true}').json()
-        #print("Response recieved")
-
-        #print(response[0])
-
-        items_of_type = [item for item in response if extract_internal_names(item["item_bytes"])[0] == internal_name.upper()]
-
-        #print("Items of same type:", len(items_of_type))
-
-        if not items_of_type:
+        if "Slug" in response.keys() or "uuid" not in response.keys():
             return await error(ctx, "Error, not items of that type could be found on the auction house!", "Try a different item instead?")
+        response = requests.get(f"https://sky-preview.coflnet.com/api/auction/{response['uuid']}").json()
+        data = response
 
-        cheapest_item = min(items_of_type, key=lambda item: item["starting_bid"])
+        price = data['highestBidAmount'] or data['startingBid'] # 2021-07-30T11:06:19Z
+        time_left = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
+        enchantments = format_enchantments(data["enchantments"])
 
-        #print("Cheapest=", cheapest_item)
-          
-        formatted_auction = format_auction(cheapest_item)
+        formatted_auction = f"↳ Price: {hf(price)}\n↳ Time Remaining: {time_left}"+enchantments
             
-        embed = discord.Embed(title=f"Lowest bin found for your input:", description=formatted_auction, colour=0x3498DB)
+        embed = discord.Embed(title=f"Lowest bin found for {RARITY_DICT[response['tier']]} {response['itemName']}:", description=formatted_auction, colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
         await ctx.send(embed=embed)
 

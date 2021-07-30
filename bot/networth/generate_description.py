@@ -1,5 +1,5 @@
 from utils import hf, clean
-from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, SKIN, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
+from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, SKIN, POWER_ABILITY_SCROLL, GEMS, GEMSTONE_CHAMBERS, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
 
 def generate_item_description(v):
     elems = []
@@ -19,8 +19,7 @@ def generate_item_description(v):
         enrichment_item, enrichment_value = list(v['talisman_enrichment'].items())[0]
         elems.append(f"{TALISMAN_ENRICHMENT} - Enrichment: ({clean(enrichment_item)} - {hf(enrichment_value)})")
     if "enchantments" in v:
-        enchants_value = sum(v["enchantments"].values())
-        elems.append(f"{ENCHANTMENTS} - Enchantments: +{hf(enchants_value)}")
+        elems.append(f"{ENCHANTMENTS} - Enchantments: +{hf(sum(v['enchantments'].values()))}")
     if "stars" in v:  # This can sometimes be {}
         stars = v["stars"]
         if "regular_stars" in stars:
@@ -30,12 +29,19 @@ def generate_item_description(v):
     if "skin" in v:
         skin_item, skin_value = list(v['skin'].items())[0]
         elems.append(f"{SKIN} - Skin: ({clean(skin_item)} - {hf(skin_value)})")
+    if "power_ability_scroll" in v:
+        power_ability_scroll_item, power_ability_scroll_value = list(v["power_ability_scroll"].items())[0]
+        elems.append(f"{POWER_ABILITY_SCROLL} - Power scroll: ({clean(power_ability_scroll_item)} - {hf(power_ability_scroll_value)})") 
+    if "gems" in v:
+        elems.append(f"{GEMS} - Gems: {hf(sum(v['gems'].values()))}")
+    if "gemstone_chambers" in v:
+        elems.append(f"{GEMSTONE_CHAMBERS} - Gemstone chambers: {hf(v['gemstone_chambers'])}")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
         reforge_item = list(v['reforge']['item'].keys())[0]
         reforge_item_cost = hf(list(v['reforge']['item'].values())[0])
         elems.append(f"{REFORGE} - Reforge: ({clean(reforge_item)} - {reforge_item_cost})")
     if "tuned_transmission" in v:
-        elems.append(f"{TRANSMISSIONS} - Tuned Transmissions: {hf(v['tuned_transmission'])}")
+        elems.append(f"{TRANSMISSIONS} - Tuned transmissions: {hf(v['tuned_transmission'])}")
     if "ethermerge" in v:
         elems.append(f"{ETHERMERGE} - Ethermerge: {hf(v['ethermerge'])}")
     if "winning_bid" in v:

@@ -1,14 +1,14 @@
 import re
 import json
 
-DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",    "name":"Default Item",         "stack_size": 1,
-                "type": "Default",                  "item_group": "Misc",          "rarity": "Common",
-                "recombobulated": 0,                "hot_potatoes": 0,             "enchantments": {},
-                "reforge": None,                    "star_upgrades": 0,            "talisman_enrichment": None,
-                "art_of_war": None,                 "wood_singularity": None,      "skin": None,
-                "farming_for_dummies": 0,           "tuned_transmission": 0,       "ethermerge": False,
-                "winning_bid": 0,                   "ability_scrolls": [],         "origin_tag": "UNKNOWN",
-               }
+DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",  "name":"Default Item",     "stack_size": 1,
+                "type": "Default",                "item_group": "Misc",      "rarity": "Common",
+                "recombobulated": 0,              "hot_potatoes": 0,         "talisman_enrichment": None,
+                "art_of_war": None,               "wood_singularity": None,  "skin": None,
+                "power_ability_scroll": None,     "gems": {},                "gemstone_chambers": None,
+                "enchantments": {},               "reforge": None,           "star_upgrades": 0,
+                "farming_for_dummies": 0,         "tuned_transmission": 0,   "ethermerge": False,       "winning_bid": 0,
+                "ability_scrolls": [],            "origin_tag": "UNKNOWN",}
                 
 HOE_MATERIAL_TO_INTERNAL_NAME = {
     "POTATO": "POTATO_ITEM",
@@ -41,20 +41,25 @@ class Item:
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = self.__nbt__.get('Count', 1)
         self.origin_tag = extras.get("originTag", "UNKNOWN")
-                    
+
+
+        # Recomb + HPB
         self.recombobulated = True if extras.get('rarity_upgrades', False) else False
         self.hot_potatoes = extras.get('hot_potato_count', 0)
-
-        # Unique to tools
-        self.enchantments = extras.get('enchantments', {})
-        self.reforge = extras.get('modifier', None)
-        self.star_upgrades = extras.get("dungeon_item_level", 0)  # Gets number of stars for dungeon items.
 
         # Little extras
         self.talisman_enrichment = extras.get("talisman_enrichment", None)
         self.art_of_war = extras.get("art_of_war_count", None)
         self.wood_singularity = extras.get("wood_singularity_count", None)
         self.skin = extras.get("skin", None)
+        self.power_ability_scroll = extras.get("power_ability_scroll", None)
+        self.gems = extras.get("gems", {})
+        self.gemstone_chambers = extras.get("gemstone_slots", None)
+
+        # Unique to tools
+        self.enchantments = extras.get('enchantments', {})
+        self.reforge = extras.get('modifier', None)
+        self.star_upgrades = extras.get("dungeon_item_level", 0)  # Gets number of stars for dungeon items.
 
         # Parse item name with removed reforges (We can already get the reforges)
         if self.reforge:            
@@ -162,6 +167,12 @@ class Item:
             data["wood_singularity"] = True
         if self.skin:
             data["skin"] = self.skin
+        if self.power_ability_scroll:
+            data["power_ability_scroll"] = self.power_ability_scroll
+        if self.gems:
+            data["gems"] = self.gems
+        if self.gemstone_chambers:
+            data["gemstone_chambers"] = self.gemstone_chambers
         if self.farming_for_dummies > 0:
             data["farming_for_dummies"] = self.farming_for_dummies
         if self.tuned_transmission:

@@ -8,8 +8,8 @@ async def get_tree(username):
 
     items = ""
     for container in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
-        for item_object in containers[container]:
-            item = item_object.to_dump_string()
+        for price_object in containers[container]:
+            item = price_object.to_dump_string()
             items += item+"\n"
         
     return {"data": items}

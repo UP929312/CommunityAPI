@@ -46,7 +46,7 @@ def generate_page(command_author, data, username, page):
 
         if top_x == []:  # For disabled APIs or empty containers
             total = ""
-            embed.add_field(name=f"{username} doesn't have any items here.", value="Perhaps they disabled their API?", inline=False)
+            embed.add_field(name=f"{username} doesn't have any items here.", value="Perhaps they disabled their API?", inline=False) ####################
         
         for price_object in top_x:
             item = price_object["item"]
@@ -58,10 +58,11 @@ def generate_page(command_author, data, username, page):
                 name = f"{clean(item.get('reforge', ''))} {item['name']}"
                 embed.add_field(name=f"{name} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
-    if page != "misc":    
+    if page != "misc":
+        ####################
         embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}", url=f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}")
-        
-    embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
+
+    embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}") ####################
     embed.set_footer(text=f" Command executed by {command_author.display_name} | Community Bot. By the community, for the community.")    
     return embed
 

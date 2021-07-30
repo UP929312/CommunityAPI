@@ -56,7 +56,7 @@ class networth_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command(aliases=["nw", "n", "net", "worth"])
+    @commands.command(aliases=["nw", "n", "net", "worth", "now"])
     async def networth(self, ctx, username=None):
 
         if username is None:

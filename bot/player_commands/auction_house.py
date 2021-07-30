@@ -5,19 +5,10 @@ import re
 import requests
 from datetime import datetime
 
-from utils import error, hf, format_duration
+from utils import error, hf, format_duration, RARITY_DICT
 from parse_profile import get_profile_data
 
-RARITY_DICT = {   
-    "COMMON":    "<:common:863390433593786369>",
-    "UNCOMMON":  "<:uncommon:863390433517895690>",
-    "RARE":      "<:rare:863390433186152459>",
-    "EPIC":      "<:epic:863390433526022165>",
-    "LEGENDARY": "<:legendary:863390433493123072>",
-    "MYTHIC":    "<:mythic:867070377750167572>",
-    "SUPREME":   "<:supreme:867070395949383700>",
-    "SPECIAL":   "<:special:867070427897135144>"
-}
+
 
 names = ["Expired/Ended auctions", "Buy It Now", "Auctions"]
 
@@ -57,12 +48,10 @@ def format_auction(auction):
     bid_count = ""
     time_left = ""
 
-    if 'highest_bid_amount' in auction and auction['highest_bid_amount'] > 0:
-        price = hf(auction['highest_bid_amount'])
-    else:
-        price = hf(auction['starting_bid'])
 
-    if expired and ('highest_bid_amount' in auction and auction['highest_bid_amount'] > auction['starting_bid']):
+    price = hf(auction.get("highest_bid_amount", 0) or auction.get("starting_bid", 0))
+
+    if expired and ('highest_bid_amount' in auction and auction['highest_bid_amount'] >= auction['starting_bid']):
         status = "SOLD"
     elif expired:
         status = "EXPIRED"
@@ -70,6 +59,9 @@ def format_auction(auction):
         status = "BIDDING STAGE"
     else:
         status = "PURCHASABLE"
+
+    if auction["claimed"] and len(auction["claimed_bidders"]) < len(set([x["bidder"] for x in auction["bids"]])):
+        return ""
         
     if not expired:
         time_left = "↳ Time left: "+format_duration(to_time(auction["end"]) - datetime.now())+"\n"
@@ -121,9 +113,13 @@ class auction_house_cog(commands.Cog):
             data.append(f"**――――――― {group_name} ―――――――**")
             for auction in group:                
                 auction = format_auction(auction)
+                if auction == "":
+                    continue
                 if sum([len(x) for x in data])+len(auction) > 4000:
                     break
                 data.append(auction)
+            if data[-1] == f"**――――――― {group_name} ―――――――**":
+                data = data[:-1]
 
         if not data:
            return await error(ctx, f"{username} doesn't have any active auctions", "If this was you, try heading over to the auction house and putting some things on sale.")

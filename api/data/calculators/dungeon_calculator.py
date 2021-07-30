@@ -8,10 +8,6 @@ ESSENCE_PRICE = {"Wither": 4000, "Gold": 3000,
 
 MASTER_STAR_NAMES = ['first_master_star', 'second_master_star', 'third_master_star', 'fourth_master_star']
 
-MASTER_STARS = {1: LOWEST_BIN["FIRST_MASTER_STAR"],
-                2: LOWEST_BIN["SECOND_MASTER_STAR"],
-                3: LOWEST_BIN["THIRD_MASTER_STAR"],
-                4: LOWEST_BIN["FOURTH_MASTER_STAR"]}
 
 def calculate_base_stars(price):
     item = price.item
@@ -41,7 +37,7 @@ def calculate_dungeon_item(price, print_prices=False):
     if item.star_upgrades > 5:
         price.value["stars"]["master_stars"] = {}
         for i in range(1, item.star_upgrades-4):
-            price.value["stars"]["master_stars"][MASTER_STAR_NAMES[i-1]] = MASTER_STARS[i]
+            price.value["stars"]["master_stars"][MASTER_STAR_NAMES[i-1]] = LOWEST_BIN[MASTER_STAR_NAMES[i-1].upper()]
 
     return price
 

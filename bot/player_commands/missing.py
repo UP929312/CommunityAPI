@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import json
 
-from utils import error
+from utils import error, RARITY_DICT
 from parse_profile import get_profile_data
 from extract_ids import extract_internal_names
 
@@ -22,17 +22,6 @@ MASTER_ACCESSORIES = []
 for accessory in ACCESSORIES:
     if accessory["internal_name"] not in talisman_upgrades.keys():
         MASTER_ACCESSORIES.append(accessory)
-
-RARITY_DICT = {   
-    "COMMON":    "<:common:863390433593786369>",
-    "UNCOMMON":  "<:uncommon:863390433517895690>",
-    "RARE":      "<:rare:863390433186152459>",
-    "EPIC":      "<:epic:863390433526022165>",
-    "LEGENDARY": "<:legendary:863390433493123072>",
-    "MYTHIC":    "<:mythic:867070377750167572>",
-    "SUPREME":   "<:supreme:867070395949383700>",
-    "SPECIAL":   "<:special:867070427897135144>"
-}
 
 class missing_cog(commands.Cog):
     def __init__(self, bot):

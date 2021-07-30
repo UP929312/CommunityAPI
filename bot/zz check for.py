@@ -1,6 +1,6 @@
 import os
 
-find = "strfdelta"
+find = "MASTER_ITEM_DICT.json"
 
 folders = [f.path for f in os.scandir("./") if f.is_dir()]
 

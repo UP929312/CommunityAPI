@@ -1,6 +1,8 @@
 from data.constants.jerry_price_list import PRICES
+from data.constants.bazaar import BAZAAR
 from data.constants.lowest_bin import LOWEST_BIN
 from data.constants.enchants_top import ENCHANTS_TOP
+from data.constants.enchantment_levels import ENCHANTMENT_LEVELS
 
 ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"]
 
@@ -36,8 +38,8 @@ def calculate_enchantments(price):  # For enchantments on items
     #print("Calculating item enchantments")
     for enchantment, level in price.item.enchantments.items():
         level = min(level, 10)  # cap at 10 for admin items so they don't cost Septillions
+        # Special case for Svavenger, a mob drop that costs 15m otherwise and would make dungeon gear broken
         if enchantment == "scavenger" and level == 5 and price.item.origin_tag == "UNKNOWN":
-            # These are on dungeon items, but have to be bought for 15m on their own.
             # If they're dropped from regular dungeon mobs, it's "UNKNOWN", else it's like QUICK_CRAFT
             price.value["enchantments"][f"{enchantment}_{level}"] = 50_000
             continue
@@ -45,11 +47,17 @@ def calculate_enchantments(price):  # For enchantments on items
         if enchantment in ENCHANTS_TOP and ENCHANTS_TOP[enchantment] > 5:
             price.value["enchantments"][f"{enchantment}_{level}"] = LOWEST_BIN.get(f"{enchantment.upper()};{1}", 0)
             continue
+        # Special case for enchantments that can be got through the enchanting table
+        if enchantment in ENCHANTMENT_LEVELS and level <= len(ENCHANTMENT_LEVELS[enchantment]):
+            # If it's one that might be got from the etable, and it's on the list
+            price.value["enchantments"][f"{enchantment}_{level}"]= BAZAAR.get("GRAND_EXP_BOTTLE", 0)
+            continue
         
         for i in range(level, 0, -1):
             if f"{enchantment.upper()};{i}" in LOWEST_BIN:
                 break
         else:
+            price.value["enchantments"][f"{enchantment}_{level}"] = 0
             continue  # No break, when we can't find any of that enchantment whatsoever.
         # If we can't find Sharpness 5, we try Sharpness 4
         # If the starting level is level 4, and we've found a level 2 book, we need 2**2 (4-2) books

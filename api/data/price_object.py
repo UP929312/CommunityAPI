@@ -1,5 +1,3 @@
-import json
-
 def generate_tree(info_dict, current_list, current_indent):
     if isinstance(info_dict, dict):
         if len(list(info_dict.keys())) == 0:
@@ -40,6 +38,9 @@ class Price():  # Pretty sure I don't need this?
         print(f"Total: {total}")
 
     def to_dump_string(self):
+        '''
+        Used for the website dump (tree) to show it all.
+        '''
         if isinstance(self.item, dict):
             start = f"Level {self.value['pet_level']} {self.item['type'].replace('_', ' ').title()}\n"
         else:
@@ -50,31 +51,20 @@ class Price():  # Pretty sure I don't need this?
        
     def calculate_total(self):
         self.total = search_tree(self.value)
-            
         #if not isinstance(self.item, dict):
         #    self.total *= self.item.stack_size
-
         return self.total
+    
 
     def to_dict(self):
-        if not isinstance(self.item, dict):
-            item = self.item.to_dict()
-        else:
-            item = self.item
+        '''
+        returns a dictionary with all the needed information, included the total number,
+        all the attributes that make up the value, as well as the attributes that make
+        up the item object itself
+        '''
+        item = self.item if isinstance(self.item, dict) else self.item.to_dict()
 
         return {"total": self.total,
                 "value": self.value,
                 "item":  item,
                }
-
-    def __str__(self):
-        if isinstance(self.item, dict):
-            item = self.item
-        else:
-            item = self.item.to_dict()
-            
-        return json.dumps({"total": self.total,
-                           "value": self.value,
-                           "item":  item,
-                          })
-  

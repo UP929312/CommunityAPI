@@ -11,8 +11,8 @@ from endpoints.total import get_total_value
 from endpoints.groups import get_groups_value
 from endpoints.pages import get_pages_dict
 from endpoints.dump import get_dump_dict
-from endpoints.tree import get_tree
 from endpoints.debug import get_debug_values
+from endpoints.tree import get_tree
 
 import uvicorn
 
@@ -86,7 +86,6 @@ async def debug(request: Request, username: str):
     if isinstance(debug_values, dict):
         return JSONResponse(status_code=200, content=debug_values)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
-
 
 @app.get("/tree/{username}")
 async def tree(request: Request, username: str):

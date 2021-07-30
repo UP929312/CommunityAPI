@@ -15,13 +15,12 @@ def calculate_reforge_price(price):
     if reforge_data is not None:
         reforge_item = reforge_data["INTERNAL_NAME"]  # Gets the item, e.g. BLESSED_FRUIT
         item_rarity = item.rarity
-        if item_rarity in ["SPECIAL", "VERY_SPECIAL"]:  # The dataset doesn't include special, use LEGEND instead
+        if item_rarity in ["SPECIAL", "VERY_SPECIAL"]:  # The dataset doesn't include special, use LEGENDARY instead
             item_rarity = "LEGENDARY"
-        #print(reforge_data)
-        #print(item.internal_name)
+        #print("All data:", reforge_data, "\nInternal name:", item.internal_name)
         #print(reforge_data["REFORGE_COST"], item_rarity)
         reforge_cost = reforge_data["REFORGE_COST"].get(item_rarity, 0)  # Cost to apply for each rarity
-        reforge_item_cost = LOWEST_BIN.get(f"{reforge_item}", 0)  # How much does the reforge stone cost
+        reforge_item_cost = LOWEST_BIN.get(reforge_item, 0)  # How much does the reforge stone cost
 
         price.value["reforge"] = {}
         price.value["reforge"]["item"] = {reforge_item: reforge_item_cost}
@@ -83,9 +82,22 @@ def calculate_item(price, print_prices=False):
     # Wood singularty
     if item.wood_singularity:
         value["wood_singularty_value"] = LOWEST_BIN.get("WOOD_SINGULARITY", 0)
+    # Armor skins
     if item.skin:
         value["skin"] = {}
         value["skin"][item.skin] = LOWEST_BIN.get(item.skin, 0)
+    # Power ability scrolls:
+    if item.power_ability_scroll:
+        value["power_ability_scroll"] = {}
+        value["power_ability_scroll"][item.power_ability_scroll] = LOWEST_BIN.get(item.power_ability_scroll, 0)
+    # Gems
+    if item.gems:
+        value["gems"] = {}
+        for gem, condition in item.gems.items():
+            value["gems"][gem] = BAZAAR.get(f"{condition}_{gem.rstrip('_0')}_GEM", 0)
+    # Gemstone chambers
+    if item.gemstone_chambers:
+        value["gemstone_chambers"] = item.gemstone_chambers*LOWEST_BIN.get("GEMSTONE_CHAMBER", 0)
     # Farming for dummies books on hoes
     if item.farming_for_dummies:
         value["farming_for_dummies_bonus"] = item.farming_for_dummies*LOWEST_BIN.get("FARMING_FOR_DUMMIES", 0)
