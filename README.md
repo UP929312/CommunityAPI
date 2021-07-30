@@ -1,4 +1,4 @@
-# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-1.4.1-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
+# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-1.4.2-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
 
 This is a bot made partially by the community, with the lead dev being Skezza#1139.\
 Special mention to Mega_Pi+Seattle72 for the research and knowledge on a lot of the content!\
@@ -32,15 +32,15 @@ Then we calculate some extras for base items:
 - If it's a Wooden Sword with a "Wood Singularity" added to it, add the price of that item from the BIN.
 - If the item is armor and has a skin on it, add the price of that skin from BIN.
 - If it has an "Art Of War" book added to it, add the price of that book from the BIN to the value.
-- For each enchantment, if it's not on BIN, try doing 2 of the level below, or 4 of two levels below, etc. This excludes: Compact, Expertise and Cultivating.
+- For each enchantment, if it's from the enchantment table, use a base value, if not, if it's not on BIN, try doing 2 of the level below, or 4 of two levels below, etc. This excludes: Compact, Expertise and Cultivating.
 - If the item is a drill, add the cost of each upgrade from the BIN to the value.
 - If it has scrolls (e.g. on a Hyperion), add the price of all of them to the value.
 - If it's got Transmission Tuners, add the value from BIN of each one to the value.
 - If it's an Aspect of the Void, and is Ethermerged, add the value of the Etherwarp merger and conduit to the value.
 - If it's a Midas Staff or Sword, add the amount of the winning bid to it.
-- If the item has gems on it, add the cost of all the gems from bazaar.
-- If the item has power scrolls, add the cost of the power scrolls from BIN.
-- If the item has Gemstone chambers, add the cost of each gemstone chamber from BIN.
+- If it has gems on it, add the cost of all the gems from bazaar.
+- If it has power scrolls, add the cost of the power scrolls from BIN.
+- If it has Gemstone chambers, add the cost of each gemstone chamber from BIN.
 
 For pets:
 - Calculate the price of the pet from BIN (for that tier).
