@@ -56,7 +56,7 @@ class missing_cog(commands.Cog):
         def make_embed(embed, acc_list):
             text = ""
             for item in acc_list:
-                internal_name, name, rarity, wiki_link = item.values()
+                internal_name, name, rarity, wiki_link, _ = item.values()
                 wiki_link = "<Doesn't exist>" if not wiki_link else f"[wiki]({wiki_link})"
                 text += f"{RARITY_DICT[rarity]} {name}\nLink: {wiki_link}\n"
                             

@@ -6,10 +6,10 @@ from bisect import bisect
 
 from parse_profile import get_profile_data
 
-from utils import error, format_duration
+from utils import error, format_duration, clean
 
 def comma_seperate(num):
-    return f"{int(num):,}" 
+    return f"{int(num):,}"  # var:, = 10,000 (the comma)
 
 class kills_cog(commands.Cog):
     def __init__(self, bot):
@@ -24,7 +24,7 @@ class kills_cog(commands.Cog):
         username = player_data["username"]
 
         stats = player_data["stats"]
-        total_mobs_killed = f"**{comma_seperate(stats['kills'])}**" if "kills" in stats else "Unknown"  # var:, = 10,000 (the comma)
+        total_mobs_killed = f"**{comma_seperate(stats['kills'])}**" if "kills" in stats else "Unknown"  
 
         kills_stats = {k: v for k, v in stats.items() if k.startswith("kills_")}
         sorted_kills = dict(sorted(kills_stats.items(), key=lambda mob: mob[1], reverse=True)[:12])

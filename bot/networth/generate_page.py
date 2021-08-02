@@ -10,7 +10,7 @@ def format_info(total, item, value):
     value = f"{reforge}{name} ➜ {hf(total)}"
     return value
 
-def generate_page(command_author, data, username, page):
+def generate_page(command_author, data, username, page, use_guilds=False):
 
     embed = discord.Embed(colour=0x3498DB)
 
@@ -46,7 +46,7 @@ def generate_page(command_author, data, username, page):
 
         if top_x == []:  # For disabled APIs or empty containers
             total = ""
-            embed.add_field(name=f"{username} doesn't have any items here.", value="Perhaps they disabled their API?", inline=False) ####################
+            embed.add_field(name=f"{username} doesn't have any items here.", value="Perhaps they disabled their API?", inline=False)
         
         for price_object in top_x:
             item = price_object["item"]
@@ -59,10 +59,19 @@ def generate_page(command_author, data, username, page):
                 embed.add_field(name=f"{name} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
     if page != "misc":
-        ####################
-        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}", url=f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}")
+        ###################
+        pass
+        #f"https://plancke.io/hypixel/guild/name/{username}"
+        #url = "google.com" if use_guilds else f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
+        url = f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
+        embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}", url=url)
 
-    embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}") ####################
+    if use_guilds:
+        pass
+        #embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/854829960974565396/871427090560462858/270px-BL-icon-banner-Guild_Banner_03.png") ####################
+    else:
+        embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}") ####################
+        
     embed.set_footer(text=f" Command executed by {command_author.display_name} | Community Bot. By the community, for the community.")    
     return embed
 

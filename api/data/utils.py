@@ -9,7 +9,10 @@ with open("data/api_key.txt", 'r') as file:
 
 def get_data(username):
     try:
-        uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+        if len(username) <= 16:
+            uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+        else:
+            uuid = username
         
         profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
         if profile_list is None:

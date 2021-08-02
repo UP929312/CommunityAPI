@@ -6,7 +6,7 @@ from struct import unpack
 def parse_container(raw):
     """
     This will decompress and decode the base64 data that Hypixel returns from the API.
-    For this use case, it'll simply use the make_item_dict function with the result.
+    This will then get parsed into one of the other functions below
     """
     raw = BytesIO(decompress(b64decode(raw)))   # Unzip raw string from the api
 

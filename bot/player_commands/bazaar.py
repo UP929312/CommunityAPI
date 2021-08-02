@@ -24,6 +24,8 @@ for item in ITEMS:
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
+## The reason I don't use find_closest is because I only want to auto-correct to bazaar items, not all items
+
 class bazaar_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
@@ -38,7 +40,7 @@ class bazaar_cog(commands.Cog):
         
         closest = max(items_mapped, key=lambda _tuple: similar(_tuple[1].lower(), user_input.lower()))
         
-        if similar(closest[1], user_input) < 0.6:
+        if similar(closest[1], user_input) < 0.5:
             return await error(ctx, "No item with that name found at the bazaar.", "Is the item availible to purchase at the bazaar?")    
 
         internal_name = closest[0]

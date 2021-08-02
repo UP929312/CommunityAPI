@@ -18,7 +18,7 @@ def calculate_container(elements, print_prices=False):
         elif element.internal_name == "PET":
             pet_info = price.item.pet_info
             element = {'uuid': None, 'type': pet_info['type'], 'exp':  pet_info['exp'], 'active': False, 'tier': pet_info["tier"],
-                       'candyUsed': pet_info['candyUsed']}
+                       'candyUsed': pet_info.get('candyUsed', 0)}
             if "skin" in pet_info:
                 element['skin'] = pet_info['skin']
             if "heldItem" in pet_info:

@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from database_manager import *
+from utils import error
 
 class set_prefix_cog(commands.Cog):
     def __init__(self, bot):

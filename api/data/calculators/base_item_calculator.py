@@ -62,7 +62,7 @@ def calculate_item(price, print_prices=False):
             value["hot_potatoes"]["hot_potato_books"] = 10*BAZAAR["HOT_POTATO_BOOK"]
             value["hot_potatoes"]["fuming_potato_books"] = (item.hot_potatoes-10)*BAZAAR["FUMING_POTATO_BOOK"]
     # Recombobulation
-    if item.recombobulated:
+    if item.recombobulated and value["price_source"] not in ["Bazaar", "None"]:
         value["recombobulator_value"] = BAZAAR["RECOMBOBULATOR_3000"]
     # Enchantments
     if item.enchantments:
@@ -100,7 +100,7 @@ def calculate_item(price, print_prices=False):
         value["gemstone_chambers"] = item.gemstone_chambers*LOWEST_BIN.get("GEMSTONE_CHAMBER", 0)
     # Farming for dummies books on hoes
     if item.farming_for_dummies:
-        value["farming_for_dummies_bonus"] = item.farming_for_dummies*LOWEST_BIN.get("FARMING_FOR_DUMMIES", 0)
+        value["farming_for_dummies"] = item.farming_for_dummies*LOWEST_BIN.get("FARMING_FOR_DUMMIES", 0)
     # Drills (upgrades)
     if item.type == "DRILL" and item.has_drill_upgrade:
         value["drill_upgrades"] = {}

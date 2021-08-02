@@ -17,10 +17,10 @@ async def get_pages_dict(username):
 
     for container in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
         top_x = sorted(containers[container], key=lambda x: x.total, reverse=True)[:5]
-        items = [x.to_dict() for x in top_x]
+        prices = [x.to_dict() for x in top_x]
         data[container] = {
                            "total": str(container_values[container]),
-                           "prices": items,
+                           "prices": prices,
                           }
 
     return data

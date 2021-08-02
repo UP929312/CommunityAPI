@@ -28,6 +28,10 @@ with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
     ITEMS = json.load(file)
     
 async def find_closest(ctx, user_input):
+    """
+    When given a rough item name, this will attempt to find the corrosponding item in the item dump (text_files/MASTER_ITEM_DICT.json)
+    If it is found, it will return that item's data, else return None (after sending an error)
+    """
     if user_input is None:
         return await error(ctx, "Error, no item given!", "This command takes the name of the item you're looking for to work!")
 
@@ -53,9 +57,9 @@ def clean(string):
     return string.replace("_", " ").title().replace("'S", "'s")
 
 def hf(num):
-    '''
-    Takes an int/float e.g. 10000 and returns a formatted version i.e. 10k
-    '''
+    """
+    Takes an int or float e.g. 10000 and returns a formatted version i.e. 10k
+    """
     if isinstance(num, str):
         if num.isdigit():
             num = float(num)
@@ -70,7 +74,9 @@ def hf(num):
     return str(new_num)+suffix
 
 def format_duration(duration, include_millis=False):
-
+    """
+    Converts a duration in milliseconds, datetime in the future, or timedelta into a formatted duration.
+    """
     if isinstance(duration, (str, int)):
         dur = timedelta(milliseconds=int(duration))
     elif isinstance(duration, datetime):

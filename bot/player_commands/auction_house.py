@@ -9,7 +9,6 @@ from utils import error, hf, format_duration, RARITY_DICT
 from parse_profile import get_profile_data
 
 
-
 names = ["Expired/Ended auctions", "Buy It Now", "Auctions"]
 
 with open('text_files/hypixel_api_key.txt') as file:

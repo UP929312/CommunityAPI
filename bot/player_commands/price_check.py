@@ -37,7 +37,7 @@ class price_check_cog(commands.Cog):
                   f"{EMOJIS['mode']} Mode: {hf(response['mode'])}",
                   f"{EMOJIS['mean']} Mean Average: {hf(response['mean'])}",
                   f"",
-                  f"Links: Definitions for mode, median and mean: [link](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review), API: [link](https://sky.coflnet.com)"]
+                  f"Links: Definitions for mode, median and mean: [link](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review), API: [link](https://sky.coflnet.com/data)"]
                     
         embed = discord.Embed(title=f"Price data found for {closest['name']}:", description="\n".join(string), colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
