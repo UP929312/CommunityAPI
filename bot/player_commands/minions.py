@@ -3,10 +3,10 @@ from discord.ext import commands
 
 import requests
 
-from utils import error, RARITY_DICT, ITEMS, clean
+from utils import error, ITEMS, clean, hf, RARITY_DICT
 from parse_profile import get_profile_data
 
-MAX_MINION_LEVELS = {
+MAX_MINION_TIERS = {
     "ACACIA_GENERATOR": 11,
     "BIRCH_GENERATOR": 11,
     "BLAZE_GENERATOR": 11,
@@ -64,17 +64,46 @@ MAX_MINION_LEVELS = {
     "HARD_STONE_GENERATOR": 11,
 }
 
-NO_ITEM_FOUND = 10000000000
+T12_MATERIALS = {
+    "COBBLESTONE": ("ENCHANTED_COBBLESTONE", 1024),
+    "OBSIDIAN": ("ENCHANTED_OBSIDIAN", 1024),
+    "COAL": ("ENCHANTED_COAL_BLOCK", 16),
+    "IRON": ("ENCHANTED_IRON_BLOCK", 16),
+    "GOLD": ("ENCHANTED_GOLD_BLOCK", 16),
+    "DIAMOND": ("ENCHANTED_DIAMOND_BLOCK", 16),
+    "LAPIS": ("ENCHANTED_LAPIS_LAZULI_BLOCK", 64),
+    "EMERALD": ("ENCHANTED_EMERALD_BLOCK", 16),
+    "REDSTONE:": ("ENCHANTED_REDSTONE_BLOCK", 32),
+    "MITHRIL:": ("REFINED_MITHRIL", 16),
+    "HARD_STONE:": ("ENCHANTED_STONE", 32),
+}
+
+EMOJI_DICT = {   
+    2:    "<:t2_minion:872063121253097522>",
+    3:    "<:t3_minion:872063101837672458>",
+    4:    "<:t4_minion:872063093339983932>",
+    5:    "<:t5_minion:872063084179619900>",
+    6:    "<:t6_minion:872063074683732009>",
+    7:    "<:t7_minion:872062768705077288>",
+    8:    "<:t8_minion:872063053749948476>",
+    9:    "<:t9_minion:872063039879380992>",
+    10:   "<:t10_minion:872063029901131826>",
+    11:   "<:t11_minion:872063018282917929>",
+    12:   "<:t12_minion:872063006639538176>",
+}
+
+NO_ITEM_FOUND = 1000000000000
+UPGRADABLE = 66666666666
 
 def minion_type(string):
     return "_".join(string.split("_")[:-1])
 
-def minion_level(string):
+def minion_tier(string):
     return int(string.split("_")[-1])
 
 def get_price(bazaar_dump, item):
     if item.startswith("Upgradable"):
-        return NO_ITEM_FOUND
+        return UPGRADABLE
     if ":" in item:
         internal_name, number = item.split(":")
     else:
@@ -84,7 +113,7 @@ def get_price(bazaar_dump, item):
     if bazaar_item is None:
         return NO_ITEM_FOUND
     one_item = bazaar_item['buy_summary'][0]['pricePerUnit']
-    return one_item*int(number)
+    return int(one_item*int(number))
     
 
 class minions_cog(commands.Cog):
@@ -109,35 +138,50 @@ class minions_cog(commands.Cog):
         minion_maxes = {}
         for minion in unique_minion_types:
             minions_of_type = [x for x in minions if minion_type(x) == minion]
-            max_level_minion = max(minions_of_type, key=lambda x: minion_level(x))
-            level = minion_level(max_level_minion)
-            if level >= MAX_MINION_LEVELS[minion+"_GENERATOR"]:
+            max_tier_minion = max(minions_of_type, key=lambda x: minion_tier(x))
+            if minion_tier(max_tier_minion) >= MAX_MINION_TIERS[minion+"_GENERATOR"]:
                 continue
-            minion_maxes[minion] = level
+            minion_maxes[minion] = minion_tier(max_tier_minion)
 
         minion_recipes = {}
-        for minion, level in minion_maxes.items():
-            if level+1 == MAX_MINION_LEVELS[minion+"_GENERATOR"]:
-                minion_recipes[minion+f"_{level+1}"] = "Upgradable off the island!"
+        for minion, tier in minion_maxes.items():
+            minion_id = minion+f"_{tier+1}"
+            if tier+1 == MAX_MINION_TIERS[minion+"_GENERATOR"]:
+                if (possible_materials := T12_MATERIALS.get(minion)) is None:
+                    minion_recipes[minion_id] = UPGRADABLE
+                else:  # Calculate minion cost through manual list and bazaar
+                    material, count = possible_materials
+                    bazaar_item = data[material]
+                    price_per = bazaar_item['buy_summary'][0]['pricePerUnit']
+                    minion_recipes[minion_id] = int(price_per * count + 2_000_000)
             else:
-                recipe = ITEMS.get(minion+"_GENERATOR_"+str(level), None)
-                minion_recipes[minion+f"_{level+1}"] = recipe["recipe"] if recipe else None
+                recipe = ITEMS.get(minion+"_GENERATOR_"+str(tier), None)
+                minion_recipes[minion_id] = recipe["recipe"] if recipe else None
 
         minion_prices = {}
         for minion, recipe in minion_recipes.items():
-            if not isinstance(recipe, str):
-                minion_prices[minion] = sum([int(get_price(data, x)) for x in recipe if "GENERATOR" not in x])
+            if isinstance(recipe, list):
+                #print(minion, recipe)
+                minion_prices[minion] = sum([get_price(data, x) for x in recipe if "GENERATOR" not in x])
+            else:  # For ints
+                minion_prices[minion] = recipe
 
         ordered = sorted(minion_prices.items(), key=lambda item: item[1])[:12]
 
-        print(ordered)
-        #NO_ITEM_FOUND
+        if len(ordered) == 0:
+            return await error(ctx, "Error, this person has maxed all minions!", "I guess just wait for the next update?")
 
-        embed = discord.Embed(title=f"Cheapest minions to upgrade for {username}", colour=0x3498DB)
+        embed = discord.Embed(colour=0x3498DB)
+        embed.set_author(name=f"Cheapest minions to upgrade for {username}", icon_url=f"https://mc-heads.net/head/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
         
-        for i, minion in enumerate(ordered, 1):
-            minion_name, price = minion
-            embed.add_field(name=f"{clean(minion_name)} - #{i}", value=f"Upgrade cost: ${price}", inline=True)
+        for i, (minion_name, price) in enumerate(ordered, 1):
+            if price // UPGRADABLE:
+                price = "Upgradable off the island!"
+            elif price // NO_ITEM_FOUND:
+                price = "Price unknown"
+            else:
+                price = f"Upgrade cost: ${hf(price)}"
+            embed.add_field(name=f"{EMOJI_DICT[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price, inline=True)
 
         await ctx.send(embed=embed)
