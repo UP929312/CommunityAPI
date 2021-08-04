@@ -61,7 +61,7 @@ async def on_command_completion(ctx):
 
 print("Loading cogs...")
 all_cogs = [guild_networth_cog, tree_cog]
-#all_cogs.extend(networth_cog)
+all_cogs.append(networth_cog)
 all_cogs.extend(player_commands)
 print("Adding cogs...")
 

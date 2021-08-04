@@ -35,18 +35,18 @@ class lowest_bin_cog(commands.Cog):
 
         response = requests.get(f"https://sky-preview.coflnet.com/api/item/price/{closest['internal_name']}/bin").json()
 
-        if "Slug" in response.keys() or "uuid" not in response.keys():
+        if "Slug" in response.keys() or "uuid" not in response.keys() or response["lowest"] == 0:
             return await error(ctx, "Error, not items of that type could be found on the auction house!", "Try a different item instead?")
-        response = requests.get(f"https://sky-preview.coflnet.com/api/auction/{response['uuid']}").json()
-        data = response
+        data = requests.get(f"https://sky-preview.coflnet.com/api/auction/{response['uuid']}").json()
 
-        price = data['highestBidAmount'] or data['startingBid'] # 2021-07-30T11:06:19Z
+        price = data.get('highestBidAmount') or data['startingBid'] # 2021-07-30T11:06:19Z
         time_left = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
-        enchantments = format_enchantments(data["enchantments"])
+        enchantment_list = [x["type"].title()+f" {x['level']}" for x in data["enchantments"]]
+        enchantments = format_enchantments(enchantment_list)
 
         formatted_auction = f"↳ Price: {hf(price)}\n↳ Time Remaining: {time_left}"+enchantments
             
-        embed = discord.Embed(title=f"Lowest bin found for {RARITY_DICT[response['tier']]} {response['itemName']}:", description=formatted_auction, colour=0x3498DB)
+        embed = discord.Embed(title=f"Lowest bin found for {RARITY_DICT[data['tier']]} {data['itemName']}:", description=formatted_auction, colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
         await ctx.send(embed=embed)
 

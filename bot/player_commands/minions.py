@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import requests
 
-from utils import error, ITEMS, clean, hf, RARITY_DICT
+from utils import error, ITEMS, clean, hf, RARITY_DICT, API_KEY
 from parse_profile import get_profile_data
 
 MAX_MINION_TIERS = {
@@ -73,9 +73,9 @@ T12_MATERIALS = {
     "DIAMOND": ("ENCHANTED_DIAMOND_BLOCK", 16),
     "LAPIS": ("ENCHANTED_LAPIS_LAZULI_BLOCK", 64),
     "EMERALD": ("ENCHANTED_EMERALD_BLOCK", 16),
-    "REDSTONE:": ("ENCHANTED_REDSTONE_BLOCK", 32),
-    "MITHRIL:": ("REFINED_MITHRIL", 16),
-    "HARD_STONE:": ("ENCHANTED_STONE", 32),
+    "REDSTONE": ("ENCHANTED_REDSTONE_BLOCK", 32),
+    "MITHRIL": ("REFINED_MITHRIL", 16),
+    "HARD_STONE": ("ENCHANTED_STONE", 32),
 }
 
 EMOJI_DICT = {   
@@ -102,18 +102,16 @@ def minion_tier(string):
     return int(string.split("_")[-1])
 
 def get_price(bazaar_dump, item):
-    if item.startswith("Upgradable"):
-        return UPGRADABLE
-    if ":" in item:
-        internal_name, number = item.split(":")
-    else:
-        internal_name, number = item, 0
+    internal_name, number = (item.split(":")) if ":" in item else (item, 0)  # Get quantity off the end = STONE:3 = 3x Stone
 
-    bazaar_item = bazaar_dump.get(internal_name)
-    if bazaar_item is None:
+    for i in range(9):
+        internal_name = internal_name.removesuffix(f"-{i}")  # Removes "-3" from LOG-3 so it can be found at bazaar
+
+    if (bazaar_item := bazaar_dump.get(internal_name)) is None:
+        print(internal_name)
         return NO_ITEM_FOUND
     one_item = bazaar_item['buy_summary'][0]['pricePerUnit']
-    return int(one_item*int(number))
+    return one_item*int(number)
     
 
 class minions_cog(commands.Cog):
@@ -123,17 +121,30 @@ class minions_cog(commands.Cog):
     @commands.command(aliases=['min', 'minion'])
     async def minions(self, ctx, username=None):
 
+        ########## One: Get the right profile and username
         player_data = await get_profile_data(ctx, username)
         if player_data is None:
             return
         username = player_data["username"]
+        ########## Two: Get all the minions from each player on that profile
+        combined_data = requests.get(f"https://api.hypixel.net/skyblock/profile?key={API_KEY}&profile={player_data['profile_id']}").json()
+        # Get a list of all the different players on the profile
+        all_crafted_generators = [combined_data["profile"]["members"][member].get("crafted_generators", []) for member in combined_data["profile"]["members"]]
+        # Get the crafted_generators for each member in the profile
 
-        minions = player_data["crafted_generators"]
+        minions = [item for sublist in all_crafted_generators for item in sublist]  # Combine all the lists
+            
         if len(minions) == 0:
             return await error(ctx, "Error, this person has never crafted a mininon before!", "Are they the right player?")
 
+        ########## Three: Get the bazaar data + override 2 common minions
         data = requests.get(f"https://api.hypixel.net/skyblock/bazaar").json()["products"]
-
+        data["YELLOW_FLOWER"] =       {'buy_summary': [{'pricePerUnit': 35}, None]} # Hard code dandelion from builder
+        data["ENCHANTED_DANDELION"] = {'buy_summary': [{'pricePerUnit': 160*35}, None]}
+        data["MELON_BLOCK"] =         {'buy_summary': [{'pricePerUnit': 9*data["MELON"]["buy_summary"][0]["pricePerUnit"]}, None]}
+        data["SILVER_FANG"] =         {'buy_summary': [{'pricePerUnit': 5*data["GHAST_TEAR"]["buy_summary"][0]["pricePerUnit"]}, None]}
+        
+        ########## Four: Get all the minion sets, e.g. {"SNOW": 4, "COBBLESTONE": 3}
         unique_minion_types = set([minion_type(x) for x in minions])
         minion_maxes = {}
         for minion in unique_minion_types:
@@ -142,46 +153,42 @@ class minions_cog(commands.Cog):
             if minion_tier(max_tier_minion) >= MAX_MINION_TIERS[minion+"_GENERATOR"]:
                 continue
             minion_maxes[minion] = minion_tier(max_tier_minion)
-
-        minion_recipes = {}
+            
+        ########## Five: Get the prices for each of the next tier up
+        minion_prices = {}
         for minion, tier in minion_maxes.items():
             minion_id = minion+f"_{tier+1}"
+            # If it's being upgraded to max tier
             if tier+1 == MAX_MINION_TIERS[minion+"_GENERATOR"]:
                 if (possible_materials := T12_MATERIALS.get(minion)) is None:
-                    minion_recipes[minion_id] = UPGRADABLE
+                    # If it's not a mining T12 minion, e.g. farming (Chicken T12)
+                    minion_prices[minion_id] = UPGRADABLE
                 else:  # Calculate minion cost through manual list and bazaar
                     material, count = possible_materials
                     bazaar_item = data[material]
                     price_per = bazaar_item['buy_summary'][0]['pricePerUnit']
-                    minion_recipes[minion_id] = int(price_per * count + 2_000_000)
-            else:
-                recipe = ITEMS.get(minion+"_GENERATOR_"+str(tier), None)
-                minion_recipes[minion_id] = recipe["recipe"] if recipe else None
-
-        minion_prices = {}
-        for minion, recipe in minion_recipes.items():
-            if isinstance(recipe, list):
-                #print(minion, recipe)
-                minion_prices[minion] = sum([get_price(data, x) for x in recipe if "GENERATOR" not in x])
-            else:  # For ints
-                minion_prices[minion] = recipe
-
+                    minion_prices[minion_id] = price_per * count+2_000_000
+            else:  # If not, just get the recipe from Moulberry's
+                recipe = ITEMS.get(f"{minion}_GENERATOR_{tier+1}", {"recipe": NO_ITEM_FOUND})["recipe"]
+                minion_prices[minion_id] = sum([get_price(data, x) for x in recipe if "GENERATOR" not in x])
+                
         ordered = sorted(minion_prices.items(), key=lambda item: item[1])[:12]
 
         if len(ordered) == 0:
             return await error(ctx, "Error, this person has maxed all minions!", "I guess just wait for the next update?")
 
+        ########## Six: Present in the embed
         embed = discord.Embed(colour=0x3498DB)
         embed.set_author(name=f"Cheapest minions to upgrade for {username}", icon_url=f"https://mc-heads.net/head/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
         
         for i, (minion_name, price) in enumerate(ordered, 1):
-            if price // UPGRADABLE:
-                price = "Upgradable off the island!"
-            elif price // NO_ITEM_FOUND:
+            if price % UPGRADABLE == 0:
+                price = "Upgradable with [Terry](https://hypixel-skyblock.fandom.com/wiki/Terry%27s_Shop)!"
+            elif price % NO_ITEM_FOUND == 0:
                 price = "Price unknown"
             else:
-                price = f"Upgrade cost: ${hf(price)}"
+                price = f"Upgrade cost: {hf(int(price))}"
             embed.add_field(name=f"{EMOJI_DICT[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price, inline=True)
 
         await ctx.send(embed=embed)

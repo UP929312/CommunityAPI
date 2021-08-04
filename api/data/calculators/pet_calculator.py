@@ -71,5 +71,8 @@ def calculate_pet(price, print_prices):
     #######################################################################################
     value["pet_level"] = str(pet_level)
 
+    if pet['type'] == "GOLDEN_DRAGON":
+        value["pet_level"] = str(int(pet_level)+100)  # Add 100 and keep as str so it doesn't get added to nw total
+
     price.value = value
     return price

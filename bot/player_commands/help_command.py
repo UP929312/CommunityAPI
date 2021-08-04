@@ -11,6 +11,7 @@ data_dict = {
     "leaderboard": (" (or use .l)", "Shows the top 12 players with the highest combined networth!"),
     "link":        ("[ign]",        "Links your in-game name to your discord id so you can leave it out in commands."),
     "lowest_bin":  ("[item]",       "Shows the lowest bin on auction house with that name, use .lb for short!"),
+    "minions":     ("[username]",   "Shows the cheapest minions to craft to increase your unique crafted minions count."),
     "missing":     ("[username]",   "Shows the top tier accessories that the player is missing."),
     "price_check": ("[item]",       "Shows historic pricing data about the given item, use .p for short!"),
     "set_prefix":  ("<prefix>",     "Allows an admin to change the prefix of the bot."),

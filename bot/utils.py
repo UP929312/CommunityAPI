@@ -4,6 +4,9 @@ import json
 from difflib import SequenceMatcher
 from datetime import datetime, timedelta
 
+with open("text_files/hypixel_api_key.txt") as file:
+    API_KEY = file.read()
+
 #=============================================================
 # Errors and safe methods
 async def error(ctx, title, description):
