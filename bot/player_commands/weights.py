@@ -5,6 +5,7 @@ import requests
 
 from utils import error, hf
 from parse_profile import get_profile_data
+from menus import MenuView
 
 with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
@@ -43,64 +44,24 @@ PAGE_TO_EMOJI = {"dungeons": "<:dungeons:864588623394897930>",
                  "slayers": "<:slayers:864588648111276072>",
                  "info": "<:misc:854801277489774613>"}
 
-EMOJI_TO_PAGE = dict((v,k) for k,v in PAGE_TO_EMOJI.items())
-
-class MenuButton(discord.ui.Button['MenuView']):
-    def __init__(self, page: str):
-        super().__init__(style=discord.ButtonStyle.blurple, emoji=PAGE_TO_EMOJI[page], row=0)
-        self.page = page
-
-    async def callback(self, interaction: discord.Interaction):
-        view: MenuView = self.view
-        if view.context.author.id == interaction.user.id or interaction.user.id == 244543752889303041:
-            view.page = EMOJI_TO_PAGE[f"<:{self.emoji.name}:{self.emoji.id}>"]
-
-            for child in self.view.children:
-                child.disabled = False
-            self.disabled = True
-            
-            await self.view.update_embed(interaction)
-        else:
-            await interaction.response.send_message("This isn't your command!\nYou can run this command yourself to change the pages!", ephemeral=True)
-        
-
-class MenuView(discord.ui.View):
-    def __init__(self, context, data, username: str):
-        super().__init__()
-        self.context = context
-        self.page = "main"
-        self.data = data
-        self.username = username
-
-        for page in PAGE_URLS.keys():
-            self.add_item(MenuButton(page))
-
-    async def update_embed(self, interaction: discord.Interaction):
-        embed = generate_page(self.context, self.data, self.username, self.page)
-        await interaction.response.edit_message(content="", view=self, embed=embed)
-
-    async def on_timeout(self):
-        try:
-            for button in self.children:
-                button.disabled = True
-            await self.message.edit(view=self)
-        except discord.errors.NotFound:
-            print("Message to disable buttons on was deleted (/weights)")
 
 def generate_page(ctx, response, username, page):
     if page == "main":
         total_regular_weight = round(response["data"]["weight"], 2)
         total_overflow_weight = round(response["data"]["weight_overflow"], 2)
-        embed = discord.Embed(title=f"Weights Calculator For {username}:", description="\n".join([f"Total Regular Weight: **{total_regular_weight}**",
-                                                                                                  f"Total Overflow Weight: **{total_overflow_weight}**",
-                                                                                                  f"Total Weight: **{round(total_regular_weight+total_overflow_weight, 2)}**",
-                                                                                                   "",
-                                                                                                   "Click the buttons to start!",
-                                                                                                   "<:dungeons:864588623394897930> Dungeons",
-                                                                                                   "<:skills:864588638066311200> Skills",
-                                                                                                   "<:slayers:864588648111276072> Slayer",
-                                                                                                   "<:misc:854801277489774613> Info"]),
-                          url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+
+        list_of_elems = [f"Total Regular Weight: **{total_regular_weight}**",
+                         f"Total Overflow Weight: **{total_overflow_weight}**",
+                         f"Total Weight: **{round(total_regular_weight+total_overflow_weight, 2)}**",
+                          "",
+                          "Click the buttons to start!",
+                          "<:dungeons:864588623394897930> Dungeons",
+                          "<:skills:864588638066311200> Skills",
+                          "<:slayers:864588648111276072> Slayer",
+                          "<:misc:854801277489774613> Info"]
+        
+        embed = discord.Embed(title=f"Weights Calculator For {username}:", description="\n".join(list_of_elems),
+                              url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
     elif page == "info":
         embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to represent how far into the game you are, whether that be in slayer, dungeons, or your skills. It uses an extensive formula to calculate the weights. That formula however isn't made by CommunityBot, so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
     else:  
@@ -156,6 +117,5 @@ class weights_cog(commands.Cog):
             return await error(ctx, "Error, the api couldn't fulfill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.")
 
         main_embed = generate_page(ctx, response, username, "main")
-        
-        view = MenuView(context=ctx, data=response, username=username)
+        view = MenuView(context=ctx, data=response, username=username, emoji_map=PAGE_TO_EMOJI, page_generator=generate_page)
         view.message = await ctx.send(embed=main_embed, view=view)

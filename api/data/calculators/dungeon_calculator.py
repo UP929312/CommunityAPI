@@ -37,7 +37,8 @@ def calculate_dungeon_item(price, print_prices=False):
     if item.star_upgrades > 5:
         price.value["stars"]["master_stars"] = {}
         for i in range(1, item.star_upgrades-4):
-            price.value["stars"]["master_stars"][MASTER_STAR_NAMES[i-1]] = LOWEST_BIN[MASTER_STAR_NAMES[i-1].upper()]
+            master_star_name = MASTER_STAR_NAMES[i-1]
+            price.value["stars"]["master_stars"][master_star_name] = LOWEST_BIN.get(master_star_name.upper(), 0)
 
     return price
 

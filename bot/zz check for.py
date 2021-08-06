@@ -1,6 +1,6 @@
 import os
 
-find = "MASTER_ITEM_DICT.json"
+find = "MenuButton"
 
 folders = [f.path for f in os.scandir("./") if f.is_dir()]
 

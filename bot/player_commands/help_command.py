@@ -18,6 +18,7 @@ data_dict = {
     "skills":      ("[username]",   "Shows a summary of all a users skills, including average."),
     "sky":         ("[username]",   "Links you to someone's sky.shiiyu.moe page, for convenience."),
     "slayer":      ("[username]",   "Shows a summary of someone's slayer data, including how many of each tier someone's killed."),
+    "rank":        ("[username]",   "Shows where you place amongst other players with the value of your profile."),
     "weight":      ("[username]",   "Shows a menu of weights which represent how far into the game the player is."),
     "wiki":        ("[wiki page]",  "Shows a page from the Hypixel wiki, to assist in finding a page or item."),
 }

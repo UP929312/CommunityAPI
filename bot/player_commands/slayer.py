@@ -5,6 +5,7 @@ import requests
 from bisect import bisect
 
 from utils import error, hf
+from emojis import SLAYER_EMOJIS
 from parse_profile import get_profile_data
 
 #=====================
@@ -16,13 +17,8 @@ slayer_level_requirements = {
 }
 
 SLAYER_COST = [2_000, 7_500, 20_000, 50_000, 100_000]  # Same for all of them
-
-MOB_EMOJI_DICT = {"zombie": "<:revenant:867330711191158804>",
-                  "spider": "<:tarantula:867330736368386100>",
-                  "wolf": "<:sven:867330745591529512>",
-                  "enderman": "<:voidgloom:867330759073464360>"}
    
-BOSSES = list(MOB_EMOJI_DICT.keys())  # For doing [:3]
+BOSSES = list(SLAYER_EMOJIS.keys())  # For doing [:3]
 
 #=====================
 def get_mob_data(mob, slayer_bosses):
@@ -63,7 +59,7 @@ class slayer_cog(commands.Cog):
         #=====================
         for mob in BOSSES[:3]:
             current_level, current_xp, next_level_xp, progress = get_mob_data(mob, slayer_bosses)
-            embed.add_field(name=f"{MOB_EMOJI_DICT[mob]} {mob.title()} ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nProgress: **{progress}**", inline=True)  # Total XP: (**{hf(current_xp)}**)\n
+            embed.add_field(name=f"{SLAYER_EMOJIS[mob]} {mob.title()} ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nProgress: **{progress}**", inline=True)  # Total XP: (**{hf(current_xp)}**)\n
 
         for mob in BOSSES[:3]:
             string = add_mob_table(mob, slayer_bosses)
@@ -71,7 +67,7 @@ class slayer_cog(commands.Cog):
 
         # Because endermen make this annoying
         current_level, current_xp, next_level_xp, progress = get_mob_data('enderman', slayer_bosses)
-        embed.add_field(name=f"{MOB_EMOJI_DICT['enderman']} Enderman ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nProgress: **{progress}**", inline=True)
+        embed.add_field(name=f"{SLAYER_EMOJIS['enderman']} Enderman ({current_level})", value=f"**{hf(current_xp)}**/{hf(next_level_xp)}\nProgress: **{progress}**", inline=True)
 
         embed.insert_field_at(index=8, name='\u200b', value='\u200b', inline=True)
         embed.insert_field_at(index=9, name='\u200b', value='\u200b', inline=True)

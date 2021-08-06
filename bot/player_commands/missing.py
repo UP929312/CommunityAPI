@@ -2,7 +2,8 @@ import discord
 from discord.ext import commands
 import json
 
-from utils import error, RARITY_DICT
+from utils import error
+from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 from extract_ids import extract_internal_names
 
@@ -58,7 +59,7 @@ class missing_cog(commands.Cog):
             for item in acc_list:
                 internal_name, name, rarity, wiki_link, _ = item.values()
                 wiki_link = "<Doesn't exist>" if not wiki_link else f"[wiki]({wiki_link})"
-                text += f"{RARITY_DICT[rarity]} {name}\nLink: {wiki_link}\n"
+                text += f"{ITEM_RARITY[rarity]} {name}\nLink: {wiki_link}\n"
                             
             embed.add_field(name=f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}", value=text, inline=True)
             

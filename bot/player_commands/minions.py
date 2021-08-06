@@ -3,7 +3,8 @@ from discord.ext import commands
 
 import requests
 
-from utils import error, ITEMS, clean, hf, RARITY_DICT, API_KEY
+from utils import error, ITEMS, clean, hf, API_KEY
+from emojis import MINION_TIER_EMOJIS
 from parse_profile import get_profile_data
 
 MAX_MINION_TIERS = {
@@ -76,21 +77,9 @@ T12_MATERIALS = {
     "REDSTONE": ("ENCHANTED_REDSTONE_BLOCK", 32),
     "MITHRIL": ("REFINED_MITHRIL", 16),
     "HARD_STONE": ("ENCHANTED_STONE", 32),
+    "REVENANT": ("REVENANT_VISCERA", 64),
 }
 
-EMOJI_DICT = {   
-    2:    "<:t2_minion:872063121253097522>",
-    3:    "<:t3_minion:872063101837672458>",
-    4:    "<:t4_minion:872063093339983932>",
-    5:    "<:t5_minion:872063084179619900>",
-    6:    "<:t6_minion:872063074683732009>",
-    7:    "<:t7_minion:872062768705077288>",
-    8:    "<:t8_minion:872063053749948476>",
-    9:    "<:t9_minion:872063039879380992>",
-    10:   "<:t10_minion:872063029901131826>",
-    11:   "<:t11_minion:872063018282917929>",
-    12:   "<:t12_minion:872063006639538176>",
-}
 
 NO_ITEM_FOUND = 1000000000000
 UPGRADABLE = 66666666666
@@ -142,7 +131,7 @@ class minions_cog(commands.Cog):
         data["YELLOW_FLOWER"] =       {'buy_summary': [{'pricePerUnit': 35}, None]} # Hard code dandelion from builder
         data["ENCHANTED_DANDELION"] = {'buy_summary': [{'pricePerUnit': 160*35}, None]}
         data["MELON_BLOCK"] =         {'buy_summary': [{'pricePerUnit': 9*data["MELON"]["buy_summary"][0]["pricePerUnit"]}, None]}
-        data["SILVER_FANG"] =         {'buy_summary': [{'pricePerUnit': 5*data["GHAST_TEAR"]["buy_summary"][0]["pricePerUnit"]}, None]}
+        data["SILVER_FANG"] =         {'buy_summary': [{'pricePerUnit': 125*data["GHAST_TEAR"]["buy_summary"][0]["pricePerUnit"]}, None]}
         
         ########## Four: Get all the minion sets, e.g. {"SNOW": 4, "COBBLESTONE": 3}
         unique_minion_types = set([minion_type(x) for x in minions])
@@ -189,6 +178,6 @@ class minions_cog(commands.Cog):
                 price = "Price unknown"
             else:
                 price = f"Upgrade cost: {hf(int(price))}"
-            embed.add_field(name=f"{EMOJI_DICT[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price, inline=True)
+            embed.add_field(name=f"{MINION_TIER_EMOJIS[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price, inline=True)
 
         await ctx.send(embed=embed)

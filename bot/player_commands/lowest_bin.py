@@ -4,7 +4,8 @@ from discord.ext import commands
 import requests  # For making the api call
 from datetime import datetime  # To convert hypixel time string to object
 
-from utils import error, hf, format_duration, RARITY_DICT, find_closest
+from utils import error, hf, format_duration, find_closest
+from emojis import ITEM_RARITY
 
 def format_enchantments(enchantments):
     if not enchantments:
@@ -33,11 +34,11 @@ class lowest_bin_cog(commands.Cog):
         if closest is None:
             return
 
-        response = requests.get(f"https://sky-preview.coflnet.com/api/item/price/{closest['internal_name']}/bin").json()
+        response = requests.get(f"https://sky.coflnet.com/api/item/price/{closest['internal_name']}/bin").json()
 
         if "Slug" in response.keys() or "uuid" not in response.keys() or response["lowest"] == 0:
             return await error(ctx, "Error, not items of that type could be found on the auction house!", "Try a different item instead?")
-        data = requests.get(f"https://sky-preview.coflnet.com/api/auction/{response['uuid']}").json()
+        data = requests.get(f"https://sky.coflnet.com/api/auction/{response['uuid']}").json()
 
         price = data.get('highestBidAmount') or data['startingBid'] # 2021-07-30T11:06:19Z
         time_left = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
@@ -46,7 +47,7 @@ class lowest_bin_cog(commands.Cog):
 
         formatted_auction = f"↳ Price: {hf(price)}\n↳ Time Remaining: {time_left}"+enchantments
             
-        embed = discord.Embed(title=f"Lowest bin found for {RARITY_DICT[data['tier']]} {data['itemName']}:", description=formatted_auction, colour=0x3498DB)
+        embed = discord.Embed(title=f"Lowest bin found for {ITEM_RARITY[data['tier']]} {data['itemName']}:", description=formatted_auction, colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
         await ctx.send(embed=embed)
 

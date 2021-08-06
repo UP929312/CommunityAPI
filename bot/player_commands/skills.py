@@ -5,6 +5,7 @@ import requests
 from bisect import bisect
 
 from utils import error, hf
+from emojis import SKILL_EMOJIS
 from parse_profile import get_profile_data
 
 SKILLS = ['combat', 'foraging', 'mining', 'farming', 'fishing', 'alchemy', 'enchanting', 'taming', 'carpentry'] # , 'runecrafting'
@@ -28,18 +29,7 @@ max_levels = {
     "carpentry": 50,
     "runecrafting": 25}
 
-SKILL_EMOJI_DICT = {
-    "farming": "<:farming:867330396684943390>",
-    "mining": "<:mining:867330462648762368>",
-    "combat": "<:combat:867330422018408448>",
-    "foraging": "<:foraging:867330412128501770>",
-    "fishing": "<:fishing:867330404985339924>",
-    "enchanting": "<:enchanting:867330504533606480>",
-    "alchemy": "<:alchemy:867330341697355796>",
-    "taming": "<:taming:867330484668334084>",
-    "carpentry": "<:carpentry:867361518274347039>",
-    "runecrafting": "<:runecrafting:867330494679875584>"
-}    
+  
 
 def get_level(skill_data, skill):
     return min(bisect(cumulative_xp_reqs, skill_data.get(f'experience_skill_{skill}', 0)), max_levels[skill])
@@ -80,7 +70,7 @@ class skills_cog(commands.Cog):
                 progress = f"{round((amount_in/next_level_requirements)*100, 2)}%"
 
             #print(f"Level {current_level}, NLR: {next_level_requirements}, Amount in: {amount_in}, progress: {progress}")
-            embed.add_field(name=f"{SKILL_EMOJI_DICT[skill]} {skill.title()} ({current_level})", value=f"**{hf(amount_in)}**/{hf(next_level_requirements)}\nTotal XP: **{hf(cumulative_xp)}**\nProgress: **{progress}**", inline=True) 
+            embed.add_field(name=f"{SKILL_EMOJIS[skill]} {skill.title()} ({current_level})", value=f"**{hf(amount_in)}**/{hf(next_level_requirements)}\nTotal XP: **{hf(cumulative_xp)}**\nProgress: **{progress}**", inline=True) 
 
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
         await ctx.send(embed=embed)

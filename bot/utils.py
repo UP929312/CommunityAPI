@@ -105,16 +105,3 @@ def format_duration(duration, include_millis=False):
             
     formatted_string = ", ".join(parts)    
     return formatted_string
-
-RARITY_DICT = {   
-    "COMMON":    "<:common:863390433593786369>",
-    "UNCOMMON":  "<:uncommon:863390433517895690>",
-    "RARE":      "<:rare:863390433186152459>",
-    "EPIC":      "<:epic:863390433526022165>",
-    "LEGENDARY": "<:legendary:863390433493123072>",
-    "MYTHIC":    "<:mythic:867070377750167572>",
-    "SUPREME":   "<:supreme:867070395949383700>",
-    "SPECIAL":   "<:special:867070427897135144>",
-    "VERY_SPECIAL": "<:very_special:869652064224030830>",
-    "UNKNOWN": "",
-}

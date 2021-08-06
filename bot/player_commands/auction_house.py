@@ -5,7 +5,8 @@ import re
 import requests
 from datetime import datetime
 
-from utils import error, hf, format_duration, RARITY_DICT
+from utils import error, hf, format_duration
+from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 
 
@@ -40,7 +41,7 @@ def to_time(time):
 #===================================================================
 
 def format_auction(auction):
-    title = f"{RARITY_DICT[auction['tier']]} {auction['item_name']}"
+    title = f"{ITEM_RARITY[auction['tier']]} {auction['item_name']}"
     expired = to_time(auction["end"]) < datetime.now()
     sell_type = "auction" if "bin" not in auction else "bin"
 
