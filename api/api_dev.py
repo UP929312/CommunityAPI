@@ -12,8 +12,9 @@ ip = "http://127.0.0.1:8000"  #  For running locally
 #ip = "http://db.superbonecraft.dk:8000"  # For the server
 
 #a = requests.get(f"{ip}/groups/56ms")
-a = requests.get(f"{ip}/total/56ms")
-print(a.status_code)
+a = requests.get(f"{ip}/total/15h")
+#a = requests.get(f"{ip}/total/Larucus")
+#print(a.status_code)
 print(a.json())
 
 '''

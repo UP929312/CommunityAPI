@@ -6,6 +6,7 @@ RARITY_OFFSET = {"COMMON": 0, "UNCOMMON": 6, "RARE": 11, "EPIC": 16, "LEGENDARY"
 TIERS = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
 
 COINS_PER_XP = 0.2
+PET_LEVELS_SUMMED = sum(PET_LEVELS[RARITY_OFFSET["LEGENDARY"]:])
 
 def get_pet_level(pet):
     pet_xp = pet["exp"]
@@ -22,8 +23,13 @@ def calculate_pet(price, print_prices):
 
     pet = price.item
     value = price.value
-    
-    pet_level = get_pet_level(pet)
+
+    if pet['type'] == "GOLDEN_DRAGON" and pet['exp'] > PET_LEVELS_SUMMED:
+        # Dragon required 1.8m xp for each level 103-200,
+        # 101 is insta recieved on hatching and 102 is weirdly broken...
+        pet_level = min(100+int((pet["exp"]-PET_LEVELS_SUMMED)//1_886_700)+2, 200) 
+    else:    
+        pet_level = get_pet_level(pet)
 
     #######################################################################################
     # BASE VALUE
@@ -70,9 +76,6 @@ def calculate_pet(price, print_prices):
 
     #######################################################################################
     value["pet_level"] = str(pet_level)
-
-    if pet['type'] == "GOLDEN_DRAGON":
-        value["pet_level"] = str(int(pet_level)+100)  # Add 100 and keep as str so it doesn't get added to nw total
 
     price.value = value
     return price
