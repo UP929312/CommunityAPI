@@ -1,8 +1,8 @@
 import discord
 
 class MenuButton(discord.ui.Button['MenuView']):
-    def __init__(self, emoji: str):
-        super().__init__(style=discord.ButtonStyle.blurple, emoji=emoji, row=0)
+    def __init__(self, emoji: str, disabled: bool):
+        super().__init__(style=discord.ButtonStyle.blurple, emoji=emoji, row=0, disabled=disabled)
 
     async def callback(self, interaction: discord.Interaction):
         view: MenuView = self.view
@@ -25,12 +25,12 @@ class MenuView(discord.ui.View):
         self.page: str = "main"
         self.data = data
         self.username: str = username
-        self.emoji_map = emoji_map
-        self.emoji_map_reversed = dict((v,k) for k,v in emoji_map.items())
+        self.emoji_map: dict = emoji_map
+        self.emoji_map_reversed: dict = dict((v,k) for k,v in emoji_map.items())
         self.page_generator = page_generator
 
-        for page in emoji_map.keys():
-            self.add_item(MenuButton(emoji_map[page]))
+        for i, page in enumerate(emoji_map.keys()):
+            self.add_item(MenuButton(emoji=emoji_map[page], disabled=(i==0) ))
 
     async def update_embed(self, interaction: discord.Interaction):
         embed = self.page_generator(self.context, self.data, self.username, self.page)

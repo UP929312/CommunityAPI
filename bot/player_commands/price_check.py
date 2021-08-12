@@ -16,8 +16,12 @@ class price_check_cog(commands.Cog):
         closest = await find_closest(ctx, input_item)
         if closest is None:
             return
+
+        #print(closest)
         
         response = requests.get(f"https://sky.coflnet.com/api/item/price/{closest['internal_name']}").json()
+
+        #print(response)
 
         if "Slug" in response.keys() or "min" not in response.keys():
             return await error(ctx, "Error, not items of that type could be found on the auction house!", "Try a different item instead?")

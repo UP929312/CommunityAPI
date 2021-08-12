@@ -1,8 +1,8 @@
 from data.container_handler import get_containers
 
-async def get_groups_value(username, containers=None, extras=None):
+async def get_groups_value(Data, username, containers=None, extras=None):
     if containers is None and extras is None:
-        containers, extras = get_containers(username)
+        containers, extras = get_containers(Data, username)
 
     if containers is None:
         return None

@@ -2,7 +2,7 @@ import requests
 
 from data.decode_container import parse_container
 
-with open("data/api_key.txt", 'r') as file:
+with open("data/hypixel_api_key.txt", 'r') as file:
     API_KEY = file.read()
 
 #=======================================================

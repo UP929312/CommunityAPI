@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi_utils.tasks import repeat_every ###
 
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -14,7 +15,13 @@ from endpoints.dump import get_dump_dict
 from endpoints.debug import get_debug_values
 from endpoints.tree import get_tree
 
+from data.constants.jerry_price_list import PRICES###
+from data.constants.lowest_bin import LOWEST_BIN###
+from data.constants.bazaar import BAZAAR###
+from data.constants.collector import fetch_prices###
+
 import uvicorn
+import os###
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["5/minute"])
 
@@ -30,6 +37,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+class Data:
+    pass
+
+@app.on_event("startup")
+@repeat_every(seconds=60*60)  # 1 hour
+def update_price_lists() -> None:
+    print("Updating prices:")
+    cwd = os.getcwd()
+    os.chdir('data/constants')
+    Data.BAZAAR, Data.LOWEST_BIN, Data.PRICES = fetch_prices()########
+    os.chdir(cwd)
 
 @app.get("/")
 @limiter.limit("20/minute")
@@ -50,7 +69,7 @@ async def error(request: Request):
 
 @app.get("/total/{username}")
 async def total(request: Request, username: str):
-    total = await get_total_value(username)
+    total = await get_total_value(Data, username)
     if isinstance(total, dict):
         return JSONResponse(status_code=200, content=total)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"})       
@@ -58,7 +77,7 @@ async def total(request: Request, username: str):
 
 @app.get("/groups/{username}")
 async def groups(request: Request, username: str):
-    groups = await get_groups_value(username)
+    groups = await get_groups_value(Data, username)
     if isinstance(groups, dict):
         return JSONResponse(status_code=200, content=groups)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"})  
@@ -66,7 +85,7 @@ async def groups(request: Request, username: str):
 
 @app.get("/pages/{username}")
 async def pages(request: Request, username: str):
-    pages = await get_pages_dict(username)
+    pages = await get_pages_dict(Data, username)
     if isinstance(pages, dict):
         return JSONResponse(status_code=200, content=pages)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
@@ -74,7 +93,7 @@ async def pages(request: Request, username: str):
 
 @app.get("/dump/{username}")
 async def dump(request: Request, username: str):
-    dump = await get_dump_dict(username)
+    dump = await get_dump_dict(Data, username)
     if isinstance(dump, dict):
         return JSONResponse(status_code=200, content=dump)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
@@ -82,14 +101,14 @@ async def dump(request: Request, username: str):
 
 @app.get("/debug/{username}")
 async def debug(request: Request, username: str):
-    debug_values = await get_debug_values(username)
+    debug_values = await get_debug_values(Data, username)
     if isinstance(debug_values, dict):
         return JSONResponse(status_code=200, content=debug_values)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 
 
 @app.get("/tree/{username}")
 async def tree(request: Request, username: str):
-    tree_data = await get_tree(username)
+    tree_data = await get_tree(Data, username)
     if isinstance(tree_data, dict):
         return JSONResponse(status_code=200, content=tree_data)
     return JSONResponse(status_code=400, content={"message": "Username could not be found!"}) 

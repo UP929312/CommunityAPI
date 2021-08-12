@@ -1,6 +1,47 @@
 import requests
 import json
 
+def fetch_prices():
+    #==================================================================
+    # BUY IT NOW
+    file, var_name, link = ("lowest_bin", "LOWEST_BIN", "http://moulberry.codes/lowestbin.json")
+    request = requests.get(link).json()
+
+    LOWEST_BIN = dict([(k, int(v)) for k, v in request.items()])
+            
+    with open(f"{file}.py", 'w') as file:
+        file.write(f"{var_name} = "+json.dumps(LOWEST_BIN, indent=4))
+
+    print(f"Loaded in {var_name}")
+    #==================================================================
+    # BAZAAR
+    file, var_name, link = ("bazaar", "BAZAAR", "https://api.hypixel.net/skyblock/bazaar")
+    BAZAAR = {}
+
+    result = requests.get(link).json()
+    for product in result["products"]:
+        BAZAAR[product] = int(result["products"][product]['quick_status']['buyPrice'])
+
+    with open(f"{file}.py", 'w') as file:
+        file.write(f"{var_name} = "+json.dumps(BAZAAR, indent=4))
+    print(f"Loaded in {var_name}")
+    #==================================================================
+    # JERRY'S PRICE LIST
+    file, var_name, link = ("jerry_price_list", "PRICES", "https://raw.githubusercontent.com/skyblockz/pricecheckbot/master/data.json")
+    PRICES = {}
+
+    result = requests.get(link).json()
+    for item in result:
+        name = item["name"].upper()
+        price = int((item["low"]+item["hi"])/2)
+        PRICES[name] = price
+        
+    with open(f"{file}.py", 'w') as file:
+        file.write(f"{var_name} = "+json.dumps(PRICES, indent=4))
+
+    print(f"Loaded in {var_name}")
+    return BAZAAR, LOWEST_BIN, PRICES
+
 def fetch_constants():
     #==================================================================
     # CONSTANTS
@@ -46,17 +87,6 @@ def fetch_constants():
         file.write(f"{var_name} = "+json.dumps(REFORGE_DICT, indent=4))
     print(f"Loaded in {var_name}")
     #==================================================================
-    # BUY IT NOW
-    file, var_name, link = ("lowest_bin", "LOWEST_BIN", "http://moulberry.codes/lowestbin.json")
-    request = requests.get(link).json()
-
-    LOWEST_BIN = dict([(k, int(v)) for k, v in request.items()])
-            
-    with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(LOWEST_BIN, indent=4))
-
-    print(f"Loaded in {var_name}")
-    #==================================================================
     # ENCHANTS TOP NORMALLY ACHIEVABLE LEVEL
     file, var_name, link = ("enchants_top", "ENCHANTS_TOP", "https://raw.githubusercontent.com/Moulberry/NotEnoughUpdates-REPO/master/constants/enchants.json")
     result = requests.get(link).json()
@@ -76,33 +106,7 @@ def fetch_constants():
         file.write(f"{var_name} = "+json.dumps(ENCHANTS_LEVELS, indent=4))
 
     print(f"Loaded in {var_name}")
-    #==================================================================
-    # BAZAAR
-    file, var_name, link = ("bazaar", "BAZAAR", "https://api.hypixel.net/skyblock/bazaar")
-    BAZAAR = {}
-
-    result = requests.get(link).json()
-    for product in result["products"]:
-        BAZAAR[product] = int(result["products"][product]['quick_status']['buyPrice'])
-
-    with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(BAZAAR, indent=4))
-
-    #==================================================================
-    # JERRY'S PRICE LIST
-    file, var_name, link = ("jerry_price_list", "PRICES", "https://raw.githubusercontent.com/skyblockz/pricecheckbot/master/data.json")
-    PRICES = {}
-
-    result = requests.get(link).json()
-    for item in result:
-        name = item["name"].upper()
-        price = int((item["low"]+item["hi"])/2)
-        PRICES[name] = price
-        
-    with open(f"{file}.py", 'w') as file:
-        file.write(f"{var_name} = "+json.dumps(PRICES, indent=4))
-
-    print(f"Loaded in {var_name}")
 
 if __name__ == "__main__":
+    fetch_prices()
     fetch_constants()

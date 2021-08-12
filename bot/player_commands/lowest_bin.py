@@ -10,17 +10,19 @@ from emojis import ITEM_RARITY
 def format_enchantments(enchantments):
     if not enchantments:
         return ""
+    enchantments = sorted(enchantments, key=lambda ench: ench.startswith("Ultimate"), reverse=True)
+    
     enchantment_pairs = [enchantments[i:i + 2] for i in range(0, len(enchantments), 2)]
     if len(enchantment_pairs[-1]) == 1:
         enchantment_pairs[-1] = (enchantment_pairs[-1][0], "")
 
-    enchantment_string = "\n".join([f"[{first} {second}]" for first, second in enchantment_pairs])
+    enchantment_string = "\n".join([f"[{first.replace('_', ' ')}, {second.replace('_', ' ')}]".replace(", ]", "]") for first, second in enchantment_pairs])
 
     formatted_enchants = f'''```ini
 [Enchantments]
 {enchantment_string}
 ```
-'''
+'''.rstrip("\n")
     return formatted_enchants
 
 
@@ -42,10 +44,20 @@ class lowest_bin_cog(commands.Cog):
 
         price = data.get('highestBidAmount') or data['startingBid'] # 2021-07-30T11:06:19Z
         time_left = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
+
+        # Enchants
         enchantment_list = [x["type"].title()+f" {x['level']}" for x in data["enchantments"]]
         enchantments = format_enchantments(enchantment_list)
+        # Hot potato books
+        hot_potato_books = data["flatNbt"].get("hpc", "")
+        if hot_potato_books:
+            if int(hot_potato_books) > 10:
+                hot_potato_books = f"\n\nThis item has 10 hot potato books, and {int(hot_potato_books)-10} fuming potato books"
+            else:
+                hot_potato_books = f"\n\nThis item has {hot_potato_books} hot potato books"
+        
 
-        formatted_auction = f"↳ Price: {hf(price)}\n↳ Time Remaining: {time_left}"+enchantments
+        formatted_auction = f"↳ Price: {hf(price)}\n↳ Time Remaining: {time_left}"+hot_potato_books+("\n" if not enchantments else enchantments)+f"\nTo view this auction ingame, type this command in chat:\n `/ah {data['auctioneerId']}`"
             
         embed = discord.Embed(title=f"Lowest bin found for {ITEM_RARITY[data['tier']]} {data['itemName']}:", description=formatted_auction, colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        

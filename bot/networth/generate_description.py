@@ -6,7 +6,7 @@ def generate_item_description(v):
     #elems.append(f"{BASE_PRICE} - Base cost: {v['base_price']}")
     elems.append(f"{PRICE_SOURCE} - Price source: {v['price_source']}")
     if "recombobulator_value" in v:
-        elems.append(f"{RECOMBOBULATOR} - Recomobulator: +{hf(v['recombobulator_value'])}")
+        elems.append(f"{RECOMBOBULATOR} - Recombobulator: +{hf(v['recombobulator_value'])}")
     if "art_of_war_value" in v:
         elems.append(f"{ART_OF_WAR} - Art of War: +{hf(v['art_of_war_value'])}")
     if "hot_potatoes" in v:

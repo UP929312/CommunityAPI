@@ -422,6 +422,10 @@ ENCHANTS_DICT = {
             "vicious"
         ],
         [
+            "pristine",
+            "compact"
+        ],
+        [
             "turbo_pumpkin",
             "turbo_warts",
             "turbo_cactus",

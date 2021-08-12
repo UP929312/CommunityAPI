@@ -126,7 +126,7 @@ class minions_cog(commands.Cog):
         if len(minions) == 0:
             return await error(ctx, "Error, this person has never crafted a mininon before!", "Are they the right player?")
 
-        ########## Three: Get the bazaar data + override 2 common minions
+        ########## Three: Get the bazaar data + override 4 common minions
         data = requests.get(f"https://api.hypixel.net/skyblock/bazaar").json()["products"]
         data["YELLOW_FLOWER"] =       {'buy_summary': [{'pricePerUnit': 35}, None]} # Hard code dandelion from builder
         data["ENCHANTED_DANDELION"] = {'buy_summary': [{'pricePerUnit': 160*35}, None]}

@@ -36,10 +36,11 @@ EMOJI_DICT = {
 }
 PAGE_URLS = {"dungeons": ["healer", "mage", "berserker", "archer", "tank"],
              "skills":   ["mining", "foraging", "enchanting", "farming", "combat", "fishing", "alchemy", "taming", "carpentry"],
-             "slayers":  ["revenant", "tarantula", "sven", "enderman"],
-             "info": []}
+             "slayers":  ["revenant", "tarantula", "sven", "enderman"]
+}
 
-PAGE_TO_EMOJI = {"dungeons": "<:dungeons:864588623394897930>",
+PAGE_TO_EMOJI = {"main": "<:paper:873158778487443486>",
+                 "dungeons": "<:dungeons:864588623394897930>",
                  "skills": "<:skills:864588638066311200>",
                  "slayers": "<:slayers:864588648111276072>",
                  "info": "<:misc:854801277489774613>"}
@@ -63,11 +64,11 @@ def generate_page(ctx, response, username, page):
         embed = discord.Embed(title=f"Weights Calculator For {username}:", description="\n".join(list_of_elems),
                               url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
     elif page == "info":
-        embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to represent how far into the game you are, whether that be in slayer, dungeons, or your skills. It uses an extensive formula to calculate the weights. That formula however isn't made by CommunityBot, so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
+        embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to represent how far into the game you are, whether that be in slayer, dungeons, or your skills. It uses an extensive formula to calculate the weights. The formula and the data, however, is provided by the Senither API [found here](https://hypixel-api.senither.com/), so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
     else:  
         data_start = response["data"][page]
         data = response["data"][page]
-        total_weight = round(data["weight"]+data["weight_overflow"], 2)
+        total_weight = round(data["weight"]+data.get("weight_overflow", 0), 2)
 
         bank = PAGE_URLS[page]
         if page == "skills":

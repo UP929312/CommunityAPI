@@ -21,12 +21,13 @@ def get_enchantments(lore):
 
     enchantment_list = [match.group(0) for match in list_of_matches]
     if not enchantment_list: return ""
+    sorted_list = sorted(enchantment_list, key=lambda ench: ench.startswith("Ultimate"), reverse=True)
 
-    enchantment_pairs = [enchantment_list[i:i + 2] for i in range(0, len(enchantment_list), 2)]
+    enchantment_pairs = [sorted_list[i:i + 2] for i in range(0, len(sorted_list), 2)]
     if len(enchantment_pairs[-1]) == 1:
         enchantment_pairs[-1] = (enchantment_pairs[-1][0], "")
 
-    enchantment_string = "\n".join([f"[{first} {second}]" for first, second in enchantment_pairs])
+    enchantment_string = "\n".join([f"[{first.replace('_', ' ')}, {second.replace('_', ' ')}]".replace(", ]", "]") for first, second in enchantment_pairs])
 
     formatted_enchants = f'''```ini
 [Enchantments]
@@ -88,7 +89,7 @@ class auction_house_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.cooldown(1, 1800, commands.BucketType.user)
+    #@commands.cooldown(1, 1800, commands.BucketType.user)
     @commands.command(aliases=['ah', 'auctions'])
     async def auction_house(self, ctx, username=None):
       

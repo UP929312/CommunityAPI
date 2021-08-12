@@ -3,7 +3,7 @@ from data.calculators.main_calculator_handler import calculate_container
 from data.utils import get_data, get_storage
 
 
-def get_containers(username):
+def get_containers(Data, username):
     # Parse/Grab data
     player_data, other_data = get_data(username)
     
@@ -22,14 +22,14 @@ def get_containers(username):
 
 
     return ({
-            "inventory":     calculate_container(inv_contents),
-            "accessories":   calculate_container(talisman_bag),
-            "ender_chest":   calculate_container(ender_chest),
-            "armor":         calculate_container(armour),
-            "wardrobe":      calculate_container(wardrobe),
-            "vault":         calculate_container(personal_vault),
-            "storage":       calculate_container(storage_items),
-            "pets":          calculate_container(pet_items)
+            "inventory":     calculate_container(Data, inv_contents),
+            "accessories":   calculate_container(Data, talisman_bag),
+            "ender_chest":   calculate_container(Data, ender_chest),
+            "armor":         calculate_container(Data, armour),
+            "wardrobe":      calculate_container(Data, wardrobe),
+            "vault":         calculate_container(Data, personal_vault),
+            "storage":       calculate_container(Data, storage_items),
+            "pets":          calculate_container(Data, pet_items)
            },
            {
             "purse": int(player_data.get("coin_purse", 0)),  # For some reason, purse contains a bunch of extra decimal places.

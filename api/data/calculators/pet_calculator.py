@@ -1,5 +1,3 @@
-from data.constants.jerry_price_list import PRICES
-from data.constants.lowest_bin import LOWEST_BIN
 from data.constants.pets import PET_LEVELS
 
 RARITY_OFFSET = {"COMMON": 0, "UNCOMMON": 6, "RARE": 11, "EPIC": 16, "LEGENDARY": 20, "MYTHIC": 20}
@@ -19,7 +17,7 @@ def get_pet_level(pet):
 
     return pet_level    
     
-def calculate_pet(price, print_prices):
+def calculate_pet(Data, price, print_prices):
 
     pet = price.item
     value = price.value
@@ -33,13 +31,13 @@ def calculate_pet(price, print_prices):
 
     #######################################################################################
     # BASE VALUE
-    if f"{pet['type']};{TIERS.index(pet['tier'])}" in LOWEST_BIN:
+    if f"{pet['type']};{TIERS.index(pet['tier'])}" in Data.LOWEST_BIN:
         # Try from LOWEST_BIN
-        value["base_price"] = LOWEST_BIN[f"{pet['type']};{TIERS.index(pet['tier'])}"]
+        value["base_price"] = Data.LOWEST_BIN[f"{pet['type']};{TIERS.index(pet['tier'])}"]
         value["price_source"] = "BIN"
     else:
         # Try from Jerry's list
-        value["base_price"] = PRICES.get(f"LVL_1_{pet['tier']}_{pet['type']}", 0)  # LVL_1_COMMON_ENDERMAN
+        value["base_price"] = Data.PRICES.get(f"LVL_1_{pet['tier']}_{pet['type']}", 0)  # LVL_1_COMMON_ENDERMAN
         value["price_source"] = "Jerry"
 
     #######################################################################################
@@ -48,7 +46,7 @@ def calculate_pet(price, print_prices):
     if pet_held_item:
         value["held_item"] = {}
         value["held_item"]["item"] = pet_held_item
-        value["held_item"]["value"] = LOWEST_BIN.get(pet_held_item, 0)
+        value["held_item"]["value"] = Data.LOWEST_BIN.get(pet_held_item, 0)
         value["held_item"]["price_source"] = "BIN"
         
     #######################################################################################
@@ -57,7 +55,7 @@ def calculate_pet(price, print_prices):
     if pet_skin:
         value["pet_skin"] = {}
         value["pet_skin"]["item"] = "PET_SKIN"+pet['skin']
-        value["pet_skin"]["value"] = LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0)
+        value["pet_skin"]["value"] = Data.LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0)
         value["pet_skin"]["price_source"] = "BIN"
 
     #######################################################################################
