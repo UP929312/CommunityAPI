@@ -8,14 +8,22 @@ with open("data/hypixel_api_key.txt", 'r') as file:
 #=======================================================
 
 def get_data(username):
-    try:
+
+    try:        
         if len(username) <= 16:
-            uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+            uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
+            if uuid_request.status_code != 200:
+                return None, None
+            uuid = uuid_request.json()["id"]
         else:
             uuid = username
+
+        #print(uuid)
         
         profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
-        if profile_list is None:
+        #print(profile_list.keys())
+        if not profile_list or profile_list.get("profiles") is None or profile_list == {'success': True, 'profiles': None}:
+            print("# Error, profile parsing error. Possible wrong username?")
             return None, None
         if profile_list == {'success': False, 'cause': 'Invalid API key'}:
             print("Data/utils: Invalid API key, apparently?")
@@ -26,8 +34,9 @@ def get_data(username):
         player_data = profile["members"][uuid]; other_data = profile
 
     except Exception as e:
-        print(e)
+        print("######", e)
         return None, None
+
     return player_data, other_data
 
 def get_storage(player_data):

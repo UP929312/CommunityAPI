@@ -5,7 +5,7 @@ import requests
 
 from utils import error, hf
 from parse_profile import get_profile_data
-from menus import MenuView
+from menus import generate_preset_menu
 
 with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
@@ -46,7 +46,8 @@ PAGE_TO_EMOJI = {"main": "<:paper:873158778487443486>",
                  "info": "<:misc:854801277489774613>"}
 
 
-def generate_page(ctx, response, username, page):
+def generate_page(ctx, data, username, page):
+    response = data
     if page == "main":
         total_regular_weight = round(response["data"]["weight"], 2)
         total_overflow_weight = round(response["data"]["weight_overflow"], 2)
@@ -68,7 +69,14 @@ def generate_page(ctx, response, username, page):
     else:  
         data_start = response["data"][page]
         data = response["data"][page]
-        total_weight = round(data["weight"]+data.get("weight_overflow", 0), 2)
+        if data is None:
+            embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"There doesn't seem to be anything here?\nThis is most likely because {username} hasn't done any dungeons before.",
+                                  url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+            embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
+            embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
+            return embed
+            
+        total_weight = round(data["weight"]+data["weight_overflow"], 2)
 
         bank = PAGE_URLS[page]
         if page == "skills":
@@ -117,6 +125,5 @@ class weights_cog(commands.Cog):
         if response["status"] != 200:
             return await error(ctx, "Error, the api couldn't fulfill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.")
 
-        main_embed = generate_page(ctx, response, username, "main")
-        view = MenuView(context=ctx, data=response, username=username, emoji_map=PAGE_TO_EMOJI, page_generator=generate_page)
-        view.message = await ctx.send(embed=main_embed, view=view)
+        await generate_preset_menu(ctx=ctx, data=response, username=username, starting_page="main", emoji_map=PAGE_TO_EMOJI, page_generator=generate_page)
+

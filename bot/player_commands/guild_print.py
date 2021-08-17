@@ -31,7 +31,7 @@ class guild_print_cog(commands.Cog):
         for uuid in members_uuid:
             # Get the username
             username = requests.get(f"https://api.mojang.com/user/profiles/{uuid}/names").json()[-1]["name"]
-            print(username, uuid)
+            #print(username, uuid)
             profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
             valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]
             profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])

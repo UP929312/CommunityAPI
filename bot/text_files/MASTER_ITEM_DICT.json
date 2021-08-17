@@ -499,6 +499,13 @@
         "wiki_link": null,
         "recipe": null
     },
+    "AMMONITE;4": {
+        "internal_name": "AMMONITE;4",
+        "name": "§7[Lvl {LVL}] Ammonite",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Ammonite_Pet",
+        "recipe": null
+    },
     "ANCESTRAL_SPADE": {
         "internal_name": "ANCESTRAL_SPADE",
         "name": "Ancestral Spade",
@@ -682,7 +689,7 @@
         "internal_name": "APPLE",
         "name": "Apple",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Apple",
+        "wiki_link": null,
         "recipe": null
     },
     "AQUA_AFFINITY;1": {
@@ -884,7 +891,7 @@
     },
     "ARMOR_OF_YOG_BOOTS": {
         "internal_name": "ARMOR_OF_YOG_BOOTS",
-        "name": "Armor of Yog Boots",
+        "name": "Yog Boots",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog",
         "recipe": [
@@ -901,7 +908,7 @@
     },
     "ARMOR_OF_YOG_CHESTPLATE": {
         "internal_name": "ARMOR_OF_YOG_CHESTPLATE",
-        "name": "Armor of Yog Chestplate",
+        "name": "Yog Chestplate",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog",
         "recipe": [
@@ -918,7 +925,7 @@
     },
     "ARMOR_OF_YOG_HELMET": {
         "internal_name": "ARMOR_OF_YOG_HELMET",
-        "name": "Armor of Yog Helmet",
+        "name": "Yog Helmet",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog",
         "recipe": [
@@ -935,7 +942,7 @@
     },
     "ARMOR_OF_YOG_LEGGINGS": {
         "internal_name": "ARMOR_OF_YOG_LEGGINGS",
-        "name": "Armor of Yog Leggings",
+        "name": "Yog Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_Yog",
         "recipe": [
@@ -961,7 +968,7 @@
         "internal_name": "ARMOR_STAND",
         "name": "Armor Stand",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_Stand",
+        "wiki_link": null,
         "recipe": [
             "STICK:1",
             "STICK:1",
@@ -976,9 +983,9 @@
     },
     "ARROW": {
         "internal_name": "ARROW",
-        "name": "Arrow",
+        "name": "Flint Arrow",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrow",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flint_Arrow",
         "recipe": [
             "FLINT:1",
             "",
@@ -1625,7 +1632,7 @@
         "internal_name": "BARRIER",
         "name": "Barrier",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Barrier",
         "recipe": null
     },
     "BARRY_MAYOR_MONSTER": {
@@ -3125,7 +3132,7 @@
         "internal_name": "BOAT",
         "name": "Boat",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Boat",
+        "wiki_link": null,
         "recipe": [
             "WOOD:1",
             "",
@@ -3267,7 +3274,17 @@
         "name": "Boots of the Pack",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_the_Pack",
-        "recipe": null
+        "recipe": [
+            "",
+            "",
+            "",
+            "GOLDEN_TOOTH:1",
+            "",
+            "GOLDEN_TOOTH:1",
+            "ENCHANTED_MUTTON:32",
+            "",
+            "ENCHANTED_MUTTON:32"
+        ]
     },
     "BOSS_CORLEONE_BOSS": {
         "internal_name": "BOSS_CORLEONE_BOSS",
@@ -3280,7 +3297,7 @@
         "internal_name": "BOSS_SPIRIT_BOW",
         "name": "Spirit Bow",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Spirit_Bow",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Spirit_Bow_(Thorn)",
         "recipe": null
     },
     "BOTTLE_OF_JYRRE": {
@@ -4880,7 +4897,17 @@
         "name": "Catacombs Expert Ring",
         "rarity": "EPIC",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Catacombs_Expert_Ring",
-        "recipe": null
+        "recipe": [
+            "WITHER_CATALYST:3",
+            "WITHER_CATALYST:3",
+            "WITHER_CATALYST:3",
+            "WITHER_CATALYST:3",
+            "",
+            "WITHER_CATALYST:3",
+            "WITHER_CATALYST:3",
+            "WITHER_CATALYST:3",
+            "WITHER_CATALYST:3"
+        ]
     },
     "CATACOMBS_PASS_10": {
         "internal_name": "CATACOMBS_PASS_10",
@@ -5362,7 +5389,17 @@
         "name": "Chestplate of the Pack",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_the_Pack",
-        "recipe": null
+        "recipe": [
+            "ENCHANTED_MUTTON:32",
+            "",
+            "ENCHANTED_MUTTON:32",
+            "ENCHANTED_MUTTON:32",
+            "GOLDEN_TOOTH:1",
+            "ENCHANTED_MUTTON:32",
+            "GOLDEN_TOOTH:1",
+            "GOLDEN_TOOTH:1",
+            "GOLDEN_TOOTH:1"
+        ]
     },
     "CHEST_SHELVES": {
         "internal_name": "CHEST_SHELVES",
@@ -9384,7 +9421,7 @@
         "internal_name": "DUNGEON_STONE",
         "name": "Dungeon Orb",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Classes",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dungeon_Orb",
         "recipe": null
     },
     "DUNGEON_TRAP": {
@@ -13245,7 +13282,17 @@
         "name": "Bottle o' Enchanting",
         "rarity": "UNKNOWN",
         "wiki_link": null,
-        "recipe": null
+        "recipe": [
+            "",
+            "INK_SACK-4:1",
+            "",
+            "INK_SACK-4:1",
+            "GLASS_BOTTLE:1",
+            "INK_SACK-4:1",
+            "INK_SACK-4:1",
+            "INK_SACK-4:1",
+            "INK_SACK-4:1"
+        ]
     },
     "EXTRA_LARGE_GEMSTONE_SACK": {
         "internal_name": "EXTRA_LARGE_GEMSTONE_SACK",
@@ -15707,19 +15754,19 @@
         "internal_name": "GEMSTONE_CHAMBER",
         "name": "Gemstone Chamber",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone_Chamber",
         "recipe": null
     },
     "GEMSTONE_DRILL_1": {
         "internal_name": "GEMSTONE_DRILL_1",
-        "name": "Ruby Drill Model TX-15",
+        "name": "Ruby Drill TX-15",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Ruby_Drill_Model_TX-15",
         "recipe": null
     },
     "GEMSTONE_DRILL_2": {
         "internal_name": "GEMSTONE_DRILL_2",
-        "name": "Gemstone Drill Model LT-522",
+        "name": "Gemstone Drill LT-522",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone_Drill_Model_LT-522",
         "recipe": null
@@ -15733,7 +15780,7 @@
     },
     "GEMSTONE_DRILL_4": {
         "internal_name": "GEMSTONE_DRILL_4",
-        "name": "Jasper Drill Model X",
+        "name": "Jasper Drill X",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jasper_Drill_Model_X",
         "recipe": null
@@ -16569,7 +16616,7 @@
     },
     "GOBLIN_EGG_BLUE": {
         "internal_name": "GOBLIN_EGG_BLUE",
-        "name": "Blue Goblin Egg",
+        "name": "§3Blue Goblin Egg",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Egg",
         "recipe": null
@@ -16590,7 +16637,7 @@
     },
     "GOBLIN_EGG_YELLOW": {
         "internal_name": "GOBLIN_EGG_YELLOW",
-        "name": "Yellow Goblin Egg",
+        "name": "§eYellow Goblin Egg",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Goblin_Egg",
         "recipe": null
@@ -18782,7 +18829,17 @@
         "name": "Helmet of the Pack",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_the_Pack",
-        "recipe": null
+        "recipe": [
+            "GOLDEN_TOOTH:1",
+            "GOLDEN_TOOTH:1",
+            "GOLDEN_TOOTH:1",
+            "ENCHANTED_MUTTON:32",
+            "",
+            "ENCHANTED_MUTTON:32",
+            "",
+            "",
+            ""
+        ]
     },
     "HERMIT_CRAB_PERSONALITY": {
         "internal_name": "HERMIT_CRAB_PERSONALITY",
@@ -22185,7 +22242,17 @@
         "name": "Leggings of the Pack",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_the_Pack",
-        "recipe": null
+        "recipe": [
+            "GOLDEN_TOOTH:1",
+            "GOLDEN_TOOTH:1",
+            "GOLDEN_TOOTH:1",
+            "ENCHANTED_MUTTON:32",
+            "",
+            "ENCHANTED_MUTTON:32",
+            "ENCHANTED_MUTTON:32",
+            "",
+            "ENCHANTED_MUTTON:32"
+        ]
     },
     "LESSER_ORB_OF_HEALING": {
         "internal_name": "LESSER_ORB_OF_HEALING",
@@ -25743,7 +25810,17 @@
         "name": "Null Edge",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Null_Edge",
-        "recipe": null
+        "recipe": [
+            "ENCHANTED_MITHRIL:32",
+            "NULL_ATOM:1",
+            "ENCHANTED_MITHRIL:32",
+            "ENCHANTED_MITHRIL:32",
+            "NULL_ATOM:1",
+            "ENCHANTED_MITHRIL:32",
+            "ENCHANTED_MITHRIL:32",
+            "NULL_ATOM:1",
+            "ENCHANTED_MITHRIL:32"
+        ]
     },
     "NULL_OVOID": {
         "internal_name": "NULL_OVOID",
@@ -27592,7 +27669,17 @@
         "name": "Personal Compactor 7000",
         "rarity": "LEGENDARY",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Personal_Compactor_7000",
-        "recipe": null
+        "recipe": [
+            "ENCHANTED_REDSTONE_BLOCK:8",
+            "ENCHANTED_REDSTONE_BLOCK:8",
+            "ENCHANTED_REDSTONE_BLOCK:8",
+            "ENCHANTED_REDSTONE_BLOCK:8",
+            "",
+            "ENCHANTED_REDSTONE_BLOCK:8",
+            "ENCHANTED_REDSTONE_BLOCK:8",
+            "PERSONAL_COMPACTOR_6000:1",
+            "ENCHANTED_REDSTONE_BLOCK:8"
+        ]
     },
     "PERSONAL_DELETOR_4000": {
         "internal_name": "PERSONAL_DELETOR_4000",
@@ -28275,6 +28362,13 @@
     "PET_SKIN_WITHER": {
         "internal_name": "PET_SKIN_WITHER",
         "name": "Dark Wither Skeleton Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_WOLF": {
+        "internal_name": "PET_SKIN_WOLF",
+        "name": "Dark Wolf Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
@@ -31305,7 +31399,7 @@
         "internal_name": "RECALL_POTION",
         "name": "Recall Potion",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Recall_Potion",
         "recipe": null
     },
     "RECLUSE_FANG": {
@@ -40766,7 +40860,7 @@
             "",
             "BRAIDED_GRIFFIN_FEATHER:4",
             "",
-            "NULL_BLADE:4",
+            "NULL_BLADE:3",
             "TARANTULA_SILK:64"
         ]
     },
@@ -42897,7 +42991,17 @@
         "name": "Venom's Touch",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Venom's_Touch",
-        "recipe": null
+        "recipe": [
+            "",
+            "ENCHANTED_BROWN_MUSHROOM:60",
+            "SOUL_STRING:10",
+            "ENCHANTED_SPIDER_EYE:10",
+            "",
+            "SOUL_STRING:10",
+            "",
+            "ENCHANTED_BROWN_MUSHROOM:60",
+            "SOUL_STRING:10"
+        ]
     },
     "VERY_OFFICIAL_YELLOW_ROCK": {
         "internal_name": "VERY_OFFICIAL_YELLOW_ROCK",
@@ -44241,7 +44345,17 @@
         "name": "Wither Relic",
         "rarity": "LEGENDARY",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wither_Relic",
-        "recipe": null
+        "recipe": [
+            "WITHER_CATALYST:1",
+            "WITHER_CATALYST:1",
+            "WITHER_CATALYST:1",
+            "WITHER_CATALYST:1",
+            "WITHER_ARTIFACT:1",
+            "WITHER_CATALYST:1",
+            "WITHER_CATALYST:1",
+            "WITHER_CATALYST:1",
+            "WITHER_CATALYST:1"
+        ]
     },
     "WITHER_SHIELD_SCROLL": {
         "internal_name": "WITHER_SHIELD_SCROLL",

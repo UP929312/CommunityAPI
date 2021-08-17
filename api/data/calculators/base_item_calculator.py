@@ -43,6 +43,7 @@ def calculate_item(Data, price, print_prices=False):
         if value["base_price"] is None:
             value["base_price"] = 0
             value["price_source"] = "None"
+
     #=============================================================================
     # Hoe calculations
     if item.type == "HOE" and item.hoe_material != None:

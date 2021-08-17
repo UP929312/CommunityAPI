@@ -13,7 +13,7 @@ def fetch_data(*args):
         cursor.execute(*args)
         records = cursor.fetchall()
     except Exception as e:
-        print(e)
+        print("Database manager error, tried fetching but failed:", e)
     finally:
         cursor.close()
 
@@ -27,7 +27,7 @@ def execute_command(*args):
         cursor.execute(*args)
         mydb.commit()
     except Exception as e:
-        print(e)
+        print("Database manager error, tried executing but failed:", e)
     finally:
         cursor.close()
 
@@ -89,7 +89,7 @@ def get_max_current_networth():
           FROM stored_profiles AS t3
           GROUP BY t3.uuid
         ) AS t2 ON t1.uuid = t2.uuid AND t1.datetime = t2.datetime
-        ORDER BY total DESC LIMIT 12
+        ORDER BY total DESC LIMIT 100
     ''')
 #===========================================
 # For rank

@@ -24,7 +24,7 @@ def search_tree(info_dict):
     return branch_value
 
 
-class Price():  # Pretty sure I don't need this?
+class Price():
     def __init__(self, item):
         self.item = item
         self.value = {}  # need this

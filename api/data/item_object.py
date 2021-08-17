@@ -1,14 +1,14 @@
 import re
 import json
 
-DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM",  "name":"Default Item",     "stack_size": 1,
-                "type": "Default",                "item_group": "Misc",      "rarity": "Common",
-                "recombobulated": 0,              "hot_potatoes": 0,         "talisman_enrichment": None,
-                "art_of_war": None,               "wood_singularity": None,  "skin": None,
-                "power_ability_scroll": None,     "gems": {},                "gemstone_chambers": None,
-                "enchantments": {},               "reforge": None,           "star_upgrades": 0,
-                "farming_for_dummies": 0,         "tuned_transmission": 0,   "ethermerge": False,       "winning_bid": 0,
-                "ability_scrolls": [],            "origin_tag": "UNKNOWN",}
+DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM", "name":"Default Item",    "stack_size": 1,
+                "type": "Default",               "item_group": "Misc",     "rarity": "Common",
+                "recombobulated": 0,             "hot_potatoes": 0,        "talisman_enrichment": None,
+                "art_of_war": None,              "wood_singularity": None, "skin": None,
+                "power_ability_scroll": None,    "gems": {},               "gemstone_chambers": None,
+                "enchantments": {},              "reforge": None,          "star_upgrades": 0,
+                "farming_for_dummies": 0,        "tuned_transmission": 0,  "ethermerge": False,
+                "winning_bid": 0,                "ability_scrolls": [],    "origin_tag": "UNKNOWN",}
                 
 HOE_MATERIAL_TO_INTERNAL_NAME = {
     "POTATO": "POTATO_ITEM",
@@ -39,12 +39,11 @@ class Item:
         display = tag.get('display', {})
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
-        self.stack_size = self.__nbt__.get('Count', 1)
+        self.stack_size = max(0, self.__nbt__.get('Count', 1))
         self.origin_tag = extras.get("originTag", "UNKNOWN")
 
-
         # Recomb + HPB
-        self.recombobulated = True if extras.get('rarity_upgrades', False) else False
+        self.recombobulated = bool(extras.get('rarity_upgrades', False))
         self.hot_potatoes = extras.get('hot_potato_count', 0)
 
         # Little extras
@@ -130,7 +129,7 @@ class Item:
         data = {
                 "name": self.name,
                 "internal_name": self.internal_name,
-                "rarity": self.rarity if self.rarity is not None else 'Misc',
+                "rarity": self.rarity or 'Misc',
                 "stack_size": self.stack_size,
                 "origin_tag": self.origin_tag,
                }

@@ -2,14 +2,20 @@ import requests
 import json
 
 def fetch_prices():
+    print("Pre-fetch prices")
     #==================================================================
     # BUY IT NOW
     file, var_name, link = ("lowest_bin", "LOWEST_BIN", "http://moulberry.codes/lowestbin.json")
-    request = requests.get(link).json()
+    try:
+        request = requests.get(link).json()
 
-    LOWEST_BIN = dict([(k, int(v)) for k, v in request.items()])
-            
-    with open(f"{file}.py", 'w') as file:
+        LOWEST_BIN = dict([(k, int(v)) for k, v in request.items()])
+    except Exception as e:
+        print(e)
+        print("ERROR: Failed to load LOWEST_BIN, falling back to previous state instead.")
+        from data.constants.lowest_bin import LOWEST_BIN
+
+    with open(f"data/constants/{file}.py", 'w') as file:
         file.write(f"{var_name} = "+json.dumps(LOWEST_BIN, indent=4))
 
     print(f"Loaded in {var_name}")
@@ -18,25 +24,34 @@ def fetch_prices():
     file, var_name, link = ("bazaar", "BAZAAR", "https://api.hypixel.net/skyblock/bazaar")
     BAZAAR = {}
 
-    result = requests.get(link).json()
-    for product in result["products"]:
-        BAZAAR[product] = int(result["products"][product]['quick_status']['buyPrice'])
+    try:
+        result = requests.get(link).json()
+        for product in result["products"]:
+            BAZAAR[product] = int(result["products"][product]['quick_status']['buyPrice'])
+    except:
+        print("ERROR: Failed to load BAZAAR, falling back to previous state instead")
+        from data.constants.bazaar import BAZAAR
 
-    with open(f"{file}.py", 'w') as file:
+    with open(f"data/constants/{file}.py", 'w') as file:
         file.write(f"{var_name} = "+json.dumps(BAZAAR, indent=4))
+        
     print(f"Loaded in {var_name}")
     #==================================================================
     # JERRY'S PRICE LIST
     file, var_name, link = ("jerry_price_list", "PRICES", "https://raw.githubusercontent.com/skyblockz/pricecheckbot/master/data.json")
     PRICES = {}
 
-    result = requests.get(link).json()
-    for item in result:
-        name = item["name"].upper()
-        price = int((item["low"]+item["hi"])/2)
-        PRICES[name] = price
-        
-    with open(f"{file}.py", 'w') as file:
+    try:        
+        result = requests.get(link).json()
+        for item in result:
+            name = item["name"].upper()
+            price = int((item["low"]+item["hi"])/2)
+            PRICES[name] = price
+    except:
+        print("ERROR: Failed to load PRICES, falling back to previous state instead")
+        from data.constants.jerry_price_list import PRICES
+
+    with open(f"data/constants/{file}.py", 'w') as file:
         file.write(f"{var_name} = "+json.dumps(PRICES, indent=4))
 
     print(f"Loaded in {var_name}")
