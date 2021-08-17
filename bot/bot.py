@@ -1,5 +1,8 @@
 import discord
 from discord.ext import commands
+
+import json  # For loading the uuid conversion cache
+
 intents = discord.Intents(guild_reactions=False, members=False, invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, presences=False, integrations=False, webhooks=False,
                           messages=True, guilds=True, emojis=True)
 
@@ -28,7 +31,10 @@ def get_prefix(bot, msg):
 client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = prefixes
 client.linked_accounts = linked_accounts
-client.uuid_conversion_cache = {}
+
+# Load in the stored uuid conversion cache for .leaderboard (they're stored as uuids)
+with open("text_files/uuid_conversion_cache.json", 'r') as file:
+    client.uuid_conversion_cache = json.load(file)
 #====================================================
 @client.event
 async def on_ready():

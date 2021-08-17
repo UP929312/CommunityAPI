@@ -1,9 +1,11 @@
 import discord
 from discord.ext import commands
 
+import requests
+import json
+
 from database_manager import get_max_current_networth, get_max_networth_all_time
 from utils import hf
-import requests
 
 from menus import generate_dynamic_scrolling_menu
 
@@ -42,6 +44,9 @@ async def page_generator(ctx, data, page):
         emoji_text = await emoji_page(client, page, username)
 
         embed.add_field(name=f"{emoji_text} {username} - #{i+(page-1)*10}", value=f"Total: **{hf(total)}**", inline=True)
+
+    with open("text_files/uuid_conversion_cache.json", 'w') as file:
+        json.dump(client.uuid_conversion_cache, file)
 
     embed.set_author(icon_url="https://media.discordapp.net/attachments/854829960974565396/868236867944972368/crown.png", name=f"Networth Leaderboard (current), page {page}:", url="https://discord.com/api/oauth2/authorize?client_id=854722092037701643&permissions=242666032192&scope=bot%20applications.commands")
     embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")

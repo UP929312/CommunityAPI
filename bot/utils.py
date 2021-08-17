@@ -95,7 +95,7 @@ def format_duration(duration, include_millis=False):
     
     units["millis"] = 0 if not include_millis else int((dur / timedelta(microseconds=1)) / 1000)
 
-    if not any([v for v in units.values()]):
+    if not any(units.values()):
         return "0ms (No time given)"
 
     parts = []
