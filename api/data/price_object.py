@@ -53,6 +53,7 @@ class Price():
         self.total = search_tree(self.value)
         if not isinstance(self.item, dict):
             self.total *= self.item.stack_size
+        self.total = max(self.total, 0)  # I shouldn't have to do this... Hypixel why...
         return self.total
     
 
