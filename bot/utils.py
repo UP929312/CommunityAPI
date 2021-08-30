@@ -46,6 +46,22 @@ async def find_closest(ctx, user_input):
 
     return closest
 
+
+'''
+def find_closest_dev(user_input):
+    closest = max(ITEMS.values(), key=lambda item: SequenceMatcher(None, user_input.lower(), item["name"].lower()).ratio())
+    if SequenceMatcher(None, user_input.lower(), closest["name"].lower()).ratio() < 0.6:
+        print("Error")
+
+    return closest
+
+items = []
+for item in "Aspect of the End, Aspect of the Void, Zombie Sword, Ornate Zombie Sword, Reaper Falchion, Pooch Sword, Axe of the Shredded, Yeti Sword, Midas' Sword, Daedalus Axe, Aspect of the Dragons, Bonzo's Staff, Spirit Sceptre, Adaptive Blade, Ice Spray Wand, Livid Dagger, Shadow Fury, Flower of Truth, Giant's Sword, Titanium Drill DR-X455, Titanium Drill DR-X555, Topaz Drill KGR-12, Blaze Armor, Mastiff Armor, Perfect Armor, Shark Scale Armor, Superior Dragon Armor, Adaptive Armor, Shadow Assassin Armor, Necromancer Lord Armor, Sorrow Armor.".split(","):
+    items.append(find_closest_dev(item)["internal_name"])
+#find_closest_dev("enchanted book")
+print(items)
+'''
+
 #=============================================================
 # Formatting numbers, datetime and timedeltas
 letter_values = {"": 1,

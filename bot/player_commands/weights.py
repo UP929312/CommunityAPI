@@ -5,7 +5,7 @@ import requests
 
 from utils import error, hf
 from parse_profile import get_profile_data
-from menus import generate_preset_menu
+from menus import generate_dynamic_preset_menu
 
 with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
@@ -125,5 +125,5 @@ class weights_cog(commands.Cog):
         if response["status"] != 200:
             return await error(ctx, "Error, the api couldn't fulfill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.")
 
-        await generate_preset_menu(ctx=ctx, data=response, username=username, starting_page="main", emoji_map=PAGE_TO_EMOJI, page_generator=generate_page)
+        await generate_dynamic_preset_menu(ctx=ctx, data=response, username=username, starting_page="main", emoji_map=PAGE_TO_EMOJI, page_generator=generate_page)
 

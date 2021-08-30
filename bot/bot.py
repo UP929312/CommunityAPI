@@ -24,9 +24,13 @@ print("Importing .py files done...")
 linked_accounts = dict(load_linked_accounts())
 prefixes = dict(load_prefixes())
 
+'''
 def get_prefix(bot, msg):
     prefix = bot.prefixes.get(f"{msg.guild.id}", ".") if msg.guild else "."
     return commands.when_mentioned_or(prefix)(bot, msg)
+'''
+def get_prefix(bot, msg):
+    return "!"
 
 client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = prefixes
@@ -44,8 +48,9 @@ async def on_ready():
         
 @client.event
 async def on_command_error(ctx, error):
-    if (isinstance(error, commands.CommandNotFound) or isinstance(error, commands.errors.MissingAnyRole)
-        or isinstance(error, commands.errors.CheckFailure)): # or isinstance(error, commands.Forbidden)
+    if any([isinstance(error, x) for x in {commands.CommandNotFound, commands.errors.MissingAnyRole,
+                                           commands.errors.CheckFailure, discord.errors.Forbidden}
+          ]):
         pass
     elif isinstance(error, commands.CommandOnCooldown):
         # ALLOW PEOPLE WITH MANAGE MESSAGES TO BYPASS THE COOLDOWN

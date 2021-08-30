@@ -6,7 +6,7 @@ from datetime import datetime  # To convert hypixel time string to object
 
 from utils import error, hf, format_duration, find_closest
 from emojis import ITEM_RARITY
-from menus import generate_scrolling_menu
+from menus import generate_static_scrolling_menu
 
 
 def format_enchantments(enchantments):
@@ -39,12 +39,12 @@ class lowest_bin_cog(commands.Cog):
         
         response = requests.get(f"https://sky.coflnet.com/api/auctions/tag/{closest['internal_name']}/active/bin").json()
 
-        if not response:
+        if not response or (isinstance(response, dict) and "Slug" in response.keys()):
             return await error(ctx, "Error, not items of that type could be found on the auction house!", "Try a different item instead?")
 
         list_of_embeds = []
         for page, data in enumerate(response, 1):
-            #price = data.get('highestBidAmount') or  # 2021-07-30T11:06:19Z
+            #                                                                      # 2021-07-30T11:06:19Z
             time_left = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
 
             # Enchants
@@ -65,5 +65,5 @@ class lowest_bin_cog(commands.Cog):
 
             list_of_embeds.append(embed)
 
-        await generate_scrolling_menu(ctx=ctx, list_of_embeds=list_of_embeds)
+        await generate_static_scrolling_menu(ctx=ctx, list_of_embeds=list_of_embeds)
 

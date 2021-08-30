@@ -11,6 +11,9 @@ async def get_pages_dict(Data, username):
     
     container_values = await get_groups_value(Data, username, containers, extras)
 
+    if container_values is None:
+        return None
+
     data = {"purse":   {"total": str(container_values["purse"])},
             "banking": {"total": str(container_values["banking"])},
            }

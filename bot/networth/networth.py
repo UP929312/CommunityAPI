@@ -73,20 +73,24 @@ class networth_cog(commands.Cog):
         except Exception as e:
             print(e)
             return await error(ctx, "Error, the bot could not connect to the API", "This could be because the API is down for maintenance, because it's restarting, or because there are issues. Try again later.")
-        
-        if request.status_code != 200:
-            if request.status_code >= 500:  # Over 500 = Server fails
-                return await error(ctx, "Error, an exception has occured", "This happened internally. If it's continues, let the lead dev know (Skezza#1139)")
-            if request.status_code != 400:  # !400 = Meh
-                return await error(ctx, "Error, no connection", "The bot couldn't connect to the API, it may be down or failing")
-            # 400 = Username not found
+
+        if request.status_code == 500:
+            return await error(ctx, "Error, an exception has occured", "This happened internally. If it's continues, let the lead dev know (Skezza#1139)")
+        elif request.status_code == 404:
             return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?")
+        elif request.status_code == 502:
+            return await error(ctx, "Error, the API key was killed.", "Hypixel will randomly kill the API key, please be patient while a new key is generated.")
+        elif request.status_code == 503:
+            return await error(ctx, "Error, Mojang's servers are down!", "The bot couldn't properly exchange data with Mojang's servers, try using a UUID instead?")            
 
         main_embed = generate_page(ctx.author, request.json(), username, "main")
         
         view = MenuView(command_author=ctx.author, data=request.json(), username=username)
         view.message = await ctx.send(embed=main_embed, view=view)
 
-        uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+        if len(username) > 16:
+            uuid = username
+        else:
+            uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
         data = [request.json()[page]['total'] for page in ("purse", "banking", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets")]
         insert_profile(uuid, *data)
