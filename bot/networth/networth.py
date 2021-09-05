@@ -76,6 +76,8 @@ class networth_cog(commands.Cog):
 
         if request.status_code == 500:
             return await error(ctx, "Error, an exception has occured", "This happened internally. If it's continues, let the lead dev know (Skezza#1139)")
+        elif request.status_code == 423:
+            return await error(ctx, "Error, rate limit hit", "Your request has not been fuffiled, please slow down and try again later.")            
         elif request.status_code == 404:
             return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?")
         elif request.status_code == 502:

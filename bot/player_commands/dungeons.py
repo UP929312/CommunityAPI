@@ -26,12 +26,15 @@ class dungeons_cog(commands.Cog):
         self.client = bot
 
     @commands.command(aliases=['d', 'dungeon'])
-    async def dungeons(self, ctx, username=None):
+    async def dungeons(self, ctx, username=None, profile=None):
 
-        player_data = await get_profile_data(ctx, username)
+        player_data = await get_profile_data(ctx, username, profile)
         if player_data is None:
             return
         username = player_data["username"]
+
+        #if not player_data.get("dungeons"):
+        #    return await error(ctx, "Error, this person's dungeon API is off!", "This command requires the bot to be able to see their dungeon data to work!")
 
         dungeon_data = player_data["dungeons"]["dungeon_types"]["catacombs"]
 

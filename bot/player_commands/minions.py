@@ -108,10 +108,10 @@ class minions_cog(commands.Cog):
         self.client = bot
 
     @commands.command(aliases=['min', 'minion'])
-    async def minions(self, ctx, username=None):
+    async def minions(self, ctx, username=None, profile=None):
 
         ########## One: Get the right profile and username
-        player_data = await get_profile_data(ctx, username)
+        player_data = await get_profile_data(ctx, username, profile)
         if player_data is None:
             return
         username = player_data["username"]

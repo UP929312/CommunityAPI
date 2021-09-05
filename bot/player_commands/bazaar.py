@@ -30,7 +30,7 @@ class bazaar_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command(aliases=['b', 'ba', 'baz'])
+    @commands.command(aliases=['b', 'ba', 'baz', 'bz'])
     async def bazaar(self, ctx, *, user_input=None):
         if user_input is None:
             return await error(ctx, "No item given.", "Please give the item you want to check the price of at the bazaar.")

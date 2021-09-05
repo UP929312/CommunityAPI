@@ -21,10 +21,11 @@ from player_commands.maxer         import maxer_cog
 from player_commands.set_prefix    import set_prefix_cog
 from player_commands.link_account  import link_account_cog
 from player_commands.help_command  import help_cog
+from player_commands.regenerate_leaderboard import regenerate_leaderboard_cog
 
 #from player_commands._dev import _dev_cog
 
-assistant_commands = [set_prefix_cog, link_account_cog, help_cog]
+assistant_commands = [set_prefix_cog, link_account_cog, help_cog, regenerate_leaderboard_cog]
 
 regular_commands = [sky_cog, wiki_cog, bazaar_cog,
                     dungeons_cog, kills_cog, lowest_bin_cog,

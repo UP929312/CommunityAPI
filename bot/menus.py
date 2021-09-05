@@ -75,7 +75,7 @@ class StaticPresetMenuButton(discord.ui.Button['MenuView']):
 
     async def callback(self, interaction: discord.Interaction):
         view: PresetMenuView = self.view
-        if view.context.author.id == interaction.user.id or interaction.user.id == 244543752889303041:
+        if view.ctx.author.id == interaction.user.id or interaction.user.id == 244543752889303041:
             view.page: int = self.view.emoji_list.index(str(self.emoji))
 
             for child in self.view.children:
@@ -109,9 +109,14 @@ class StaticPresetMenuView(discord.ui.View):
         except discord.errors.NotFound:
             pass
 
-async def generate_static_preset_menu(ctx, list_of_embeds, emoji_list):
+async def generate_static_preset_menu(ctx, list_of_embeds, emoji_list, message_object=None):
     view = StaticPresetMenuView(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=emoji_list)
-    view.message = await ctx.send(embed=list_of_embeds[0], view=view)
+    if message_object:
+        await message_object.edit(embed=list_of_embeds[0], view=view)
+        view.message = message_object
+    else:
+        view.message = await ctx.send(embed=list_of_embeds[0], view=view)
+    
 
 ###############################################################################
 # Static Scrolling Menus, flicks through a list of preset list of embeds,
@@ -171,7 +176,7 @@ class StaticScrollingMenuView(discord.ui.View):
         middle = int(len(list_of_embeds)/2)
         last = len(list_of_embeds)
         for emoji in SCROLLING_EMOJIS.keys():
-            self.add_item(ScrollingMenuButton(emoji=emoji, middle=middle, last=last))
+            self.add_item(StaticScrollingMenuButton(emoji=emoji, middle=middle, last=last))
 
     async def update_embed(self, interaction: discord.Interaction):
         embed: discord.Embed = self.list_of_embeds[self.page-1]
@@ -212,7 +217,7 @@ class DynamicScrollingMenuView(discord.ui.View):
         middle = int((len(data)/2)/10)  # We give it 100 items, but 10 per page
         last = int(len(data)/10)
         for emoji in SCROLLING_EMOJIS.keys():
-            self.add_item(ScrollingMenuButton(emoji=emoji, middle=middle, last=last))
+            self.add_item(StaticScrollingMenuButton(emoji=emoji, middle=middle, last=last))
 
     async def update_embed(self, interaction: discord.Interaction):
         embed: discord.Embed = await self.page_generator(self.ctx, self.data, self.page)

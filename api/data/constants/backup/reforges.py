@@ -171,8 +171,7 @@ REFORGE_DICT = {
             "UNCOMMON": 30000,
             "RARE": 60000,
             "EPIC": 125000,
-            "LEGENDARY": 250000,
-            "MYTHIC": 500000
+            "LEGENDARY": 250000
         }
     },
     "dirty;SWORD": {
@@ -434,8 +433,7 @@ REFORGE_DICT = {
             "UNCOMMON": 40000,
             "RARE": 80000,
             "EPIC": 150000,
-            "LEGENDARY": 300000,
-            "MYTHIC": 600000
+            "LEGENDARY": 300000
         }
     },
     "jerry's;SWORD": {
@@ -497,8 +495,7 @@ REFORGE_DICT = {
             "UNCOMMON": 500,
             "RARE": 1000,
             "EPIC": 2500,
-            "LEGENDARY": 5000,
-            "MYTHIC": 10000
+            "LEGENDARY": 5000
         }
     },
     "silky;ACCESSORY": {
@@ -636,8 +633,7 @@ REFORGE_DICT = {
             "UNCOMMON": 250,
             "RARE": 500,
             "EPIC": 1000,
-            "LEGENDARY": 2500,
-            "MYTHIC": 15000
+            "LEGENDARY": 2500
         }
     },
     "precise;BOW": {
@@ -832,8 +828,7 @@ REFORGE_DICT = {
             "UNCOMMON": 10000,
             "RARE": 10000,
             "EPIC": 10000,
-            "LEGENDARY": 10000,
-            "SPECIAL": 10000
+            "LEGENDARY": 10000
         }
     },
     "sweet;ACCESSORY": {
@@ -854,8 +849,7 @@ REFORGE_DICT = {
             "UNCOMMON": 40000,
             "RARE": 80000,
             "EPIC": 150000,
-            "LEGENDARY": 300000,
-            "MYTHIC": 300000
+            "LEGENDARY": 300000
         }
     },
     "empowered;HELMET": {

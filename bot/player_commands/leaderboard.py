@@ -4,7 +4,7 @@ from discord.ext import commands
 import requests
 import json
 
-from database_manager import get_max_current_networth, get_max_networth_all_time
+from database_manager import get_max_current_networth
 from utils import hf
 
 from menus import generate_dynamic_scrolling_menu
@@ -18,7 +18,7 @@ async def create_emoji(emoji_guild, username):
     return emoji
 
 async def emoji_page(client, page, username):
-    if page == 1:
+    if page in [1, 2, 3]:
         emoji_guild = client.get_guild(860247551008440320)
         emoji = discord.utils.find(lambda emoji: emoji.name.lower() == username.lower(), emoji_guild.emojis)
         if emoji is None:

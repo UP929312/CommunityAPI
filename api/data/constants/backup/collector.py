@@ -104,9 +104,10 @@ def fetch_constants():
     #==================================================================
     # ENCHANTS TOP NORMALLY ACHIEVABLE LEVEL
     # Moulberry removed the encahnts_min_level section, but as we already have it, we can just leave it and update it manually ):
+    '''
     file, var_name, link = ("enchants_top", "ENCHANTS_TOP", "https://raw.githubusercontent.com/Moulberry/NotEnoughUpdates-REPO/master/constants/enchants.json")
     result = requests.get(link).json()
-    '''
+
     ENCHANTS_TOP = result["enchants_min_level"]
 
     with open(f"{file}.py", 'w') as file:
@@ -125,4 +126,5 @@ def fetch_constants():
     print(f"Loaded in {var_name}")
 
 if __name__ == "__main__":
+    fetch_prices()
     fetch_constants()

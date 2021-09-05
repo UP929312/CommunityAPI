@@ -8,6 +8,8 @@ with open("text_files/hypixel_api_key.txt") as file:
 
 ALLOWED_CHARS = {"_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
 
+PROFILE_NAMES = ['apple', 'banana', 'blueberry', 'coconut', 'cucumber', 'grapes', 'kiwi', 'lemon', 'lime', 'mango', 'orange', 'papaya', 'peach', 'pear', 'pineapple', 'pomegranate', 'raspberry', 'strawberry', 'tomato', 'watermelon', 'zucchini']
+
 async def input_to_uuid(ctx, username):
     """
     This returns a dictionary of all the player's profile data.
@@ -40,15 +42,19 @@ async def input_to_uuid(ctx, username):
     uuid = uuid_request.json()["id"]
     return username, uuid
 
-async def get_profile_data(ctx, username):
+async def get_profile_data(ctx, username, profile_provided=None):
+    # If they want to use auto-name and give a profile
+    if username is not None and username.lower() in PROFILE_NAMES:
+        profile_provided = username
+        username = None
     # Convert username/linked_account/nick to uuid
     data = await input_to_uuid(ctx, username)
     if data is None:
         return None
     username, uuid = data
+    
     #################################
     # Fetch profile from hypixel's API with uuid
-
     profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
 
     if profile_list == {'success': False, 'cause': 'Invalid API key'}:
@@ -59,15 +65,19 @@ async def get_profile_data(ctx, username):
     if profile_list.get('profiles') is None:  # If we can't find any profiles, they never made one
         return await error(ctx, "That user has never joined Skyblock before!", "Make sure you typed the name correctly and try again.")
 
-    valid_profiles = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]
-
-    if not valid_profiles:
-        return await error(ctx, "Error, cannot find profiles for this user!", "Make sure you spelled the target player's name correctly")
+    #################################
+    # Either try find the given profile or use the latest joined
+    if profile_provided:  # If they gave their own profile
+        if not (profiles := [x for x in profile_list["profiles"] if x["cute_name"].lower() == profile_provided.lower()]):
+            return await error(ctx, "Error, couldn't find that profile name", "Make sure you type it correctly and try again.")
+        profile = profiles[0]
+    else:  # If they leave it for auto
+        if not (valid_profiles := [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]):
+            return await error(ctx, "Error, cannot find profiles for this user!", "Make sure you spelled the target player's name correctly")
     
-    profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
+        profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
     #################################
     # Save the profile data and some other bits because they're handy
-
     profile_dict = profile["members"][uuid]
 
     profile_dict["uuid"] = uuid

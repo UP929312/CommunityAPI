@@ -1,6 +1,6 @@
 import os
 
-find = "generate_scrolling_menu"
+find = "§"
 
 folders = [f.path for f in os.scandir("./") if f.is_dir()]
 

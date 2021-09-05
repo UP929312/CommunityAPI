@@ -29,9 +29,9 @@ class missing_cog(commands.Cog):
         self.client = bot
 
     @commands.command(aliases=['missing_accessories', 'accessories', 'miss', 'm'])
-    async def missing(self, ctx, username=None):
+    async def missing(self, ctx, username=None, profile=None):
 
-        player_data = await get_profile_data(ctx, username)
+        player_data = await get_profile_data(ctx, username, profile)
         if player_data is None:
             return
         username = player_data["username"]
