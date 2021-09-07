@@ -40,7 +40,7 @@ class lowest_bin_cog(commands.Cog):
         response = requests.get(f"https://sky.coflnet.com/api/auctions/tag/{closest['internal_name']}/active/bin").json()
 
         if not response or (isinstance(response, dict) and "Slug" in response.keys()):
-            return await error(ctx, "Error, not items of that type could be found on the auction house!", "Try a different item instead?")
+            return await error(ctx, "Error, no items of that type could be found on the auction house!", "Try a different item instead?")
 
         list_of_embeds = []
         for page, data in enumerate(response, 1):

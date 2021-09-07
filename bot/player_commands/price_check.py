@@ -24,7 +24,7 @@ class price_check_cog(commands.Cog):
         #print(response)
 
         if "Slug" in response.keys() or "min" not in response.keys():
-            return await error(ctx, "Error, not items of that type could be found on the auction house!", "Try a different item instead?")
+            return await error(ctx, "Error, no items of that type could be found on the auction house!", "Try a different item instead?")
 
         string = [f"{MATHS_EMOJIS['min']} Minimum: {hf(response['min'])}",
                   f"{MATHS_EMOJIS['max']} Maximum: {hf(response['max'])}",
