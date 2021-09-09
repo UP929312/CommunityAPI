@@ -27,7 +27,7 @@ def calculate_base_stars(price):
     return price
 
 
-def calculate_dungeon_item(Data, price, print_prices=False):
+def calculate_dungeon_item(data, price, print_prices=False):
     item = price.item
 
     price.value["stars"] = {}
@@ -37,7 +37,7 @@ def calculate_dungeon_item(Data, price, print_prices=False):
         price.value["stars"]["master_stars"] = {}
         for i in range(1, item.star_upgrades-4):
             master_star_name = MASTER_STAR_NAMES[i-1]
-            price.value["stars"]["master_stars"][master_star_name] = Data.LOWEST_BIN.get(master_star_name.upper(), 0)
+            price.value["stars"]["master_stars"][master_star_name] = data.LOWEST_BIN.get(master_star_name.upper(), 0)
 
     return price
 

@@ -3,17 +3,17 @@ from data.calculators.pet_calculator import calculate_pet
 from data.calculators.base_item_calculator import calculate_item
 from data.price_object import Price
 
-def calculate_container(Data, elements, print_prices=False):
+def calculate_container(data, elements, print_prices=False):
     prices = []
     for element in elements:
 
         price = Price(element)
 
         if isinstance(element, dict) and 'candyUsed' in element.keys() and 'active' in element.keys():
-            price_object = calculate_pet(Data, price, print_prices)
+            price_object = calculate_pet(data, price, print_prices)
 
         elif element.internal_name == "ENCHANTED_BOOK":
-            price_object = calculate_enchanted_book(Data, price)
+            price_object = calculate_enchanted_book(data, price)
 
         elif element.internal_name == "PET":
             pet_info = price.item.pet_info
@@ -23,9 +23,9 @@ def calculate_container(Data, elements, print_prices=False):
                 element['skin'] = pet_info['skin']
             if "heldItem" in pet_info:
                 element['heldItem'] = pet_info['heldItem']
-            price_object = calculate_pet(Data, Price(element), print_prices)
+            price_object = calculate_pet(data, Price(element), print_prices)
         else:
-            price_object = calculate_item(Data, price, print_prices)
+            price_object = calculate_item(data, price, print_prices)
 
         if price_object is not None:
             price_object.calculate_total()

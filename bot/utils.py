@@ -1,6 +1,7 @@
 import discord
 from math import log10
 import json
+import re
 from difflib import SequenceMatcher
 from datetime import datetime, timedelta
 
@@ -74,6 +75,9 @@ ends = list(letter_values.keys())
 
 def clean(string):
     return string.replace("_", " ").title().replace("'S", "'s")
+
+def remove_colours(name):
+    return re.sub('§.', '', name)
 
 def hf(num):
     """

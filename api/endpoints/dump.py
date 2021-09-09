@@ -3,13 +3,13 @@ import json
 from endpoints.groups import get_groups_value
 from data.container_handler import get_containers
 
-async def get_dump_dict(Data, username):
-    containers, extras = get_containers(Data, username)
+async def get_dump_dict(session, data, username):
+    containers, extras = await get_containers(session, data, username)
 
     if containers is None:
         return None
     
-    container_values = await get_groups_value(Data, username, containers, extras)
+    container_values = await get_groups_value(session, data, username, containers, extras)
 
     data = {"purse":   container_values["purse"],
             "banking": container_values["banking"]}

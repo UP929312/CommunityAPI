@@ -1,6 +1,6 @@
 import os
 
-find = "§"
+find = "re."
 
 folders = [f.path for f in os.scandir("./") if f.is_dir()]
 

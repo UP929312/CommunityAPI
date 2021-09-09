@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 
 from data.decode_container import parse_container
 from exceptions import InvalidApiKeyException, InvalidUsername, MojangServerError
@@ -6,24 +6,36 @@ from exceptions import InvalidApiKeyException, InvalidUsername, MojangServerErro
 with open("data/hypixel_api_key.txt", 'r') as file:
     API_KEY = file.read()
 
+async def async_conversion(session, url):
+    async with session.get(url) as request:
+        try:
+            json = await request.json()
+        except:
+            request.text = ''
+            return "", request 
+        return json, request
+
+async def async_request(session, url):
+    async with session.get(url) as request:
+        return await request.json()
+
 #=======================================================
 
-
-def get_data(username):
+async def get_data(session, username):
    
     if len(username) <= 16:
-        uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
-        # For invalid usernames, the uuid_request.text will be ''
-        if not uuid_request.text:
+        json, request = await async_conversion(session, f"https://api.mojang.com/users/profiles/minecraft/{username}")
+        # For invalid usernames, the request.text will be ''
+        if not request.text:
             raise InvalidUsername
         # For mojang's servers being down
-        if uuid_request.status_code != 200:
+        if request.status != 200:
             raise MojangServerError
-        uuid = uuid_request.json()["id"]
+        uuid = json["id"]
     else:
         uuid = username.replace("-", "")
-    
-    profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
+
+    profile_list = await async_request(session, f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}")
     
     if profile_list == {'success': False, 'cause': 'Invalid API key'}:
         print("Data/utils: Invalid API key...?")

@@ -17,7 +17,7 @@ def get_pet_level(pet):
 
     return pet_level    
     
-def calculate_pet(Data, price, print_prices):
+def calculate_pet(data, price, print_prices):
 
     pet = price.item
     value = price.value
@@ -31,13 +31,13 @@ def calculate_pet(Data, price, print_prices):
 
     #######################################################################################
     # BASE VALUE
-    if f"{pet['type']};{TIERS.index(pet['tier'])}" in Data.LOWEST_BIN:
+    if f"{pet['type']};{TIERS.index(pet['tier'])}" in data.LOWEST_BIN:
         # Try from LOWEST_BIN
-        value["base_price"] = Data.LOWEST_BIN[f"{pet['type']};{TIERS.index(pet['tier'])}"]
+        value["base_price"] = data.LOWEST_BIN[f"{pet['type']};{TIERS.index(pet['tier'])}"]
         value["price_source"] = "BIN"
     else:
         # Try from Jerry's list
-        value["base_price"] = Data.PRICES.get(f"LVL_1_{pet['tier']}_{pet['type']}", 0)  # LVL_1_COMMON_ENDERMAN
+        value["base_price"] = data.PRICES.get(f"LVL_1_{pet['tier']}_{pet['type']}", 0)  # LVL_1_COMMON_ENDERMAN
         value["price_source"] = "Jerry"
 
     #######################################################################################
@@ -46,7 +46,7 @@ def calculate_pet(Data, price, print_prices):
     if pet_held_item:
         value["held_item"] = {}
         value["held_item"]["item"] = pet_held_item
-        value["held_item"]["value"] = Data.LOWEST_BIN.get(pet_held_item, 0)
+        value["held_item"]["value"] = data.LOWEST_BIN.get(pet_held_item, 0)
         value["held_item"]["price_source"] = "BIN"
         
     #######################################################################################
@@ -55,7 +55,7 @@ def calculate_pet(Data, price, print_prices):
     if pet_skin:
         value["pet_skin"] = {}
         value["pet_skin"]["item"] = "PET_SKIN"+pet['skin']
-        value["pet_skin"]["value"] = Data.LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0)
+        value["pet_skin"]["value"] = data.LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0)
         value["pet_skin"]["price_source"] = "BIN"
 
     #######################################################################################

@@ -1,7 +1,7 @@
 from endpoints.groups import get_groups_value
 
-async def get_debug_values(Data, username):
-    containers = await get_groups_value(Data, username)
+async def get_debug_values(session, data, username):
+    containers = await get_groups_value(session, data, username)
 
     if containers is None:
         return None

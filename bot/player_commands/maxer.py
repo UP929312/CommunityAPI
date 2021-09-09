@@ -1,10 +1,9 @@
 import discord
 from discord.ext import commands
-import re  # For removing colour codes
 
 from parse_profile import get_profile_data
 
-from utils import error, clean
+from utils import error, clean, remove_colours
 from extract_ids import extract_nbt_dicts
 from menus import generate_option_picker, generate_static_preset_menu
 
@@ -15,35 +14,26 @@ dungeonizable_items = ['SOUL_WHIP', 'JERRY_STAFF', 'CRYPT_WITHERLORD_SWORD', 'BO
 starrable_items = ['BONZO_STAFF', 'STONE_BLADE', 'SHADOW_FURY', 'ADAPTIVE_HELMET', 'SHADOW_ASSASSIN_BOOTS']
 
 #emoji_list = ['<:misc:854801277489774613>', '<:paper:873158778487443486>', '<:enchantments:854756289010728970>', '<:power_ability_scroll:869701966173974538>']
-emoji_list = ['<:misc:854801277489774613>', '<:tier_1_enchants:884441670291189844> ', '<:tier_2_enchants:884441703203864647> ', '<:tier_3_enchants:884441720182423633>']
 #emoji_list = ['<:misc:854801277489774613>', '', '', '']
-emoji_list = ['<:misc:854801277489774613>', '<:tier_1_enchants:884755357379997748> ', '<:tier_2_enchants:884755365470826536> ', '<:tier_3_enchants:884755490066817034>']
+emoji_list = ['<:misc:854801277489774613>', '<:tier_1_enchantments:885541707599458354>', '<:tier_2_enchantments:885541707670757446>', '<:tier_3_enchantments:885541707507204156>']
 
 tier_1_sword_enchs = {
     "critical": 5,
     "cubism": 5,
     "ender_slayer": 5,
-    "execute": 5,
-    #"prosecute": 5,
+    ("execute", "prosecute"): (5, 5),
     "experience": 3,
-    "first_strike": 4,
-    "triple_strike": 4,
-    "giant_killer": 5,
-    #"titan_killer": 6,
+    ("first_strike", "triple_strike"): (4, 4),
+    ("giant_killer", "titan_killer") : (5, 6),
     "impaling": 3,
     "lethality": 6,
-    "life_steal": 4,
-    #"syphon": 4,
-    #"mana_steal": 3,
+    ("life_steal", "syphon", "mana_steal"): (4, 4, 3),    
     "looting": 4,
     "luck": 6,
     "scavenger": 4,
-    "sharpness": 5,
-    "smite": 6,
-    #"bane_of_arthropods": 6,
+    ("sharpness", "smite", "bane_of_arthropods"): (5, 6, 6),
     "telekinesis": 1,
-    "thunderlord": 6,
-    "thunderbolt": 5,
+    ("thunderlord", "thunderbolt") : (6, 5),
     "vampirism": 5,
     "venomous": 5,
 }
@@ -52,27 +42,19 @@ tier_2_sword_enchs = {
     "critical": 6,
     "cubism": 5,
     "ender_slayer": 6,
-    "execute": 5,
-    #"prosecute": 5,
+    ("execute", "prosecute"): (5, 5),
     "experience": 4,
-    "first_strike": 4,
-    #"triple_strike": 4,
-    "giant_killer": 6,
-    #"titan_killer": 6,
+    ("first_strike", "triple_strike"): (4, 4),
+    ("giant_killer", "titan_killer"): (6, 6),
     "impaling": 3,
     "lethality": 6,
-    "life_steal": 4,
-    #"syphon": 4,
-    #"mana_steal": 3,
-    #"looting": 4,
-    #"luck": 6,
+    ("life_steal", "syphon", "mana_steal"): (4, 4, 3),
+    "looting": 4,
+    "luck": 6,
     "scavenger": 4,
-    "sharpness": 6,
-    "smite": 7,
-    #"bane_of_arthropods": 6,
+    ("sharpness", "smite", "bane_of_arthropods"): (6, 7, 6),
     "telekinesis": 1,
-    "thunderlord": 6,
-    "thunderbolt": 5,
+    ("thunderlord", "thunderbolt") : (6, 5),
     "vampirism": 6,
     "venomous": 5,
 }
@@ -83,27 +65,19 @@ tier_3_sword_enchs = {
     "cubism": 6,
     "dragon_hunter": 5,
     "ender_slayer": 7,
-    "execute": 6,
-    #"prosecute": 6,
+    ("execute", "prosecute"): (6, 6),
     "experience": 4,
-    "first_strike": 5,
-    #"triple_strike": 5,
-    "giant_killer": 7,
-    #"titan_killer": 7,
+    ("first_strike", "triple_strike"): (5, 5),
+    ("giant_killer", "titan_killer"): (7, 7),
     "impaling": 3,
     "lethality": 6,
-    "life_steal": 5,
-    #"syphon": 5,
-    #"mana_steal": 3,
+    ("life_steal", "syphon", "mana_steal"): (5, 5, 3),
     "looting": 5,
     "luck": 7,
     "scavenger": 5,
-    "sharpness": 7,
-    "smite": 7,
-    #"bane_of_arthropods": 7,
+    ("sharpness", "smite", "bane_of_arthropods"): (7, 7, 7),
     "telekinesis": 1,
-    "thunderlord": 6,
-    "thunderbolt": 6,
+    ("thunderlord", "thunderbolt") : (6, 6),
     "vampirism": 6,
     "venomous": 6,
     "vicious": 5,
@@ -116,12 +90,15 @@ class maxer_cog(commands.Cog):
         self.client = bot
 
     @commands.command(aliases=['max'])
-    async def maxer(self, ctx, username=None):
+    async def maxer(self, ctx, username=None, profile=None):
         
-        player_data = await get_profile_data(ctx, username)
+        player_data = await get_profile_data(ctx, username, profile)
         if player_data is None:
             return
         username = player_data["username"]
+
+        if "inv_contents" not in player_data:
+            return await error(ctx, "Error, API disabled!", "This command requires you to enable your API settings to work!")
 
         inventory_string = player_data["inv_contents"]["data"]
         inventory_decoded = extract_nbt_dicts(inventory_string)
@@ -131,7 +108,7 @@ class maxer_cog(commands.Cog):
         if not swords:
             return await error(ctx, "Error, no swords found", "The bot looked through your inventory and couldn't find any swords, try putting some in!")
 
-        description_list = [f"{NUMBERS[i]} {re.sub('§.', '', x['display']['Name'])}" for i, x in enumerate(swords)]
+        description_list = [f"{NUMBERS[i]} {remove_colours(x['display']['Name'])}" for i, x in enumerate(swords)]
         
         embed = discord.Embed(title=f"{username}'s Swords", description="\n".join(description_list), url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
@@ -143,8 +120,10 @@ class maxer_cog(commands.Cog):
             return
 
         item_to_max = swords[option_picked-1]
-        ######################################################################################################################        
+        ######################################################################################################################
+        
         extras = item_to_max["ExtraAttributes"]
+        name = item_to_max["display"]["Name"]
         internal_name = extras["id"]
         
         missing_elements = []
@@ -180,7 +159,7 @@ class maxer_cog(commands.Cog):
             if not extras.get("ability_scroll", False):
                 missing_elements.append(f"Missing an **Necron's Blade Scroll**!")
             if not extras.get("ability_scrolls_value", False):
-                missing_elements.append(f"Missing a **Power Scroll!")
+                missing_elements.append(f"Missing a **Power Scroll!**")
 
         if internal_name == "ASPECT_OF_THE_VOID" and not extras.get("ethermerge", False):
             missing_elements.append(f"Missing an **Etherwarp Merger and Conduit**!")
@@ -193,7 +172,7 @@ class maxer_cog(commands.Cog):
         ####################################################
         description = "\n".join(missing_elements) if missing_elements else "The base attributes for this item are already maxed!"
 
-        embed = discord.Embed(title=f"{username}'s Sword", description=description, url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+        embed = discord.Embed(title=f"{username}'s {remove_colours(name)}", description=description, url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
 
@@ -201,19 +180,24 @@ class maxer_cog(commands.Cog):
 
         for i, enchant_dict in enumerate(sword_enchant_lists):
             missing_enchants = []
-            # All the required enchantments
-            for key, value in enchant_dict.items():
-                # All the ones the player has
-                for enchantment, level in extras.get("enchantments", {}).items():
-                    # If they have it, break (So the no break doesn't trigger)
-                    if key==enchantment and level >= value:
-                        continue
-                # If we don't skip to the next enchantment, they don't have it, so add it as missing
-                missing_enchants.append(f"➥ {clean(key)} - {value}")
+            for required_enchants, required_levels in enchant_dict.items():  # All the required enchantments
+                if not isinstance(required_enchants, tuple):
+                    required_enchants = [required_enchants, ]; required_levels = [required_levels, ]
+                    
+                for required_enchantment, required_level in zip(required_enchants, required_levels):
+                    if any([required_enchantment==enchantment and level >= required_level for enchantment, level in extras.get("enchantments", {}).items()]):
+                        break                     
+                else:
+                    # else here will only fire if the break wasn't hit, and thus, if they didn't have the enchant
+                    text = f"<:enchantments:854756289010728970> {clean(required_enchants[0])} - {required_levels[0]}" if len(required_enchants)==1 else "<:enchantments:854756289010728970> One of: "+", ".join([f"{clean(key)} {value}".replace("Of", "of") for key, value in zip(required_enchants, required_levels)])
+                    missing_enchants.append(text)
 
-            description = "Enchantments missing:\n"+"\n".join(missing_enchants)
-
-            embed = discord.Embed(title=f"{username}'s Sword, Tier {i+1} Enchantments", description=description, url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+            if not missing_enchants:
+                description = "This item is completely maxed out at this tier!"
+            else:
+                description = "Enchantments missing:\n"+"\n".join(missing_enchants)
+            
+            embed = discord.Embed(title=f"{username}'s {remove_colours(name)}, Tier {i+1} Enchantments", description=description, url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
             embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
             embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
 

@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 
-import aiohttp
 import requests
 
 from utils import error
@@ -55,13 +54,12 @@ class MenuView(discord.ui.View):
         except discord.errors.NotFound:
             print("Message to disable buttons on was deleted (/networth)")
 
-async def fetch_all_users(self, uuid_list):
+def fetch_all_users(uuid_list):
     responses = []
     async with aiohttp.ClientSession() as session:
         for uuid in uuid_list:
             async with session.get(f"http://{self.client.ip_address}:8000/pages/{uuid}") as resp:
                 responses.append(await resp.json())
-    return responses
         
 class guild_networth_cog(commands.Cog):
     def __init__(self, bot):
@@ -78,7 +76,7 @@ class guild_networth_cog(commands.Cog):
         members_uuid = [x['uuid'] for x in response['guild']['members']]
         username = response['guild']['name']
 
-        responses = await fetch_all_users(self, members_uuid)
+        responses = [requests.get(f"http://{self.client.ip_address}:8000/pages/{uuid}").json() for uuid in members_uuid]
 
         all_responses = {}
         master_response = {}
@@ -87,18 +85,19 @@ class guild_networth_cog(commands.Cog):
         
         for key in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
             all_responses[key] = {}
-            all_responses[key]["total"] = 0
+            #all_responses[key]["total"] = 0
             all_responses[key]["prices"] = []
             for response in responses:
-                all_responses[key]["total"] += int(response[key]["total"])
+                #all_responses[key]["total"] += int(response[key]["total"])
                 all_responses[key]["prices"].extend(response[key]["prices"])
 
+        #print(all_responses["inventory"][0])
         for key in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
             master_response[key] = {}
             master_response[key]["prices"] = sorted(all_responses[key]["prices"], key=lambda x: x["total"], reverse=True)[:5]
-            master_response[key]["total"] = all_responses[key]["total"]
+            master_response[key]["total"] = sum([x["total"] for x in master_response[key]["prices"]])
         
-        main_embed = generate_page(ctx.author, master_response, username, "main", True)
+        main_embed = generate_page(ctx.author, master_response, username, "main")
         
         view = MenuView(command_author=ctx.author, data=master_response, username=username)
         view.message = await ctx.send(embed=main_embed, view=view)

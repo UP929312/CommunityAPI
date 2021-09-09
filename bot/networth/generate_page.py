@@ -60,10 +60,9 @@ def generate_page(command_author, data, username, page, use_guilds=False):
 
     if page != "misc":
         ###################
-        pass
         #f"https://plancke.io/hypixel/guild/name/{username}"
-        #url = "google.com" if use_guilds else f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
-        url = f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
+        url = "https://media.discordapp.net/attachments/854829960974565396/871427090560462858/270px-BL-icon-banner-Guild_Banner_03.png" if use_guilds else f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
+        #url = f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
         embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}", url=url)
 
     if use_guilds:

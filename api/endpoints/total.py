@@ -1,7 +1,7 @@
 from data.container_handler import get_containers
 
-async def get_total_value(Data, username):
-    containers, extras = get_containers(Data, username)
+async def get_total_value(session, data, username):
+    containers, extras = await get_containers(session, data, username)
 
     if containers is None:
         return None

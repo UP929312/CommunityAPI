@@ -17,10 +17,10 @@ from endpoints.tree import get_tree
 
 from exceptions import InvalidApiKeyException, InvalidUsername, MojangServerError
 
-from data.constants.collector import fetch_prices ###
+from data.constants.collector import fetch_prices
 
 import uvicorn
-import os###
+import aiohttp
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["5/minute"])
 
@@ -40,18 +40,26 @@ app.add_middleware(
 class Data:
     pass
 
+class Session:
+    pass
+
 data = Data()
+session_object = Session()
+
+@app.on_event("startup")
+async def create_session() -> None:
+    session_object.session = aiohttp.ClientSession()
 
 @app.on_event("startup")
 @repeat_every(seconds=60*60, raise_exceptions=True)  # 1 hour
 def update_price_lists() -> None:
     print("Updating prices!")
     
-    data.BAZAAR, data.LOWEST_BIN, data.PRICES = fetch_prices()########
+    data.BAZAAR, data.LOWEST_BIN, data.PRICES = fetch_prices()
     data.BAZAAR["ENDER_PEARL"] = 100
     data.BAZAAR["ENCHANTED_CARROT"] = 1000
     # For overrides
-    for item, hard_price in [("RUNE", 5), ("WISHING_COMPASS", 1000), ("PLUMBER_SPONGE", 100)]:
+    for item, hard_price in [("RUNE", 5), ("WISHING_COMPASS", 1000), ("PLUMBER_SPONGE", 100), ("ICE_HUNK", 100),]:
         data.LOWEST_BIN[item] = hard_price
     # Price backups
     for item, hard_price in [("SCATHA;2", 250_000_000),("SCATHA;3", 500_000_000), ("SCATHA;4", 1_000_000_000 ),]:
@@ -73,7 +81,7 @@ async def test_online(request: Request):
 
 @app.get("/total/{username}")
 async def total(request: Request, username: str):
-    total = await get_total_value(data, username)
+    total = await get_total_value(session_object.session, data, username)
     if isinstance(total, dict):
         return JSONResponse(status_code=200, content=total)
     return JSONResponse(status_code=404, content={"message": "Username could not be found!"})       
@@ -81,7 +89,7 @@ async def total(request: Request, username: str):
 
 @app.get("/groups/{username}")
 async def groups(request: Request, username: str):
-    groups = await get_groups_value(data, username)
+    groups = await get_groups_value(session_object.session, data, username)
     if isinstance(groups, dict):
         return JSONResponse(status_code=200, content=groups)
     return JSONResponse(status_code=404, content={"message": "Username could not be found!"})  
@@ -90,7 +98,7 @@ async def groups(request: Request, username: str):
 @app.get("/pages/{username}")
 async def pages(request: Request, username: str):
     try:
-        pages = await get_pages_dict(data, username)
+        pages = await get_pages_dict(session_object.session, data, username)
         if isinstance(pages, dict):
             return JSONResponse(status_code=200, content=pages)
         
@@ -104,7 +112,7 @@ async def pages(request: Request, username: str):
 
 @app.get("/dump/{username}")
 async def dump(request: Request, username: str):
-    dump = await get_dump_dict(data, username)
+    dump = await get_dump_dict(session_object.session, data, username)
     if isinstance(dump, dict):
         return JSONResponse(status_code=200, content=dump)
     return JSONResponse(status_code=404, content={"message": "Username could not be found!"}) 
@@ -112,14 +120,14 @@ async def dump(request: Request, username: str):
 
 @app.get("/debug/{username}")
 async def debug(request: Request, username: str):
-    debug_values = await get_debug_values(data, username)
+    debug_values = await get_debug_values(session_object.session, data, username)
     if isinstance(debug_values, dict):
         return JSONResponse(status_code=200, content=debug_values)
     return JSONResponse(status_code=404, content={"message": "Username could not be found!"}) 
 
 @app.get("/tree/{username}")
 async def tree(request: Request, username: str):
-    tree_data = await get_tree(data, username)
+    tree_data = await get_tree(session_object.session, data, username)
     if isinstance(tree_data, dict):
         return JSONResponse(status_code=200, content=tree_data)
     return JSONResponse(status_code=404, content={"message": "Username could not be found!"}) 
