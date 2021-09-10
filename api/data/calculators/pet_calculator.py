@@ -54,7 +54,7 @@ def calculate_pet(data, price, print_prices):
     pet_skin = pet.get("skin", False)
     if pet_skin:
         value["pet_skin"] = {}
-        value["pet_skin"]["item"] = "PET_SKIN"+pet['skin']
+        value["pet_skin"]["item"] = "PET_SKIN_"+pet['skin']
         value["pet_skin"]["value"] = data.LOWEST_BIN.get("PET_SKIN_"+pet['skin'], 0)
         value["pet_skin"]["price_source"] = "BIN"
 
@@ -73,7 +73,7 @@ def calculate_pet(data, price, print_prices):
     value["pet_level_bonus"]["worth"] = int(pet_xp_capped*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
 
     #######################################################################################
-    value["pet_level"] = str(pet_level)
+    value["pet_level"] = f"Level {pet_level}"
 
     price.value = value
     return price

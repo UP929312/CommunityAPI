@@ -39,7 +39,7 @@ class Item:
         display = tag.get('display', {})
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
-        self.stack_size = max(0, self.__nbt__.get('Count', 1))
+        self.stack_size = max(0, self.__nbt__.get('Count', 1))  # Removes negative stack size
         self.origin_tag = extras.get("originTag", "UNKNOWN")
 
         # Recomb + HPB
@@ -75,12 +75,15 @@ class Item:
         self.rarity = last_desc_row[0] if last_desc_row[0] != "VERY" else "VERY_SPECIAL"
         self.type = last_desc_row[1] if len(last_desc_row) > 1 else None
         
-        # self.item_group = Stuff such as "ARMOR", "SWORD", "ROD", "ACCESSORY
+        # self.item_group = Stuff such as:
+        #["ACCESSORY", "HELMET", "CHESTPLATE", "LEGGINGS", "BOOTS", "SWORD", "BOW", "AXE", "HOE", "DRILL", "ROD", "PICKAXE", "WEAPON", "GAUNTLET"]
         self.item_group = None
         if self.reforge:
-            if "DUNGEON" in last_desc_row:
+            if "DUNGEON" in last_desc_row:  # Not 100% sure if this is needed, but I'll keep it here
                 last_desc_row.remove("DUNGEON")
             self.item_group = last_desc_row[-1]
+            if self.item_group == "HATCCESSORY":
+                self.item_group = "ACCESSORY"                
         
         if self.internal_name == "PET":
             self.pet_info = json.loads(extras["petInfo"])

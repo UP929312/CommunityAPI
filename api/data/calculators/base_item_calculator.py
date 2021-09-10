@@ -59,7 +59,7 @@ def calculate_item(data, price, print_prices=False):
             value["hot_potatoes"]["hot_potato_books"] = 10*data.BAZAAR["HOT_POTATO_BOOK"]
             value["hot_potatoes"]["fuming_potato_books"] = (item.hot_potatoes-10)*data.BAZAAR["FUMING_POTATO_BOOK"]
     # Recombobulation
-    if item.recombobulated and value["price_source"] not in ["Bazaar", "None"]:
+    if item.recombobulated and item.item_group is not None and value["price_source"] not in ["Bazaar", "None"]:
         value["recombobulator_value"] = data.BAZAAR["RECOMBOBULATOR_3000"]
     # Enchantments
     if item.enchantments:

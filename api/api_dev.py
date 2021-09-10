@@ -16,6 +16,7 @@ username = "KebabOnNaan"
 username = "ItzAlpha__"
 username = "balt"
 username = "455fcc3f87ea4a92a6c38e190c39d8ec"
+username = "Zaptro"
 
 ip = "127.0.0.1"  #  For running locally
 #ip = "db.superbonecraft.dk"  # For the server

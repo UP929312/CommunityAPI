@@ -110,7 +110,7 @@ class maxer_cog(commands.Cog):
 
         description_list = [f"{NUMBERS[i]} {remove_colours(x['display']['Name'])}" for i, x in enumerate(swords)]
         
-        embed = discord.Embed(title=f"{username}'s Swords", description="\n".join(description_list), url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+        embed = discord.Embed(title=f"{username}'s Swords", description="\n".join(description_list), url=f"https://sky.shiiyu.moe/stats/{username}/{player_data['cute_name']}#Inventory", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
 
@@ -158,7 +158,7 @@ class maxer_cog(commands.Cog):
         if internal_name in ["HYPERION", "ASTRAEA", "SCYLLA", "VALKYRIE"]:
             if not extras.get("ability_scroll", False):
                 missing_elements.append(f"Missing an **Necron's Blade Scroll**!")
-            if not extras.get("ability_scrolls_value", False):
+            if not extras.get("power_ability_scroll", False):
                 missing_elements.append(f"Missing a **Power Scroll!**")
 
         if internal_name == "ASPECT_OF_THE_VOID" and not extras.get("ethermerge", False):
@@ -172,13 +172,13 @@ class maxer_cog(commands.Cog):
         ####################################################
         description = "\n".join(missing_elements) if missing_elements else "The base attributes for this item are already maxed!"
 
-        embed = discord.Embed(title=f"{username}'s {remove_colours(name)}", description=description, url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+        embed = discord.Embed(title=f"{username}'s {remove_colours(name)}", description=description, url=f"https://sky.shiiyu.moe/stats/{username}/{player_data['cute_name']}#Inventory", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
 
         list_of_embeds = [embed,]
 
-        for i, enchant_dict in enumerate(sword_enchant_lists):
+        for i, enchant_dict in enumerate(sword_enchant_lists, 1):
             missing_enchants = []
             for required_enchants, required_levels in enchant_dict.items():  # All the required enchantments
                 if not isinstance(required_enchants, tuple):
@@ -197,7 +197,7 @@ class maxer_cog(commands.Cog):
             else:
                 description = "Enchantments missing:\n"+"\n".join(missing_enchants)
             
-            embed = discord.Embed(title=f"{username}'s {remove_colours(name)}, Tier {i+1} Enchantments", description=description, url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+            embed = discord.Embed(title=f"{username}'s {remove_colours(name)}, Tier {i} Enchantments", description=description, url=f"https://sky.shiiyu.moe/stats/{username}/{player_data['cute_name']}#Inventory", colour=0x3498DB)
             embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
             embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
 

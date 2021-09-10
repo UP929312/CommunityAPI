@@ -8,7 +8,7 @@ ip = "http://127.0.0.1:8000"  #  For running locally
 
 test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
                   4: "Skezza", 5: "kori_100",
-                  #6: "XD_Zaptro_XD",
+                  6: "Zaptro",
                   7: "seattle72", 8: "Refraction"}
 
 DEFAULT_KEYS = ["purse", "banking", "inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"]

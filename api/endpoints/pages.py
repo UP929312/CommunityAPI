@@ -1,5 +1,3 @@
-import json
-
 from endpoints.groups import get_groups_value
 from data.container_handler import get_containers
 
@@ -14,7 +12,8 @@ async def get_pages_dict(session, data, username):
     if container_values is None:
         return None
 
-    data = {"purse":   {"total": str(container_values["purse"])},
+    data = {
+            "purse":   {"total": str(container_values["purse"])},
             "banking": {"total": str(container_values["banking"])},
            }
 

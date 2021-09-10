@@ -18,7 +18,6 @@ BOSS_INDEX_DICT = {"1": "Bonzo",
                    "7": "Necron"}
 
 
-
 catacombs_levels = [50, 125, 235, 395, 625, 955, 1425, 2095, 3045, 4385, 6275, 8940, 12700, 17960, 25340, 35640, 50040, 70040, 97640, 135640, 188140, 259640, 356640, 488640, 668640, 911640, 1239640, 1684640, 2284640, 3084640, 4149640, 5559640, 7459640, 9959640, 13259640, 17559640, 23159640, 30359640, 39559640, 51559640, 66559640, 85559640, 109559640, 139559640, 177559640, 225559640, 285559640, 360559640, 453559640, 569809640 ]
 
 class dungeons_cog(commands.Cog):
@@ -43,9 +42,12 @@ class dungeons_cog(commands.Cog):
 
         tiers_completed = max(dungeon_data["tier_completions"].keys(), key=lambda x: x)           
         level = bisect(catacombs_levels, dungeon_data['experience'])
-        
-        secrets_found = requests.get(f"https://sky.shiiyu.moe/api/v2/dungeons/{username}/{player_data['cute_name']}").json()
-        secrets_found = secrets_found["dungeons"].get("secrets_found", "???")
+
+        try:        
+            secrets_found = requests.get(f"https://sky.shiiyu.moe/api/v2/dungeons/{username}/{player_data['cute_name']}").json()
+            secrets_found = secrets_found["dungeons"].get("secrets_found", "???")
+        except:
+            secrets_found = "???"
         
         embed = discord.Embed(title=f"{username}", url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")

@@ -78,23 +78,6 @@ async def root(request: Request):
 async def test_online(request: Request):
     return JSONResponse(status_code=200, content={"message": "API Operational"})
 
-
-@app.get("/total/{username}")
-async def total(request: Request, username: str):
-    total = await get_total_value(session_object.session, data, username)
-    if isinstance(total, dict):
-        return JSONResponse(status_code=200, content=total)
-    return JSONResponse(status_code=404, content={"message": "Username could not be found!"})       
-
-
-@app.get("/groups/{username}")
-async def groups(request: Request, username: str):
-    groups = await get_groups_value(session_object.session, data, username)
-    if isinstance(groups, dict):
-        return JSONResponse(status_code=200, content=groups)
-    return JSONResponse(status_code=404, content={"message": "Username could not be found!"})  
-
-
 @app.get("/pages/{username}")
 async def pages(request: Request, username: str):
     try:
@@ -109,6 +92,31 @@ async def pages(request: Request, username: str):
         return JSONResponse(status_code=502, content={"message": "API Key was disabled by Hypixel."})
     except MojangServerError:
         return JSONResponse(status_code=503, content={"message": "Mojang's servers didn't respond."})
+
+
+@app.get("/total/{username}")
+async def total(request: Request, username: str):
+    try:
+        total = await get_total_value(session_object.session, data, username)
+        if isinstance(total, dict):
+            return JSONResponse(status_code=200, content=total)
+        return JSONResponse(status_code=500, content={"message": "An internal exception occured!"})
+    
+    except InvalidUsername:
+        return JSONResponse(status_code=404, content={"message": "Username could not be found!"})
+    except InvalidApiKeyException:
+        return JSONResponse(status_code=502, content={"message": "API Key was disabled by Hypixel."})
+    except MojangServerError:
+        return JSONResponse(status_code=503, content={"message": "Mojang's servers didn't respond."})       
+
+
+@app.get("/groups/{username}")
+async def groups(request: Request, username: str):
+    groups = await get_groups_value(session_object.session, data, username)
+    if isinstance(groups, dict):
+        return JSONResponse(status_code=200, content=groups)
+    return JSONResponse(status_code=404, content={"message": "Username could not be found!"})  
+
 
 @app.get("/dump/{username}")
 async def dump(request: Request, username: str):

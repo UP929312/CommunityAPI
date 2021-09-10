@@ -18,11 +18,9 @@ def calculate_enchanted_book(data, price):  # For enchanted books
     enchantment_level = ROMAN_NUMERALS.index(numeral_enchantment_level)+1
     
     if f"{enchantment_type};{enchantment_level}" in data.LOWEST_BIN:
-        #print("Enchanted book was found on data.LOWEST_BIN")
         price.value["price_source"] = "BIN"
         price.value["enchantments_value"] = data.LOWEST_BIN[f"{enchantment_type};{enchantment_level}"]
     else:
-        #print("Enchanted book will be tried on Jerry's price list")
         price.value["price_source"] = "Jerry"
         price.value["enchantments_value"] = data.PRICES.get(f"{enchantment_type.lower()}_{enchantment_level}", 0)
 
