@@ -1,6 +1,6 @@
 import os
 
-find = "re."
+find = "API_KEY"
 
 folders = [f.path for f in os.scandir("./") if f.is_dir()]
 

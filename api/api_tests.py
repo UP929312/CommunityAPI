@@ -6,6 +6,8 @@ from parameterized import parameterized, parameterized_class
 ip = "http://127.0.0.1:8000"  #  For running locally
 #ip = "http://db.superbonecraft.dk:8000"  # For the server
 
+API_KEY = "fd4f4f31-3957-4ccf-b951-908d3c7bef71"
+
 test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
                   4: "Skezza", 5: "kori_100",
                   6: "Zaptro",
@@ -21,7 +23,7 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_a_total(self):
-        r = requests.get(f"{ip}/total/{self.username}")
+        r = requests.get(f"{ip}/total/{self.username}?api_key={API_KEY}")
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()
@@ -34,7 +36,7 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_b_groups(self):
-        r = requests.get(f"{ip}/groups/{self.username}")
+        r = requests.get(f"{ip}/groups/{self.username}?api_key={API_KEY}")
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()
@@ -45,7 +47,7 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_c_pages(self):
-        r = requests.get(f"{ip}/pages/{self.username}")
+        r = requests.get(f"{ip}/pages/{self.username}?api_key={API_KEY}")
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()
@@ -56,7 +58,7 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_d_dump(self):
-        r = requests.get(f"{ip}/dump/{self.username}")
+        r = requests.get(f"{ip}/dump/{self.username}?api_key={API_KEY}")
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()
@@ -67,7 +69,7 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_e_debug(self):
-        r = requests.get(f"{ip}/debug/{self.username}")
+        r = requests.get(f"{ip}/debug/{self.username}?api_key={API_KEY}")
         # Check of OK, 200
         self.assertEqual(r.status_code, 200)
         r = r.json()

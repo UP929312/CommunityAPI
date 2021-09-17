@@ -59,7 +59,7 @@ async def fetch_all_users(self, uuid_list):
     responses = []
     async with aiohttp.ClientSession() as session:
         for uuid in uuid_list:
-            async with session.get(f"http://{self.client.ip_address}:8000/pages/{uuid}") as resp:
+            async with session.get(f"http://{self.client.ip_address}:8000/pages/{uuid}?api_key={API_KEY}") as resp:
                 responses.append(await resp.json())
     return responses
         

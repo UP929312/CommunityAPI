@@ -42,9 +42,6 @@ class Item:
         self.stack_size = max(0, self.__nbt__.get('Count', 1))  # Removes negative stack size
         self.origin_tag = extras.get("originTag", "UNKNOWN")
 
-        if "DRILL" in self.internal_name:
-            print(nbt)
-
         # Recomb + HPB
         self.recombobulated = bool(extras.get('rarity_upgrades', False))
         self.hot_potatoes = extras.get('hot_potato_count', 0)

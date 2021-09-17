@@ -8,6 +8,9 @@ from database_manager import insert_profile
 from networth.generate_page import generate_page
 from networth.constants import *
 
+with open("text_files/hypixel_api_key.txt") as file:
+    API_KEY = file.read()
+
 ALLOWED_CHARS = {"_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
 
 class MenuButton(discord.ui.Button['MenuView']):
@@ -69,19 +72,19 @@ class networth_cog(commands.Cog):
                 username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])
 
         try:
-            request = requests.get(f"http://{self.client.ip_address}:8000/pages/{username}")
+            request = requests.get(f"http://{self.client.ip_address}:8000/pages/{username}?api_key={API_KEY}")
         except Exception as e:
             print(e)
             return await error(ctx, "Error, the bot could not connect to the API", "This could be because the API is down for maintenance, because it's restarting, or because there are issues. Try again later.")
 
         if request.status_code == 500:
             return await error(ctx, "Error, an exception has occured", "This happened internally. If it's continues, let the lead dev know (Skezza#1139)")
+        elif request.status_code == 401:
+            return await error(ctx, "Error, the API key was killed.", "Hypixel will randomly kill the API key, please be patient while a new key is generated.")
         elif request.status_code == 423:
             return await error(ctx, "Error, rate limit hit", "Your request has not been fuffiled, please slow down and try again later.")            
         elif request.status_code == 404:
             return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?")
-        elif request.status_code == 502:
-            return await error(ctx, "Error, the API key was killed.", "Hypixel will randomly kill the API key, please be patient while a new key is generated.")
         elif request.status_code == 503:
             return await error(ctx, "Error, Mojang's servers are down!", "The bot couldn't properly exchange data with Mojang's servers, try using a UUID instead?")            
 

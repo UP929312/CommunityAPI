@@ -3,8 +3,6 @@ import aiohttp
 from data.decode_container import parse_container
 from exceptions import InvalidApiKeyException, InvalidUsername, MojangServerError
 
-with open("data/hypixel_api_key.txt", 'r') as file:
-    API_KEY = file.read()
 
 async def async_conversion(session, url):
     async with session.get(url) as request:
@@ -21,7 +19,7 @@ async def async_request(session, url):
 
 #=======================================================
 
-async def get_data(session, username):
+async def get_data(session, api_key, username):
    
     if len(username) <= 16:
         json, request = await async_conversion(session, f"https://api.mojang.com/users/profiles/minecraft/{username}")
@@ -35,7 +33,7 @@ async def get_data(session, username):
     else:
         uuid = username.replace("-", "")
 
-    profile_list = await async_request(session, f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}")
+    profile_list = await async_request(session, f"https://api.hypixel.net/skyblock/profiles?key={api_key}&uuid={uuid}")
     
     if profile_list == {'success': False, 'cause': 'Invalid API key'}:
         print("Data/utils: Invalid API key...?")

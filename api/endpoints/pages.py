@@ -1,13 +1,13 @@
 from endpoints.groups import get_groups_value
 from data.container_handler import get_containers
 
-async def get_pages_dict(session, data, username):
-    containers, extras = await get_containers(session, data, username)
+async def get_pages_dict(session, api_key, data, username):
+    containers, extras = await get_containers(session, api_key, data, username)
 
     if containers is None:
         return None
     
-    container_values = await get_groups_value(session, data, username, containers, extras)
+    container_values = await get_groups_value(session, api_key, data, username, containers, extras)
 
     if container_values is None:
         return None

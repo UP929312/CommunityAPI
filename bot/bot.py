@@ -13,7 +13,6 @@ print("Importing packages done...")
 
 from networth.networth import networth_cog
 from networth.guild_networth import guild_networth_cog
-from networth.tree import tree_cog
 
 print("Imported all non-player_commands")
 
@@ -24,12 +23,12 @@ print("Importing .py files done...")
 linked_accounts = dict(load_linked_accounts())
 prefixes = dict(load_prefixes())
 
-'''
+#'''
 def get_prefix(bot, msg):
     prefix = bot.prefixes.get(f"{msg.guild.id}", ".") if msg.guild else "."
     return commands.when_mentioned_or(prefix)(bot, msg)
 #'''
-#'''
+'''
 def get_prefix(bot, msg):
     return "!"
 #'''
@@ -72,7 +71,7 @@ async def on_command_completion(ctx):
 #====================================================
 
 print("Loading cogs...")
-all_cogs = [guild_networth_cog, tree_cog]
+all_cogs = [guild_networth_cog,]
 all_cogs.append(networth_cog)
 all_cogs.extend(player_commands)
 print("Adding cogs...")

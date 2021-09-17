@@ -24,29 +24,10 @@ username = "Refraction"
 ip = "127.0.0.1"  #  For running locally
 #ip = "db.superbonecraft.dk"  # For the server
 
-a = requests.get(f"http://{ip}:8000/pages/{username}")
-#a = requests.get(f"http://{ip}:8000/total/Skezza")
+#API_KEY = "Jeff"
+#username="Jeffaaaaaa"
 
-#a = requests.get(f"{ip}/groups/56ms")
-#a = requests.get(f"{ip}/total/15h")
-#a = requests.get(f"{ip}/total/Larucus")
+a = requests.get(f"http://{ip}:8000/pages/{username}?api_key={API_KEY}")
+
 print(a.status_code)
 print(a.json())
-
-'''
-#r = requests.get(f"http://127.0.0.1:8000/debug/56ms")
-#r = requests.get(f"http://127.0.0.1:8000/debug/Refraction")
-#r = requests.get(f"http://127.0.0.1:8000/debug/XD_Zaptro_XD")
-print(r.status_code)
-print(r.json())
-
-for key, value in r.json().items():
-    print (key+":", value)
-#'''
-
-'''
-r = requests.get("http://127.0.0.1:8000/pages/56ms")
-print(r.status_code)
-#print(r.text)
-print(r.json())#["inventory"]["prices"])#["inventory"]["prices"][0])
-#'''

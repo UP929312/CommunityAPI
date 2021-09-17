@@ -3,9 +3,9 @@ from data.calculators.main_calculator_handler import calculate_container
 from data.utils import get_data, get_storage
 
 
-async def get_containers(session, data, username):
+async def get_containers(session, api_key, data, username):
     # Parse/Grab data
-    player_data, other_data = await get_data(session, username)
+    player_data, other_data = await get_data(session, api_key, username)
     
     if player_data is None:
         return None, None

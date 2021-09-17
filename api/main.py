@@ -83,75 +83,51 @@ async def root(request: Request):
 async def test_online(request: Request):
     return JSONResponse(status_code=200, content={"message": "API Operational"})
 
-@app.get("/pages/{username}")
-async def pages(request: Request, username: str):
+
+async def validate(function, params):
     try:
-        pages = await get_pages_dict(session_object.session, data, username)
-        if isinstance(pages, dict):
-            return JSONResponse(status_code=200, content=pages)
-        
+        returned_data = await function(*params)
+        if isinstance(returned_data, dict):
+            return JSONResponse(status_code=200, content=returned_data)
+
+        print("ERROR!")
         return JSONResponse(status_code=500, content={"message": "An internal exception occured!"})
+    except InvalidApiKeyException:
+        return JSONResponse(status_code=401, content={"message": "An invalid API key was passed! Please try another key."})
     except InvalidUsername:
         return JSONResponse(status_code=404, content={"message": "Username could not be found!"})
-    except InvalidApiKeyException:
-        return JSONResponse(status_code=502, content={"message": "API Key was disabled by Hypixel."})
     except MojangServerError:
         return JSONResponse(status_code=503, content={"message": "Mojang's servers didn't respond."})
-
+    except:
+        return JSONResponse(status_code=500, content={"message": "An internal exception occured!"})
+        
+        
+@app.get("/pages/{username}")
+async def pages(request: Request, username: str, api_key: str):
+    return await validate(get_pages_dict, (session_object.session, api_key, data, username))
 
 @app.get("/total/{username}")
-async def total(request: Request, username: str):
-    try:
-        total = await get_total_value(session_object.session, data, username)
-        if isinstance(total, dict):
-            return JSONResponse(status_code=200, content=total)
-        return JSONResponse(status_code=500, content={"message": "An internal exception occured!"})
-    
-    except InvalidUsername:
-        return JSONResponse(status_code=404, content={"message": "Username could not be found!"})
-    except InvalidApiKeyException:
-        return JSONResponse(status_code=502, content={"message": "API Key was disabled by Hypixel."})
-    except MojangServerError:
-        return JSONResponse(status_code=503, content={"message": "Mojang's servers didn't respond."})       
+async def total(request: Request, username: str, api_key: str):
+    return await validate(get_total_value, (session_object.session, api_key, data, username))  
 
 
 @app.get("/groups/{username}")
-async def groups(request: Request, username: str):
-    try:
-        groups = await get_groups_value(session_object.session, data, username)
-        if isinstance(groups, dict):
-            return JSONResponse(status_code=200, content=groups)
-        return JSONResponse(status_code=500, content={"message": "An internal exception occured!"})
-    
-    except InvalidUsername:
-        return JSONResponse(status_code=404, content={"message": "Username could not be found!"})
-    except InvalidApiKeyException:
-        return JSONResponse(status_code=502, content={"message": "API Key was disabled by Hypixel."})
-    except MojangServerError:
-        return JSONResponse(status_code=503, content={"message": "Mojang's servers didn't respond."})
+async def groups(request: Request, username: str, api_key: str):
+    return await validate(get_groups_value, (session_object.session, api_key, data, username))  
 
 
 @app.get("/dump/{username}")
-async def dump(request: Request, username: str):
-    dump = await get_dump_dict(session_object.session, data, username)
-    if isinstance(dump, dict):
-        return JSONResponse(status_code=200, content=dump)
-    return JSONResponse(status_code=404, content={"message": "Username could not be found!"}) 
-
+async def dump(request: Request, username: str, api_key: str):
+    return await validate(get_dump_dict, (session_object.session, api_key, data, username))  
 
 @app.get("/debug/{username}")
-async def debug(request: Request, username: str):
-    debug_values = await get_debug_values(session_object.session, data, username)
-    if isinstance(debug_values, dict):
-        return JSONResponse(status_code=200, content=debug_values)
-    return JSONResponse(status_code=404, content={"message": "Username could not be found!"}) 
+async def debug(request: Request, username: str, api_key: str):
+    return await validate(get_debug_values, (session_object.session, api_key, data, username))
+
 
 @app.get("/tree/{username}")
-async def tree(request: Request, username: str):
-    tree_data = await get_tree(session_object.session, data, username)
-    if isinstance(tree_data, dict):
-        return JSONResponse(status_code=200, content=tree_data)
-    return JSONResponse(status_code=404, content={"message": "Username could not be found!"}) 
+async def tree(request: Request, username: str, api_key: str):
+    return await validate(get_tree, (session_object.session, api_key, data, username))
 
 if __name__ == "__main__":
     print("Done")
