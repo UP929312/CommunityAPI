@@ -18,6 +18,7 @@ from endpoints.tree import get_tree
 from exceptions import InvalidApiKeyException, InvalidUsername, MojangServerError
 
 from data.constants.collector import fetch_prices
+#from price_list_updater import update_price_lists
 
 import uvicorn
 import aiohttp
@@ -52,9 +53,12 @@ async def create_session() -> None:
 
 @app.on_event("startup")
 @repeat_every(seconds=60*60, raise_exceptions=True)  # 1 hour
-def update_price_lists() -> None:
-    print("Updating prices!")
-    
+def update_price_lists_loop() -> None:
+    print("Updating price lists loop")
+
+    #data = update_price_lists(data)
+
+    #'''
     data.BAZAAR, data.LOWEST_BIN, data.PRICES = fetch_prices()
     data.BAZAAR["ENDER_PEARL"] = 100
     data.BAZAAR["ENCHANTED_CARROT"] = 1000
@@ -62,9 +66,10 @@ def update_price_lists() -> None:
     for item, hard_price in [("RUNE", 5), ("WISHING_COMPASS", 1000), ("PLUMBER_SPONGE", 100), ("ICE_HUNK", 100),]:
         data.LOWEST_BIN[item] = hard_price
     # Price backups
-    for item, hard_price in [("SCATHA;2", 250_000_000),("SCATHA;3", 500_000_000), ("SCATHA;4", 1_000_000_000 ),]:
+    for item, hard_price in [("SCATHA;2", 250_000_000),("SCATHA;3", 500_000_000), ("SCATHA;4", 1_000_000_000 ), ("GAME_ANNIHILATOR", 2_500_000_000), ("GAME_BREAKER", 1_000_000_000), ]:
         if item not in data.LOWEST_BIN:
             data.LOWEST_BIN[item] = hard_price
+    #'''
     
 
 @app.get("/")
@@ -112,10 +117,18 @@ async def total(request: Request, username: str):
 
 @app.get("/groups/{username}")
 async def groups(request: Request, username: str):
-    groups = await get_groups_value(session_object.session, data, username)
-    if isinstance(groups, dict):
-        return JSONResponse(status_code=200, content=groups)
-    return JSONResponse(status_code=404, content={"message": "Username could not be found!"})  
+    try:
+        groups = await get_groups_value(session_object.session, data, username)
+        if isinstance(groups, dict):
+            return JSONResponse(status_code=200, content=groups)
+        return JSONResponse(status_code=500, content={"message": "An internal exception occured!"})
+    
+    except InvalidUsername:
+        return JSONResponse(status_code=404, content={"message": "Username could not be found!"})
+    except InvalidApiKeyException:
+        return JSONResponse(status_code=502, content={"message": "API Key was disabled by Hypixel."})
+    except MojangServerError:
+        return JSONResponse(status_code=503, content={"message": "Mojang's servers didn't respond."})
 
 
 @app.get("/dump/{username}")

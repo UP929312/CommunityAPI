@@ -160,6 +160,11 @@ class StaticScrollingMenuButton(discord.ui.Button['MenuView']):
                 # If we're on the last page, disable going forward (next pages)
                 for button in self.view.children[-2:]:
                     button.disabled: bool = True
+
+            if self.last == 1:
+                # If there's only 1 item, don't let them change page.
+                for button in self.view.children[-2:]:
+                    button.disabled: bool = True    
             
             await self.view.update_embed(interaction)
         else:
@@ -249,7 +254,7 @@ Instructions on how to use Option Picker:
 
 class OptionPickerButton(discord.ui.Button['MenuView']):
     def __init__(self, number: int):
-        super().__init__(style=discord.ButtonStyle.blurple, label=str(number))
+        super().__init__(style=discord.ButtonStyle.blurple, label=str(number), row=(number-1)//5)
 
     async def callback(self, interaction: discord.Interaction):
         if self.view.ctx.author.id == interaction.user.id or interaction.user.id == 244543752889303041:

@@ -42,6 +42,9 @@ class Item:
         self.stack_size = max(0, self.__nbt__.get('Count', 1))  # Removes negative stack size
         self.origin_tag = extras.get("originTag", "UNKNOWN")
 
+        if "DRILL" in self.internal_name:
+            print(nbt)
+
         # Recomb + HPB
         self.recombobulated = bool(extras.get('rarity_upgrades', False))
         self.hot_potatoes = extras.get('hot_potato_count', 0)
@@ -96,10 +99,10 @@ class Item:
                 self.reforge = "jerry's"
 
         # Drills
-        if self.type == "DRILL":
-            self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper()  # Not sure why this is lowercase
+        if self.type == "DRILL": #
+            self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper() or extras.get("drill_module_upgrade", "").upper()  # Not sure why this is lowercase
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
-            self.drill_tank_upgrade = extras.get("drill_part_fuel_tank", "").upper()
+            self.drill_tank_upgrade =   extras.get("drill_part_fuel_tank", "").upper()
             
             self.has_drill_upgrade = self.drill_module_upgrade or self.drill_engine_upgrade or self.drill_tank_upgrade
 

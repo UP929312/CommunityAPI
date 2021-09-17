@@ -11,12 +11,15 @@ username = test_usernames[user]
 
 #a = requests.get("https://api.hypixelskyblock.de/api/v1/cb/pages/balt")
 
-#username = "ycarusishere"
-username = "KebabOnNaan"
-username = "ItzAlpha__"
-username = "balt"
-username = "455fcc3f87ea4a92a6c38e190c39d8ec"
-username = "Zaptro"
+username = "ycarusishere"
+#username = "KebabOnNaan"
+#username = "ItzAlpha__"
+#username = "balt"
+#username = "455fcc3f87ea4a92a6c38e190c39d8ec"
+username = "56ms"
+username = "Refraction"
+#username = "seattle72"
+#username = "Skezza"
 
 ip = "127.0.0.1"  #  For running locally
 #ip = "db.superbonecraft.dk"  # For the server

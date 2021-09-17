@@ -32,6 +32,10 @@ def calculate_enchantments(data, price):  # For enchantments on items
 
     #print("Calculating item enchantments")
     for enchantment, level in price.item.enchantments.items():
+        if enchantment == "telekinesis":
+            price.value["enchantments"][f"{enchantment}_{level}"] = 100
+            continue
+        
         level = min(level, 10)  # cap at 10 for admin items so they don't cost Septillions
         # Special case for Svavenger, a mob drop that costs 15m otherwise and would make dungeon gear broken
         if enchantment == "scavenger" and level == 5 and price.item.origin_tag == "UNKNOWN":

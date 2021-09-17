@@ -49,6 +49,16 @@ def calculate_item(data, price, print_prices=False):
     if item.type == "HOE" and item.hoe_material != None:
         value["base_price"] = 1_000_000+256*(data.BAZAAR[item.hoe_material]*(144**(item.hoe_level-1)))
         value["price_source"] = "Calculated"
+    # Accessories of Power
+    if item.internal_name in ["POWER_TALISMAN", "POWER_RING", "POWER_ARTIFACT"]:
+        value["price_source"] = "Calculated"
+        flawed_rubies = 45*data.BAZAAR.get("FLAWED_RUBY_GEM", 0)
+        if item.internal_name == "POWER_TALISMAN":
+            value["base_price"] = flawed_rubies
+        if item.internal_name == "POWER_RING":
+            value["base_price"] = flawed_rubies + 7*data.BAZAAR.get("FINE_RUBY_GEM", 0) + data.LOWEST_BIN.get("GEMSTONE_MIXTURE", 0)
+        if item.internal_name == "POWER_ARTIFACT":
+            value["base_price"] = flawed_rubies + 7*data.BAZAAR.get("FINE_RUBY_GEM", 0) + 33*data.LOWEST_BIN.get("GEMSTONE_MIXTURE", 0)
     #=============================================================================
     # Hot potato books:
     if item.hot_potatoes > 0:

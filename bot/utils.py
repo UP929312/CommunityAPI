@@ -39,6 +39,9 @@ async def find_closest(ctx, user_input):
     if user_input is None:
         return await error(ctx, "Error, no item given!", "This command takes the name of the item you're looking for to work!")
 
+    #if "book" in user_input.lower():
+    #    pass
+
     # Convert input into internal name
     closest = max(ITEMS.values(), key=lambda item: SequenceMatcher(None, user_input.lower(), item["name"].lower()).ratio())
     # Check if we found something somewhat similar:
