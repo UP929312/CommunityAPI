@@ -16,7 +16,7 @@ def generate_page(command_author, data, username, page, use_guilds=False):
 
     # MAIN MENU
     if page == "main":
-        total = hf(sum([int(x["total"]) for x in data.values()]))
+        total = hf(sum([int(x["total"]) for x in data.values() if "total" in x]))
 
         purse = float(data['purse']['total'])
         bank = float(data['banking']['total'])
