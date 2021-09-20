@@ -1,10 +1,9 @@
 from data.container_handler import get_containers
 
-async def get_groups_value(session, api_key, data, username, containers=None, extras=None):
-    if containers is None and extras is None:
-        containers, extras = await get_containers(session, api_key, data, username)
+async def get_groups_value(session, api_key, data, username):
+    profile_data, containers, extras = await get_containers(session, api_key, data, username)
 
-    if containers is None:
+    if profile_data is None:
         return None
 
     inventory_total   = sum(x.total for x in containers["inventory"])
@@ -20,15 +19,16 @@ async def get_groups_value(session, api_key, data, username, containers=None, ex
     banking = extras["banking"]
 
     return {
-            "purse":       purse,
-            "banking":     banking,
-            "inventory":   inventory_total,
-            "accessories": accessories_total,
-            "ender_chest": ender_chest_total,
-            "armor":       armour_total,
-            "wardrobe":    wardrobe_total,
-            "vault":       vault_total,
-            "storage":     storage_total,
-            "pets":        pets_total
+            "profile_data": profile_data,
+            "purse":        purse,
+            "banking":      banking,
+            "inventory":    inventory_total,
+            "accessories":  accessories_total,
+            "ender_chest":  ender_chest_total,
+            "armor":        armour_total,
+            "wardrobe":     wardrobe_total,
+            "vault":        vault_total,
+            "storage":      storage_total,
+            "pets":         pets_total
            }
 

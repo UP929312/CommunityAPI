@@ -1,10 +1,12 @@
 from data.constants.pets import PET_LEVELS
+PET_LEVELS = PET_LEVELS+[50000000000000000000]
 
 RARITY_OFFSET = {"COMMON": 0, "UNCOMMON": 6, "RARE": 11, "EPIC": 16, "LEGENDARY": 20, "MYTHIC": 20}
-TIERS = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
+TIERS = list(RARITY_OFFSET.keys())
 
 COINS_PER_XP = 0.2
-PET_LEVELS_SUMMED = sum(PET_LEVELS[RARITY_OFFSET["LEGENDARY"]:])
+COINS_PER_XP_TWO_HUNDRED = 3
+PET_LEVELS_SUMMED = sum(PET_LEVELS[RARITY_OFFSET["LEGENDARY"]:-1])
 
 def get_pet_level(pet):
     pet_xp = pet["exp"]
@@ -12,7 +14,7 @@ def get_pet_level(pet):
     
     pet_level = 1  
     while pet_xp > 0 and pet_level < 100:
-        pet_xp -= (PET_LEVELS+[5000000000000])[pet_level+xp_offset]
+        pet_xp -= PET_LEVELS[pet_level+xp_offset]
         pet_level += 1
 
     return pet_level    
@@ -64,16 +66,20 @@ def calculate_pet(data, price, print_prices):
     value["pet_level_bonus"]["amount"] = f"{int(pet['exp'])} xp"
     value["pet_level_bonus"]["price_source"] = "Calculated"
 
-    if pet_level == 100:
+    if pet_level >= 100:
         offset = RARITY_OFFSET[pet["tier"]]-1
-        level_100_amount = sum((PET_LEVELS+[5000000000000])[offset:100+offset])
+        level_100_amount = sum(PET_LEVELS[offset:100+offset])
         pet_xp_capped = min(pet["exp"], level_100_amount)
     else:
         pet_xp_capped = pet["exp"]
+
     value["pet_level_bonus"]["worth"] = int(pet_xp_capped*COINS_PER_XP)  # 5 Xp = 1 coin, seems about right but this is subjective.
 
+    if pet_level > 100:  # If it's level is over 100, i.e. it's a Golden Dragon, give each level's worth of xp a 3x multiplier
+        value["pet_level_bonus"]["worth"] += (pet_level-100)*1_886_700*COINS_PER_XP_TWO_HUNDRED
+
     #######################################################################################
-    value["pet_level"] = f"Level {pet_level}"
+    value["pet_level"] = f"{pet_level}"
 
     price.value = value
     return price

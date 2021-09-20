@@ -10,6 +10,9 @@ async def get_containers(session, api_key, data, username):
     if player_data is None:
         return None, None
 
+    profile_name = other_data["cute_name"]
+    profile_type = other_data.get("game_mode", "regular")
+
     # Get item groupings
     inv_contents   = parse_container(player_data.get("inv_contents", {"data": []})['data'])
     talisman_bag   = parse_container(player_data.get("talisman_bag", {"data": []})['data'])
@@ -20,16 +23,19 @@ async def get_containers(session, api_key, data, username):
     storage_items  = get_storage(player_data)
     pet_items      = player_data.get("pets", [])
 
-
     return ({
-            "inventory":     calculate_container(data, inv_contents),
-            "accessories":   calculate_container(data, talisman_bag),
-            "ender_chest":   calculate_container(data, ender_chest),
-            "armor":         calculate_container(data, armour),
-            "wardrobe":      calculate_container(data, wardrobe),
-            "vault":         calculate_container(data, personal_vault),
-            "storage":       calculate_container(data, storage_items),
-            "pets":          calculate_container(data, pet_items)
+            "profile_name": profile_name,
+            "profile_type": profile_type,
+            },
+            {
+            "inventory":    calculate_container(data, inv_contents),
+            "accessories":  calculate_container(data, talisman_bag),
+            "ender_chest":  calculate_container(data, ender_chest),
+            "armor":        calculate_container(data, armour),
+            "wardrobe":     calculate_container(data, wardrobe),
+            "vault":        calculate_container(data, personal_vault),
+            "storage":      calculate_container(data, storage_items),
+            "pets":         calculate_container(data, pet_items)
            },
            {
             "purse": int(player_data.get("coin_purse", 0)),  # For some reason, purse contains a bunch of extra decimal places.

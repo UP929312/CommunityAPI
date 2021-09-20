@@ -24,22 +24,37 @@ def calculate_reforge_price(data, price):
 
     return price
 
+def is_npc_item(data, internal_name):
+    for npc, items in data.NPC_ITEMS.items():
+        for item, item_price in items.items():
+            if item == internal_name:
+                return item_price, npc
+    return None, None
+
 def calculate_item(data, price, print_prices=False):
 
     item = price.item
     value = price.value
 
-    converted_name = item.name.upper().replace("- ", "").replace(" ", "_").replace("✪", "").replace("'", "").rstrip("_") # The Jerry price list uses the item name, not the internal_id.
-    
-    if item.internal_name in data.BAZAAR:
+    # Calculate base price
+
+    # If the item is in any of the npc's lists
+    item_price, npc = is_npc_item(data, item.internal_name)
+    if item_price is not None:
+        #print(item.internal_name, npc, item_price)
+        value["base_price"] = item_price
+        value["price_source"] = npc
+    elif item.internal_name in data.BAZAAR:
         value["base_price"] = data.BAZAAR[item.internal_name]
         value["price_source"] = "Bazaar"
     elif item.internal_name in data.LOWEST_BIN:
         value["base_price"] = data.LOWEST_BIN[item.internal_name]
         value["price_source"] = "BIN"
     else:
+        converted_name = item.name.upper().replace("- ", "").replace(" ", "_").replace("✪", "").replace("'", "").rstrip("_") # The Jerry price list uses the item name, not the internal_id.
         value["price_source"] = "Jerry"
-        value["base_price"] = data.PRICES.get(converted_name, None) 
+        value["base_price"] = data.PRICES.get(converted_name, None)
+        
         if value["base_price"] is None:
             value["base_price"] = 0
             value["price_source"] = "None"
@@ -86,14 +101,14 @@ def calculate_item(data, price, print_prices=False):
     # Art of war
     if item.art_of_war:
         value["art_of_war_value"] = data.LOWEST_BIN.get("THE_ART_OF_WAR", 0)  # Get's the Art of War book from BIN
-    # Wood singularty
+    # Wood singularity
     if item.wood_singularity:
         value["wood_singularty_value"] = data.LOWEST_BIN.get("WOOD_SINGULARITY", 0)
     # Armor skins
     if item.skin:
         value["skin"] = {}
         value["skin"][item.skin] = data.LOWEST_BIN.get(item.skin, 0)
-    # Power ability scrolls:
+    # Power ability scrolls: (Gemstone ability scrolls)
     if item.power_ability_scroll:
         value["power_ability_scroll"] = {}
         value["power_ability_scroll"][item.power_ability_scroll] = data.LOWEST_BIN.get(item.power_ability_scroll, 0)
@@ -126,7 +141,7 @@ def calculate_item(data, price, print_prices=False):
     # Winning bid for Midas Staff/Sword
     if item.winning_bid > 0 and item.internal_name in ["MIDAS_STAFF", "MIDAS_SWORD"]:
         value["winning_bid"] = item.winning_bid
-    # Hyperion scrolls
+    # Hyperion scrolls (Necron's Blade Scrolls)
     if item.ability_scrolls:
         value["ability_scrolls_value"] = sum([data.LOWEST_BIN.get(scroll, 0) for scroll in item.ability_scrolls])
     #=================

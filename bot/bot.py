@@ -23,12 +23,12 @@ print("Importing .py files done...")
 linked_accounts = dict(load_linked_accounts())
 prefixes = dict(load_prefixes())
 
-#'''
+'''
 def get_prefix(bot, msg):
     prefix = bot.prefixes.get(f"{msg.guild.id}", ".") if msg.guild else "."
     return commands.when_mentioned_or(prefix)(bot, msg)
 #'''
-'''
+#'''
 def get_prefix(bot, msg):
     return "!"
 #'''

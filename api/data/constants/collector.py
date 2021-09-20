@@ -54,8 +54,13 @@ def fetch_prices():
     with open(f"data/constants/{file}.py", 'w') as file:
         file.write(f"{var_name} = "+json.dumps(PRICES, indent=4))
 
-    print(f"Loaded in {var_name}")
-    return BAZAAR, LOWEST_BIN, PRICES
+    print(f"Loaded in {var_name}")        
+    #==================================================================
+    # MANUAL THINGS NPC'S SELL
+    from data.constants.npc_items import NPC_ITEMS
+    print("Loaded in NPC_ITEMS")
+
+    return BAZAAR, LOWEST_BIN, PRICES, NPC_ITEMS
 
 def fetch_constants():
     #==================================================================

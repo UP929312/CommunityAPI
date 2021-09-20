@@ -6,14 +6,14 @@ from parameterized import parameterized, parameterized_class
 ip = "http://127.0.0.1:8000"  #  For running locally
 #ip = "http://db.superbonecraft.dk:8000"  # For the server
 
-API_KEY = "fd4f4f31-3957-4ccf-b951-908d3c7bef71"
+API_KEY = ""
 
 test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
                   4: "Skezza", 5: "kori_100",
                   6: "Zaptro",
                   7: "seattle72", 8: "Refraction"}
 
-DEFAULT_KEYS = ["purse", "banking", "inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"]
+DEFAULT_KEYS = ["profile_data", "purse", "banking", "inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"]
 
 @parameterized_class(
     ("username"),
@@ -66,15 +66,6 @@ class TotalEndpoint(unittest.TestCase):
         self.assertEqual(list(r.keys()) == DEFAULT_KEYS, True)
         # Check for wrong keys
         self.assertEqual(len(r.keys()) == len(DEFAULT_KEYS), True)
-
-    #@unittest.skip("Skip")
-    def test_e_debug(self):
-        r = requests.get(f"{ip}/debug/{self.username}?api_key={API_KEY}")
-        # Check of OK, 200
-        self.assertEqual(r.status_code, 200)
-        r = r.json()
-        # Check for wrong keys (include total)
-        self.assertEqual(len(r.keys()) == len(DEFAULT_KEYS)+1, True)
         
 if __name__ == '__main__':
     print("Starting tests")
