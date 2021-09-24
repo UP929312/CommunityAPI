@@ -1,14 +1,8 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi_utils.tasks import repeat_every
 
-'''###
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
-from slowapi.middleware import SlowAPIMiddleware
-#'''###
 
 from endpoints.pages import get_pages_dict
 from endpoints.total import get_total_value
@@ -16,23 +10,23 @@ from endpoints.groups import get_groups_value
 from endpoints.dump import get_dump_dict
 from endpoints.tree import get_tree
 
-from exceptions import InvalidApiKeyException, InvalidUsername, MojangServerError
-from base_models import default_response_types, PagesOut, TotalOut, GroupsOut, DumpOut, TreeOut
+from exceptions import InvalidProfileException, NoProfilesException, InvalidUUIDException
+from base_models import custom_body, default_response_types, PagesOut, TotalOut, GroupsOut, DumpOut, TreeOut
 
 from data.constants.collector import fetch_prices
-#from price_list_updater import update_price_lists
 
 import uvicorn
-import aiohttp
 
 app = FastAPI()
 
-'''###
-limiter = Limiter(key_func=get_remote_address, default_limits=["5/minute"])
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
-app.add_middleware(SlowAPIMiddleware)
-#'''###
+BAZAAR_CAPS = {
+    "CARROT_ITEM":26, "ENCHANTED_CARROT":2999, "ENCHANTED_GOLDEN_CARROT":421169,
+    "POTATO_ITEM":28, "ENCHANTED_POTATO":2672, "ENCHANTED_BAKED_POTATO":362046,
+    "NETHER_STALK":38, "ENCHANTED_NETHER_STALK":4800, "MUTANT_NETHER_STALK":767221,
+    "WHEAT":31, "ENCHANTED_HAY_BLOCK":40882, "TIGHTLY_TIED_HAY_BALE":4749995,
+    "SUGAR_CANE":22, "ENCHANTED_SUGAR_CANE":543001, "ENCHANTED_SUGAR":3299,   
+    "HAY_BLOCK":984,
+}
 
 app.add_middleware(
     CORSMiddleware,
@@ -45,35 +39,25 @@ app.add_middleware(
 class Data:
     pass
 
-class Session:
-    pass
-
 data = Data()
-session_object = Session()
-
-@app.on_event("startup")
-async def create_session() -> None:
-    session_object.session = aiohttp.ClientSession()
 
 @app.on_event("startup")
 @repeat_every(seconds=60*60, raise_exceptions=True)  # 1 hour
 def update_price_lists_loop() -> None:
     print("Updating price lists loop")
 
-    #data = update_price_lists(data)
-
-    #'''
     data.BAZAAR, data.LOWEST_BIN, data.PRICES, data.NPC_ITEMS = fetch_prices()
     data.BAZAAR["ENDER_PEARL"] = 100
-    data.BAZAAR["ENCHANTED_CARROT"] = 1000
+    for item, price in BAZAAR_CAPS.items():
+        if data.BAZAAR[item] > price:
+            data.BAZAAR[item] = price-price*0.25
     # For overrides
-    for item, hard_price in [("RUNE", 5), ("WISHING_COMPASS", 1000), ("PLUMBER_SPONGE", 100), ("ICE_HUNK", 100),]:
+    for item, hard_price in [("RUNE", 5), ("WISHING_COMPASS", 1000), ("ICE_HUNK", 100),]:
         data.LOWEST_BIN[item] = hard_price
     # Price backups
     for item, hard_price in [("SCATHA;2", 250_000_000),("SCATHA;3", 500_000_000), ("SCATHA;4", 1_000_000_000 ), ("GAME_ANNIHILATOR", 2_500_000_000), ("GAME_BREAKER", 1_000_000_000), ]:
         if item not in data.LOWEST_BIN:
             data.LOWEST_BIN[item] = hard_price
-    #'''
 
 async def validate(function, params):
     try:
@@ -83,74 +67,91 @@ async def validate(function, params):
 
         print("ERROR!")
         return JSONResponse(status_code=500, content={"message": "An internal exception occured."})
-    except InvalidApiKeyException:
-        return JSONResponse(status_code=401, content={"message": "An invalid API key was passed. Please try another key."})
-    except InvalidUsername:
-        return JSONResponse(status_code=404, content={"message": "Username could not be found."})
-    except MojangServerError:
-        return JSONResponse(status_code=503, content={"message": "Mojang's servers didn't respond."})
+    
+    except InvalidProfileException:
+        return JSONResponse(status_code=401, content={"message": "Invalid profile given. That player hasn't got a profile with that name."})
+    except NoProfilesException:
+        return JSONResponse(status_code=402, content={"message": "No profiles found for the given profile_data."})
+    except InvalidUUIDException:
+        return JSONResponse(status_code=404, content={"message": "UUID couldn't be found on that profile."})
     except:
         return JSONResponse(status_code=500, content={"message": "An internal exception occured."})
         
         
-@app.get("/pages/{username}", response_model=PagesOut, responses=default_response_types)
-async def pages(request: Request, username: str, api_key: str):
+@app.post("/pages/{uuid}", response_model=PagesOut, responses=default_response_types)
+async def pages(request: Request, uuid: str, profile_data: custom_body, profile_name: str = None):  #  = Body(..., examples=pages_example_inputs)
     """
     Returns each category's total, as well as the top 5 most expensive items from each catagory.
 
-    - **username**: the player you want to check
-    - **api_key**: a hypixel api key (generated with /api new)
+    - **uuid**: the player you want to target
+    - **profile_name**: (optional) the profile you watch to target
+
+    Request body:<br>
+    ⠀⠀⠀⠀The body needs to be a user's profile data, sent over in JSON format. It should be a jsonified version of the<br>
+    ⠀⠀⠀⠀response that is sent from https://api.hypixel.net/skyblock/profiles?key={api_key}&uuid={uuid}
     """
-    return await validate(get_pages_dict, (session_object.session, api_key, data, username))
+    return await validate(get_pages_dict, (data, profile_data.profiles, uuid, profile_name))
 
 
-@app.get("/total/{username}", response_model=TotalOut, responses=default_response_types)
-async def total(request: Request, username: str, api_key: str):
+@app.post("/total/{uuid}", response_model=TotalOut, responses=default_response_types)
+async def total(request: Request, uuid: str, profile_data: custom_body, profile_name: str = None):
     """
     Returns the combined total including purse, banking and all inventories,
     with a single "total" field.
 
-    - **username**: the player you want to check
-    - **api_key**: a hypixel api key (generated with /api new)
+    - **uuid**: the player you want to target
+    - **profile_name**: (optional) the profile you watch to target
+
+    Request body:<br>
+    ⠀⠀⠀⠀The body needs to be a user's profile data, sent over in JSON format. It should be a jsonified version of the<br>
+    ⠀⠀⠀⠀response that is sent from https://api.hypixel.net/skyblock/profiles?key={api_key}&uuid={uuid}
     """
-    return await validate(get_total_value, (session_object.session, api_key, data, username))
+    return await validate(get_total_value, (data, profile_data.profiles, uuid, profile_name))
 
 
-@app.get("/groups/{username}", response_model=GroupsOut, responses=default_response_types)
-async def groups(request: Request, username: str, api_key: str):
+@app.post("/groups/{uuid}", response_model=GroupsOut, responses=default_response_types)
+async def groups(request: Request, uuid: str, profile_data: custom_body, profile_name: str = None):
     """
-    Returns a map of all containers and their corrosponding totals.
+    Returns a map of all containers and their corresponding totals.
     
-    - **username**: the player you want to check
-    - **api_key**: a hypixel api key (generated with /api new)
+    - **uuid**: the player you want to target
+    - **profile_name**: (optional) the profile you watch to target
+
+    Request body:<br>
+    ⠀⠀⠀⠀The body needs to be a user's profile data, sent over in JSON format. It should be a jsonified version of the<br>
+    ⠀⠀⠀⠀response that is sent from https://api.hypixel.net/skyblock/profiles?key={api_key}&uuid={uuid}
     """
-    return await validate(get_groups_value, (session_object.session, api_key, data, username))  
+    return await validate(get_groups_value, (data, profile_data.profiles, uuid, profile_name))  
 
 
-@app.get("/dump/{username}", deprecated=True)
-async def dump(request: Request, username: str, api_key: str):
+@app.post("/dump/{uuid}", response_model=PagesOut, responses=default_response_types)
+async def dump(request: Request, uuid: str, profile_data: custom_body, profile_name: str = None):
     """
     Returns a complete dump off *all* item data, the prices and their parsed data.
     
-    - **username**: the player you want to check
-    - **api_key**: a hypixel api key (generated with /api new)
+    - **uuid**: the player you want to target
+    - **profile_name**: (optional) the profile you watch to target
     """
-    return await validate(get_dump_dict, (session_object.session, api_key, data, username))  
+    return await validate(get_dump_dict, (data, profile_data.profiles, uuid, profile_name))  
 
 
-@app.get("/tree/{username}", response_model=TreeOut, responses=default_response_types)
-async def tree(request: Request, username: str, api_key: str):
+@app.post("/tree/{uuid}", response_model=TreeOut, responses=default_response_types, include_in_schema=False)
+async def tree(request: Request, uuid: str, profile_data: custom_body, profile_name: str = None):
     """
     Returns a tree-like structure to aid in visualising the output data,
     returned with new line characters and calculated spacing.
     
-    - **username**: the player you want to check
-    - **api_key**: a hypixel api key (generated with /api new)
+    - **uuid**: the player you want to target
+    - **profile_name**: (optional) the profile you watch to target
+
+    Request body:<br>
+    ⠀⠀⠀⠀The body needs to be a user's profile data, sent over in JSON format. It should be a jsonified version of the<br>
+    ⠀⠀⠀⠀response that is sent from https://api.hypixel.net/skyblock/profiles?key={api_key}&uuid={uuid}
     """
-    return await validate(get_tree, (session_object.session, api_key, data, username))
+    return await validate(get_tree, (data, profile_data.profiles, uuid, profile_name))
 
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 async def root(request: Request):
     return JSONResponse(status_code=200, content={"message": "Hello world!"})
 

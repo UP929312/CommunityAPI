@@ -11,19 +11,28 @@ API_KEY = ""
 test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
                   4: "Skezza", 5: "kori_100",
                   6: "Zaptro",
-                  7: "seattle72", 8: "Refraction"}
+                  7: "seattle72", 8: "Refraction", 9: "laachs"}
+
+uuids = [requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"] for username in test_usernames.values()]
 
 DEFAULT_KEYS = ["profile_data", "purse", "banking", "inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"]
 
+def get_profile_data(uuid):
+    profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
+    return profile_data
+
 @parameterized_class(
-    ("username"),
-    [(x,) for x in test_usernames.values()],
+    ("uuid"),
+    [(x,) for x in uuids],
 )
 class TotalEndpoint(unittest.TestCase):
 
+    print("Testing")
+
     #@unittest.skip("Skip")
     def test_a_total(self):
-        r = requests.get(f"{ip}/total/{self.username}?api_key={API_KEY}")
+        profile_data = get_profile_data(self.uuid)
+        r = requests.post(f"{ip}/total/{self.uuid}", json=profile_data)
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()
@@ -36,7 +45,8 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_b_groups(self):
-        r = requests.get(f"{ip}/groups/{self.username}?api_key={API_KEY}")
+        profile_data = get_profile_data(self.uuid)
+        r = requests.post(f"{ip}/groups/{self.uuid}", json=profile_data)
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()
@@ -47,7 +57,8 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_c_pages(self):
-        r = requests.get(f"{ip}/pages/{self.username}?api_key={API_KEY}")
+        profile_data = get_profile_data(self.uuid)
+        r = requests.post(f"{ip}/pages/{self.uuid}", json=profile_data)
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()
@@ -58,7 +69,8 @@ class TotalEndpoint(unittest.TestCase):
 
     #@unittest.skip("Skip")
     def test_d_dump(self):
-        r = requests.get(f"{ip}/dump/{self.username}?api_key={API_KEY}")
+        profile_data = get_profile_data(self.uuid)
+        r = requests.post(f"{ip}/dump/{self.uuid}", json=profile_data)
         # Check of OK, 200        
         self.assertEqual(r.status_code, 200)
         r = r.json()

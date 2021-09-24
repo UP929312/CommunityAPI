@@ -10,13 +10,14 @@ DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM", "name":"Default Item",    "stac
                 "farming_for_dummies": 0,        "tuned_transmission": 0,  "ethermerge": False,
                 "winning_bid": 0,                "ability_scrolls": [],    "origin_tag": "UNKNOWN",}
                 
-HOE_MATERIAL_TO_INTERNAL_NAME = {
-    "POTATO": "POTATO_ITEM",
-    "CARROT": "CARROT_ITEM",
-    "NETHER_WARTS": "NETHER_STALK",
-    "SUGAR_CANE": "SUGAR_CANE",
-    "WHEAT": "WHEAT",
+HOE_MATERIAL_TO_INTERNAL_NAMES = {
+    "POTATO": ("POTATO_ITEM", "ENCHANTED_POTATO", "ENCHANTED_BAKED_POTATO"),
+    "NETHER_WARTS": ("NETHER_STALK", "ENCHANTED_NETHER_STALK", "MUTANT_NETHER_STALK"),
+    "SUGAR_CANE": ("SUGAR_CANE", "ENCHANTED_SUGAR", "ENCHANTED_SUGAR_CANE"),
+    "CARROT": ("CARROT_ITEM", "ENCHANTED_CARROT", "ENCHANTED_GOLDEN_CARROT"),
+    "WHEAT": ("WHEAT", "ENCHANTED_HAY_BLOCK", "TIGHTLY_TIED_HAY_BALE"),
 }
+
 
 class Item:
     def __init__(self, nbt):
@@ -97,18 +98,19 @@ class Item:
 
         # Drills
         if self.type == "DRILL": #
-            self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper() or extras.get("drill_module_upgrade", "").upper()  # Not sure why this is lowercase
+            # Not sure why this is lowercase
+            self.drill_module_upgrade = extras.get("drill_part_upgrade_module", "").upper() or extras.get("drill_module_upgrade", "").upper()
             self.drill_engine_upgrade = extras.get("drill_part_engine", "").upper()
             self.drill_tank_upgrade =   extras.get("drill_part_fuel_tank", "").upper()
             
             self.has_drill_upgrade = self.drill_module_upgrade or self.drill_engine_upgrade or self.drill_tank_upgrade
 
         # Hoes
-        self.hoe_level, self.hoe_material = (None, None)
+        self.hoe_level, self.hoe_material_list = (None, None)
         if self.type == "HOE" and "THEORETICAL" in self.internal_name:
             hoe_material = "_".join(self.name.split(" ")[1:-1]).upper()  # Turing Sugar Cane Hoe
             if hoe_material != "HOE":  # Remove Mathematical Hoe
-                self.hoe_material = HOE_MATERIAL_TO_INTERNAL_NAME[hoe_material]
+                self.hoe_material_list = HOE_MATERIAL_TO_INTERNAL_NAMES[hoe_material]
                 self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
 
         # Hoes
@@ -151,7 +153,7 @@ class Item:
                 
         if self.type == "HOE":
             data["hoe_level"] = self.hoe_level
-            data["hoe_material"] = self.hoe_material
+            data["hoe_material_list"] = self.hoe_material_list
 
         if self.recombobulated:
             data["recombobulated"] = True

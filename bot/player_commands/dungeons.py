@@ -72,7 +72,9 @@ class dungeons_cog(commands.Cog):
 
             embed.add_field(name=f"Dungeon Data:", value=f"Secrets Found: **{secrets_found}**", inline=False)
 
-            for floor in list(dungeon_data["tier_completions"])[1:]:
+            for floor in list(dungeon_data["tier_completions"]):
+                if floor == "0":
+                    continue
                 completions = int(dungeon_data["tier_completions"][floor])
                 
                 best_runs = dungeon_data["best_runs"][floor]

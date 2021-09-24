@@ -1,8 +1,8 @@
-class InvalidApiKeyException(Exception):
+class InvalidProfileException(Exception):
     pass
 
-class InvalidUsername(Exception):
+class NoProfilesException(Exception):
     pass
 
-class MojangServerError(Exception):
+class InvalidUUIDException(Exception):
     pass

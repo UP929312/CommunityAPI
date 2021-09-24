@@ -1,8 +1,8 @@
 from data.container_handler import get_containers
 
-async def get_pages_dict(session, api_key, data, username):
+async def get_pages_dict(data, profile_data, uuid, profile_name):
 
-    profile_data, containers, extras = await get_containers(session, api_key, data, username)
+    profile_data, containers, extras = get_containers(data, profile_data, uuid, profile_name)
 
     if profile_data is None:
         return None

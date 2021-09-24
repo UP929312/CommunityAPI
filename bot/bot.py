@@ -66,7 +66,8 @@ async def on_command_error(ctx, error):
 
 @client.event
 async def on_command_completion(ctx):
-    print(f"-- User {ctx.author.id} ({ctx.author.display_name}), performed `{ctx.message.content}` in {ctx.guild.id if ctx.guild is not None else 'DMs'} ({'DMs' if ctx.guild is None else ctx.guild.name})")
+    print(f"-- User {ctx.author.display_name} ({ctx.author.id}) performed `{ctx.message.content}`\n"+
+          f"-- in {'DMs' if ctx.guild is None else ctx.guild.name} ({ctx.guild.id if ctx.guild is not None else 'DMs'}) - {'DMs' if ctx.guild is None else ctx.channel.name}")
 
 #====================================================
 

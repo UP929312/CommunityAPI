@@ -4,8 +4,8 @@ from discord.ext import commands
 import requests
 
 from utils import error, hf
-from parse_profile import get_profile_data
-from menus import generate_dynamic_preset_menu
+from parse_profile import input_to_uuid
+from menus import generate_static_preset_menu
 
 with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
@@ -39,16 +39,27 @@ PAGE_URLS = {"dungeons": ["healer", "mage", "berserker", "archer", "tank"],
              "slayers":  ["revenant", "tarantula", "sven", "enderman"]
 }
 
-PAGE_TO_EMOJI = {"main": "<:paper:873158778487443486>",
-                 "dungeons": "<:dungeons:864588623394897930>",
-                 "skills": "<:skills:864588638066311200>",
-                 "slayers": "<:slayers:864588648111276072>",
-                 "info": "<:misc:854801277489774613>"}
+EMOJI_LIST = ["<:paper:873158778487443486>", "<:dungeons:864588623394897930>", "<:skills:864588638066311200>",
+              "<:slayers:864588648111276072>", "<:misc:854801277489774613>"]
 
+class weights_cog(commands.Cog):
+    def __init__(self, bot):
+        self.client = bot
 
-def generate_page(ctx, data, username, page):
-    response = data
-    if page == "main":
+    @commands.command(aliases=['weight', 'w', 'waits'])
+    async def weights(self, ctx, username=None):
+
+        data = await input_to_uuid(ctx, username)
+        if data is None:
+            return None
+        username, uuid = data
+
+        #====================================================================================
+        # Main page
+        response = requests.get(f"https://hypixel-api.senither.com/v1/profiles/{uuid}/weight?key={API_KEY}").json()
+        if response["status"] != 200:
+            return await error(ctx, "Error, the api couldn't fufill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.")
+
         total_regular_weight = round(response["data"]["weight"], 2)
         total_overflow_weight = round(response["data"]["weight_overflow"], 2)
 
@@ -64,66 +75,58 @@ def generate_page(ctx, data, username, page):
         
         embed = discord.Embed(title=f"Weights Calculator For {username}:", description="\n".join(list_of_elems),
                               url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
-    elif page == "info":
-        embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to represent how far into the game you are, whether that be in slayer, dungeons, or your skills. It uses an extensive formula to calculate the weights. The formula and the data, however, is provided by the Senither API [found here](https://hypixel-api.senither.com/), so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
-    else:  
-        data_start = response["data"][page]
-        data = response["data"][page]
-        if data is None:
-            embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"There doesn't seem to be anything here?\nThis is most likely because {username} hasn't done any dungeons before.",
+
+        list_of_embeds = [embed]
+        #====================================================================================
+        # Skills, slayer and dungeons
+        for page in ["dungeons", "skills", "slayers"]:
+            data_start = response["data"][page]
+            data = response["data"][page]
+            if data is None:
+                embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"There doesn't seem to be anything here?\nThis is most likely because {username} hasn't done any dungeons before.",
+                                      url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+                embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
+                embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
+                return embed
+                
+            total_weight = round(data["weight"]+data["weight_overflow"], 2)
+
+            bank = PAGE_URLS[page]
+            if page == "skills":
+                description_start = f"Skill average: **{round(data['average_skills'], 2)}**"
+            elif page == "slayers":
+                description_start = f"Total coins spent: **{hf(data['total_coins_spent'])}**"
+            elif page == "dungeons":
+                description_start = f"Secrets found: **{data['secrets_found']}**"
+
+            data = data.get("bosses", None) or data.get("classes", None) or data  # Remap data to be the sub list.
+
+            embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"Total {page[:-1]} weight: **{round(total_weight, 2)}**\n{description_start}",
                                   url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
+
+            if page == "dungeons":
+                catacombs_weight = round(data_start['types']['catacombs']['weight'], 2)
+                catacombs_overflow = round(data_start['types']['catacombs']['weight_overflow'], 2)
+                embed.add_field(name=f"{EMOJI_DICT['catacombs']} Cata ({int(data_start['types']['catacombs']['level'])})",
+                                value=f"Regular: **{catacombs_weight}**\nOverflow: **{catacombs_overflow}**\nTotal: **{round(catacombs_weight+catacombs_overflow, 2)}**", inline=True)
+
+            for category in bank:
+                level = int(data[category]["level"])
+                regular = round(data[category]["weight"], 2)
+                overflow = round(data[category]["weight_overflow"], 2)
+                embed.add_field(name=f"{EMOJI_DICT[category]} {category.title()} ({level})",
+                                value=f"Regular: **{regular}**\nOverflow: **{overflow}**\nTotal: **{round(regular+overflow, 2)}**", inline=True)
+                
+            list_of_embeds.append(embed)
+        #====================================================================================
+        # Info page
+        embed = discord.Embed(title=f"Info page", description=f"Weights are a concept that attempts to represent how far into the game you are, whether that be in slayer, dungeons, or your skills. It uses an extensive formula to calculate the weights. The formula and the data, however, is provided by the Senither API [found here](https://hypixel-api.senither.com/), so no changes can be made to it.\n\nFor a rough idea of how it's calculated, each skills/slayer/dungeon level has a specific number that decides how important to classify that level, and any level above max level will get diminishing returns.", colour=0x3498DB)
+        list_of_embeds.append(embed)
+        #====================================================================================
+        for i, embed in enumerate(list_of_embeds):
             embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
             embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-            return embed
-            
-        total_weight = round(data["weight"]+data["weight_overflow"], 2)
-
-        bank = PAGE_URLS[page]
-        if page == "skills":
-            description_start = f"Skill average: **{round(data['average_skills'], 2)}**"
-        elif page == "slayers":
-            description_start = f"Total coins spent: **{hf(data['total_coins_spent'])}**"
-        elif page == "dungeons":
-            description_start = f"Secrets found: **{data['secrets_found']}**"
-
-        data = data.get("bosses", None) or data.get("classes", None) or data  # Remap data to be the sub list.
-
-        embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"Total {page[:-1]} weight: **{round(total_weight, 2)}**\n{description_start}",
-                              url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
-
-        if page == "dungeons":
-            catacombs_weight = round(data_start['types']['catacombs']['weight'], 2)
-            catacombs_overflow = round(data_start['types']['catacombs']['weight_overflow'], 2)
-            embed.add_field(name=f"{EMOJI_DICT['catacombs']} Cata ({int(data_start['types']['catacombs']['level'])})",
-                            value=f"Regular: **{catacombs_weight}**\nOverflow: **{catacombs_overflow}**\nTotal: **{round(catacombs_weight+catacombs_overflow, 2)}**", inline=True)
-
-        for category in bank:
-            level = int(data[category]["level"])
-            regular = round(data[category]["weight"], 2)
-            overflow = round(data[category]["weight_overflow"], 2)
-            embed.add_field(name=f"{EMOJI_DICT[category]} {category.title()} ({level})",
-                            value=f"Regular: **{regular}**\nOverflow: **{overflow}**\nTotal: **{round(regular+overflow, 2)}**", inline=True)                    
-    
-    embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
-    embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-    return embed
-    
-
-class weights_cog(commands.Cog):
-    def __init__(self, bot):
-        self.client = bot
-
-    @commands.command(aliases=['weight', 'w', 'waits'])
-    async def weights(self, ctx, username=None):
-
-        player_data = await get_profile_data(ctx, username)
-        if player_data is None:
-            return
-        username = player_data["username"]
-
-        response = requests.get(f"https://hypixel-api.senither.com/v1/profiles/{player_data['uuid']}/weight?key={API_KEY}").json()
-        if response["status"] != 200:
-            return await error(ctx, "Error, the api couldn't fulfill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.")
-
-        await generate_dynamic_preset_menu(ctx=ctx, data=response, username=username, starting_page="main", emoji_map=PAGE_TO_EMOJI, page_generator=generate_page)
+            list_of_embeds[i] = embed
+        
+        await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST)
 

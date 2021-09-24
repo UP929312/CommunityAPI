@@ -1,7 +1,7 @@
 from data.container_handler import get_containers
 
-async def get_tree(session, api_key, data, username):
-    profile_data, containers, extras = await get_containers(session, api_key, data, username)
+async def get_tree(data, profile_data, uuid, profile_name):
+    profile_data, containers, extras = get_containers(data, profile_data, uuid, profile_name)
 
     if containers is None:
         return None

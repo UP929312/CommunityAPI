@@ -8,6 +8,7 @@ ITEM_RARITY = {
     "SUPREME":   "<:supreme:867070395949383700>",
     "SPECIAL":   "<:special:867070427897135144>",
     "VERY_SPECIAL": "<:very_special:869652064224030830>",
+    "DIVINE":    "<:divine:890223730909929522>",
     "UNKNOWN": "",
 }
 

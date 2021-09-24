@@ -1,17 +1,47 @@
 from data.decode_container import parse_container
 from data.calculators.main_calculator_handler import calculate_container
-from data.utils import get_data, get_storage
+from exceptions import InvalidProfileException, NoProfilesException, InvalidUUIDException
+
+def get_storage(player_data):
+    storage_items = []
+    if not player_data.get("backpack_contents", False):
+        return []
+    for i in range(0, 19):
+        page = player_data["backpack_contents"].get(str(i), {"data": []})
+        storage_items.extend(parse_container(page["data"]))
+    return storage_items
+
+def get_data(profile_data, uuid, profile_name):
+    uuid = uuid.replace("-", "")
+    if profile_name not in ['None', 'latest', None]:
+        if not (profiles := [x for x in profile_data if x["cute_name"].lower() == profile_name.lower()]):
+            raise InvalidProfileException
+        profile = profiles[0]
+    else:
+        if not any([uuid in x['members'] for x in profile_data]):
+            raise InvalidUUIDException
+        
+        valid_profiles = [x for x in profile_data if "last_save" in x['members'][uuid]]
+        if not valid_profiles:
+            raise NoProfilesException
+            
+        profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
+
+    if uuid not in profile['members'].keys():
+        raise InvalidUUIDException
+
+    other_data = profile
+    player_data = profile["members"][uuid]
+        
+    return player_data, other_data
 
 
-async def get_containers(session, api_key, data, username):
-    # Parse/Grab data
-    player_data, other_data = await get_data(session, api_key, username)
+def get_containers(data, profile_data, uuid, profile_name):
+    # Parse/Grab data    
+    player_data, other_data = get_data(profile_data, uuid, profile_name)
     
     if player_data is None:
         return None, None
-
-    profile_name = other_data["cute_name"]
-    profile_type = other_data.get("game_mode", "regular")
 
     # Get item groupings
     inv_contents   = parse_container(player_data.get("inv_contents", {"data": []})['data'])
@@ -24,8 +54,8 @@ async def get_containers(session, api_key, data, username):
     pet_items      = player_data.get("pets", [])
 
     return ({
-            "profile_name": profile_name,
-            "profile_type": profile_type,
+            "profile_name": other_data["cute_name"],
+            "profile_type": other_data.get("game_mode", "regular"),
             },
             {
             "inventory":    calculate_container(data, inv_contents),

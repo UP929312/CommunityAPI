@@ -1,8 +1,8 @@
 import os
 
-find = "API_KEY"
+find = "generate_dynamic_preset_menu"
 
-folders = [f.path for f in os.scandir("./") if f.is_dir()]
+folders = [f.path for f in os.scandir(".") if f.is_dir()]
 
 def find_it(folder, ext):
     for file in folder:
@@ -17,6 +17,9 @@ def find_it(folder, ext):
                     pass
 
 for folder in folders:
+    if folder == ".\__pycache__":
+        continue
+    print(folder)
     if folder == "":
         find_it(os.listdir(), "")
     else:

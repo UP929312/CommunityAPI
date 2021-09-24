@@ -41,9 +41,12 @@ def calculate_item(data, price, print_prices=False):
     # If the item is in any of the npc's lists
     item_price, npc = is_npc_item(data, item.internal_name)
     if item_price is not None:
-        #print(item.internal_name, npc, item_price)
-        value["base_price"] = item_price
-        value["price_source"] = npc
+        if item.internal_name in data.LOWEST_BIN and data.LOWEST_BIN[item.internal_name] < item_price:
+            value["base_price"] = data.LOWEST_BIN[item.internal_name]
+            value["price_source"] = "BIN"
+        else:
+            value["base_price"] = item_price
+            value["price_source"] = npc
     elif item.internal_name in data.BAZAAR:
         value["base_price"] = data.BAZAAR[item.internal_name]
         value["price_source"] = "Bazaar"
@@ -52,8 +55,8 @@ def calculate_item(data, price, print_prices=False):
         value["price_source"] = "BIN"
     else:
         converted_name = item.name.upper().replace("- ", "").replace(" ", "_").replace("✪", "").replace("'", "").rstrip("_") # The Jerry price list uses the item name, not the internal_id.
-        value["price_source"] = "Jerry"
         value["base_price"] = data.PRICES.get(converted_name, None)
+        value["price_source"] = "Jerry"
         
         if value["base_price"] is None:
             value["base_price"] = 0
@@ -61,9 +64,13 @@ def calculate_item(data, price, print_prices=False):
 
     #=============================================================================
     # Hoe calculations
-    if item.type == "HOE" and item.hoe_material != None:
-        value["base_price"] = 1_000_000+256*(data.BAZAAR[item.hoe_material]*(144**(item.hoe_level-1)))
+    if item.type == "HOE" and item.hoe_material_list is not None:
         value["price_source"] = "Calculated"
+        value["base_price"] = 1_000_000 + 512*data.BAZAAR[item.hoe_material_list[0]]
+        if item.hoe_level >= 2:
+            value["base_price"] += 256*data.BAZAAR[item.hoe_material_list[1]]
+        if item.hoe_level >= 3:
+            value["base_price"] += 256*data.BAZAAR[item.hoe_material_list[2]]
     # Accessories of Power
     if item.internal_name in ["POWER_TALISMAN", "POWER_RING", "POWER_ARTIFACT"]:
         value["price_source"] = "Calculated"

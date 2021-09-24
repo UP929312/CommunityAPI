@@ -1,15 +1,20 @@
 from pydantic import BaseModel
-
+from pydantic.typing import Literal
+from enum import Enum
 from typing import Union
 
 default_response_types = {
-    401: {"description": "An invalid API key was passed. Please try another key."},
-    404: {"description": "Username could not be found."},
+    401: {"description": "Invalid profile given. That player hasn't got a profile with that name."},
+    402: {"description": "No profiles found for the given profile_data."},
+    404: {"description": "UUID couldn't be found on that profile."},
     500: {"description": "An internal exception occured."},
-    503: {"description": "Mojang's servers didn't respond."},
 }
 
 ###################################################
+
+class custom_body(BaseModel):
+    success: str
+    profiles: list[dict]
 
 class Item(BaseModel):
     total: int
@@ -24,8 +29,8 @@ class PriceGroup(BaseModel):
     prices: list[Item]
 
 class ProfileData(BaseModel):
-    profile_name: str
-    profile_type: str
+    profile_name: Literal['Apple | Banana | Blueberry | Coconut | Cucumber | Grapes | Kiwi | Lemon | Lime | Mango | Orange | Papaya | Pear | Peach | Pineapple | Pomegranate | Raspberry | Strawberry | Tomato | Watermelon | Zucchini']
+    profile_type: Literal['regular | ironman']
 
 ###################################################
 class PagesOut(BaseModel):
@@ -62,4 +67,20 @@ class DumpOut(BaseModel):
 #==========================
 class TreeOut(BaseModel):
     data: str
+#===========================
+'''
+with open("example_profile_data.txt", "r") as file:
+    example_profile_data = file.read()
     
+pages_example_inputs = {
+    "Pages for 56ms": {
+        "summary": "Pages for 56ms",
+        #"description": "A **normal** item works correctly.",
+        "value": {
+            "uuid": "1277d71f338046e298d90c9fe4055f00",
+            "profile": "Strawberry",
+            "body": example_profile_data,
+        },
+    },
+}
+''' 

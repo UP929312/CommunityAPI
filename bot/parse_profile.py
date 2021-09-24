@@ -12,8 +12,7 @@ PROFILE_NAMES = ['apple', 'banana', 'blueberry', 'coconut', 'cucumber', 'grapes'
 
 async def input_to_uuid(ctx, username):
     """
-    This returns a dictionary of all the player's profile data.
-    It will take a already given username, but if one isn't given, it will
+    This will take a already given username, but if one isn't given, it will
     first check if they've linked their account, if not, it will try
     parsing their ign from their discord nicks, by trimming off their tag,
     e.g. '[Admin] Notch' will get parsed as 'Notch'.
@@ -27,22 +26,34 @@ async def input_to_uuid(ctx, username):
             nick = ctx.author.display_name
             username = nick.split("]")[1] if "]" in nick else nick
             username = "".join([char for char in username if char.lower() in ALLOWED_CHARS])
-            
-    uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
-    if uuid_request.status_code > 200:
-        return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly.")
 
-    # When we can't find a username, request.text will be '', if we can, it'll be the json string
-    if not uuid_request.text:
-        if not nick:
+    if len(username) <= 16:
+        uuid_request = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}")
+        if uuid_request.status_code > 200:
             return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly.")
-        else:
-            return await error(ctx, "Error, could not parse username from discord nickname.", "No linked account was found through link_account, and no username was given. Please link your account or provide a username")
+
+        # When we can't find a username, request.text will be '', if we can, it'll be the json string
+        if not uuid_request.text:
+            if not nick:
+                return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly.")
+            else:
+                return await error(ctx, "Error, could not parse username from discord nickname.", "No linked account was found through link_account, and no username was given. Please link your account or provide a username")
+            
+        uuid = uuid_request.json()["id"]
+    else:
+        uuid = username.replace("-", "")
+        username_request = requests.get(f"https://api.mojang.com/user/profiles/{uuid}/names")
+        if not username_request.text:
+            return await error(ctx, "Error! UUID was incorrect.", "Could not find that player's uuid.")
+        username = username_request.json()[-1]["name"]
         
-    uuid = uuid_request.json()["id"]
     return username, uuid
 
 async def get_profile_data(ctx, username, profile_provided=None):
+    """
+    This will take a username, or None, and return a dictionary with
+    Their profile data, with a few extra bits for convenience
+    """
     # If they want to use auto-name and give a profile
     if username is not None and username.lower() in PROFILE_NAMES:
         profile_provided = username

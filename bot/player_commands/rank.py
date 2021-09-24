@@ -3,7 +3,7 @@ from discord.ext import commands
 
 from database_manager import get_specific_networth_data, get_all_networth_data, get_sum_networth_data
 from emojis import PAGE_ICON_EMOJIS
-from parse_profile import get_profile_data
+from parse_profile import input_to_uuid
 from utils import error
 
 
@@ -43,11 +43,10 @@ class rank_cog(commands.Cog):
     @commands.command()
     async def rank(self, ctx, username=None):
 
-        player_data = await get_profile_data(ctx, username)
-        if player_data is None:
-            return
-        username = player_data["username"]
-        uuid = player_data['uuid']
+        data = await input_to_uuid(ctx, username)
+        if data is None:
+            return None
+        username, uuid = data
 
         user_data = get_specific_networth_data(uuid)
         if len(user_data) == 0:

@@ -793,6 +793,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armadillo_Pet",
         "recipe": null
     },
+    "ARMORSHRED_ARROW": {
+        "internal_name": "ARMORSHRED_ARROW",
+        "name": "Armorshred Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
+        "recipe": null
+    },
     "ARMOR_OF_MAGMA_BOOTS": {
         "internal_name": "ARMOR_OF_MAGMA_BOOTS",
         "name": "Armor of Magma Boots",
@@ -998,6 +1005,13 @@
             ""
         ]
     },
+    "ARROW_SWAPPER": {
+        "internal_name": "ARROW_SWAPPER",
+        "name": "Arrow Swapper",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrow_Swapper",
+        "recipe": null
+    },
     "ARTIFACT_POTION_AFFINITY": {
         "internal_name": "ARTIFACT_POTION_AFFINITY",
         "name": "Potion Affinity Artifact",
@@ -1014,6 +1028,13 @@
             "ENCHANTED_NETHER_STALK:32",
             "ENCHANTED_NETHER_STALK:32"
         ]
+    },
+    "ARTISANAL_SHORTBOW": {
+        "internal_name": "ARTISANAL_SHORTBOW",
+        "name": "Artisanal Shortbow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Artisanal_Shortbow",
+        "recipe": null
     },
     "ASCENSION_ROPE": {
         "internal_name": "ASCENSION_ROPE",
@@ -3307,6 +3328,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bottle_of_Jyrre",
         "recipe": null
     },
+    "BOUNCY_ARROW": {
+        "internal_name": "BOUNCY_ARROW",
+        "name": "Bouncy Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
+        "recipe": null
+    },
     "BOUNCY_BOOTS": {
         "internal_name": "BOUNCY_BOOTS",
         "name": "Bouncy Boots",
@@ -5214,6 +5242,41 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Cave_Spider",
         "recipe": null
     },
+    "CELESTE_BOOTS": {
+        "internal_name": "CELESTE_BOOTS",
+        "name": "Celeste Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Celeste_Armor",
+        "recipe": null
+    },
+    "CELESTE_CHESTPLATE": {
+        "internal_name": "CELESTE_CHESTPLATE",
+        "name": "Celeste Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Celeste_Armor",
+        "recipe": null
+    },
+    "CELESTE_HELMET": {
+        "internal_name": "CELESTE_HELMET",
+        "name": "Celeste Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Celeste_Armor",
+        "recipe": null
+    },
+    "CELESTE_LEGGINGS": {
+        "internal_name": "CELESTE_LEGGINGS",
+        "name": "Celeste Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Celeste_Armor",
+        "recipe": null
+    },
+    "CELESTE_WAND": {
+        "internal_name": "CELESTE_WAND",
+        "name": "Celeste Wand",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Celeste_Wand",
+        "recipe": null
+    },
     "CELLAR_SPIDER_MONSTER": {
         "internal_name": "CELLAR_SPIDER_MONSTER",
         "name": "Cellar Spider (Monster)",
@@ -5223,28 +5286,28 @@
     },
     "CHAINMAIL_BOOTS": {
         "internal_name": "CHAINMAIL_BOOTS",
-        "name": "Chain Boots",
+        "name": "Chainmail Boots",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
     },
     "CHAINMAIL_CHESTPLATE": {
         "internal_name": "CHAINMAIL_CHESTPLATE",
-        "name": "Chain Chestplate",
+        "name": "Chainmail Chestplate",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
     },
     "CHAINMAIL_HELMET": {
         "internal_name": "CHAINMAIL_HELMET",
-        "name": "Chain Helmet",
+        "name": "Chainmail Helmet",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
     },
     "CHAINMAIL_LEGGINGS": {
         "internal_name": "CHAINMAIL_LEGGINGS",
-        "name": "Chain Leggings",
+        "name": "Chainmail Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
@@ -10139,6 +10202,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Emerald_Slime",
         "recipe": null
     },
+    "EMERALD_TIPPED_ARROW": {
+        "internal_name": "EMERALD_TIPPED_ARROW",
+        "name": "Emerald-tipped Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
+        "recipe": null
+    },
     "EMPTY_MAP": {
         "internal_name": "EMPTY_MAP",
         "name": "Empty Map",
@@ -13243,6 +13313,13 @@
         "wiki_link": null,
         "recipe": null
     },
+    "EXPLOSIVE_ARROW": {
+        "internal_name": "EXPLOSIVE_ARROW",
+        "name": "Explosive Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
+        "recipe": null
+    },
     "EXPLOSIVE_BOW": {
         "internal_name": "EXPLOSIVE_BOW",
         "name": "Explosive Bow",
@@ -13998,7 +14075,7 @@
     },
     "FINE_AMBER_GEM": {
         "internal_name": "FINE_AMBER_GEM",
-        "name": "Fine Amber Gemstone",
+        "name": "⸕ Fine Amber Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14015,7 +14092,7 @@
     },
     "FINE_AMETHYST_GEM": {
         "internal_name": "FINE_AMETHYST_GEM",
-        "name": "Fine Amethyst Gemstone",
+        "name": "❈ Fine Amethyst Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14032,7 +14109,7 @@
     },
     "FINE_JADE_GEM": {
         "internal_name": "FINE_JADE_GEM",
-        "name": "Fine Jade Gemstone",
+        "name": "☘ Fine Jade Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14049,7 +14126,7 @@
     },
     "FINE_JASPER_GEM": {
         "internal_name": "FINE_JASPER_GEM",
-        "name": "Fine Jasper Gemstone",
+        "name": "❁ Fine Jasper Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14066,7 +14143,7 @@
     },
     "FINE_RUBY_GEM": {
         "internal_name": "FINE_RUBY_GEM",
-        "name": "Fine Ruby Gemstone",
+        "name": "❤ Fine Ruby Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14083,7 +14160,7 @@
     },
     "FINE_SAPPHIRE_GEM": {
         "internal_name": "FINE_SAPPHIRE_GEM",
-        "name": "Fine Sapphire Gemstone",
+        "name": "✎ Fine Sapphire Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14100,7 +14177,7 @@
     },
     "FINE_TOPAZ_GEM": {
         "internal_name": "FINE_TOPAZ_GEM",
-        "name": "Fine Topaz Gemstone",
+        "name": "✧ Fine Topaz Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14710,7 +14787,7 @@
     },
     "FLAWED_AMBER_GEM": {
         "internal_name": "FLAWED_AMBER_GEM",
-        "name": "Flawed Amber Gemstone",
+        "name": "⸕ Flawed Amber Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14727,7 +14804,7 @@
     },
     "FLAWED_AMETHYST_GEM": {
         "internal_name": "FLAWED_AMETHYST_GEM",
-        "name": "Flawed Amethyst Gemstone",
+        "name": "❈ Flawed Amethyst Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14744,7 +14821,7 @@
     },
     "FLAWED_JADE_GEM": {
         "internal_name": "FLAWED_JADE_GEM",
-        "name": "Flawed Jade Gemstone",
+        "name": "☘ Flawed Jade Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14761,7 +14838,7 @@
     },
     "FLAWED_JASPER_GEM": {
         "internal_name": "FLAWED_JASPER_GEM",
-        "name": "Flawed Jasper Gemstone",
+        "name": "❁ Flawed Jasper Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14778,7 +14855,7 @@
     },
     "FLAWED_RUBY_GEM": {
         "internal_name": "FLAWED_RUBY_GEM",
-        "name": "Flawed Ruby Gemstone",
+        "name": "❤ Flawed Ruby Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14795,7 +14872,7 @@
     },
     "FLAWED_SAPPHIRE_GEM": {
         "internal_name": "FLAWED_SAPPHIRE_GEM",
-        "name": "Flawed Sapphire Gemstone",
+        "name": "✎ Flawed Sapphire Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14812,7 +14889,7 @@
     },
     "FLAWED_TOPAZ_GEM": {
         "internal_name": "FLAWED_TOPAZ_GEM",
-        "name": "Flawed Topaz Gemstone",
+        "name": "✧ Flawed Topaz Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14829,7 +14906,7 @@
     },
     "FLAWLESS_AMBER_GEM": {
         "internal_name": "FLAWLESS_AMBER_GEM",
-        "name": "Flawless Amber Gemstone",
+        "name": "⸕ Flawless Amber Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14846,7 +14923,7 @@
     },
     "FLAWLESS_AMETHYST_GEM": {
         "internal_name": "FLAWLESS_AMETHYST_GEM",
-        "name": "Flawless Amethyst Gemstone",
+        "name": "❈ Flawless Amethyst Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14863,7 +14940,7 @@
     },
     "FLAWLESS_JADE_GEM": {
         "internal_name": "FLAWLESS_JADE_GEM",
-        "name": "Flawless Jade Gemstone",
+        "name": "☘ Flawless Jade Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14880,7 +14957,7 @@
     },
     "FLAWLESS_JASPER_GEM": {
         "internal_name": "FLAWLESS_JASPER_GEM",
-        "name": "Flawless Jasper Gemstone",
+        "name": "❁ Flawless Jasper Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14897,7 +14974,7 @@
     },
     "FLAWLESS_RUBY_GEM": {
         "internal_name": "FLAWLESS_RUBY_GEM",
-        "name": "Flawless Ruby Gemstone",
+        "name": "❤ Flawless Ruby Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14914,7 +14991,7 @@
     },
     "FLAWLESS_SAPPHIRE_GEM": {
         "internal_name": "FLAWLESS_SAPPHIRE_GEM",
-        "name": "Flawless Sapphire Gemston",
+        "name": "✎ Flawless Sapphire Gemston",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -14931,7 +15008,7 @@
     },
     "FLAWLESS_TOPAZ_GEM": {
         "internal_name": "FLAWLESS_TOPAZ_GEM",
-        "name": "Flawless Topaz Gemstone",
+        "name": "✧ Flawless Topaz Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -15421,6 +15498,13 @@
     "FORTUNE;3": {
         "internal_name": "FORTUNE;3",
         "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "FORTUNE;4": {
+        "internal_name": "FORTUNE;4",
+        "name": "Fortune IV",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
@@ -16593,6 +16677,13 @@
             "ENCHANTED_GLOWSTONE_DUST:64"
         ]
     },
+    "GLUE_ARROW": {
+        "internal_name": "GLUE_ARROW",
+        "name": "Glue Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
+        "recipe": null
+    },
     "GOBLIN_BOOTS": {
         "internal_name": "GOBLIN_BOOTS",
         "name": "Goblin Boots",
@@ -16675,7 +16766,17 @@
         "name": "Blue Cheese Goblin Omelette",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Blue_Cheese_Goblin_Omelette",
-        "recipe": null
+        "recipe": [
+            "GOBLIN_EGG_BLUE:99",
+            "PERFECT_SAPPHIRE_GEM:1",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "GOBLIN_OMELETTE_PESTO": {
         "internal_name": "GOBLIN_OMELETTE_PESTO",
@@ -17343,6 +17444,13 @@
         "name": "Golden Thorn Head",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Golden_Thorn_Head",
+        "recipe": null
+    },
+    "GOLD_TIPPED_ARROW": {
+        "internal_name": "GOLD_TIPPED_ARROW",
+        "name": "Gold-tipped Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
         "recipe": null
     },
     "GOLEM;3": {
@@ -19269,7 +19377,7 @@
             "GRIZZLY_BAIT:1",
             "GOLDEN_TOOTH:32",
             "GOLDEN_TOOTH:32",
-            "GOLDEN_TOOTH:32",
+            "HUNTER_TALISMAN:1",
             "GOLDEN_TOOTH:32"
         ]
     },
@@ -19360,7 +19468,17 @@
         "name": "Hyper Furnace",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Hyper_Furnace",
-        "recipe": null
+        "recipe": [
+            "ENCHANTED_COBBLESTONE:8",
+            "ENCHANTED_COBBLESTONE:8",
+            "ENCHANTED_COBBLESTONE:8",
+            "ENCHANTED_COBBLESTONE:8",
+            "ENCHANTED_COAL:8",
+            "ENCHANTED_COBBLESTONE:8",
+            "ENCHANTED_COBBLESTONE:8",
+            "ENCHANTED_COBBLESTONE:8",
+            "ENCHANTED_COBBLESTONE:8"
+        ]
     },
     "HYPIXEL_CASTLE": {
         "internal_name": "HYPIXEL_CASTLE",
@@ -19620,6 +19738,13 @@
         "name": "Ice Walker (Monster)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Ice_Walker",
+        "recipe": null
+    },
+    "ICY_ARROW": {
+        "internal_name": "ICY_ARROW",
+        "name": "Icy Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
         "recipe": null
     },
     "ILLUSION_GLASS": {
@@ -20756,7 +20881,7 @@
         "internal_name": "JERRY_SPECIAL_MAYOR_MONSTER",
         "name": "Jerry (Mayor)",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jerry",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Candidate_Jerry",
         "recipe": null
     },
     "JERRY_STAFF": {
@@ -22129,7 +22254,7 @@
     },
     "LEATHER_CHESTPLATE": {
         "internal_name": "LEATHER_CHESTPLATE",
-        "name": "Leather Tunic",
+        "name": "Leather Chestplate",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": [
@@ -22146,7 +22271,7 @@
     },
     "LEATHER_HELMET": {
         "internal_name": "LEATHER_HELMET",
-        "name": "Leather Cap",
+        "name": "Leather Helmet",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": [
@@ -22163,7 +22288,7 @@
     },
     "LEATHER_LEGGINGS": {
         "internal_name": "LEATHER_LEGGINGS",
-        "name": "Leather Pants",
+        "name": "Leather Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": [
@@ -22449,7 +22574,7 @@
     },
     "LION;3": {
         "internal_name": "LION;3",
-        "name": "§7[Lvl 1➡100] Lion",
+        "name": "§7[Lvl {LVL}] Lion",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lion_Pet",
         "recipe": null
@@ -23483,7 +23608,7 @@
         "internal_name": "MAXED_ENCHANT_BOOK",
         "name": "Max Enchanted Book",
         "rarity": "UNKNOWN",
-        "wiki_link": "§aWhy would someone make this anyways, atleast we can use it to test /neuec",
+        "wiki_link": "§aUsed to test /neuec",
         "recipe": null
     },
     "MAXOR_THE_FISH": {
@@ -23686,7 +23811,7 @@
     },
     "MELODY_HAIR": {
         "internal_name": "MELODY_HAIR",
-        "name": "Melody's Hair ♫",
+        "name": "Melody's Hair",
         "rarity": "EPIC",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melody's_Hair",
         "recipe": null
@@ -23959,6 +24084,41 @@
         "name": "Mender Helmet",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mender_Helmet",
+        "recipe": null
+    },
+    "MERCENARY_AXE": {
+        "internal_name": "MERCENARY_AXE",
+        "name": "Mercenary Axe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mercenary_Axe",
+        "recipe": null
+    },
+    "MERCENARY_BOOTS": {
+        "internal_name": "MERCENARY_BOOTS",
+        "name": "Mercenary Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mercenary_Armor",
+        "recipe": null
+    },
+    "MERCENARY_CHESTPLATE": {
+        "internal_name": "MERCENARY_CHESTPLATE",
+        "name": "Mercenary Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mercenary_Armor",
+        "recipe": null
+    },
+    "MERCENARY_HELMET": {
+        "internal_name": "MERCENARY_HELMET",
+        "name": "Mercenary Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mercenary_Armor",
+        "recipe": null
+    },
+    "MERCENARY_LEGGINGS": {
+        "internal_name": "MERCENARY_LEGGINGS",
+        "name": "Mercenary Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mercenary_Armor",
         "recipe": null
     },
     "METAL_CHESTPLATE": {
@@ -25258,6 +25418,13 @@
         "name": "Name Tag",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "NANSORB_ARROW": {
+        "internal_name": "NANSORB_ARROW",
+        "name": "Nansorb Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
         "recipe": null
     },
     "NECROMANCER_BROOCH": {
@@ -26726,14 +26893,14 @@
     },
     "PERFECT_AMBER_GEM": {
         "internal_name": "PERFECT_AMBER_GEM",
-        "name": "Perfect Amber Gemstone",
+        "name": "⸕ Perfect Amber Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "PERFECT_AMETHYST_GEM": {
         "internal_name": "PERFECT_AMETHYST_GEM",
-        "name": "Perfect Amethyst Gemstone",
+        "name": "❈ Perfect Amethyst Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
@@ -27359,14 +27526,14 @@
     },
     "PERFECT_JADE_GEM": {
         "internal_name": "PERFECT_JADE_GEM",
-        "name": "Perfect Jade Gemstone",
+        "name": "☘ Perfect Jade Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "PERFECT_JASPER_GEM": {
         "internal_name": "PERFECT_JASPER_GEM",
-        "name": "Perfect Jasper Gemstone",
+        "name": "❁ Perfect Jasper Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
@@ -27577,21 +27744,21 @@
     },
     "PERFECT_RUBY_GEM": {
         "internal_name": "PERFECT_RUBY_GEM",
-        "name": "Perfect Ruby Gemstone",
+        "name": "❤ Perfect Ruby Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "PERFECT_SAPPHIRE_GEM": {
         "internal_name": "PERFECT_SAPPHIRE_GEM",
-        "name": "Perfect Sapphire Gemstone",
+        "name": "✎ Perfect Sapphire Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "PERFECT_TOPAZ_GEM": {
         "internal_name": "PERFECT_TOPAZ_GEM",
-        "name": "Perfect Topaz Gemstone",
+        "name": "✧ Perfect Topaz Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
@@ -27850,6 +28017,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Items",
         "recipe": null
     },
+    "PET_ITEM_FARMING_SKILL_BOOST_UNCOMMON": {
+        "internal_name": "PET_ITEM_FARMING_SKILL_BOOST_UNCOMMON",
+        "name": "Farming Exp Boost",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Items",
+        "recipe": null
+    },
     "PET_ITEM_FISHING_SKILL_BOOST_COMMON": {
         "internal_name": "PET_ITEM_FISHING_SKILL_BOOST_COMMON",
         "name": "Fishing Exp Boost",
@@ -27947,6 +28121,13 @@
     "PET_ITEM_MINING_SKILL_BOOST_RARE": {
         "internal_name": "PET_ITEM_MINING_SKILL_BOOST_RARE",
         "name": "Mining Exp Boost",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Items",
+        "recipe": null
+    },
+    "PET_ITEM_QUICK_CLAW": {
+        "internal_name": "PET_ITEM_QUICK_CLAW",
+        "name": "Quick Claw",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Items",
         "recipe": null
@@ -28170,6 +28351,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
+    "PET_SKIN_HOUND_BEAGLE": {
+        "internal_name": "PET_SKIN_HOUND_BEAGLE",
+        "name": "Beagle Hound Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "PET_SKIN_JERRY_GREEN_ELF": {
         "internal_name": "PET_SKIN_JERRY_GREEN_ELF",
         "name": "Green Elf Jerry Skin",
@@ -28341,6 +28529,13 @@
     "PET_SKIN_SILVERFISH_FOSSILIZED": {
         "internal_name": "PET_SKIN_SILVERFISH_FOSSILIZED",
         "name": "Fossilized Silverfish Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_SQUID_GLOW": {
+        "internal_name": "PET_SKIN_SQUID_GLOW",
+        "name": "Glow Squid Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
@@ -31779,6 +31974,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Redstone_Pigman",
         "recipe": null
     },
+    "REDSTONE_TIPPED_ARROW": {
+        "internal_name": "REDSTONE_TIPPED_ARROW",
+        "name": "Redstone-tipped Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
+        "recipe": null
+    },
     "REDSTONE_TORCH_ON": {
         "internal_name": "REDSTONE_TORCH_ON",
         "name": "Redstone Torch",
@@ -32056,6 +32258,13 @@
         "name": "Reindeer Plush",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
+        "recipe": null
+    },
+    "REINFORCED_IRON_ARROW": {
+        "internal_name": "REINFORCED_IRON_ARROW",
+        "name": "Reinforced Iron Arrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
         "recipe": null
     },
     "REINFORCED_SCALES": {
@@ -32763,6 +32972,34 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rookie_Pickaxe",
         "recipe": null
     },
+    "ROSETTA_BOOTS": {
+        "internal_name": "ROSETTA_BOOTS",
+        "name": "Rosetta's Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rosetta%27s_Armor",
+        "recipe": null
+    },
+    "ROSETTA_CHESTPLATE": {
+        "internal_name": "ROSETTA_CHESTPLATE",
+        "name": "Rosetta's Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rosetta%27s_Armor",
+        "recipe": null
+    },
+    "ROSETTA_HELMET": {
+        "internal_name": "ROSETTA_HELMET",
+        "name": "Rosetta's Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rosetta%27s_Armor",
+        "recipe": null
+    },
+    "ROSETTA_LEGGINGS": {
+        "internal_name": "ROSETTA_LEGGINGS",
+        "name": "Rosetta's Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rosetta%27s_Armor",
+        "recipe": null
+    },
     "ROSE_BOUQUET": {
         "internal_name": "ROSE_BOUQUET",
         "name": "Rose Bouquet",
@@ -32807,49 +33044,49 @@
     },
     "ROUGH_AMBER_GEM": {
         "internal_name": "ROUGH_AMBER_GEM",
-        "name": "Rough Amber Gemstone",
+        "name": "⸕ Rough Amber Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "ROUGH_AMETHYST_GEM": {
         "internal_name": "ROUGH_AMETHYST_GEM",
-        "name": "Rough Amethyst Gemstone",
+        "name": "❈ Rough Amethyst Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "ROUGH_JADE_GEM": {
         "internal_name": "ROUGH_JADE_GEM",
-        "name": "Rough Jade Gemstone",
+        "name": "☘ Rough Jade Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "ROUGH_JASPER_GEM": {
         "internal_name": "ROUGH_JASPER_GEM",
-        "name": "Rough Jasper Gemstone",
+        "name": "❁ Rough Jasper Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "ROUGH_RUBY_GEM": {
         "internal_name": "ROUGH_RUBY_GEM",
-        "name": "Rough Ruby Gemstone",
+        "name": "❤ Rough Ruby Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "ROUGH_SAPPHIRE_GEM": {
         "internal_name": "ROUGH_SAPPHIRE_GEM",
-        "name": "Rough Sapphire Gemstone",
+        "name": "✎ Rough Sapphire Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
     },
     "ROUGH_TOPAZ_GEM": {
         "internal_name": "ROUGH_TOPAZ_GEM",
-        "name": "Rough Topaz Gemstone",
+        "name": "✧ Rough Topaz Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": null
@@ -37907,6 +38144,41 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squid",
         "recipe": null
     },
+    "SQUIRE_BOOTS": {
+        "internal_name": "SQUIRE_BOOTS",
+        "name": "Squire Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squire_Armor",
+        "recipe": null
+    },
+    "SQUIRE_CHESTPLATE": {
+        "internal_name": "SQUIRE_CHESTPLATE",
+        "name": "Squire Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squire_Armor",
+        "recipe": null
+    },
+    "SQUIRE_HELMET": {
+        "internal_name": "SQUIRE_HELMET",
+        "name": "Squire Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squire_Armor",
+        "recipe": null
+    },
+    "SQUIRE_LEGGINGS": {
+        "internal_name": "SQUIRE_LEGGINGS",
+        "name": "Squire Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squire_Armor",
+        "recipe": null
+    },
+    "SQUIRE_SWORD": {
+        "internal_name": "SQUIRE_SWORD",
+        "name": "Squire Sword",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squire_Sword",
+        "recipe": null
+    },
     "STACKED_PUMPKINS": {
         "internal_name": "STACKED_PUMPKINS",
         "name": "Stacked Pumpkins",
@@ -38742,6 +39014,41 @@
         "name": "Starfall",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Starfall",
+        "recipe": null
+    },
+    "STARLIGHT_BOOTS": {
+        "internal_name": "STARLIGHT_BOOTS",
+        "name": "Starlight Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Starlight_Armor",
+        "recipe": null
+    },
+    "STARLIGHT_CHESTPLATE": {
+        "internal_name": "STARLIGHT_CHESTPLATE",
+        "name": "Starlight Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Starlight_Armor",
+        "recipe": null
+    },
+    "STARLIGHT_HELMET": {
+        "internal_name": "STARLIGHT_HELMET",
+        "name": "Starlight Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Starlight_Armor",
+        "recipe": null
+    },
+    "STARLIGHT_LEGGINGS": {
+        "internal_name": "STARLIGHT_LEGGINGS",
+        "name": "Starlight Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Starlight_Armor",
+        "recipe": null
+    },
+    "STARLIGHT_WAND": {
+        "internal_name": "STARLIGHT_WAND",
+        "name": "Starlight Wand",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Starlight_Wand",
         "recipe": null
     },
     "STARRED_ADAPTIVE_BOOTS": {
@@ -44055,6 +44362,13 @@
         "name": "White Gift",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/White_Gift",
+        "recipe": null
+    },
+    "WIKI_JOURNAL": {
+        "internal_name": "WIKI_JOURNAL",
+        "name": "Wiki Journal",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wiki_Journal",
         "recipe": null
     },
     "WINTER_DISC": {

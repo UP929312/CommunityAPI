@@ -1,4 +1,252 @@
 NPC_ITEMS = {
+    "Amelia": {
+        "PARKOUR_CONTROLLER": 10000,
+        "PARKOUR_POINT": 1000,
+        "PARKOUR_TIMES": 2000,
+        "SOCIAL_DISPLAY": 10000,
+        "EGG_HUNT": 1000,
+        "ISLAND_NPC": 50000,
+        "TIC_TAC_TOE": 2500,
+        "CONNECT_FOUR": 2500,
+        "ROCK_PAPER_SHEARS": 10000,
+        "SHOWCASE_BLOCK": 50000
+     },
+    "Bartender": {
+        "CHEAP_COFFEE": 1000,
+        "TEPID_GREEN_TEA": 1000,
+        "PULPOUS_ORANGE_JUICE": 1000,
+        "BITTER_ICE_TEA": 1000,
+        "KNOCKOFF_COLA": 1000,
+        "DECENT_COFFEE": 5000,
+        "WOLF_FUR_MIXIN": 150000,
+        "ZOMBIE_BRAIN_MIXIN": 150000,
+        "SPIDER_EGG_MIXIN": 150000,
+        "END_PORTAL_FUMES_MIXIN": 150000	
+     },
+    "Adventurer": {
+        "ZOMBIE_TALISMAN": 500,
+        "SKELETON_TALISMAN": 500,
+        "VILLAGE_TALISMAN": 2500,
+        "MINE_TALISMAN": 2500,
+        "INTIMIDATION_TALISMAN": 10000,
+        "SCAVENGER_TALISMAN": 10000
+     },
+    "Lumber Merchant": {
+        "ROOKIE_AXE": 12,
+        "PROMISING_AXE": 35,
+        "SWEET_AXE": 100,
+        "EFFICIENT_AXE": 100
+     },
+    "Rosetta": {
+        "IRON_BOOTS": 20,
+        "IRON_LEGGINGS": 30,
+        "IRON_CHESTPLATE": 25,
+        "IRON_HELMET": 15,
+        "ROSETTA_BOOTS": 960,
+        "ROSETTA_LEGGINGS": 1200,
+        "ROSETTA_CHESTPLATE": 1320,
+        "ROSETTA_HELMET": 1050,
+        "SQUIRE_BOOTS": 4000,
+        "SQUIRE_LEGGINGS": 7000,
+        "SQUIRE_CHESTPLATE": 8000,
+        "SQUIRE_HELMET": 5000,
+        "MERCENARY_BOOTS": 30000,
+        "MERCENARY_LEGGINGS": 45000,
+        "MERCENARY_CHESTPLATE": 70000,
+        "MERCENARY_HELMET": 35000,
+        "CELESTE_BOOTS": 4000,
+        "CELESTE_LEGGINGS": 7000,
+        "CELESTE_CHESTPLATE": 8000,
+        "CELESTE_HELMET": 5000,
+        "STARLIGHT_BOOTS": 30000,
+        "STARLIGHT_LEGGINGS": 45000,
+        "STARLIGHT_CHESTPLATE": 70000,
+        "STARLIGHT_HELMET": 35000,
+        "SQUIRE_SWORD": 5000,
+        "MERCENARY_AXE": 30000,
+        "CELESTE_WAND": 5000,
+        "STARLIGHT_WAND": 30000
+     },
+    "Weaponsmith": {
+        "UNDEAD_SWORD": 100,
+        "END_SWORD": 150,
+        "SPIDER_SWORD": 100,
+        "DIAMOND_SWORD": 60,
+        "BOW": 25,
+        "WITHER_BOW": 250,
+        "ARTISANAL_SHORTBOW": 600,
+        "ARROW": 40
+     },
+    "Mine Merchant": {
+        "ROOKIE_PICKAXE": 12,
+        "PROMISING_PICKAXE": 35,
+        "TORCH": 1,
+        "ONYX": 100
+     },
+    "Librarian": {
+        "BOOK": 20,
+     },
+    "Plumber Joe": {
+        "PLUMBER_SPONGE": 50
+     },
+    "Fish Mercant": {
+        "FISHING_ROD": 100
+     },
+    "Alchemist": {
+        "BREWING_STAND_ITEM": 30,
+        "GLASS_BOTTLE": 6,
+        "POTION": 6,
+        "SUGAR": 4, 
+        "SPECKLED_MELON": 10,
+        "BLAZE_POWDER": 12,
+        "GOLDEN_CARROT": 7
+     },
+    "Farm Merchant": {
+        "ENCHANTED_BONE_MEAL": 2,
+        "ROOKIE_HOE": 100
+     },
+    "Scoop": {
+        "SNOW_SHOVEL": 2500,
+     },
+    "Carpenter Shop": {
+        "SCARECROW": 120,
+        "WEAPON_RACK": 100,
+        "ARMOR_SHOWCASE": 100,
+        "FANCY_FLOWER_POT": 150,
+        "ENCHANTING_PLUS": 10000,
+        "CRAFTING_PLUS": 10000,
+        "FURNACE_PLUS": 15000,
+        "WOOD_CHEST": 15000,
+        "FIREPLACE": 10000,
+        "CHEST_SHELVES": 15000
+     },
+    "Sherry": {
+        "WINTER_ROD": 40000,
+        "ICE_BAIT": 12,
+        "BOTTLE_OF_JYRRE": 100,
+        "SNOW_BLASTER": 75000,
+        "LARGE_WINTER_SACK": 250000
+    },
+    "Gregory the Opportunitist": {
+        "DECENT_BOW": 500
+    },
+    "Pearl Dealer": {
+        "STONK_PICKAXE": 499999,
+        "REMNANT_OF_THE_EYE": 200000
+    },
+    "Old Shaman Nyko": {
+        "TRUE_ESSENCE": 25000
+    },
+    "Master Tactician Funk": {
+        "TACTICIAN_SWORD": 35000,
+    },
+    "Melancholic Viking": {
+        "RAIDER_AXE": 130000,
+        "PARK_JUNGLE_TRAVEL_SCROLL": 70000,
+        "VIKING_TEAR": 15000
+    },
+    "Malmar": {
+        "MINING_PUMPKIN": 100000
+    },
+    "Bubu": {
+        "FRACTURED_MITHRIL_PICKAXE": 10000,
+        "BIOFUEL": 10000
+    },
+    "Iron Forger": {
+        "CHAINMAIL_HELMET": 50,
+        "CHAINMAIL_CHESTPLATE": 100,
+        "CHAINMAIL_LEGGINGS": 75,
+        "CHAINMAIL_BOOTS": 50
+    },
+    "Gold Forger": {
+        "GOLD_HELMET": 10,
+        "GOLD_CHESTPLATE": 16,
+        "GOLD_LEGGINGS": 14,
+        "GOLD_BOOTS": 9,
+        "FANCY_SWORD": 80
+    },
+    "Wool Weaver": {
+        "STAINED_CLAY:1": 8,
+        "STAINED_GLASS:1": 16,
+        "STAINED_GLASS_PANE:1": 16,
+        "CARPET:1": 32,
+        "WOOL:1": 32,
+        "STAINED_CLAY:2": 8,
+        "STAINED_GLASS:2": 16,
+        "STAINED_GLASS_PANE:2": 16,
+        "CARPET:2": 32,
+        "WOOL:2": 32,
+        "STAINED_CLAY:3": 8,
+        "STAINED_GLASS:3": 16,
+        "STAINED_GLASS_PANE:3": 16,
+        "CARPET:3": 32,
+        "WOOL:3": 32,
+        "STAINED_CLAY:4": 8,
+        "STAINED_GLASS:4": 16,
+        "STAINED_GLASS_PANE:4": 16,
+        "CARPET:4": 32,
+        "WOOL:4": 32,
+        "STAINED_CLAY:5": 8,
+        "STAINED_GLASS:5": 16,
+        "STAINED_GLASS_PANE:5": 16,
+        "CARPET:5": 32,
+        "WOOL:5": 32,
+        "STAINED_CLAY:6": 8,
+        "STAINED_GLASS:6": 16,
+        "STAINED_GLASS_PANE:6": 16,
+        "CARPET:6": 32,
+        "WOOL:6": 32,
+        "STAINED_CLAY:7": 8,
+        "STAINED_GLASS:7": 16,
+        "STAINED_GLASS_PANE:7": 16,
+        "CARPET:7": 32,
+        "WOOL:7": 32,
+        "STAINED_CLAY:8": 8,
+        "STAINED_GLASS:8": 16,
+        "STAINED_GLASS_PANE:8": 16,
+        "CARPET:8": 32,
+        "WOOL:8": 32,
+        "STAINED_CLAY:9": 8,
+        "STAINED_GLASS:9": 16,
+        "STAINED_GLASS_PANE:9": 16,
+        "CARPET:9": 32,
+        "WOOL:9": 32,
+        "STAINED_CLAY:10": 8,
+        "STAINED_GLASS:10": 16,
+        "STAINED_GLASS_PANE:10": 16,
+        "CARPET:10": 32,
+        "WOOL:10": 32,
+        "STAINED_CLAY:11": 8,
+        "STAINED_GLASS:11": 16,
+        "STAINED_GLASS_PANE:11": 16,
+        "CARPET:11": 32,
+        "WOOL:11": 32,
+        "STAINED_CLAY:12": 8,
+        "STAINED_GLASS:12": 16,
+        "STAINED_GLASS_PANE:12": 16,
+        "CARPET:12": 32,
+        "WOOL:12": 32,
+        "STAINED_CLAY:13": 8,
+        "STAINED_GLASS:13": 16,
+        "STAINED_GLASS_PANE:13": 16,
+        "CARPET:13": 32,
+        "WOOL:13": 32,
+        "STAINED_CLAY:14": 8,
+        "STAINED_GLASS:14": 16,
+        "STAINED_GLASS_PANE:14": 16,
+        "CARPET:14": 32,
+        "WOOL:14": 32,
+        "STAINED_CLAY:15": 8,
+        "STAINED_GLASS:15": 16,
+        "STAINED_GLASS_PANE:15": 16,
+        "CARPET:15": 32,
+        "WOOL:15": 32,
+        "STAINED_CLAY:16": 8,
+        "STAINED_GLASS:16": 16,
+        "STAINED_GLASS_PANE:16": 16,
+        "CARPET:16": 32,
+        "WOOL:16": 32,
+    },
     "Ophelia": {
         "UNDEAD_BOW": 80000,
         "ARROW": 5,
@@ -17,53 +265,5 @@ NPC_ITEMS = {
         "STEEL_CHESTPLATE": 5000000,
         "MENDER_CROWN": 5000000,
         "WITHER_GOGGLES": 5000000
-    },
-    "Sherry": {
-        "WINTER_ROD": 40000,
-        "ICE_BAIT": 12,
-        "BOTTLE_OF_JYRRE": 100,
-        "SNOW_BLASTER": 75000,
-        "LARGE_WINTER_SACK": 250000
-    },
-    "Gregory the Opportunitist": {
-        "DECENT_BOW": 500
-    },
-    "Pearl Dealer": {
-        "STONK_PICKAXE": 499999
-    },
-    "Old Shaman Nyko": {
-        "TRUE_ESSENCE": 25000
-    },
-    "Master Tactician Funk": {
-        "TACTICIAN_SWORD": 35000,
-        #"WOOD_SINGULARITY": 1464000 + 320 ENCHANTED_OAK_LOG + 320 ENCHANTED_BIRCH_LOG + 320 ENCHANTED_SPRUCE_LOG + 320 ENCHANTED_DARK_OAK_LOG + 320 ENCHANTED_ACACIA_LOG + 320 ENCHANTED_JUNGLE_LOG -----------------------------------
-    },
-    "Melancholic Viking": {
-        "RAIDER_AXE": 130000,
-        "PARK_JUNGLE_TRAVEL_SCROLL": 70000,
-        "VIKING_TEAR": 15000
-    },
-    "Malmar": {
-        "MINING_PUMPKIN": 100000
-    },
-    "Bubu": {
-        "FRACTURED_MITHRIL_PICKAXE": 10000,
-        #"BANDAGED_MITHRIL_PICKAXE": 100000 + 200 MITHRIL, ---------------------
-        #"TITANIUM_PICKAXE": 1000000 + 100 TITANIUM + 1 BEJEWELED_HANDLE, ------------------------
-        #"REFINED_TITANIUM_PICKAXE": 1 TITANIUM_PICKAXE + 3 REFINED_TITANIUM, ----------------------------------
-        "BIOFUEL": 10000
-    },
-    "Iron Forger": {
-        "CHAINMAIL_HELMET": 50,
-        "CHAINMAIL_CHESTPLATE": 100,
-        "CHAINMAIL_LEGGINGS": 75,
-        "CHAINMAIL_BOOTS": 50
-    },
-    "Gold Forger": {
-        "GOLD_HELMET": 10,
-        "GOLD_CHESTPLATE": 16,
-        "GOLD_LEGGINGS": 14,
-        "GOLD_BOOTS": 9,
-        "FANCY_SWORD": 80
     },
 }
