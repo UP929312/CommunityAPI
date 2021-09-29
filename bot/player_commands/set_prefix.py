@@ -1,16 +1,17 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 from database_manager import *
 from utils import error
 
 class set_prefix_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.has_permissions(administrator=True)
     @commands.command(aliases=["setprefix"])
-    async def set_prefix(self, ctx, prefix=None):
+    async def set_prefix(self, ctx: commands.Context, prefix: Optional[str] = None) -> None:
 
         print(f"------ Request made in from guild: {ctx.guild.id if ctx.guild is not None else 'DMs'}, from user: {ctx.author.id}, sometimes known as {ctx.author.display_name}\nThey set their guild/dm prefix to {prefix}")
          

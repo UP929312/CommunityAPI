@@ -1,5 +1,7 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
+
 import json
 
 from utils import error
@@ -11,7 +13,7 @@ from extract_ids import extract_internal_names
 from text_files.accessory_list import talisman_upgrades
 
 # Get a list of all accessories
-ACCESSORIES = []
+ACCESSORIES: list[dict] = []
 with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
     item_dict = json.load(file)
     for item in item_dict:
@@ -25,13 +27,13 @@ for accessory in ACCESSORIES:
         MASTER_ACCESSORIES.append(accessory)
 
 class missing_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=['missing_accessories', 'accessories', 'miss', 'm'])
-    async def missing(self, ctx, username=None, profile=None):
+    async def missing(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
 
-        player_data = await get_profile_data(ctx, username, profile)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile)
         if player_data is None:
             return
         username = player_data["username"]

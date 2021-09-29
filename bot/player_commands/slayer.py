@@ -1,5 +1,6 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 import requests
 from bisect import bisect
@@ -32,13 +33,13 @@ def add_mob_table(mob, slayer_bosses):
     return "```scala\n"+"\n".join(f"Tier {x+1}: "+str(slayer_bosses[mob].get(f"boss_kills_tier_{x}", 0)) for x in range(5))+"```"
 #=====================
 class slayer_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
         
     @commands.command()
-    async def slayer(self, ctx, username=None, profile=None):
+    async def slayer(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
       
-        player_data = await get_profile_data(ctx, username, profile)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile)
         if player_data is None:
             return
         username = player_data["username"]

@@ -1,5 +1,6 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 import requests
 from bisect import bisect
@@ -27,21 +28,20 @@ max_levels = {
     "alchemy": 50,
     "taming": 50,
     "carpentry": 50,
-    "runecrafting": 25}
+    "runecrafting": 25,
+}
 
-  
-
-def get_level(skill_data, skill):
+def get_level(skill_data: dict, skill: str) -> int:
     return min(bisect(cumulative_xp_reqs, skill_data.get(f'experience_skill_{skill}', 0)), max_levels[skill])
 
 class skills_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=['skill'])
-    async def skills(self, ctx, username=None, profile=None):
+    async def skills(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
         
-        player_data = await get_profile_data(ctx, username, profile)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile)
         if player_data is None:
             return
         username = player_data["username"]

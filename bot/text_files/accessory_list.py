@@ -1,4 +1,4 @@
-talisman_upgrades = {
+talisman_upgrades: dict[str, list[str]] = {
     "WOLF_TALISMAN": [
       "WOLF_RING"
     ],

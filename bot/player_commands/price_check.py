@@ -1,5 +1,6 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 import requests  # For making the api call
 
@@ -8,11 +9,11 @@ from emojis import MATHS_EMOJIS
      
 
 class price_check_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=['price', 'p', 'pc'])
-    async def price_check(self, ctx, *, input_item=None):
+    async def price_check(self, ctx: commands.Context, *, input_item: Optional[str] = None) -> None:
         closest = await find_closest(ctx, input_item)
         if closest is None:
             return

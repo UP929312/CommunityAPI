@@ -1,4 +1,3 @@
-import discord
 from math import log10
 import json
 import re
@@ -6,22 +5,29 @@ from difflib import SequenceMatcher
 from datetime import datetime, timedelta
 
 with open("text_files/hypixel_api_key.txt") as file:
-    API_KEY = file.read()
+    API_KEY: str = file.read()
+
+enchant_list: list[str] = ['bane_of_arthropods', 'cleave', 'critical', 'cubism', 'dragon_hunter', 'ender_slayer', 'execute', 'experience', 'fire_aspect', 'first_strike', 'giant_killer', 'impaling', 'knockback', 'lethality', 'life_steal', 'looting', 'luck', 'mana_steal', 'prosecute', 'scavenger', 'sharpness', 'smite', 'syphon', 'telekinesis', 'titan_killer', 'thunderlord', 'thunderbolt', 'triple_strike', 'vampirism', 'venomous', 'vicious', 'ultimate_one_for_all', 'ultimate_soul_eater', 'ultimate_chimera', 'ultimate_combo', 'ultimate_swarm', 'ultimate_wise', 'aiming', 'chance', 'flame', 'infinite_quiver', 'piercing', 'overload', 'power', 'punch', 'snipe', 'ultimate_rend', 'efficiency', 'replenish', 'silk_touch', 'turbo_cactus', 'turbo_coco', 'turbo_melon', 'turbo_pumpkin', 'delicate', 'compact', 'fortune', 'pristine', 'smelting_touch', 'angler', 'blessing', 'caster', 'expertise', 'frail', 'luck_of_the_sea', 'lure', 'magnet', 'spiked_hook', 'harvesting', 'turbo_wheat', 'turbo_cane', 'turbo_warts', 'turbo_carrot', 'turbo_potato', 'turbo_mushrooms', 'cultivating', 'big_brain', 'blast_protection', 'fire_protection', 'projectile_protection', 'protection', 'growth', 'rejuvenate', 'respite', 'aqua_affinity', 'thorns', 'respiration', 'ultimate_bank', 'ultimate_last_stand', 'ultimate_legion', 'ultimate_no_pain_no_gain', 'ultimate_wisdom', 'counter_strike', 'true_protection', 'smarty_pants', 'sugar_rush', 'feather_falling', 'depth_strider', 'frost_walker']    
+
+# typing
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional, Union
 
 #=============================================================
 # Errors and safe methods
-async def error(ctx, title, description):
+async def error(ctx: commands.Context, title: str, description: str) -> None:
     embed = discord.Embed(title=title, description=description, colour=0xe74c3c)
     embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
     await ctx.send(embed=embed)
 
-async def safe_delete(message):
+async def safe_delete(message: discord.Message) -> None:
     try:
         await message.delete()
     except (discord.errors.NotFound, discord.errors.Forbidden):
         pass
 
-async def safe_send(user, content):
+async def safe_send(user, content: str):
     try:
         await user.send(content)
     except (discord.errors.NotFound, discord.errors.Forbidden):
@@ -29,18 +35,15 @@ async def safe_send(user, content):
 #=============================================================
 # Find closest item
 with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
-    ITEMS = json.load(file)
+    ITEMS: dict = json.load(file)
     
-async def find_closest(ctx, user_input):
+async def find_closest(ctx: commands.Context, user_input: Optional[str]) -> Optional[dict]:
     """
     When given a rough item name, this will attempt to find the corrosponding item in the item dump (text_files/MASTER_ITEM_DICT.json)
     If it is found, it will return that item's data, else return None (after sending an error)
     """
     if user_input is None:
         return await error(ctx, "Error, no item given!", "This command takes the name of the item you're looking for to work!")
-
-    #if "book" in user_input.lower():
-    #    pass
 
     # Convert input into internal name
     closest = max(ITEMS.values(), key=lambda item: SequenceMatcher(None, user_input.lower(), item["name"].lower()).ratio())
@@ -51,38 +54,40 @@ async def find_closest(ctx, user_input):
     return closest
 
 
-'''
-def find_closest_dev(user_input):
+# returns either "item|enchant" then the dict or enchant, or none
+def find_closest_dev(user_input: str) -> tuple[Optional[str], Union[Optional[dict], Optional[str]]]:
+    closest_enchant = max(enchant_list, key=lambda item: SequenceMatcher(None, user_input.lower().replace(" ", "_").removesuffix("book"), item).ratio())
+    #print(SequenceMatcher(None, user_input.lower().replace(" ", "_"), closest_enchant).ratio())
+    if SequenceMatcher(None, user_input.lower().replace(" ", "_").removesuffix("book"), closest_enchant).ratio() > 0.85:
+        return "enchant", closest_enchant
+    
     closest = max(ITEMS.values(), key=lambda item: SequenceMatcher(None, user_input.lower(), item["name"].lower()).ratio())
-    if SequenceMatcher(None, user_input.lower(), closest["name"].lower()).ratio() < 0.6:
-        print("Error")
+    if SequenceMatcher(None, user_input.lower(), closest["name"].lower()).ratio() > 0.7:
+        return "item", closest
+    
+    print("Error")
+    return None, None
+    
 
-    return closest
-
-items = []
-for item in "Aspect of the End, Aspect of the Void, Zombie Sword, Ornate Zombie Sword, Reaper Falchion, Pooch Sword, Axe of the Shredded, Yeti Sword, Midas' Sword, Daedalus Axe, Aspect of the Dragons, Bonzo's Staff, Spirit Sceptre, Adaptive Blade, Ice Spray Wand, Livid Dagger, Shadow Fury, Flower of Truth, Giant's Sword, Titanium Drill DR-X455, Titanium Drill DR-X555, Topaz Drill KGR-12, Blaze Armor, Mastiff Armor, Perfect Armor, Shark Scale Armor, Superior Dragon Armor, Adaptive Armor, Shadow Assassin Armor, Necromancer Lord Armor, Sorrow Armor.".split(","):
-    items.append(find_closest_dev(item)["internal_name"])
-#find_closest_dev("enchanted book")
-print(items)
-'''
+#print(find_closest_dev("dragon tracer"))
 
 #=============================================================
 # Formatting numbers, datetime and timedeltas
 letter_values = {"": 1,
-                 "k": 1000,
-                 "m": 1000000,
-                 "b": 1000000000,
-                 "t": 1000000000000}
+                       "k": 1000,
+                       "m": 1000000,
+                       "b": 1000000000,
+                       "t": 1000000000000}
 
 ends = list(letter_values.keys())
 
-def clean(string):
+def clean(string: str) -> str:
     return string.replace("_", " ").title().replace("'S", "'s")
 
-def remove_colours(name):
+def remove_colours(name: str) -> str:
     return re.sub('§.', '', name)
 
-def hf(num):
+def hf(num: Union[float, str, int]) -> str:
     """
     Takes an int or float e.g. 10000 and returns a formatted version i.e. 10k
     """
@@ -90,9 +95,9 @@ def hf(num):
         if num.isdigit():
             num = float(num)
         else:
-            return num
+            return num  # When it's already like 2.3m
     
-    if num < 1: return 0
+    if num < 1: return "0"
 
     rounded = round(num, 3 - int(log10(num)) - 1)
     suffix = ends[int(log10(rounded)/3)]

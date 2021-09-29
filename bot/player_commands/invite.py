@@ -1,12 +1,12 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
 
 class invite_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command()
-    async def invite(self, ctx):
+    async def invite(self, ctx) -> None:
         invite_link = "https://discord.com/api/oauth2/authorize?client_id=854722092037701643&permissions=242666032192&scope=bot%20applications.commands"
         topgg_link = "https://top.gg/bot/854722092037701643"
         embed = discord.Embed(title=f"Want to invite this bot to your server?", description=f"Go to [this link]({invite_link}) to invite the bot, or [this link]({topgg_link}) to see the top.gg page and enjoy all the awesome features. Default prefix is `.` but can be changed with `.set_prefix`.", colour=0x3498DB)

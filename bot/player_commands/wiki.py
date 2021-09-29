@@ -1,15 +1,16 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 from utils import error, ITEMS
 from difflib import SequenceMatcher
 
 class wiki_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=['wiki_link', 'wiki_links'])
-    async def wiki(self, ctx, *, user_input=None):
+    async def wiki(self, ctx, *, user_input: Optional[str] = None) -> None:
 
         if user_input is None:
             return await error(ctx, "No item given.", f"Please give the item you want to find the wiki page on.\nExample usage: {ctx.prefix}wiki Talisman Of Coins")

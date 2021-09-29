@@ -1,10 +1,11 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
 
 import json  # For loading the uuid conversion cache
 
-intents = discord.Intents(guild_reactions=False, members=False, invites=False, voice_states=False, typing=False, dm_reactions=False, bans=False, presences=False, integrations=False, webhooks=False,
-                          messages=True, guilds=True, emojis=True)
+intents: discord.Intents = discord.Intents(guild_reactions=False, members=False, invites=False, voice_states=False, typing=False,
+                                           dm_reactions=False, bans=False, presences=False, integrations=False, webhooks=False,
+                                           messages=True, guilds=True, emojis=True)
 
 from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
 from utils import safe_delete, safe_send, error as error_embed
@@ -20,8 +21,8 @@ from player_commands import *
 
 print("Importing .py files done...")
 
-linked_accounts = dict(load_linked_accounts())
-prefixes = dict(load_prefixes())
+linked_accounts: dict = dict(load_linked_accounts())
+prefixes: dict = dict(load_prefixes())
 
 '''
 def get_prefix(bot, msg):
@@ -29,10 +30,10 @@ def get_prefix(bot, msg):
     return commands.when_mentioned_or(prefix)(bot, msg)
 #'''
 #'''
-def get_prefix(bot, msg):
+def get_prefix(bot: commands.Bot, msg: discord.Message) -> str:
     return "!"
 #'''
-client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
+client: commands.Bot = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = prefixes
 client.linked_accounts = linked_accounts
 
@@ -41,13 +42,13 @@ with open("text_files/uuid_conversion_cache.json", 'r') as file:
     client.uuid_conversion_cache = json.load(file)
 #====================================================
 @client.event
-async def on_ready():
+async def on_ready() -> None:
     print("Done")
     print('Bot up and running.')
     print("Loaded in on the community bot!")
         
 @client.event
-async def on_command_error(ctx, error):
+async def on_command_error(ctx, error) -> None:
     if any([isinstance(error, x) for x in {commands.CommandNotFound, commands.errors.MissingAnyRole,
                                            commands.errors.CheckFailure, discord.errors.Forbidden}
           ]):
@@ -65,7 +66,7 @@ async def on_command_error(ctx, error):
         return await error_embed(ctx, "Error, something failed on our side.", f"The error that occured was: {error}, if this continues, please report it to Skezza#1139,")
 
 @client.event
-async def on_command_completion(ctx):
+async def on_command_completion(ctx) -> None:
     print(f"-- User {ctx.author.display_name} ({ctx.author.id}) performed `{ctx.message.content}`\n"+
           f"-- in {'DMs' if ctx.guild is None else ctx.guild.name} ({ctx.guild.id if ctx.guild is not None else 'DMs'}) - {'DMs' if ctx.guild is None else ctx.channel.name}")
 

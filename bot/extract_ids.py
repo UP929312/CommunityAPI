@@ -3,12 +3,14 @@ from gzip import decompress
 from io import BytesIO
 from struct import unpack
 
-def parse_container(raw):
+from typing import Union
+
+def parse_container(raw: str):
     """
     This will decompress and decode the base64 data that Hypixel returns from the API.
     This will then get parsed into one of the other functions below
     """
-    raw = BytesIO(decompress(b64decode(raw)))   # Unzip raw string from the api
+    raw_bytes = BytesIO(decompress(b64decode(raw)))   # Unzip raw string from the api
 
     def read(type, length):
         if type in 'chil':
@@ -37,7 +39,7 @@ def parse_container(raw):
         4: lambda: read('l', 8),  # Long
         5: lambda: read('f', 4),  # Float
         6: lambda: read('d', 8),  # Double
-        7: lambda: raw.read(read('i', 4)),  # Byte Array
+        7: lambda: raw_bytes.read(read('i', 4)),  # Byte Array
         8: lambda: read('s', read('h', 2)),  # String
         9: parse_list,  # List
         10: parse_compound,  # Compound
@@ -58,12 +60,12 @@ def parse_container(raw):
         else:
             dictionary.append(payload)
 
-    raw.read(3)  # Remove file header (we ingore footer)
-    root = {}
+    raw_bytes.read(3)  # Remove file header (we ingore footer)
+    root: dict = {}
     parse_next_tag(root)
     return [x for x in root['i'] if x]
 
-def extract_internal_id(nbt):
+def extract_internal_id(nbt: dict) -> str:
     """
     Takes the data from the decode container function and returns
     the internal_id
@@ -73,14 +75,14 @@ def extract_internal_id(nbt):
 
     return internal_name
 
-def extract_nbt_dicts(raw):
+def extract_nbt_dicts(raw: str) -> list[dict]:
     """
     Takes a raw compressed encoded string and returns all the items in that
     list in an nbt dictionary
     """
     return [x['tag'] for x in parse_container(raw)]
 
-def extract_internal_names(raw):
+def extract_internal_names(raw: str) -> list[str]:
     """
     Extracts all the internal names from a container
     """

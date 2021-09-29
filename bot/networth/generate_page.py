@@ -1,22 +1,23 @@
-import discord
+import discord  # type: ignore
+from typing import Any
 
 from utils import hf, clean
 from networth.generate_description import generate_description
 from networth.constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
 
-def format_info(total, item, value):
+def format_info(total: int, item: dict, value: dict) -> str:
     name = item['name'] if 'name' in item else f"[Lvl {value['pet_level']}] {clean(item['tier'])} {clean(item['type'])}"
     reforge = "" if "reforge" not in item else clean(item['reforge'])+" "
-    value = f"{reforge}{name} ➜ {hf(total)}"
-    return value
+    return_string = f"{reforge}{name} ➜ {hf(total)}"
+    return return_string
 
-def generate_page(command_author, data, username, page, use_guilds=False):
+def generate_page(command_author: discord.Member, data: Any, username: str, page: str, use_guilds: bool=False) -> discord.Embed:
 
-    embed = discord.Embed(colour=0x3498DB)
+    embed: discord.Embed = discord.Embed(colour=0x3498DB)
 
     # MAIN MENU
     if page == "main":
-        total = hf(sum([int(x["total"]) for x in data.values() if "total" in x]))
+        total: str = hf(sum([int(x["total"]) for x in data.values() if "total" in x]))
 
         purse = float(data['purse']['total'])
         bank = float(data['banking']['total'])
@@ -27,10 +28,10 @@ def generate_page(command_author, data, username, page, use_guilds=False):
         for page_string in page_names[1:-1]:  # Remove purse and banking
             if data[page_string]["total"] == "0":
                 continue
-            page_total = data[page_string]["total"]
-            top_x = data[page_string]["prices"]
+            page_total: str = data[page_string]["total"]
+            top_x: list[dict] = data[page_string]["prices"]
             
-            value = [format_info(x['total'], x['item'], x['value']) for x in top_x]
+            value: list[str] = [format_info(x['total'], x['item'], x['value']) for x in top_x]
             embed.add_field(name=f"**{PAGE_TO_EMOJI[page_string]} {clean(page_string)} ➜ {hf(data[page_string]['total'])}:**", value="\n".join(value), inline=False)
 
     # MISC
@@ -49,8 +50,8 @@ def generate_page(command_author, data, username, page, use_guilds=False):
             embed.add_field(name=f"{username} doesn't have any items here.", value="Perhaps they disabled their API?", inline=False)
         
         for price_object in top_x:
-            item = price_object["item"]
-            value = generate_description(price_object["value"], item)
+            item: dict = price_object["item"]
+            value: str = generate_description(price_object["value"], item)
             
             if "candyUsed" in item: # For pets only
                 embed.add_field(name=f"Level {price_object['value']['pet_level']} {clean(item['type'])} ➜ {hf(price_object['total'])}", value=value, inline=False)
@@ -59,17 +60,14 @@ def generate_page(command_author, data, username, page, use_guilds=False):
                 embed.add_field(name=f"{name} ➜ {hf(price_object['total'])}", value=value, inline=False)
 
     if page != "misc":
-        ###################
-        #f"https://plancke.io/hypixel/guild/name/{username}"
         url = "https://media.discordapp.net/attachments/854829960974565396/871427090560462858/270px-BL-icon-banner-Guild_Banner_03.png" if use_guilds else f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
-        #url = f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
         embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}", url=url)
 
     if use_guilds:
         pass
         #embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/854829960974565396/871427090560462858/270px-BL-icon-banner-Guild_Banner_03.png") ####################
     else:
-        embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}") ####################
+        embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
         
     embed.set_footer(text=f" Command executed by {command_author.display_name} | Community Bot. By the community, for the community.")    
     return embed

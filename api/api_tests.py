@@ -3,8 +3,8 @@ import json
 import unittest
 from parameterized import parameterized, parameterized_class
 
-ip = "http://127.0.0.1:8000"  #  For running locally
-#ip = "http://db.superbonecraft.dk:8000"  # For the server
+#ip = "http://127.0.0.1:8000"  #  For running locally
+ip = "http://db.superbonecraft.dk:8000"  # For the server
 
 API_KEY = ""
 

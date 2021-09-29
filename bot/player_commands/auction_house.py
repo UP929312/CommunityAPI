@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
 
 import re
 import requests
@@ -9,6 +9,8 @@ from utils import error, hf, format_duration
 from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 
+from typing import Iterator, Optional, Union
+
 
 names = ["Expired/Ended auctions", "Buy It Now", "Auctions"]
 
@@ -16,32 +18,32 @@ with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
 
 #===================================================================
-def get_enchantments(lore):
-    list_of_matches = re.finditer(r"((?<=§9)|(?<=§d§l))([A-Za-z]+ )+(X|IX|VIII|VII|VI|V|IV|III|II|I)", lore)
+def get_enchantments(lore: str) -> str:
+    list_of_matches: Iterator = re.finditer(r"((?<=§9)|(?<=§d§l))([A-Za-z]+ )+(X|IX|VIII|VII|VI|V|IV|III|II|I)", lore)
 
     enchantment_list = [match.group(0) for match in list_of_matches]
     if not enchantment_list: return ""
     sorted_list = sorted(enchantment_list, key=lambda ench: ench.startswith("Ultimate"), reverse=True)
 
-    enchantment_pairs = [sorted_list[i:i + 2] for i in range(0, len(sorted_list), 2)]
+    enchantment_pairs: list = [sorted_list[i:i + 2] for i in range(0, len(sorted_list), 2)]
     if len(enchantment_pairs[-1]) == 1:
         enchantment_pairs[-1] = (enchantment_pairs[-1][0], "")
 
-    enchantment_string = "\n".join([f"[{first.replace('_', ' ')}, {second.replace('_', ' ')}]".replace(", ]", "]") for first, second in enchantment_pairs])
+    enchantment_string: str = "\n".join([f"[{first.replace('_', ' ')}, {second.replace('_', ' ')}]".replace(", ]", "]") for first, second in enchantment_pairs])
 
-    formatted_enchants = f'''```ini
+    formatted_enchants: str = f'''```ini
 [Enchantments]
 {enchantment_string}
 ```
 '''
     return formatted_enchants
 
-def to_time(time):
+def to_time(time: int) -> datetime:
     return datetime.fromtimestamp(time/1000)
 
 #===================================================================
 
-def format_auction(auction):
+def format_auction(auction: dict) -> str:
     title = f"{ITEM_RARITY[auction['tier']]} {auction['item_name']}"
     expired = to_time(auction["end"]) < datetime.now()
     sell_type = "auction" if "bin" not in auction else "bin"
@@ -74,51 +76,52 @@ def format_auction(auction):
         price = f"{price} {'(Buy it now)' if not expired else ''}"
 
 
-    list_of_elems = [f"**{title}**\n",
-                     f"↳ Status: {status}\n",
-                     f"{bid_count}",
-                     f"↳ Price: {price}\n",
-                     f"{time_left}",]
+    list_of_elems = [
+        f"**{title}**\n",
+        f"↳ Status: {status}\n",
+        f"{bid_count}",
+        f"↳ Price: {price}\n",
+        f"{time_left}",]
     
-    return_string = "".join(list_of_elems)+get_enchantments(auction['item_lore'])
+    return_string: str = "".join(list_of_elems)+get_enchantments(auction['item_lore'])
     return return_string
 
 #===================================================================
 
 class auction_house_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     #@commands.cooldown(1, 1800, commands.BucketType.user)
     @commands.command(aliases=['ah', 'auctions'])
-    async def auction_house(self, ctx, username=None):
+    async def auction_house(self, ctx: commands.Context, provided_username: Optional[str] =  None) -> None:
       
-        player_data = await get_profile_data(ctx, username)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username)
         if player_data is None:
             return
         username = player_data["username"]
 
         # From here, we have the right profile_id, so we can get all their auction data
         auction_data = requests.get(f"https://api.hypixel.net/skyblock/auction?key={API_KEY}&profile={player_data['profile_id']}").json()
-        auctions = auction_data["auctions"]
+        auctions: list[dict] = auction_data["auctions"]
 
         expired_auctions = [auction for auction in auctions if to_time(auction["end"]) < datetime.now()]
         bins =             [auction for auction in auctions if to_time(auction["end"]) > datetime.now() and "bin" in auction and auction["bin"]]
-        auctions =         [auction for auction in auctions if to_time(auction["end"]) > datetime.now() and "bin" not in auction]
+        active_auctions =  [auction for auction in auctions if to_time(auction["end"]) > datetime.now() and "bin" not in auction]
 
         data = []
 
-        for group_name, group in zip(names, [expired_auctions, bins, auctions]):
+        for group_name, group in zip(names, [expired_auctions, bins, active_auctions]):
             if not group:
                 continue
             data.append(f"**――――――― {group_name} ―――――――**")
             for auction in group:                
-                auction = format_auction(auction)
-                if auction == "":
+                auction_string = format_auction(auction)
+                if auction_string == "":
                     continue
-                if sum([len(x) for x in data])+len(auction) > 4000:
+                if sum([len(x) for x in data])+len(auction_string) > 4000:
                     break
-                data.append(auction)
+                data.append(auction_string)
             if data[-1] == f"**――――――― {group_name} ―――――――**":
                 data = data[:-1]
 

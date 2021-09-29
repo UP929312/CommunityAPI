@@ -1,5 +1,6 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 import requests
 
@@ -84,13 +85,13 @@ T12_MATERIALS = {
 NO_ITEM_FOUND = 1000000000000
 UPGRADABLE = 66666666666
 
-def minion_type(string):
+def minion_type(string: str) -> str:
     return "_".join(string.split("_")[:-1])
 
-def minion_tier(string):
+def minion_tier(string: str) -> int:
     return int(string.split("_")[-1])
 
-def get_price(bazaar_dump, item):
+def get_price(bazaar_dump: dict, item: str) -> int:
     internal_name, number = (item.split(":")) if ":" in item else (item, 0)  # Get quantity off the end = STONE:3 = 3x Stone
 
     for i in range(9):
@@ -104,14 +105,14 @@ def get_price(bazaar_dump, item):
     
 
 class minions_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=['min', 'minion'])
-    async def minions(self, ctx, username=None, profile=None):
+    async def minions(self, ctx: commands.Context, username: Optional[str] = None, profile: Optional[str] = None) -> None:
 
         ########## One: Get the right profile and username
-        player_data = await get_profile_data(ctx, username, profile)
+        player_data: Optional[dict] = await get_profile_data(ctx, username, profile)
         if player_data is None:
             return
         username = player_data["username"]
@@ -173,11 +174,11 @@ class minions_cog(commands.Cog):
         
         for i, (minion_name, price) in enumerate(ordered, 1):
             if price % UPGRADABLE == 0:
-                price = "Upgradable with [Terry](https://hypixel-skyblock.fandom.com/wiki/Terry%27s_Shop)!"
+                price_formatted = "Upgradable with [Terry](https://hypixel-skyblock.fandom.com/wiki/Terry%27s_Shop)!"
             elif price % NO_ITEM_FOUND == 0:
-                price = "Price unknown"
+                price_formatted = "Price unknown"
             else:
-                price = f"Upgrade cost: {hf(int(price))}"
-            embed.add_field(name=f"{MINION_TIER_EMOJIS[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price, inline=True)
+                price_formatted = f"Upgrade cost: {hf(int(price))}"
+            embed.add_field(name=f"{MINION_TIER_EMOJIS[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price_formatted, inline=True)
 
         await ctx.send(embed=embed)

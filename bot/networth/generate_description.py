@@ -1,7 +1,7 @@
 from utils import hf, clean
 from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, SKIN, POWER_ABILITY_SCROLL, GEMS, GEMSTONE_CHAMBERS, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
 
-def generate_item_description(v):
+def generate_item_description(v: dict) -> str:
     elems = []
     #elems.append(f"{BASE_PRICE} - Base cost: {v['base_price']}")
     elems.append(f"{PRICE_SOURCE} - Price source: {v['price_source']}")
@@ -10,11 +10,8 @@ def generate_item_description(v):
     if "art_of_war_value" in v:
         elems.append(f"{ART_OF_WAR} - Art of War: +{hf(v['art_of_war_value'])}")
     if "hot_potatoes" in v:
-        if "fuming_potato_books" in v['hot_potatoes']:
-            potato_books = hf(v['hot_potatoes']['hot_potato_books']+v['hot_potatoes']["fuming_potato_books"])
-        else:
-            potato_books = hf(v['hot_potatoes']['hot_potato_books'])
-        elems.append(f"{HOT_POTATO_BOOK} - Potato books: +{potato_books}")
+        potato_books = v['hot_potatoes']['hot_potato_books']+v['hot_potatoes'].get("fuming_potato_books", 0)       
+        elems.append(f"{HOT_POTATO_BOOK} - Potato books: +{hf(potato_books)}")
     if "talisman_enrichment" in v:
         enrichment_item, enrichment_value = list(v['talisman_enrichment'].items())[0]
         elems.append(f"{TALISMAN_ENRICHMENT} - Enrichment: ({clean(enrichment_item)} - {hf(enrichment_value)})")
@@ -37,8 +34,7 @@ def generate_item_description(v):
     if "gemstone_chambers" in v:
         elems.append(f"{GEMSTONE_CHAMBERS} - Gemstone chambers: {hf(v['gemstone_chambers'])}")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
-        reforge_item = list(v['reforge']['item'].keys())[0]
-        reforge_item_cost = hf(list(v['reforge']['item'].values())[0])
+        reforge_item, reforge_item_cost = list(v['reforge']['item'].items())[0]
         elems.append(f"{REFORGE} - Reforge: ({clean(reforge_item)} - {reforge_item_cost})")
     if "tuned_transmission" in v:
         elems.append(f"{TRANSMISSIONS} - Tuned transmissions: {hf(v['tuned_transmission'])}")
@@ -49,7 +45,7 @@ def generate_item_description(v):
         
     return "\n".join(elems)
 
-def generate_pet_description(value, item):
+def generate_pet_description(value: dict, item: dict) -> str:
     elems = []
     v = value
     elems.append(f"{PRICE_SOURCE} - Price source: {v['price_source']}")
@@ -64,7 +60,7 @@ def generate_pet_description(value, item):
         elems.append(f"{LEVEL} - Pet level bonus: {hf(v['pet_level_bonus']['worth'])}")
     return "\n".join(elems)
 
-def generate_description(value, item):
+def generate_description(value: dict, item: dict) -> str:
     if "candyUsed" in item:  # For pets only
         return generate_pet_description(value, item)
     else:

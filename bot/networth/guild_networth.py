@@ -1,108 +1,62 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+
+from typing import Optional
 
 import aiohttp
 import requests
 
 from utils import error
-#from database_manager import insert_profile
+from menus import generate_static_preset_menu
 from parse_profile import input_to_uuid
 from networth.generate_page import generate_page
-from networth.constants import *
+from networth.constants import PAGES, EMOJI_LIST
 
 with open('text_files/hypixel_api_key.txt') as file:
     API_KEY = file.read()
 
-class MenuButton(discord.ui.Button['MenuView']):
-    def __init__(self, page: str, index: int, disabled: bool):
-        super().__init__(style=discord.ButtonStyle.grey if index%2==0 else discord.ButtonStyle.blurple, emoji=PAGE_TO_EMOJI[page], row=index//5, disabled=disabled)
-        self.page = page
-
-    async def callback(self, interaction: discord.Interaction):
-        view: MenuView = self.view
-        if view.command_author.id == interaction.user.id or interaction.user.id == 244543752889303041:
-            view.page = EMOJI_TO_PAGE[f"<:{self.emoji.name}:{self.emoji.id}>"]
-
-            for child in self.view.children:
-                child.disabled = False
-            self.disabled = True
-            
-            await self.view.update_embed(interaction)
-        else:
-            await interaction.response.send_message("This isn't your command!\nYou can run this command yourself to change the pages!", ephemeral=True)
-        
-
-class MenuView(discord.ui.View):
-    def __init__(self, command_author, data, username: str):
-        super().__init__()
-        self.command_author = command_author
-        self.page = "inventory"
-        self.data = data
-        self.username = username
-
-        for i, page in enumerate(page_names):
-            self.add_item(MenuButton(page, index=i, disabled=i==0))
-
-    async def update_embed(self, interaction: discord.Interaction):
-        embed = generate_page(self.command_author, self.data, self.username, self.page)
-        await interaction.response.edit_message(content="", view=self, embed=embed)
-
-    async def on_timeout(self):
-        try:
-            for button in self.children:
-                button.disabled = True
-            await self.message.edit(view=self)
-        except discord.errors.NotFound:
-            print("Message to disable buttons on was deleted (/networth)")
-
-async def fetch_all_users(self, uuid_list):
+async def fetch_all_users_data(self, uuid_list: list[str]) -> list[dict]:
     responses = []
     async with aiohttp.ClientSession() as session:
         for uuid in uuid_list:
-            async with session.get(f"http://{self.client.ip_address}:8000/pages/{uuid}?api_key={API_KEY}") as resp:
+            async with session.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}") as resp:
+                profile_data = await resp.json()
+            async with session.post(f"http://{self.client.ip_address}:8000/pages/{uuid}", json=profile_data) as resp:
                 responses.append(await resp.json())
     return responses
         
 class guild_networth_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=["gnw", "gn"])
-    async def guild_networth(self, ctx, username=None):
-        username, uuid = await input_to_uuid(ctx, username)
+    async def guild_networth(self, ctx: commands.Context, provided_username: Optional[str] = None) -> None:
+        username, uuid = await input_to_uuid(ctx, provided_username)
         if uuid is None:
             return
 
         response = requests.get(f"https://api.hypixel.net/guild?key={API_KEY}&player={uuid}").json()
         
         members_uuid = [x['uuid'] for x in response['guild']['members']]
-        username = response['guild']['name']
+        guild_name = response['guild']['name']
 
-        responses = await fetch_all_users(self, members_uuid)
+        responses = await fetch_all_users_data(self, members_uuid)
 
-        all_responses = {}
-        master_response = {}
+        all_responses, master_response = {}, {}
         master_response["purse"] = {"total": sum(int(x["purse"]["total"]) for x in responses)}
         master_response["banking"] = {"total": sum(int(x["banking"]["total"]) for x in responses)}
         
         for key in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
             all_responses[key] = {}
-            all_responses[key]["total"] = 0
             all_responses[key]["prices"] = []
             for response in responses:
-                all_responses[key]["total"] += int(response[key]["total"])
                 all_responses[key]["prices"].extend(response[key]["prices"])
 
         for key in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
             master_response[key] = {}
             master_response[key]["prices"] = sorted(all_responses[key]["prices"], key=lambda x: x["total"], reverse=True)[:5]
-            master_response[key]["total"] = all_responses[key]["total"]
-        
-        main_embed = generate_page(ctx.author, master_response, username, "main", True)
-        
-        view = MenuView(command_author=ctx.author, data=master_response, username=username)
-        view.message = await ctx.send(embed=main_embed, view=view)
+            master_response[key]["total"] = str(sum([x["total"] for x in all_responses[key]["prices"]]))
 
-        #uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
-        #data = [request.json()[page]['total'] for page in ("purse", "banking", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets")]
-        #insert_profile(uuid, *data)
+        # Generate all the pages and initiate the menu handler
+        list_of_embeds = [generate_page(command_author=ctx.author, data=master_response, username=guild_name, page=page, use_guilds=True) for page in PAGES]
+        await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, alternate_colours=True)

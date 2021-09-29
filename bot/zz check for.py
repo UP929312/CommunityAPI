@@ -1,6 +1,6 @@
 import os
 
-find = "generate_dynamic_preset_menu"
+find = "generate_static_preset_menu"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]
 

@@ -1,5 +1,6 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 import requests
 
@@ -43,16 +44,16 @@ EMOJI_LIST = ["<:paper:873158778487443486>", "<:dungeons:864588623394897930>", "
               "<:slayers:864588648111276072>", "<:misc:854801277489774613>"]
 
 class weights_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=['weight', 'w', 'waits'])
-    async def weights(self, ctx, username=None):
+    async def weights(self, ctx: commands.Context, provided_username: Optional[str] = None) -> None:
 
-        data = await input_to_uuid(ctx, username)
+        player_data: Optional[tuple[str, str]] = await input_to_uuid(ctx, provided_username)
         if data is None:
             return None
-        username, uuid = data
+        username, uuid = player_data
 
         #====================================================================================
         # Main page
@@ -81,7 +82,7 @@ class weights_cog(commands.Cog):
         # Skills, slayer and dungeons
         for page in ["dungeons", "skills", "slayers"]:
             data_start = response["data"][page]
-            data = response["data"][page]
+            data: dict = response["data"][page]
             if data is None:
                 embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"There doesn't seem to be anything here?\nThis is most likely because {username} hasn't done any dungeons before.",
                                       url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)

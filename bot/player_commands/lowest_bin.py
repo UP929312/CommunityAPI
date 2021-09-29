@@ -1,5 +1,6 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 import requests
 from datetime import datetime  # To convert hypixel time string to object
@@ -9,12 +10,12 @@ from emojis import ITEM_RARITY
 from menus import generate_static_scrolling_menu
 
 
-def format_enchantments(enchantments):
+def format_enchantments(enchantments: list[str]) -> str:
     if not enchantments:
         return ""
-    enchantments = sorted(enchantments, key=lambda ench: ench.startswith("Ultimate"), reverse=True)
+    sorted_enchants = sorted(enchantments, key=lambda ench: ench.startswith("Ultimate"), reverse=True)
     
-    enchantment_pairs = [enchantments[i:i + 2] for i in range(0, len(enchantments), 2)]
+    enchantment_pairs = [sorted_enchants[i:i + 2] for i in range(0, len(sorted_enchants), 2)]
     if len(enchantment_pairs[-1]) == 1:
         enchantment_pairs[-1] = (enchantment_pairs[-1][0], "")
 
@@ -28,12 +29,12 @@ def format_enchantments(enchantments):
     return formatted_enchants
 
 class lowest_bin_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=['lb', 'bin', 'lbin'])
-    async def lowest_bin(self, ctx, *, input_item=None):
-        closest = await find_closest(ctx, input_item)
+    async def lowest_bin(self, ctx: commands.Context, *, input_item: Optional[str] = None) -> None:
+        closest: Optional[dict] = await find_closest(ctx, input_item)
         if closest is None:
             return
         
@@ -45,13 +46,13 @@ class lowest_bin_cog(commands.Cog):
         list_of_embeds = []
         for page, data in enumerate(response, 1):
             #                                                                      # 2021-07-30T11:06:19Z
-            time_left = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
+            time_left: str = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
 
             # Enchants
-            enchantment_list = [x["type"].title()+f" {x['level']}" for x in data["enchantments"]]
-            enchantments = format_enchantments(enchantment_list)
+            enchantment_list: list[str] = [x["type"].title()+f" {x['level']}" for x in data["enchantments"]]
+            enchantments: str = format_enchantments(enchantment_list)
             # Hot potato books
-            hot_potato_books = data["flatNbt"].get("hpc", "")
+            hot_potato_books: str = data["flatNbt"].get("hpc", "")
             if hot_potato_books:
                 if int(hot_potato_books) > 10:
                     hot_potato_books = f"\n\nThis item has 10 hot potato books, and {int(hot_potato_books)-10} fuming potato books"

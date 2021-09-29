@@ -1,22 +1,23 @@
-import discord
-from discord.ext import commands
+import discord  # type: ignore
+from discord.ext import commands  # type: ignore
+from typing import Optional
 
 from database_manager import *
 from utils import error
 
 class link_account_cog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(aliases=["linkaccount", "link"])
-    async def link_account(self, ctx, username=None):
+    async def link_account(self, ctx: commands.Context, username: Optional[str] = None) -> None:
 
         if username is None:
             return await error(ctx, "Command link_account must have a username!", f"Example usage: `{ctx.prefix}link_account Notch`")
         if not (3 < len(username) <= 16):
             return await error(ctx, "Error, invalid username set!", "The username given must be a valid minecraft account!")
         
-        current_linked_account = self.client.linked_accounts.get(f"{ctx.author.id}", None)
+        current_linked_account: Optional[str] = self.client.linked_accounts.get(f"{ctx.author.id}", None)
 
         if current_linked_account is None:
             set_linked_account(ctx.author.id, username)
