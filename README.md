@@ -3,7 +3,7 @@
 This is an API and Discord Bot made partially by the community, with the lead dev being Skezza#1139.\
 Special mention to Mega_Pi+Seattle72 for the research and knowledge on a lot of the content!\
 Another thanks to laachs (egg#7777) for extra insight and for his laborous work\
-.
+
 This bot will remain open source, and provide fun information about your profile, such as it's value.\
 Anyone can make a pull request, and it'll be reviewed and possibly added.\
 Any future things that should be counted will generally be added quite quickly, as the system is very flexible.
