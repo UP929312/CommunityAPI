@@ -9,7 +9,7 @@ Anyone can make a pull request, and it'll be reviewed and possibly added.\
 Any future things that should be counted will generally be added quite quickly, as the system is very flexible.
 
 For more information on how the API calculates its values, have a look in info/how_things_are_calculated.md
-For an example of how to use the API, have a look at [info/simple_example.py](info/simple_example.py) or [info/simple_example.js](info/simple_example.js)
+For an example of how to use the API, have a look at [simple_example.py](info/simple_example.py) or [simple_example.js](info/simple_example.js)
 
 Want to invite the bot to your server?\
 Click here: https://discord.com/api/oauth2/authorize?client_id=854722092037701643&permissions=242666032192&scope=bot%20applications.commands
