@@ -9,4 +9,4 @@ Anyone can make a pull request, and it'll be reviewed and possibly added.\
 Any future things that should be counted will generally be added quite quickly, as the system is very flexible.
 
 For more information on how the API calculates its values, have a look in info/how_things_are_calculated.md
-For an example of how to use the API, have a look at info/simple_example.py or info/simple_example.js
+For an example of how to use the API, have a look at [info/simple_example.py](info/simple_example.py) or [info/simple_example.js](info/simple_example.js)
