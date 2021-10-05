@@ -8,6 +8,8 @@ def calculate_enchanted_book(data, price):  # For enchanted books
     element = price.item
 
     if "Anvil" in element.description_clean[0]:
+        price.value["price_source"] = "None"
+        price.value["base_price"] = 0
         return price
     
     rarity = element.description_clean[-1]

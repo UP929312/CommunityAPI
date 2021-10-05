@@ -123,7 +123,7 @@ def calculate_item(data, price, print_prices=False):
     if item.gems:
         value["gems"] = {}
         for gem, condition in item.gems.items():
-            value["gems"][gem] = data.BAZAAR.get(f"{condition}_{gem.rstrip('_0')}_GEM", 0)
+            value["gems"][gem] = data.BAZAAR.get(f"{condition}_{gem.rstrip('_0').rstrip('_1')}_GEM", 0)
     # Gemstone chambers
     if item.gemstone_chambers:
         value["gemstone_chambers"] = item.gemstone_chambers*data.LOWEST_BIN.get("GEMSTONE_CHAMBER", 0)

@@ -10,19 +10,16 @@ intents: discord.Intents = discord.Intents(guild_reactions=False, members=False,
 from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
 from utils import safe_delete, safe_send, error as error_embed
 
-print("Importing packages done...")
+print("1. Importing discord, json and other util packages done.")
 
 from networth.networth import networth_cog
 from networth.guild_networth import guild_networth_cog
 
-print("Imported all non-player_commands")
+print("2. Imported networth and guild networth done.")
 
 from player_commands import *
 
-print("Importing .py files done...")
-
-linked_accounts: dict = dict(load_linked_accounts())
-prefixes: dict = dict(load_prefixes())
+print("3. Importing all player commands done.")
 
 '''
 def get_prefix(bot, msg):
@@ -33,9 +30,12 @@ def get_prefix(bot, msg):
 def get_prefix(bot: commands.Bot, msg: discord.Message) -> str:
     return "!"
 #'''
+
 client: commands.Bot = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
-client.prefixes = prefixes
-client.linked_accounts = linked_accounts
+client.prefixes = dict(load_prefixes())
+client.linked_accounts = dict(load_linked_accounts())
+
+print("4. Client init done and data fetched")
 
 # Load in the stored uuid conversion cache for .leaderboard (they're stored as uuids)
 with open("text_files/uuid_conversion_cache.json", 'r') as file:
@@ -49,9 +49,7 @@ async def on_ready() -> None:
         
 @client.event
 async def on_command_error(ctx, error) -> None:
-    if any([isinstance(error, x) for x in {commands.CommandNotFound, commands.errors.MissingAnyRole,
-                                           commands.errors.CheckFailure, discord.errors.Forbidden}
-          ]):
+    if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, commands.errors.CheckFailure, discord.Forbidden)):
         pass
     elif isinstance(error, commands.CommandOnCooldown):
         # ALLOW PEOPLE WITH MANAGE MESSAGES TO BYPASS THE COOLDOWN
@@ -60,6 +58,8 @@ async def on_command_error(ctx, error) -> None:
         else:
             await safe_delete(ctx.message)
             await safe_send(ctx.author, error)
+    elif isinstance(error, commands.CheckFailure):
+        return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
     else:
         print(f"##### ERROR, The command was: {ctx.message.content}. It was done in {ctx.guild.name}, ({ctx.guild.id}) by {ctx.author.display_name} ({ctx.author.id})")
         print(str(error))
@@ -72,16 +72,15 @@ async def on_command_completion(ctx) -> None:
 
 #====================================================
 
-print("Loading cogs...")
+print("5. Creating cogs list done.")
 all_cogs = [guild_networth_cog,]
 all_cogs.append(networth_cog)
 all_cogs.extend(player_commands)
-print("Adding cogs...")
 
 for cog in all_cogs:
     client.add_cog(cog(client))
-    
-print("Cogs all added successfully!")
+
+print("6. Added cogs done.")
 
 client.ip_address = "db.superbonecraft.dk"
 #client.ip_address = "127.0.0.1"

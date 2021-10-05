@@ -1,5 +1,6 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 import requests
@@ -47,11 +48,25 @@ class weights_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=['weight', 'w', 'waits'])
-    async def weights(self, ctx: commands.Context, provided_username: Optional[str] = None) -> None:
+    @commands.command(name="weight", aliases=['weights', 'w', 'waits'])
+    async def weight_command(self, ctx: commands.Context, provided_username: Optional[str] = None) -> None:
+        await self.get_weights(ctx, provided_username, is_response=False)
 
-        player_data: Optional[tuple[str, str]] = await input_to_uuid(ctx, provided_username)
-        if data is None:
+    @commands.slash_command(name="weight", description="Gets someone's profile weight", guild_ids=[854749884103917599])
+    async def weight_slash(self, ctx, username: Option(str, "username:", required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_weights(ctx, username, is_response=True)
+
+    @commands.user_command(name="Get profile weight", guild_ids = [854749884103917599])  
+    async def weight_context_menu(self, ctx, member: discord.Member):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_weights(ctx, member.display_name, is_response=True)
+
+    async def get_weights(self, ctx: commands.Context, provided_username: Optional[str] = None, is_response: bool = False):
+        player_data: Optional[tuple[str, str]] = await input_to_uuid(ctx, provided_username, is_response=is_response)
+        if player_data is None:
             return None
         username, uuid = player_data
 
@@ -59,10 +74,11 @@ class weights_cog(commands.Cog):
         # Main page
         response = requests.get(f"https://hypixel-api.senither.com/v1/profiles/{uuid}/weight?key={API_KEY}").json()
         if response["status"] != 200:
-            return await error(ctx, "Error, the api couldn't fufill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.")
-
-        total_regular_weight = round(response["data"]["weight"], 2)
-        total_overflow_weight = round(response["data"]["weight_overflow"], 2)
+            return await error(ctx, "Error, the api couldn't fufill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.", is_response=is_response)
+        response = response["data"]
+    
+        total_regular_weight = round(response["weight"], 2)
+        total_overflow_weight = round(response["weight_overflow"], 2)
 
         list_of_elems = [f"Total Regular Weight: **{total_regular_weight}**",
                          f"Total Overflow Weight: **{total_overflow_weight}**",
@@ -81,18 +97,15 @@ class weights_cog(commands.Cog):
         #====================================================================================
         # Skills, slayer and dungeons
         for page in ["dungeons", "skills", "slayers"]:
-            data_start = response["data"][page]
-            data: dict = response["data"][page]
+            data = response[page]
             if data is None:
                 embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"There doesn't seem to be anything here?\nThis is most likely because {username} hasn't done any dungeons before.",
                                       url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
                 embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
                 embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-                return embed
-                
-            total_weight = round(data["weight"]+data["weight_overflow"], 2)
+                list_of_embeds.append(embed)
+                continue
 
-            bank = PAGE_URLS[page]
             if page == "skills":
                 description_start = f"Skill average: **{round(data['average_skills'], 2)}**"
             elif page == "slayers":
@@ -100,21 +113,21 @@ class weights_cog(commands.Cog):
             elif page == "dungeons":
                 description_start = f"Secrets found: **{data['secrets_found']}**"
 
-            data = data.get("bosses", None) or data.get("classes", None) or data  # Remap data to be the sub list.
-
-            embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"Total {page[:-1]} weight: **{round(total_weight, 2)}**\n{description_start}",
+            embed = discord.Embed(title=f"{page.title()} weights for {username}:", description=f"Total {page.removesuffix('s')} weight: **{round(data['weight']+data['weight_overflow'], 2)}**\n{description_start}",
                                   url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
 
             if page == "dungeons":
-                catacombs_weight = round(data_start['types']['catacombs']['weight'], 2)
-                catacombs_overflow = round(data_start['types']['catacombs']['weight_overflow'], 2)
-                embed.add_field(name=f"{EMOJI_DICT['catacombs']} Cata ({int(data_start['types']['catacombs']['level'])})",
+                catacombs_weight = round(data['types']['catacombs']['weight'], 2)
+                catacombs_overflow = round(data['types']['catacombs']['weight_overflow'], 2)
+                embed.add_field(name=f"{EMOJI_DICT['catacombs']} Cata ({int(data['types']['catacombs']['level'])})",
                                 value=f"Regular: **{catacombs_weight}**\nOverflow: **{catacombs_overflow}**\nTotal: **{round(catacombs_weight+catacombs_overflow, 2)}**", inline=True)
 
-            for category in bank:
-                level = int(data[category]["level"])
-                regular = round(data[category]["weight"], 2)
-                overflow = round(data[category]["weight_overflow"], 2)
+            remapped_data = data.get("bosses", None) or data.get("classes", None) or data  # Remap data to be the sub list.
+
+            for category in PAGE_URLS[page]:
+                level = int(remapped_data[category]["level"])
+                regular = round(remapped_data[category]["weight"], 2)
+                overflow = round(remapped_data[category]["weight_overflow"], 2)
                 embed.add_field(name=f"{EMOJI_DICT[category]} {category.title()} ({level})",
                                 value=f"Regular: **{regular}**\nOverflow: **{overflow}**\nTotal: **{round(regular+overflow, 2)}**", inline=True)
                 
@@ -129,5 +142,5 @@ class weights_cog(commands.Cog):
             embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
             list_of_embeds[i] = embed
         
-        await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST)
+        await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, is_response=is_response)
 

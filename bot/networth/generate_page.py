@@ -17,7 +17,7 @@ def generate_page(command_author: discord.Member, data: Any, username: str, page
 
     # MAIN MENU
     if page == "main":
-        total: str = hf(sum([int(x["total"]) for x in data.values() if "total" in x]))
+        total: str = hf(sum([float(x["total"]) for x in data.values() if "total" in x]))
 
         purse = float(data['purse']['total'])
         bank = float(data['banking']['total'])

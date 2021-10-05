@@ -14,10 +14,10 @@ def parse_container(raw: str):
 
     def read(type, length):
         if type in 'chil':
-            return int.from_bytes(raw.read(length), byteorder='big')
+            return int.from_bytes(raw_bytes.read(length), byteorder='big')
         if type == 's':
-            return raw.read(length).decode('utf-8')
-        return unpack('>' + type, raw.read(length))[0]
+            return raw_bytes.read(length).decode('utf-8')
+        return unpack('>' + type, raw_bytes.read(length))[0]
 
     def parse_list():
         subtype = read('c', 1)

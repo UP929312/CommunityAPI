@@ -1,11 +1,12 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 import requests
 from bisect import bisect
 
-from utils import error, hf
+from utils import error, hf, PROFILE_NAMES
 from emojis import SLAYER_EMOJIS
 from parse_profile import get_profile_data
 
@@ -36,10 +37,26 @@ class slayer_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
         
-    @commands.command()
-    async def slayer(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
-      
-        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile)
+    @commands.command(name="slayer")
+    async def slayer_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
+        await self.get_slayer(ctx, provided_username, provided_profile_name, is_response=False)
+    
+    @commands.slash_command(name="slayer", description="Gets slayer data about someone", guild_ids=[854749884103917599])
+    async def slayer_slash(self, ctx, username: Option(str, "username:", required=False),
+                             profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_slayer(ctx, username, profile, is_response=True)
+
+    @commands.user_command(name="Get slayer data", guild_ids = [854749884103917599])  
+    async def slayer_context_menu(self, ctx, member: discord.Member):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_slayer(ctx, member.display_name, None, is_response=True)
+
+
+    async def get_slayer(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool=False) -> None:
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
         username = player_data["username"]
@@ -80,4 +97,7 @@ class slayer_cog(commands.Cog):
         embed.insert_field_at(index=12, name='\u200b', value='\u200b', inline=True)        
         #=====================
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
-        await ctx.send(embed=embed)
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)

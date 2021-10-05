@@ -1,10 +1,11 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 import json
 
-from utils import error
+from utils import error, PROFILE_NAMES
 from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 from extract_ids import extract_internal_names
@@ -30,10 +31,22 @@ class missing_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=['missing_accessories', 'accessories', 'miss', 'm'])
-    async def missing(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
+    @commands.command(name="missing", aliases=['missing_accessories', 'accessories', 'miss', 'm'])
+    async def missing_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
+        await self.get_missing(ctx, provided_username, provided_profile_name, is_response=False)
 
-        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile)
+    @commands.slash_command(name="missing", description="Gets someone's missing auctions", guild_ids=[854749884103917599])
+    async def missing_slash(self, ctx, username: Option(str, "username:", required=False),
+                             profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_missing(ctx, username, profile, is_response=True)
+
+    #=========================================================================================================================================
+        
+    async def get_missing(self, ctx: commands.Context, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] =  None, is_response: bool = False) -> None:
+
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
         username = player_data["username"]
@@ -42,7 +55,7 @@ class missing_cog(commands.Cog):
         inv_content = player_data.get("inv_contents", {"data": []})
         
         if not accessory_bag:
-            return await error(ctx, "Error, could not find this person's accessory bag", "Do they have their API disabled for this command?")
+            return await error(ctx, "Error, could not find this person's accessory bag", "Do they have their API disabled for this command?", is_response=is_response)
 
         accessory_bag = extract_internal_names(accessory_bag["data"])
         inventory = extract_internal_names(inv_content["data"])
@@ -50,7 +63,7 @@ class missing_cog(commands.Cog):
         missing = [x for x in MASTER_ACCESSORIES if x["internal_name"] not in accessory_bag+inventory]
 
         if not missing:
-            return await error(ctx, f"Completion!", f"{username} already has all accessories!")
+            return await error(ctx, f"Completion!", f"{username} already has all accessories!", is_response=is_response)
         sorted_accessories = sorted(missing, key=lambda x: x["name"])[:42]
 
         extra = "" if len(missing) <= 36 else f", showing the first {len(sorted_accessories)}"
@@ -74,5 +87,8 @@ class missing_cog(commands.Cog):
                 make_embed(embed, row_accessories)
 
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-        await ctx.send(embed=embed)
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)
 

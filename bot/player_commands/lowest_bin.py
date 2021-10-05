@@ -5,7 +5,7 @@ from typing import Optional
 import requests
 from datetime import datetime  # To convert hypixel time string to object
 
-from utils import error, hf, format_duration, find_closest
+from utils import error, hf, format_duration, smarter_find_closest
 from emojis import ITEM_RARITY
 from menus import generate_static_scrolling_menu
 
@@ -34,11 +34,21 @@ class lowest_bin_cog(commands.Cog):
 
     @commands.command(aliases=['lb', 'bin', 'lbin'])
     async def lowest_bin(self, ctx: commands.Context, *, input_item: Optional[str] = None) -> None:
-        closest: Optional[dict] = await find_closest(ctx, input_item)
+        closest = await smarter_find_closest(ctx, input_item)
         if closest is None:
             return
-        
-        response = requests.get(f"https://sky.coflnet.com/api/auctions/tag/{closest['internal_name']}/active/bin").json()
+
+        print(closest)
+
+        if closest[0] == "enchant":
+            enchant_type, level = closest[1].split(":")
+            response = requests.get(f"https://sky-commands.coflnet.com/api/item/price/ENCHANTED_BOOK?Enchantment={enchant_type}&EnchantLvl={level}").json()
+        elif closest[0] == "item":
+            closest = closest[1]
+            response = requests.get(f"https://sky.coflnet.com/api/auctions/tag/{closest['internal_name']}/active/bin").json()
+
+        print("Response recieved")
+        print(response)
 
         if not response or (isinstance(response, dict) and "Slug" in response.keys()):
             return await error(ctx, "Error, no items of that type could be found on the auction house!", "Try a different item instead?")

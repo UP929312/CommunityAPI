@@ -21,8 +21,6 @@ HOE_MATERIAL_TO_INTERNAL_NAMES = {
 
 class Item:
     def __init__(self, nbt):
-        self.__nbt__ = nbt
-
         #print(nbt)
 
         # Default minecraft items don't have anything special, so just leave them basically
@@ -40,8 +38,11 @@ class Item:
         display = tag.get('display', {})
         self.internal_name = extras.get('id', None)  # Not sure why some items have no internal_name...
         self.name = re.sub('§.', '', display.get("Name", None))
-        self.stack_size = max(0, self.__nbt__.get('Count', 1))  # Removes negative stack size
+        self.stack_size = max(0, nbt.get('Count', 1))  # Removes negative stack size
         self.origin_tag = extras.get("originTag", "UNKNOWN")
+
+        #if self.internal_name == "DIVAN_DRILL":
+        #    print(nbt)
 
         # Recomb + HPB
         self.recombobulated = bool(extras.get('rarity_upgrades', False))

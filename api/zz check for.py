@@ -1,6 +1,6 @@
 import os
 
-find = "find_closest"
+find = "price"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]
 
@@ -19,7 +19,7 @@ def find_it(folder, ext):
 for folder in folders:
     if folder == ".\__pycache__":
         continue
-    print(folder)
+    #print(folder)
     if folder == "":
         find_it(os.listdir(), "")
     else:

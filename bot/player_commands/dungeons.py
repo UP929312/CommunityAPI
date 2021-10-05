@@ -1,5 +1,6 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 import requests
@@ -7,7 +8,7 @@ from bisect import bisect
 
 from parse_profile import get_profile_data
 
-from utils import error, format_duration, clean, hf
+from utils import error, format_duration, clean, hf, PROFILE_NAMES
 from emojis import DUNGEON_BOSS_EMOJIS
 from menus import generate_static_preset_menu
 
@@ -37,16 +38,33 @@ class dungeons_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command(aliases=['d', 'dungeon'])
-    async def dungeons(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile: Optional[str] = None):
+    @commands.command(name="dungeons", aliases=['d', 'dungeon'])
+    async def dungeons_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
+        await self.get_dungeons(ctx, provided_username, provided_profile, is_response=False)
 
-        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile)
+    @commands.slash_command(name="dungeons", description="Gets dungeons data about someone", guild_ids=[854749884103917599])
+    async def dungeons_slash(self, ctx, username: Option(str, "username:", required=False),
+                             profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_dungeons(ctx, username, profile, is_response=True)
+
+    @commands.user_command(name="Get dungeons data", guild_ids = [854749884103917599])  
+    async def dungeons_context_menu(self, ctx, member: discord.Member):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_dungeons(ctx, member.display_name, None, is_response=True)
+
+    #======================================================================================================================================
+
+    async def get_dungeons(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
         username = player_data["username"]
 
         #if not player_data.get("dungeons"):
-        #    return await error(ctx, "Error, this person's dungeon API is off!", "This command requires the bot to be able to see their dungeon data to work!")
+        #    return await error(ctx, "Error, this person's dungeon API is off!", "This command requires the bot to be able to see their dungeon data to work!", is_response=is_response)
 
         try:        
             secrets_found = requests.get(f"https://sky.shiiyu.moe/api/v2/dungeons/{username}/{player_data['cute_name']}").json()
@@ -93,7 +111,7 @@ class dungeons_cog(commands.Cog):
 
             if dungeon_data == {} or "tier_completions" not in dungeon_data:
                 if dungeon_type == "catacombs":
-                    return await error(ctx, f"Error, this player hasn't played enough of the dungeons!", "The player you have looked up hasn't completed any dungeons runs, so their data can't be shown.")
+                    return await error(ctx, f"Error, this player hasn't played enough of the dungeons!", "The player you have looked up hasn't completed any dungeons runs, so their data can't be shown.", is_response=is_response)
                 elif dungeon_type == "master_catacombs":
                     embed.add_field(name=f"This person hasn't done any master floors", value=f"When they complete a floor it'll show up here!", inline=False)
                     list_of_embeds.append(embed)
@@ -134,4 +152,4 @@ class dungeons_cog(commands.Cog):
             list_of_embeds.append(embed)
         ####################################################################################################
         # Menu generator
-        await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST)
+        await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, is_response=is_response)

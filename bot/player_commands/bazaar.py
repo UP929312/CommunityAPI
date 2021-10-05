@@ -6,7 +6,7 @@ import requests
 from difflib import SequenceMatcher
 from typing import Optional
 
-from utils import error
+from utils import error, similar
 
 initial_request = requests.get(f"https://api.hypixel.net/skyblock/bazaar").json()
 ITEMS = initial_request["products"].keys()
@@ -22,10 +22,7 @@ for item in ITEMS:
     except KeyError:
         pass
 
-def similar(a: str, b: str) -> float:
-    return SequenceMatcher(None, a, b).ratio()
-
-## The reason I don't use find_closest is because I only want to auto-correct to bazaar items, not all items
+## The reason I don't use find-closest is because I only want to auto-correct to bazaar items, not all items
 
 class bazaar_cog(commands.Cog):
     def __init__(self, bot) -> None:
@@ -39,7 +36,7 @@ class bazaar_cog(commands.Cog):
         if user_input.startswith("e "):
             user_input = "enchanted"+user_input.removeprefix("e ")
         
-        closest: dict = max(items_mapped, key=lambda _tuple: similar(_tuple[1].lower(), user_input.lower()))
+        closest = max(items_mapped, key=lambda _tuple: similar(_tuple[1].lower(), user_input.lower()))
         
         if similar(closest[1], user_input) < 0.5:
             return await error(ctx, "No item with that name found at the bazaar.", "Is the item availible to purchase at the bazaar?")    
@@ -48,7 +45,7 @@ class bazaar_cog(commands.Cog):
 
         internal_name = closest[0]
 
-        data: dict = request["products"][internal_name]
+        data = request["products"][internal_name]
 
         list_of_strings = [
             f"Buy it instantly price: ${int(data['buy_summary'][0]['pricePerUnit'])}",

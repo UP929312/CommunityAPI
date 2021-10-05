@@ -1,15 +1,17 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
+from typing import Iterator, Optional, Union
 
 import re
 import requests
 from datetime import datetime
 
-from utils import error, hf, format_duration
+from utils import error, hf, format_duration, PROFILE_NAMES
 from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 
-from typing import Iterator, Optional, Union
+
 
 
 names = ["Expired/Ended auctions", "Buy It Now", "Auctions"]
@@ -51,7 +53,6 @@ def format_auction(auction: dict) -> str:
     bid_count = ""
     time_left = ""
 
-
     price = hf(auction.get("highest_bid_amount", 0) or auction.get("starting_bid", 0))
 
     if expired and ('highest_bid_amount' in auction and auction['highest_bid_amount'] >= auction['starting_bid']):
@@ -92,11 +93,28 @@ class auction_house_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    #@commands.cooldown(1, 1800, commands.BucketType.user)
-    @commands.command(aliases=['ah', 'auctions'])
-    async def auction_house(self, ctx: commands.Context, provided_username: Optional[str] =  None) -> None:
-      
-        player_data: Optional[dict] = await get_profile_data(ctx, provided_username)
+    @commands.command(name="auction_house", aliases=['ah', 'auctions'])
+    async def auction_house_command(self, ctx: commands.Context, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] = None) -> None:
+        await self.get_auction_house(ctx, provided_username, provided_profile_name, is_response=False)
+
+    @commands.slash_command(name="auctions", description="Gets auctions data about someone", guild_ids=[854749884103917599])
+    async def auction_house_slash(self, ctx, username: Option(str, "username:", required=False),
+                             profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_auction_house(ctx, username, profile, is_response=True)
+
+    @commands.user_command(name="Get auction data", guild_ids = [854749884103917599])  
+    async def auction_house_context_menu(self, ctx, member: discord.Member):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.get_auction_house(ctx, member.display_name, None, is_response=True)
+
+    #=========================================================================================================================================
+        
+    async def get_auction_house(self, ctx: commands.Context, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] =  None, is_response: bool = False) -> None:
+          
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
         username = player_data["username"]
@@ -126,9 +144,12 @@ class auction_house_cog(commands.Cog):
                 data = data[:-1]
 
         if not data:
-           return await error(ctx, f"{username} doesn't have any active auctions", "If this was you, try heading over to the auction house and putting some things on sale.")
+           return await error(ctx, f"{username} doesn't have any active auctions", "If this was you, try heading over to the auction house and putting some things on sale.", is_response=is_response)
         #=====================
         embed = discord.Embed(title=f"Auction data for {username}", description="\n".join(data) , colour=0x3498DB)
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
-        embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
-        await ctx.send(embed=embed)
+        embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)
