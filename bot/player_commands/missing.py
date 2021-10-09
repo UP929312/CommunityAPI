@@ -32,7 +32,7 @@ class missing_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="missing", aliases=['missing_accessories', 'accessories', 'miss', 'm'])
-    async def missing_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
+    async def missing_command(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
         await self.get_missing(ctx, provided_username, provided_profile_name, is_response=False)
 
     @commands.slash_command(name="missing", description="Gets someone's missing auctions", guild_ids=[854749884103917599])
@@ -44,7 +44,7 @@ class missing_cog(commands.Cog):
 
     #=========================================================================================================================================
         
-    async def get_missing(self, ctx: commands.Context, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] =  None, is_response: bool = False) -> None:
+    async def get_missing(self, ctx, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] =  None, is_response: bool = False) -> None:
 
         player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:

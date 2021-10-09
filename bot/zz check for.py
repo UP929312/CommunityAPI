@@ -1,6 +1,6 @@
 import os
 
-find = "find_closest"
+find = "safe_delete"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]
 
@@ -11,7 +11,7 @@ def find_it(folder, ext):
                 try:
                     for line in a.readlines():
                         if find in line:
-                            print(file, " contained "+find)
+                            print("Found in", file, " contained "+find)
                 except Exception as e:
                     print(e)
                     pass
@@ -19,7 +19,7 @@ def find_it(folder, ext):
 for folder in folders:
     if folder == ".\__pycache__":
         continue
-    print(folder)
+    print("Looking in folder:", folder)
     if folder == "":
         find_it(os.listdir(), "")
     else:

@@ -10,7 +10,7 @@ with open("text_files/hypixel_api_key.txt") as file:
 
 ALLOWED_CHARS = {"_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
 
-async def input_to_uuid(ctx: commands.Context, provided_username: Optional[str], is_response: bool) -> Optional[tuple[str, str]]:
+async def input_to_uuid(ctx, provided_username: Optional[str], is_response: bool) -> Optional[tuple[str, str]]:
     """
     This will take a already given username, but if one isn't given, it will
     first check if they've linked their account, if not, it will try

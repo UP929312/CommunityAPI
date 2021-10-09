@@ -13,8 +13,8 @@ class guild_print_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command()
-    async def guild_print(self, ctx, skill: str=None, guild: str=None) -> None:
+    @commands.command(name="guild_print")
+    async def guild_print_command(self, ctx, skill: str=None, guild: str=None) -> None:
 
         print("Starting a guild print")
         if skill.lower() not in ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming', 'carpentry', 'runecrafting']:

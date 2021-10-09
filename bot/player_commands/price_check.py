@@ -1,10 +1,11 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 import requests  # For making the api call
 
-from utils import error, hf, find_closest
+from utils import error, hf, smarter_find_closest
 from emojis import MATHS_EMOJIS
      
 
@@ -12,20 +13,41 @@ class price_check_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=['price', 'p', 'pc'])
-    async def price_check(self, ctx: commands.Context, *, input_item: Optional[str] = None) -> None:
-        closest = await find_closest(ctx, input_item)
+
+    @commands.command(name="price_check", aliases=['price', 'p', 'pc'])
+    async def price_check_command(self, ctx, *, input: Optional[str] = None) -> None:
+        await self.price_check(ctx, input, is_response=False)
+
+    @commands.slash_command(name="price_check", description="Gets the historic price data about an item", guild_ids=[854749884103917599])
+    async def price_check_slash(self, ctx, input: Option(str, "input:", required=True)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.price_check(ctx, input, is_response=True)
+
+    async def price_check(self, ctx, input: Optional[str] = None, is_response: bool = False) -> None:
+        closest = await smarter_find_closest(ctx, input, is_response=is_response)
         if closest is None:
             return
-
-        #print(closest)
-        
-        response = requests.get(f"https://sky.coflnet.com/api/item/price/{closest['internal_name']}").json()
-
-        #print(response)
+      
+        if closest[0] == "enchant":
+            enchant_type, level = closest[1].split(":")
+            response = requests.get(f"https://sky.coflnet.com/api/item/price/ENCHANTED_BOOK?Enchantment={enchant_type}&EnchantLvl={level}").json()
+            item_name = f"{enchant_type.replace('_', ' ').title()} {level} book"
+        elif closest[0] == "pet":
+            pet_type, rarity, level = closest[1].split(":")
+            rarity_selector = "" if rarity == "None" else f"Rarity={rarity.upper()}"
+            level_selector = "" if level == "None" else f"PetLevel={level}"
+            if level != "None" and rarity != "None":
+                level_selector = "&"+level_selector
+            response = requests.get(f"https://sky.coflnet.com/api/item/price/PET_{pet_type.upper()}?{rarity_selector}{level_selector}").json()
+            item_name = f"{pet_type.replace('_', ' ').title()}"
+        elif closest[0] == "item":
+            closest = closest[1]
+            response = requests.get(f"https://sky.coflnet.com/api/item/price/{closest['internal_name']}").json()
+            item_name = closest['name']
 
         if "Slug" in response.keys() or "min" not in response.keys():
-            return await error(ctx, "Error, no items of that type could be found on the auction house!", "Try a different item instead?")
+            return await error(ctx, "Error, no items of that type could be found on the auction house!", "Try a different item instead, and if you're searching for a pet, please end your search with 'pet'.", is_response=is_response)
 
         string = [f"{MATHS_EMOJIS['min']} Minimum: {hf(response['min'])}",
                   f"{MATHS_EMOJIS['max']} Maximum: {hf(response['max'])}",
@@ -36,7 +58,10 @@ class price_check_cog(commands.Cog):
                   f"",
                   f"Links: Definitions for mode, median and mean: [link](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review), API: [link](https://sky.coflnet.com/data)"]
                     
-        embed = discord.Embed(title=f"Price data found for {closest['name']}:", description="\n".join(string), colour=0x3498DB)
-        embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
-        await ctx.send(embed=embed)
+        embed = discord.Embed(title=f"Price data found for {item_name}:", description="\n".join(string), colour=0x3498DB)
+        embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)
 

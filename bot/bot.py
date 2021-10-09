@@ -8,7 +8,7 @@ intents: discord.Intents = discord.Intents(guild_reactions=False, members=False,
                                            messages=True, guilds=True, emojis=True)
 
 from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
-from utils import safe_delete, safe_send, error as error_embed
+from utils import error as error_embed
 
 print("1. Importing discord, json and other util packages done.")
 
@@ -22,7 +22,7 @@ from player_commands import *
 print("3. Importing all player commands done.")
 
 '''
-def get_prefix(bot, msg):
+def get_prefix(bot: commands.Bot, msg: discord.Message):
     prefix = bot.prefixes.get(f"{msg.guild.id}", ".") if msg.guild else "."
     return commands.when_mentioned_or(prefix)(bot, msg)
 #'''
@@ -51,13 +51,6 @@ async def on_ready() -> None:
 async def on_command_error(ctx, error) -> None:
     if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, commands.errors.CheckFailure, discord.Forbidden)):
         pass
-    elif isinstance(error, commands.CommandOnCooldown):
-        # ALLOW PEOPLE WITH MANAGE MESSAGES TO BYPASS THE COOLDOWN
-        if ctx.guild is not None and ctx.author.guild_permissions.manage_messages: 
-            await ctx.reinvoke()
-        else:
-            await safe_delete(ctx.message)
-            await safe_send(ctx.author, error)
     elif isinstance(error, commands.CheckFailure):
         return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
     else:

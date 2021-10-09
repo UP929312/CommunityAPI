@@ -1,5 +1,6 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 import requests
@@ -77,7 +78,7 @@ T12_MATERIALS = {
     "EMERALD": ("ENCHANTED_EMERALD_BLOCK", 16),
     "REDSTONE": ("ENCHANTED_REDSTONE_BLOCK", 32),
     "MITHRIL": ("REFINED_MITHRIL", 16),
-    "HARD_STONE": ("ENCHANTED_STONE", 32),
+    "HARD_STONE": ("ENCHANTED_HARD_STONE", 32),
     "REVENANT": ("REVENANT_VISCERA", 64),
 }
 
@@ -109,10 +110,10 @@ class minions_cog(commands.Cog):
         self.client = bot
 
     @commands.command(aliases=['min', 'minion'])
-    async def minions(self, ctx: commands.Context, username: Optional[str] = None, profile: Optional[str] = None) -> None:
+    async def minions(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
 
         ########## One: Get the right profile and username
-        player_data: Optional[dict] = await get_profile_data(ctx, username, profile)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name)
         if player_data is None:
             return
         username = player_data["username"]
@@ -143,7 +144,7 @@ class minions_cog(commands.Cog):
             if minion_tier(max_tier_minion) >= MAX_MINION_TIERS[minion+"_GENERATOR"]:
                 continue
             minion_maxes[minion] = minion_tier(max_tier_minion)
-            
+
         ########## Five: Get the prices for each of the next tier up
         minion_prices = {}
         for minion, tier in minion_maxes.items():

@@ -38,7 +38,7 @@ class slayer_cog(commands.Cog):
         self.client = bot
         
     @commands.command(name="slayer")
-    async def slayer_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
+    async def slayer_command(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
         await self.get_slayer(ctx, provided_username, provided_profile_name, is_response=False)
     
     @commands.slash_command(name="slayer", description="Gets slayer data about someone", guild_ids=[854749884103917599])
@@ -55,7 +55,7 @@ class slayer_cog(commands.Cog):
         await self.get_slayer(ctx, member.display_name, None, is_response=True)
 
 
-    async def get_slayer(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool=False) -> None:
+    async def get_slayer(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool=False) -> None:
         player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return

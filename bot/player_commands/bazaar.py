@@ -1,10 +1,11 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
+from typing import Optional
 
 import json
 import requests
 from difflib import SequenceMatcher
-from typing import Optional
 
 from utils import error, similar
 
@@ -28,8 +29,8 @@ class bazaar_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=['b', 'ba', 'baz', 'bz'])
-    async def bazaar(self, ctx: commands.Context, *, user_input: Optional[str] = None) -> None:
+    @commands.command(name="bazaar", aliases=['b', 'ba', 'baz', 'bz'])
+    async def bazaar_command(self, ctx, *, user_input: Optional[str] = None) -> None:
         if user_input is None:
             return await error(ctx, "No item given.", "Please give the item you want to check the price of at the bazaar.")
 

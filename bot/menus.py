@@ -33,7 +33,7 @@ class DynamicPresetMenuButton(discord.ui.Button['DynamicPresetMenuView']):
 class DynamicPresetMenuView(discord.ui.View):
     def __init__(self, ctx, data, username: str, emoji_map: dict, page_generator):
         super().__init__()
-        self.ctx: commands.Context = ctx
+        self.ctx = ctx
         self.page: str = "main"
         self.data = data
         self.username: str = username
@@ -56,7 +56,7 @@ class DynamicPresetMenuView(discord.ui.View):
         except discord.errors.NotFound:
             pass
 
-async def generate_dynamic_preset_menu(ctx: commands.Context, data, username: str, starting_page: str, emoji_map: dict, page_generator):
+async def generate_dynamic_preset_menu(ctx, data, username: str, starting_page: str, emoji_map: dict, page_generator):
     main_embed = page_generator(ctx=ctx, data=data, username=username, page=starting_page)
     view = DynamicPresetMenuView(ctx=ctx, data=data, username=username, emoji_map=emoji_map, page_generator=page_generator)
     view.message = await ctx.send("\u200b", embed=main_embed, view=view)
@@ -94,7 +94,7 @@ class StaticPresetMenuButton(discord.ui.Button['StaticPresetMenuView']):
 class StaticPresetMenuView(discord.ui.View):
     def __init__(self, ctx, list_of_embeds, emoji_list: list, alternate_colours: bool, is_response: bool):
         super().__init__()
-        self.ctx: commands.Context = ctx
+        self.ctx = ctx
         self.page: int = 0
         self.list_of_embeds: list[discord.Embed] = list_of_embeds
         self.emoji_list: list[str] = emoji_list
@@ -116,11 +116,11 @@ class StaticPresetMenuView(discord.ui.View):
         except discord.errors.NotFound:
             pass
 
-async def generate_static_preset_menu(ctx: commands.Context, list_of_embeds: list[discord.Embed], emoji_list: list[str], message_object: discord.Message=None, alternate_colours: bool = False, is_response: bool = False):
+async def generate_static_preset_menu(ctx, list_of_embeds: list[discord.Embed], emoji_list: list[str], message_object: discord.Message=None, alternate_colours: bool = False, is_response: bool = False):
     view = StaticPresetMenuView(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=emoji_list, alternate_colours=alternate_colours, is_response=is_response)
     assert (not is_response or not message_object)
     if is_response:
-        view.message = await ctx.respond("\u200b", embed=list_of_embeds[0], view=view)#, ephemeral=True)
+        view.message = await ctx.respond("\u200b", embed=list_of_embeds[0], view=view)
         return
     if message_object:
         await message_object.edit(embed=list_of_embeds[0], view=view)
@@ -149,7 +149,8 @@ START_DISABLED = list(SCROLLING_EMOJIS.keys())[:2]  # The first page can't go ba
 
 class ScrollingMenuButton(discord.ui.Button):
     def __init__(self, emoji: str, middle: int, last: int):
-        super().__init__(style=discord.ButtonStyle.blurple, emoji=emoji, disabled=emoji in START_DISABLED)
+        disable = emoji in START_DISABLED or last == 1
+        super().__init__(style=discord.ButtonStyle.blurple, emoji=emoji, disabled=disable)
         self.middle: int = middle
         self.last: int = last
 
@@ -171,22 +172,18 @@ class ScrollingMenuButton(discord.ui.Button):
                 for button in self.view.children[-2:]:
                     button.disabled = True
 
-            if self.last <= 1:
-                # If there's only 1 item, don't let them change page.
-                for button in self.view.children[-2:]:
-                    button.disabled = True    
-            
             await self.view.update_embed(interaction)
         else:
             await interaction.response.send_message("This isn't your command!\nYou can run this command yourself to change the pages!", ephemeral=True)
         
 
 class StaticScrollingMenuView(discord.ui.View):
-    def __init__(self, ctx: commands.Context, list_of_embeds: list[discord.Embed]):
+    def __init__(self, ctx, list_of_embeds: list[discord.Embed], is_response: bool):
         super().__init__()
-        self.ctx: commands.Context = ctx
+        self.ctx = ctx
         self.list_of_embeds: list[discord.Embed] = list_of_embeds
         self.page: int = 1
+        self.is_response = is_response
 
         middle: int = int(len(list_of_embeds)/2)
         last: int = len(list_of_embeds)
@@ -198,6 +195,8 @@ class StaticScrollingMenuView(discord.ui.View):
         await interaction.response.edit_message(view=self, embed=embed)
 
     async def on_timeout(self):
+        if self.is_response:
+            return
         try:
             for button in self.children:
                 button.disabled = True
@@ -206,9 +205,12 @@ class StaticScrollingMenuView(discord.ui.View):
             pass
 
 
-async def generate_static_scrolling_menu(ctx, list_of_embeds: list[discord.Embed]):
-    view = StaticScrollingMenuView(ctx=ctx, list_of_embeds=list_of_embeds)
-    view.message = await ctx.send("\u200b", embed=list_of_embeds[0], view=view)
+async def generate_static_scrolling_menu(ctx, list_of_embeds: list[discord.Embed], is_response: bool = False):
+    view = StaticScrollingMenuView(ctx=ctx, list_of_embeds=list_of_embeds, is_response=is_response)
+    if is_response:
+        await ctx.respond("\u200b", embed=list_of_embeds[0], view=view)
+    else:
+        view.message = await ctx.send("\u200b", embed=list_of_embeds[0], view=view)
 
 ###############################################################################
 # Dynamic Scrolling Menus, flicks through a list of preset list of data,
@@ -222,9 +224,9 @@ and the function that formats each page, call it with await
 """
 
 class DynamicScrollingMenuView(discord.ui.View):
-    def __init__(self, ctx: commands.Context, data, page_generator, is_response: bool):
+    def __init__(self, ctx, data, page_generator, is_response: bool):
         super().__init__()
-        self.ctx: commands.Context = ctx
+        self.ctx = ctx
         self.data: list = data
         self.page: int = 1
         self.page_generator = page_generator
@@ -250,7 +252,7 @@ class DynamicScrollingMenuView(discord.ui.View):
             pass
 
 
-async def generate_dynamic_scrolling_menu(ctx: commands.Context, data, page_generator, is_response: bool = False):
+async def generate_dynamic_scrolling_menu(ctx, data, page_generator, is_response: bool = False):
     starting_embed = await page_generator(ctx=ctx, data=data, page=1)
     view = DynamicScrollingMenuView(ctx=ctx, data=data, page_generator=page_generator, is_response=is_response)
     if is_response:
@@ -280,9 +282,9 @@ class OptionPickerButton(discord.ui.Button['OptionPickerView']):
         
 
 class OptionPickerView(discord.ui.View):
-    def __init__(self, ctx: commands.Context, number_of_options: int):
+    def __init__(self, ctx, number_of_options: int):
         super().__init__()
-        self.ctx: commands.Context = ctx
+        self.ctx = ctx
         self.value: Optional[int] = None
 
         for label in range(1, number_of_options+1):
@@ -303,7 +305,7 @@ class OptionPickerView(discord.ui.View):
         except discord.errors.NotFound:
             pass
 
-async def generate_option_picker(ctx: commands.Context, embed: discord.Embed, number_of_options: int):    
+async def generate_option_picker(ctx, embed: discord.Embed, number_of_options: int):    
     view = OptionPickerView(ctx=ctx, number_of_options=number_of_options)
     view.message = await ctx.send("\u200b", embed=embed, view=view)
 

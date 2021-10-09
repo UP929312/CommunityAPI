@@ -14,7 +14,7 @@ class regenerate_leaderboard_cog(commands.Cog):
 
     @commands.is_owner()
     @commands.command(aliases=["rl"])
-    async def regenerate_leaderboard(self, ctx: commands.Context) -> None:        
+    async def regenerate_leaderboard(self, ctx) -> None:        
         records = get_max_current_networth("regular")
 
         for uuid, total in records:

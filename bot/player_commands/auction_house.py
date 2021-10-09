@@ -94,7 +94,7 @@ class auction_house_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="auction_house", aliases=['ah', 'auctions'])
-    async def auction_house_command(self, ctx: commands.Context, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] = None) -> None:
+    async def auction_house_command(self, ctx, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] = None) -> None:
         await self.get_auction_house(ctx, provided_username, provided_profile_name, is_response=False)
 
     @commands.slash_command(name="auctions", description="Gets auctions data about someone", guild_ids=[854749884103917599])
@@ -112,7 +112,7 @@ class auction_house_cog(commands.Cog):
 
     #=========================================================================================================================================
         
-    async def get_auction_house(self, ctx: commands.Context, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] =  None, is_response: bool = False) -> None:
+    async def get_auction_house(self, ctx, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] =  None, is_response: bool = False) -> None:
           
         player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:

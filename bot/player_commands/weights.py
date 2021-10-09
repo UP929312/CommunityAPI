@@ -49,7 +49,7 @@ class weights_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="weight", aliases=['weights', 'w', 'waits'])
-    async def weight_command(self, ctx: commands.Context, provided_username: Optional[str] = None) -> None:
+    async def weight_command(self, ctx, provided_username: Optional[str] = None) -> None:
         await self.get_weights(ctx, provided_username, is_response=False)
 
     @commands.slash_command(name="weight", description="Gets someone's profile weight", guild_ids=[854749884103917599])
@@ -64,7 +64,7 @@ class weights_cog(commands.Cog):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_weights(ctx, member.display_name, is_response=True)
 
-    async def get_weights(self, ctx: commands.Context, provided_username: Optional[str] = None, is_response: bool = False):
+    async def get_weights(self, ctx, provided_username: Optional[str] = None, is_response: bool = False):
         player_data: Optional[tuple[str, str]] = await input_to_uuid(ctx, provided_username, is_response=is_response)
         if player_data is None:
             return None

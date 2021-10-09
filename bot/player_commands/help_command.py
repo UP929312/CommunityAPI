@@ -28,8 +28,8 @@ class help_cog(commands.Cog):
     def __init__(self, bot):
         self.client = bot
 
-    @commands.command(aliases=["h", "he", "hel"])
-    async def help(self, ctx: commands.Context) -> None:
+    @commands.command(name="help", aliases=["h", "he", "hel"])
+    async def help_command(self, ctx) -> None:
         embed: discord.Embed = discord.Embed(title="Help command", colour=0x3498DB)
         for command, extras in data_dict.items():
             params, description = extras

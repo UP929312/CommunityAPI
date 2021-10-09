@@ -17,7 +17,7 @@ class kills_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="kills", aliases=['k', 'kill'])
-    async def kills_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
+    async def kills_command(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
         await self.get_kills(ctx, provided_username, provided_profile, is_response=False)
 
     @commands.slash_command(name="kills", description="Gets the entities the player has killed the most", guild_ids=[854749884103917599])
@@ -27,7 +27,7 @@ class kills_cog(commands.Cog):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_kills(ctx, username, profile, is_response=True)
 
-    async def get_kills(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
+    async def get_kills(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
         
         player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:

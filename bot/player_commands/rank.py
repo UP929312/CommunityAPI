@@ -1,5 +1,6 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 from database_manager import get_specific_networth_data, get_all_networth_data, get_sum_networth_data
@@ -45,23 +46,34 @@ class rank_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command()
-    async def rank(self, ctx: commands.Context, provided_username: Optional[str] = None) -> None:
+    @commands.command(name="rank")
+    async def rank_command(self, ctx, provided_username: Optional[str] = None) -> None:
+        await self.rank(ctx, provided_username, is_response=False)
 
-        player_data = await input_to_uuid(ctx, provided_username)
+    @commands.slash_command(name="rank", description="See how people's networth stacks up against everyone elses", guild_ids=[854749884103917599])
+    async def rank_slash(self, ctx, username: Option(str, "username:", required=True)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.rank(ctx, username, is_response=True)
+
+    #==========================================================================================================================
+
+    async def rank(self, ctx, provided_username: Optional[str] = None, is_response: bool = False) -> None:
+
+        player_data = await input_to_uuid(ctx, provided_username, is_response=is_response)
         if player_data is None:
             return None
         username, uuid = player_data
 
         user_data = get_specific_networth_data(uuid)
         if len(user_data) == 0:
-            return await error(ctx, "Error, not enough data!", "We don't know how much your profile is worth right now, please use the networth command first!")
+            return await error(ctx, "Error, not enough data!", "We don't know how much your profile is worth right now, please use the networth command first!", is_response=is_response)
         
         categories = get_percent_categories(uuid, user_data[0])
         sorted_data = sorted(categories.items(), key=lambda x: x[1], reverse=True)
 
         if len(sorted_data) < 4:
-            return await error(ctx, "Error, not enough data!", "This person's API settings are to restrictive, or they have lots of empty containers.")
+            return await error(ctx, "Error, not enough data!", "This person's API settings are to restrictive, or they have lots of empty containers.", is_response=is_response)
 
         total_networth_percentage = None, overall_percent(uuid, user_data[0])
 
@@ -77,4 +89,7 @@ class rank_cog(commands.Cog):
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
         
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-        await ctx.send(embed=embed)
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)

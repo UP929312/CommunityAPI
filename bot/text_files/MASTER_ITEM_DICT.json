@@ -33760,6 +33760,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scatha_Pet",
         "recipe": null
     },
+    "SCATHA_MONSTER": {
+        "internal_name": "SCATHA_MONSTER",
+        "name": "Scatha (Monster)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Scatha",
+        "recipe": null
+    },
     "SCAVENGER;1": {
         "internal_name": "SCAVENGER;1",
         "name": "Enchanted Book",
@@ -36825,7 +36832,17 @@
         "name": "Soul Whip",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Soul_Whip",
-        "recipe": null
+        "recipe": [
+            "",
+            "",
+            "ECTOPLASM:4",
+            "",
+            "ECTOPLASM:4",
+            "SOUL_FRAGMENT:4",
+            "ECTOPLASM:4",
+            "",
+            "SOUL_FRAGMENT:4"
+        ]
     },
     "SPECKLED_MELON": {
         "internal_name": "SPECKLED_MELON",
@@ -43643,6 +43660,13 @@
             ""
         ]
     },
+    "VOID_SEPULTURE_TRAVEL_SCROLL": {
+        "internal_name": "VOID_SEPULTURE_TRAVEL_SCROLL",
+        "name": "Travel Scroll to the Void Sepulture",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Travel_Scrolls",
+        "recipe": null
+    },
     "VOLTA": {
         "internal_name": "VOLTA",
         "name": "Volta",
@@ -45545,6 +45569,13 @@
         "name": "Worm Membrane",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "WORM_MONSTER": {
+        "internal_name": "WORM_MONSTER",
+        "name": "Worm (Monster)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Worm",
         "recipe": null
     },
     "WOUNDED": {

@@ -1,5 +1,6 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
+from discord.app import Option  # type: ignore
 from typing import Optional
 
 from parse_profile import get_profile_data
@@ -136,7 +137,7 @@ class maxer_cog(commands.Cog):
         self.client = bot
 
     @commands.command(aliases=['max'])
-    async def maxer(self, ctx: commands.Context, username: Optional[str] = None, profile: Optional[str] = None) -> None:
+    async def maxer(self, ctx, username: Optional[str] = None, profile: Optional[str] = None) -> None:
         
         player_data: Optional[dict] = await get_profile_data(ctx, username, profile)
         if player_data is None:

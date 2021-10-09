@@ -32,7 +32,7 @@ async def emoji_page(client: commands.Bot, page: int, username: str, use_emojis:
         
     return emoji_text
 #################################
-async def page_generator(ctx: commands.Context, data: list, page: int) -> discord.Embed:
+async def page_generator(ctx, data: list, page: int) -> discord.Embed:
     use_emojis, *data = data  # This is a janky solution
     client: commands.Bot = ctx.bot
     embed: discord.Embed = discord.Embed(colour=0x3498DB)
@@ -61,18 +61,18 @@ class leaderboard_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="leaderboard", aliases=["top", "l"])
-    async def leaderboard_command(self, ctx: commands.Context, provided_profile_type: Optional[str] = "regular") -> None:
-        await self.get_leaderboard(ctx, provided_profile_type, False)
+    async def leaderboard_command(self, ctx, provided_profile_type: Optional[str] = "regular") -> None:
+        await self.leaderboard(ctx, provided_profile_type, False)
 
     @commands.slash_command(name="leaderboard", description="Gets the top Skyblock players", guild_ids=[854749884103917599])
     async def leaderboard_slash(self, ctx, profile_type: Option(str, "profile_type", choices=['regular', 'ironman'], required=False, default="regular")):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
-        await self.get_leaderboard(ctx, profile_type, is_response=True)
+        await self.leaderboard(ctx, profile_type, is_response=True)
 
     #===================================================================================================================================
 
-    async def get_leaderboard(self, ctx: commands.Context, provided_profile_type: Optional[str] = "regular", is_response: bool = False) -> None:
+    async def leaderboard(self, ctx, provided_profile_type: Optional[str] = "regular", is_response: bool = False) -> None:
         profile_type = provided_profile_type.lower()
         if profile_type not in ['regular', 'ironman']:
             return await error(ctx, "Error, invalid profile type", "Valid profile types include 'regular' or 'ironman'", is_response=is_response)
