@@ -7,7 +7,7 @@ import re
 import requests
 from datetime import datetime
 
-from utils import error, hf, format_duration, PROFILE_NAMES
+from utils import error, hf, format_duration, PROFILE_NAMES, guild_ids
 from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 
@@ -97,14 +97,14 @@ class auction_house_cog(commands.Cog):
     async def auction_house_command(self, ctx, provided_username: Optional[str] =  None, provided_profile_name: Optional[str] = None) -> None:
         await self.get_auction_house(ctx, provided_username, provided_profile_name, is_response=False)
 
-    @commands.slash_command(name="auctions", description="Gets auctions data about someone", guild_ids=[854749884103917599])
+    @commands.slash_command(name="auctions", description="Gets auctions data about someone", guild_ids=guild_ids)
     async def auction_house_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_auction_house(ctx, username, profile, is_response=True)
 
-    @commands.user_command(name="Get auction data", guild_ids = [854749884103917599])  
+    @commands.user_command(name="Get auction data", guild_ids=guild_ids)  
     async def auction_house_context_menu(self, ctx, member: discord.Member):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)

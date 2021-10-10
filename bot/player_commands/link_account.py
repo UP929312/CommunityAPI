@@ -4,17 +4,17 @@ from discord.app import Option  # type: ignore
 from typing import Optional
 
 from database_manager import *
-from utils import error
+from utils import error, guild_ids
 
 class link_account_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=["linkaccount", "link"])
+    @commands.command(name="link_account", aliases=["linkaccount", "link"])
     async def link_account_command(self, ctx, username: Optional[str] = None) -> None:
         await self.link_account(ctx, username, is_response=False)
 
-    @commands.slash_command(name="link_account", description="Links your discord account to a minecraft account", guild_ids=[854749884103917599])
+    @commands.slash_command(name="link_account", description="Links your discord account to a minecraft account", guild_ids=guild_ids)
     async def link_account_slash(self, ctx, username: Option(str, "username:", required=True)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)

@@ -5,6 +5,8 @@ from difflib import SequenceMatcher
 from datetime import datetime, timedelta
 import discord  # type: ignore
 
+guild_ids=None#[854749884103917599]
+
 # typing
 from typing import Optional, Union
 

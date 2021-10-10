@@ -7,7 +7,7 @@ import json
 import requests
 from difflib import SequenceMatcher
 
-from utils import error, similar
+from utils import error, similar, guild_ids
 
 initial_request = requests.get(f"https://api.hypixel.net/skyblock/bazaar").json()
 ITEMS = initial_request["products"].keys()
@@ -30,9 +30,20 @@ class bazaar_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="bazaar", aliases=['b', 'ba', 'baz', 'bz'])
-    async def bazaar_command(self, ctx, *, user_input: Optional[str] = None) -> None:
+    async def bazaar_command(self, ctx, *, input: Optional[str] = None) -> None:
+        await self.bazaar(ctx, input, is_response=False)
+
+    @commands.slash_command(name="bazaar", description="Gets bazaar data for a certain item", guild_ids=guild_ids)
+    async def bazaar_slash(self, ctx, input: Option(str, "input:", required=True)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.bazaar(ctx, input, is_response=True)
+
+    #=========================================================================================================================
+    
+    async def bazaar(self, ctx, user_input: Optional[str] = None, is_response: bool = False) -> None:
         if user_input is None:
-            return await error(ctx, "No item given.", "Please give the item you want to check the price of at the bazaar.")
+            return await error(ctx, "No item given.", "Please give the item you want to check the price of at the bazaar.", is_response=is_response)
 
         if user_input.startswith("e "):
             user_input = "enchanted"+user_input.removeprefix("e ")
@@ -40,7 +51,7 @@ class bazaar_cog(commands.Cog):
         closest = max(items_mapped, key=lambda _tuple: similar(_tuple[1].lower(), user_input.lower()))
         
         if similar(closest[1], user_input) < 0.5:
-            return await error(ctx, "No item with that name found at the bazaar.", "Is the item availible to purchase at the bazaar?")    
+            return await error(ctx, "No item with that name found at the bazaar.", "Is the item availible to purchase at the bazaar?", is_response=is_response)    
             
         request = requests.get(f"https://api.hypixel.net/skyblock/bazaar").json()
 
@@ -57,4 +68,7 @@ class bazaar_cog(commands.Cog):
 
         embed = discord.Embed(title=f"Bazaar pricing information for {closest[1]}", description="\n".join(list_of_strings), url=f"https://bazaartracker.com/product/{internal_name.lower()}", colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-        await ctx.send(embed=embed)
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)

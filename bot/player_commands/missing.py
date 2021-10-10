@@ -5,7 +5,7 @@ from typing import Optional
 
 import json
 
-from utils import error, PROFILE_NAMES
+from utils import error, PROFILE_NAMES, guild_ids
 from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 from extract_ids import extract_internal_names
@@ -33,9 +33,9 @@ class missing_cog(commands.Cog):
 
     @commands.command(name="missing", aliases=['missing_accessories', 'accessories', 'miss', 'm'])
     async def missing_command(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
-        await self.get_missing(ctx, provided_username, provided_profile_name, is_response=False)
+        await self.get_missing(ctx, provided_username, provided_profile, is_response=False)
 
-    @commands.slash_command(name="missing", description="Gets someone's missing auctions", guild_ids=[854749884103917599])
+    @commands.slash_command(name="missing", description="Gets someone's missing auctions", guild_ids=guild_ids)
     async def missing_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:

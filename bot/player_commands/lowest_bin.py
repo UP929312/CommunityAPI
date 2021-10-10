@@ -6,7 +6,7 @@ from typing import Optional
 import requests
 from datetime import datetime  # To convert hypixel time string to object
 
-from utils import error, hf, format_duration, smarter_find_closest
+from utils import error, hf, format_duration, smarter_find_closest, guild_ids
 from emojis import ITEM_RARITY
 from menus import generate_static_scrolling_menu
 
@@ -33,16 +33,17 @@ class lowest_bin_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-
     @commands.command(name="lowest_bin", aliases=['lb', 'bin', 'lbin'])
     async def lowest_bin_command(self, ctx, *, input: Optional[str] = None) -> None:
         await self.lowest_bin(ctx, input, is_response=False)
 
-    @commands.slash_command(name="lowest_bin", description="Gets the top 10 lowest BINs of that item on the AH", guild_ids=[854749884103917599])
+    @commands.slash_command(name="lowest_bin", description="Gets the top 10 lowest BINs of that item on the AH", guild_ids=guild_ids)
     async def lowest_bin_slash(self, ctx, input: Option(str, "input:", required=True)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.lowest_bin(ctx, input, is_response=True)
+
+    #===============================================================================================================
 
     async def lowest_bin(self, ctx, input: Optional[str] = None, is_response: bool = False) -> None:
         closest = await smarter_find_closest(ctx, input)

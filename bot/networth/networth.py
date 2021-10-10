@@ -24,21 +24,21 @@ class networth_cog(commands.Cog):
     async def networth_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
         await self.get_networth(ctx, provided_username, provided_profile_name, is_response=False)
 
-    @commands.slash_command(name="networth", description="Gets networth data about someone", guild_ids=[854749884103917599])
+    @commands.slash_command(name="networth", description="Gets networth data about someone")
     async def networth_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_networth(ctx, username, profile, is_response=True)
 
-    @commands.slash_command(name="nw", description="Alias of /networth", guild_ids=[854749884103917599])
+    @commands.slash_command(name="nw", description="Alias of /networth")
     async def alias_networth_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_networth(ctx, username, profile, is_response=True)
 
-    @commands.user_command(name="Get networth", guild_ids = [854749884103917599])  
+    @commands.user_command(name="Get networth")  
     async def networth_context_menu(self, ctx, member: discord.Member):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)

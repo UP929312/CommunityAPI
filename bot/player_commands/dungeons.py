@@ -8,7 +8,7 @@ from bisect import bisect
 
 from parse_profile import get_profile_data
 
-from utils import error, format_duration, clean, hf, PROFILE_NAMES
+from utils import error, format_duration, clean, hf, PROFILE_NAMES, guild_ids
 from emojis import DUNGEON_BOSS_EMOJIS
 from menus import generate_static_preset_menu
 
@@ -42,14 +42,14 @@ class dungeons_cog(commands.Cog):
     async def dungeons_command(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
         await self.get_dungeons(ctx, provided_username, provided_profile, is_response=False)
 
-    @commands.slash_command(name="dungeons", description="Gets dungeons data about someone", guild_ids=[854749884103917599])
+    @commands.slash_command(name="dungeons", description="Gets dungeons data about someone", guild_ids=guild_ids)
     async def dungeons_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_dungeons(ctx, username, profile, is_response=True)
 
-    @commands.user_command(name="Get dungeons data", guild_ids = [854749884103917599])  
+    @commands.user_command(name="Get dungeons data", guild_ids=guild_ids)  
     async def dungeons_context_menu(self, ctx, member: discord.Member):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)

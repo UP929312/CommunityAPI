@@ -6,7 +6,7 @@ from typing import Optional
 from database_manager import get_specific_networth_data, get_all_networth_data, get_sum_networth_data
 from emojis import PAGE_ICON_EMOJIS
 from parse_profile import input_to_uuid
-from utils import error
+from utils import error, guild_ids
 
 
 def get_percent_categories(uuid: str, user_data: dict) -> dict[str, float]:
@@ -50,8 +50,9 @@ class rank_cog(commands.Cog):
     async def rank_command(self, ctx, provided_username: Optional[str] = None) -> None:
         await self.rank(ctx, provided_username, is_response=False)
 
-    @commands.slash_command(name="rank", description="See how people's networth stacks up against everyone elses", guild_ids=[854749884103917599])
-    async def rank_slash(self, ctx, username: Option(str, "username:", required=True)):
+    @commands.slash_command(name="rank", description="See how people's networth stacks up against everyone elses", guild_ids=guild_ids)
+    async def rank_slash(self, ctx, username: Option(str, "username:", required=False)):
+        print("Here...")
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.rank(ctx, username, is_response=True)
@@ -89,6 +90,7 @@ class rank_cog(commands.Cog):
         embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
         
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
+        print(is_response)
         if is_response:
             await ctx.respond(embed=embed)
         else:

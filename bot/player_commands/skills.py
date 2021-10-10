@@ -6,7 +6,7 @@ from typing import Optional
 import requests
 from bisect import bisect
 
-from utils import error, hf
+from utils import error, hf, PROFILE_NAMES, guild_ids
 from emojis import SKILL_EMOJIS
 from parse_profile import get_profile_data
 
@@ -39,10 +39,20 @@ class skills_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=['skill'])
-    async def skills(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
+    @commands.command(name="skills", aliases=['skill'])
+    async def skills_command(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
+        await self.skills(ctx, provided_username, provided_profile_name, is_response=False)
+    
+    @commands.slash_command(name="skills", description="Gets a players skills", guild_ids=guild_ids)
+    async def skills_slash(self, ctx, username: Option(str, "username:", required=False),
+                             profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.skills(ctx, username, profile, is_response=True)
+
+    async def skills(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
         
-        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
         username = player_data["username"]
@@ -74,4 +84,7 @@ class skills_cog(commands.Cog):
             embed.add_field(name=f"{SKILL_EMOJIS[skill]} {skill.title()} ({current_level})", value=f"**{hf(amount_in)}**/{hf(next_level_requirements)}\nTotal XP: **{hf(cumulative_xp)}**\nProgress: **{progress}**", inline=True) 
 
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")        
-        await ctx.send(embed=embed)
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)

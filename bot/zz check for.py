@@ -1,6 +1,6 @@
 import os
 
-find = "safe_delete"
+find = "854749884103917599"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]
 

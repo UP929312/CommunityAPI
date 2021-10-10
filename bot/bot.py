@@ -13,7 +13,7 @@ from utils import error as error_embed
 print("1. Importing discord, json and other util packages done.")
 
 from networth.networth import networth_cog
-from networth.guild_networth import guild_networth_cog
+#from networth.guild_networth import guild_networth_cog
 
 print("2. Imported networth and guild networth done.")
 
@@ -62,12 +62,11 @@ async def on_command_error(ctx, error) -> None:
 async def on_command_completion(ctx) -> None:
     print(f"-- User {ctx.author.display_name} ({ctx.author.id}) performed `{ctx.message.content}`\n"+
           f"-- in {'DMs' if ctx.guild is None else ctx.guild.name} ({ctx.guild.id if ctx.guild is not None else 'DMs'}) - {'DMs' if ctx.guild is None else ctx.channel.name}")
-
 #====================================================
 
 print("5. Creating cogs list done.")
-all_cogs = [guild_networth_cog,]
-all_cogs.append(networth_cog)
+all_cogs = [networth_cog,]
+#all_cogs.append(guild_networth_cog)
 all_cogs.extend(player_commands)
 
 for cog in all_cogs:

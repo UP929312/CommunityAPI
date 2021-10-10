@@ -5,7 +5,7 @@ from typing import Optional
 
 from parse_profile import get_profile_data
 
-from utils import error, clean, remove_colours
+from utils import error, clean, remove_colours, guild_ids
 from extract_ids import extract_nbt_dicts
 from menus import generate_option_picker, generate_static_preset_menu
 from networth.constants import RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, ENCHANTMENTS, REGULAR_STARS, POWER_ABILITY_SCROLL, GEMS, GEMSTONE_CHAMBERS, GEMSTONE_POWER_SCROLL, REFORGE, TRANSMISSIONS, ETHERMERGE
@@ -136,16 +136,20 @@ class maxer_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=['max'])
-    async def maxer(self, ctx, username: Optional[str] = None, profile: Optional[str] = None) -> None:
+    @commands.command(name="maxer", aliases=['max'])
+    async def maxer_command(self, ctx, username: Optional[str] = None, profile: Optional[str] = None) -> None:
+        await self.maxer(ctx, username, profile, is_response=False)
+
+    #=========================================================================================================================================
+    async def maxer(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
         
-        player_data: Optional[dict] = await get_profile_data(ctx, username, profile)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
         username = player_data["username"]
 
         if "inv_contents" not in player_data:
-            return await error(ctx, "Error, API disabled!", "This command requires you to enable your API settings to work!")
+            return await error(ctx, "Error, API disabled!", "This command requires you to enable your API settings to work!", is_response=is_response)
 
         inventory_string = player_data["inv_contents"]["data"]
         inventory_decoded = extract_nbt_dicts(inventory_string)
@@ -155,7 +159,7 @@ class maxer_cog(commands.Cog):
         bows = [x for x in inventory_with_lore if "BOW" in x["display"]["Lore"][-1]]
         items = (swords+bows)[:10]
         if not items:
-            return await error(ctx, "Error, no items found", "The bot looked through your inventory and couldn't find any swords or bows, try putting some in!")
+            return await error(ctx, "Error, no items found", "The bot looked through your inventory and couldn't find any swords or bows, try putting some in!", is_response=is_response)
 
         description_list = [f"{NUMBERS[i]} {remove_colours(x['display']['Name'])}" for i, x in enumerate(items)]
         

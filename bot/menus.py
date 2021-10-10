@@ -36,8 +36,8 @@ class DynamicPresetMenuView(discord.ui.View):
         self.ctx = ctx
         self.page: str = "main"
         self.data = data
-        self.username: str = username
-        self.emoji_map: dict = emoji_map
+        self.username = username
+        self.emoji_map = emoji_map
         self.emoji_map_reversed: dict = dict((v,k) for k,v in emoji_map.items())
         self.page_generator = page_generator
 
@@ -92,12 +92,12 @@ class StaticPresetMenuButton(discord.ui.Button['StaticPresetMenuView']):
 
 
 class StaticPresetMenuView(discord.ui.View):
-    def __init__(self, ctx, list_of_embeds, emoji_list: list, alternate_colours: bool, is_response: bool):
+    def __init__(self, ctx, list_of_embeds: list[discord.Embed], emoji_list: list[str], alternate_colours: bool, is_response: bool):
         super().__init__()
         self.ctx = ctx
         self.page: int = 0
-        self.list_of_embeds: list[discord.Embed] = list_of_embeds
-        self.emoji_list: list[str] = emoji_list
+        self.list_of_embeds = list_of_embeds
+        self.emoji_list = emoji_list
         self.is_response = is_response
 
         for i, emoji in enumerate(emoji_list):
@@ -181,8 +181,8 @@ class StaticScrollingMenuView(discord.ui.View):
     def __init__(self, ctx, list_of_embeds: list[discord.Embed], is_response: bool):
         super().__init__()
         self.ctx = ctx
-        self.list_of_embeds: list[discord.Embed] = list_of_embeds
-        self.page: int = 1
+        self.list_of_embeds = list_of_embeds
+        self.page = 1
         self.is_response = is_response
 
         middle: int = int(len(list_of_embeds)/2)
@@ -224,10 +224,10 @@ and the function that formats each page, call it with await
 """
 
 class DynamicScrollingMenuView(discord.ui.View):
-    def __init__(self, ctx, data, page_generator, is_response: bool):
+    def __init__(self, ctx, data: list, page_generator, is_response: bool):
         super().__init__()
         self.ctx = ctx
-        self.data: list = data
+        self.data = data
         self.page: int = 1
         self.page_generator = page_generator
         self.is_response = is_response

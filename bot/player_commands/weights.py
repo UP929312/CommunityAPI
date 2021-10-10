@@ -5,7 +5,7 @@ from typing import Optional
 
 import requests
 
-from utils import error, hf
+from utils import error, hf, guild_ids
 from parse_profile import input_to_uuid
 from menus import generate_static_preset_menu
 
@@ -52,13 +52,13 @@ class weights_cog(commands.Cog):
     async def weight_command(self, ctx, provided_username: Optional[str] = None) -> None:
         await self.get_weights(ctx, provided_username, is_response=False)
 
-    @commands.slash_command(name="weight", description="Gets someone's profile weight", guild_ids=[854749884103917599])
+    @commands.slash_command(name="weight", description="Gets someone's profile weight", guild_ids=guild_ids)
     async def weight_slash(self, ctx, username: Option(str, "username:", required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_weights(ctx, username, is_response=True)
 
-    @commands.user_command(name="Get profile weight", guild_ids = [854749884103917599])  
+    @commands.user_command(name="Get profile weight", guild_ids=guild_ids)  
     async def weight_context_menu(self, ctx, member: discord.Member):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)

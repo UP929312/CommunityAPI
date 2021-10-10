@@ -5,7 +5,7 @@ from typing import Optional
 
 import requests  # For making the api call
 
-from utils import error, hf, smarter_find_closest
+from utils import error, hf, smarter_find_closest, guild_ids
 from emojis import MATHS_EMOJIS
      
 
@@ -18,7 +18,7 @@ class price_check_cog(commands.Cog):
     async def price_check_command(self, ctx, *, input: Optional[str] = None) -> None:
         await self.price_check(ctx, input, is_response=False)
 
-    @commands.slash_command(name="price_check", description="Gets the historic price data about an item", guild_ids=[854749884103917599])
+    @commands.slash_command(name="price_check", description="Gets the historic price data about an item", guild_ids=guild_ids)
     async def price_check_slash(self, ctx, input: Option(str, "input:", required=True)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)

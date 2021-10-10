@@ -1,6 +1,8 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
 
+from utils import guild_ids
+
 data_dict = {
     "nw":          ("[username]",   "Checks the total value of a profile for a user."),
     "ah":          ("[username]",   "Shows someone's auctions and BINs."),
@@ -30,10 +32,24 @@ class help_cog(commands.Cog):
 
     @commands.command(name="help", aliases=["h", "he", "hel"])
     async def help_command(self, ctx) -> None:
-        embed: discord.Embed = discord.Embed(title="Help command", colour=0x3498DB)
+        await self.help(ctx, is_response=False)
+
+    @commands.slash_command(name="help", description="Shows the help command", guild_ids=guild_ids)
+    async def help_slash(self, ctx):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.help(ctx, is_response=True)
+
+    #============================================================================================================================
+
+    async def help(self, ctx, is_response: bool = False) -> None:
+        embed = discord.Embed(title="Help command", colour=0x3498DB)
         for command, extras in data_dict.items():
             params, description = extras
             embed.add_field(name=f"{command} {params}", value=description, inline=False)
             
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-        await ctx.send(embed=embed)
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)

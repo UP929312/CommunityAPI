@@ -5,7 +5,7 @@ from typing import Optional
 
 import requests
 
-from utils import error, ITEMS, clean, hf, API_KEY
+from utils import error, ITEMS, clean, hf, API_KEY, PROFILE_NAMES, guild_ids
 from emojis import MINION_TIER_EMOJIS
 from parse_profile import get_profile_data
 
@@ -109,13 +109,26 @@ class minions_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(aliases=['min', 'minion'])
-    async def minions(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
+    @commands.command(name="minions", aliases=['min', 'minion'])
+    async def minions_command(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
+        await self.minions(ctx, provided_username, provided_profile_name, is_response=False)
+
+    @commands.slash_command(name="minions", description="Gets a players cheapest minions to upgrade", guild_ids=guild_ids)
+    async def minions_slash(self, ctx, username: Option(str, "username:", required=False),
+                             profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.minions(ctx, username, profile, is_response=True)
+    
+    #===================================================================================================================================
+        
+    async def minions(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
 
         ########## One: Get the right profile and username
-        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name)
+        player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
+        
         username = player_data["username"]
         ########## Two: Get all the minions from each player on that profile
         combined_data = requests.get(f"https://api.hypixel.net/skyblock/profile?key={API_KEY}&profile={player_data['profile_id']}").json()
@@ -126,7 +139,7 @@ class minions_cog(commands.Cog):
         minions = [item for sublist in all_crafted_generators for item in sublist]  # Combine all the lists
             
         if len(minions) == 0:
-            return await error(ctx, "Error, this person has never crafted a mininon before!", "Are they the right player?")
+            return await error(ctx, "Error, this person has never crafted a mininon before!", "Are they the right player?", is_response=is_response)
 
         ########## Three: Get the bazaar data + override 4 common minions
         data = requests.get(f"https://api.hypixel.net/skyblock/bazaar").json()["products"]
@@ -166,7 +179,7 @@ class minions_cog(commands.Cog):
         ordered = sorted(minion_prices.items(), key=lambda item: item[1])[:12]
 
         if len(ordered) == 0:
-            return await error(ctx, "Error, this person has maxed all minions!", "I guess just wait for the next update?")
+            return await error(ctx, "Error, this person has maxed all minions!", "I guess just wait for the next update?", is_response=is_response)
 
         ########## Six: Present in the embed
         embed = discord.Embed(colour=0x3498DB)
@@ -182,4 +195,7 @@ class minions_cog(commands.Cog):
                 price_formatted = f"Upgrade cost: {hf(int(price))}"
             embed.add_field(name=f"{MINION_TIER_EMOJIS[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price_formatted, inline=True)
 
-        await ctx.send(embed=embed)
+        if is_response:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)
