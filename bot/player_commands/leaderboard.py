@@ -3,8 +3,8 @@ from discord.ext import commands  # type: ignore
 from discord.app import Option  # type: ignore
 from typing import Optional
 
-import requests
-import json
+import requests  # For fetching the player's head
+import json  # For dumping the uuid cache
 
 from database_manager import get_max_current_networth
 from utils import hf, error, guild_ids
@@ -12,7 +12,7 @@ from utils import hf, error, guild_ids
 from menus import generate_dynamic_scrolling_menu
 
 #################################
-# For the first page (and emojis) only!
+# For the first three pages (and emojis) only!
 async def create_emoji(emoji_guild: discord.Guild, username: str) -> discord.Emoji:
     image_source = f"https://mc-heads.net/head/{username}"
     image_request = requests.get(image_source)
@@ -24,7 +24,7 @@ async def emoji_page(client: commands.Bot, page: int, username: str, use_emojis:
         emoji_guild = client.get_guild(860247551008440320)
         emoji = discord.utils.find(lambda emoji: emoji.name.lower() == username.lower(), emoji_guild.emojis)
         if emoji is None:
-            print("#"*50+f"Creating new emoji for {username}")
+            print("#"*40+f"Creating new emoji for {username}")
             new_emoji: discord.Emoji = await create_emoji(emoji_guild, username)
         emoji_text = f"{emoji or new_emoji}"
     else:
@@ -34,8 +34,8 @@ async def emoji_page(client: commands.Bot, page: int, username: str, use_emojis:
 #################################
 async def page_generator(ctx, data: list, page: int) -> discord.Embed:
     use_emojis, *data = data  # This is a janky solution
-    client: commands.Bot = ctx.bot
-    embed: discord.Embed = discord.Embed(colour=0x3498DB)
+    client = ctx.bot
+    embed = discord.Embed(colour=0x3498DB)
 
     cropped_data = data[(page-1)*10:page*10]
 

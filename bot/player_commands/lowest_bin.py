@@ -67,7 +67,7 @@ class lowest_bin_cog(commands.Cog):
             response = requests.get(f"https://sky-commands.coflnet.com/api/auctions/tag/{closest['internal_name']}/active/bin").json()
 
         if not response or (isinstance(response, dict) and "Slug" in response.keys()):
-            return await error(ctx, "Error, no items of that type could be found on the auction house!", "Try a different item instead, and if you're searching for a pet, please end your search with 'pet'.", is_response=is_response)
+            return await error(ctx, "Error, no items of that type could be found on the auction house!", "If you're searching for a pet, please end your search with 'pet', and if you're searching for an ultimate enchantment, please include `ultimate`.", is_response=is_response)
 
         list_of_embeds = []
         for page, data in enumerate(response, 1):

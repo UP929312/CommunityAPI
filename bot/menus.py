@@ -120,8 +120,7 @@ async def generate_static_preset_menu(ctx, list_of_embeds: list[discord.Embed], 
     view = StaticPresetMenuView(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=emoji_list, alternate_colours=alternate_colours, is_response=is_response)
     assert (not is_response or not message_object)
     if is_response:
-        view.message = await ctx.respond("\u200b", embed=list_of_embeds[0], view=view)
-        return
+        return await ctx.respond("\u200b", embed=list_of_embeds[0], view=view)
     if message_object:
         await message_object.edit(embed=list_of_embeds[0], view=view)
         view.message = message_object

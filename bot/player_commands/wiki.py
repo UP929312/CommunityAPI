@@ -11,8 +11,8 @@ class wiki_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="wiki", aliases=['wiki_link', 'wiki_links'])
-    async def wiki_command(self, ctx, *, user_input: Optional[str] = None) -> None:
-        await self.wiki(ctx, user_input, is_response=False)
+    async def wiki_command(self, ctx, *, item: Optional[str] = None) -> None:
+        await self.wiki(ctx, item, is_response=False)
 
     @commands.slash_command(name="wiki", description="Gets the wiki entry for an item", guild_ids=guild_ids)
     async def wiki_slash(self, ctx, item: Option(str, "item:", required=True)):

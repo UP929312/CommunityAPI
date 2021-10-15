@@ -47,7 +47,7 @@ class price_check_cog(commands.Cog):
             item_name = closest['name']
 
         if "Slug" in response.keys() or "min" not in response.keys():
-            return await error(ctx, "Error, no items of that type could be found on the auction house!", "Try a different item instead, and if you're searching for a pet, please end your search with 'pet'.", is_response=is_response)
+            return await error(ctx, "Error, no items of that type could be found on the auction house!", "If you're searching for a pet, please end your search with 'pet', and if you're searching for an ultimate enchantment, please include `ultimate`.", is_response=is_response)
 
         string = [f"{MATHS_EMOJIS['min']} Minimum: {hf(response['min'])}",
                   f"{MATHS_EMOJIS['max']} Maximum: {hf(response['max'])}",

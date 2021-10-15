@@ -5,7 +5,7 @@ from typing import Optional
 
 from parse_profile import get_profile_data
 
-from utils import error, clean, remove_colours, guild_ids
+from utils import error, clean, remove_colours, PROFILE_NAMES, guild_ids
 from extract_ids import extract_nbt_dicts
 from menus import generate_option_picker, generate_static_preset_menu
 from networth.constants import RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, ENCHANTMENTS, REGULAR_STARS, POWER_ABILITY_SCROLL, GEMS, GEMSTONE_CHAMBERS, GEMSTONE_POWER_SCROLL, REFORGE, TRANSMISSIONS, ETHERMERGE
@@ -140,6 +140,14 @@ class maxer_cog(commands.Cog):
     async def maxer_command(self, ctx, username: Optional[str] = None, profile: Optional[str] = None) -> None:
         await self.maxer(ctx, username, profile, is_response=False)
 
+    '''
+    @commands.slash_command(name="maxer", description="Find out what attributes your weapons are missing", guild_ids=guild_ids)
+    async def maxer_slash(self, ctx, username: Option(str, "username:", required=False),
+                             profile: Option(str, "profile:", choices=PROFILE_NAMES, required=False)):
+        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+            return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await self.maxer(ctx, username, profile, is_response=True)
+    '''
     #=========================================================================================================================================
     async def maxer(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
         

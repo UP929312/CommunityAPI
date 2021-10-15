@@ -11,9 +11,9 @@ def format_info(total: int, item: dict, value: dict) -> str:
     return_string = f"{reforge}{name} ➜ {hf(total)}"
     return return_string
 
-def generate_page(command_author: discord.Member, data: Any, username: str, page: str, use_guilds: bool=False) -> discord.Embed:
+def generate_page(command_author: discord.Member, data: dict, username: str, page: str, use_guilds: bool=False) -> discord.Embed:
 
-    embed: discord.Embed = discord.Embed(colour=0x3498DB)
+    embed = discord.Embed(colour=0x3498DB)
 
     # MAIN MENU
     if page == "main":
@@ -63,10 +63,7 @@ def generate_page(command_author: discord.Member, data: Any, username: str, page
         url = "https://media.discordapp.net/attachments/854829960974565396/871427090560462858/270px-BL-icon-banner-Guild_Banner_03.png" if use_guilds else f"https://api.hypixelskyblock.de/api/v1/cb/display/{username}"
         embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"{username}'s {clean(page)} Networth - {total}", url=url)
 
-    if use_guilds:
-        pass
-        #embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/854829960974565396/871427090560462858/270px-BL-icon-banner-Guild_Banner_03.png") ####################
-    else:
+    if not use_guilds:
         embed.set_thumbnail(url=f"https://cravatar.eu/helmhead/{username}")
         
     embed.set_footer(text=f" Command executed by {command_author.display_name} | Community Bot. By the community, for the community.")    

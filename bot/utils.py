@@ -5,7 +5,8 @@ from difflib import SequenceMatcher
 from datetime import datetime, timedelta
 import discord  # type: ignore
 
-guild_ids=None#[854749884103917599]
+guild_ids=[854749884103917599]
+#guild_ids=None
 
 # typing
 from typing import Optional, Union
@@ -40,7 +41,7 @@ def similar(a, b):
 # returns either "item/enchant" then the dict or enchant, or None
 async def smarter_find_closest(ctx, user_input: Optional[str], is_response: bool = False) -> tuple[Optional[str], Union[Optional[dict], Optional[str]]]:
     if user_input is None:
-        return await error(ctx, "Error, no item given!", "This command takes the name of the item you're looking for to work!")
+        return await error(ctx, "Error, no item given!", "This command takes the name of the item you're looking for to work!", is_response=is_response)
     #============================
     # Enchantments
     enchant_format = user_input.lower().replace(" ", "_").removesuffix("book")
@@ -85,7 +86,7 @@ async def smarter_find_closest(ctx, user_input: Optional[str], is_response: bool
         return "item", closest
     #=============================
     # Nothing
-    return await error(ctx, "No item, enchant or pet found with that name!", "Try to be more accurate, and if you're searching for a pet, please end your search with 'pet'.", is_response=is_response) 
+    return await error(ctx, "No item, enchant or pet found with that name!", "If you're searching for a pet, please end your search with 'pet', and if you're searching for an ultimate enchantment, please include `ultimate`.", is_response=is_response) 
 
 #=============================================================
 # Formatting numbers, datetime and timedeltas

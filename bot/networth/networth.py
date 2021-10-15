@@ -5,15 +5,12 @@ from typing import Optional
 
 import requests
 
-from utils import error, PROFILE_NAMES
+from utils import error, PROFILE_NAMES, API_KEY, guild_ids
 from menus import generate_static_preset_menu
 from database_manager import insert_profile
 from parse_profile import get_profile_data
 from networth.generate_page import generate_page
 from networth.constants import PAGES, EMOJI_LIST
-
-with open("text_files/hypixel_api_key.txt") as file:
-    API_KEY = file.read()
 
         
 class networth_cog(commands.Cog):
@@ -24,21 +21,21 @@ class networth_cog(commands.Cog):
     async def networth_command(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
         await self.get_networth(ctx, provided_username, provided_profile_name, is_response=False)
 
-    @commands.slash_command(name="networth", description="Gets networth data about someone")
+    @commands.slash_command(name="networth", description="Gets networth data about someone", guild_ids=guild_ids)
     async def networth_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_networth(ctx, username, profile, is_response=True)
 
-    @commands.slash_command(name="nw", description="Alias of /networth")
+    @commands.slash_command(name="nw", description="Alias of /networth", guild_ids=guild_ids)
     async def alias_networth_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_networth(ctx, username, profile, is_response=True)
 
-    @commands.user_command(name="Get networth")  
+    @commands.user_command(name="Get networth", guild_ids=guild_ids)  
     async def networth_context_menu(self, ctx, member: discord.Member):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
@@ -46,7 +43,7 @@ class networth_cog(commands.Cog):
 
     #================================================================================================================================
 
-    async def get_networth(self, ctx: commands.Context, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
+    async def get_networth(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
         # Convert username/linked_account/nick to profile and more 
         player_data = await get_profile_data(ctx, provided_username, provided_profile_name, return_profile_list=True, is_response=is_response)
         if player_data is None:
@@ -56,7 +53,7 @@ class networth_cog(commands.Cog):
         #=======================
         # Make the API request
         try:
-            request: requests.models.Response = requests.post(f"http://{self.client.ip_address}:8000/pages/{uuid}?profile_name={profile_name}", json=profile_data)
+            request = requests.post(f"http://{self.client.ip_address}:8000/pages/{uuid}?profile_name={profile_name}", json=profile_data)
         except Exception as e:
             print(e)
             return await error(ctx, "Error, the bot could not connect to the API", "This could be because the API is down for maintenance, because it's restarting, or because there are issues. Try again later.", is_response)

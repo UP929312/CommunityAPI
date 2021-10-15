@@ -38,7 +38,7 @@ class link_account_cog(commands.Cog):
         self.client.linked_accounts[f"{ctx.author.id}"] = username        
 
         embed = discord.Embed(title=f"Your linked account for Community Bot has been updated.", description=f"{ctx.author.display_name} has updated their linked account for community bot, it's now `{username}`", colour=0xe67e22)
-        embed.set_footer(text=f"Use {ctx.prefix}link_account to change the account linked to Community Bot")
+        embed.set_footer(text=f"Use {'/' if is_response else ctx.prefix}link_account to change the account linked to Community Bot")
         if is_response:
             await ctx.respond(embed=embed)
         else:

@@ -14,7 +14,7 @@ class set_prefix_cog(commands.Cog):
     @commands.command(name="set_prefix", aliases=["setprefix"])
     async def set_prefix_command(self, ctx, prefix: Optional[str] = None) -> None:
 
-        is_response = False
+        is_response = False ###############################################
 
         print(f"------ Request made in from guild: {ctx.guild.id if ctx.guild is not None else 'DMs'}, from user: {ctx.author.id}, sometimes known as {ctx.author.display_name}\nThey set their guild/dm prefix to {prefix}")
          
@@ -30,8 +30,8 @@ class set_prefix_cog(commands.Cog):
         else:
             update_guild_prefix(ctx.guild.id, prefix)
 
-        self.client.prefixes[f"{ctx.guild.id}"] = prefix        
-
+        self.client.prefixes[f"{ctx.guild.id}"] = prefix
+        
         embed = discord.Embed(title=f"The prefix for Community Bot has been updated.", description=f"{ctx.author.display_name} has updated the prefix for community bot, it's now triggered by `{prefix}`", colour=0xe67e22)
         embed.set_footer(text=f"Use set_prefix to change the prefix for Community Bot")        
         if is_response:

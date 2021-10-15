@@ -1,6 +1,6 @@
 import os
 
-find = "854749884103917599"
+find = "ctx.prefix"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]
 

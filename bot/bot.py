@@ -59,6 +59,14 @@ async def on_command_error(ctx, error) -> None:
         return await error_embed(ctx, "Error, something failed on our side.", f"The error that occured was: {error}, if this continues, please report it to Skezza#1139,")
 
 @client.event
+async def on_interaction(interaction) -> None:
+    if interaction.type == discord.InteractionType.application_command:
+        message = ", ".join([f"'{argument['name']}: {argument['value']}'" for argument in interaction.data.get('options', {})])
+        print(f"-- User {interaction.user.display_name} ({interaction.user.id}) performed `/{interaction.data['name']} {message}`\n"+
+              f"-- in {'DMs' if interaction.guild is None else interaction.guild.name} ({'DMs' if interaction.guild is None else interaction.guild.id}) - {'DMs' if interaction.guild is None else interaction.channel.name}")
+        await client.process_application_commands(interaction)    
+    
+@client.event
 async def on_command_completion(ctx) -> None:
     print(f"-- User {ctx.author.display_name} ({ctx.author.id}) performed `{ctx.message.content}`\n"+
           f"-- in {'DMs' if ctx.guild is None else ctx.guild.name} ({ctx.guild.id if ctx.guild is not None else 'DMs'}) - {'DMs' if ctx.guild is None else ctx.channel.name}")
