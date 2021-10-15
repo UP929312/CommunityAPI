@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from fastapi_utils.tasks import repeat_every
 
 
@@ -163,6 +163,9 @@ async def test_online(request: Request):
     """
     return JSONResponse(status_code=200, content={"message": "API Operational"})
 
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return Response("favicon.ico", media_type="image/ico")
 
 if __name__ == "__main__":
     print("Done")
