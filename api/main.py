@@ -155,7 +155,6 @@ async def tree(request: Request, uuid: str, profile_data: custom_body, profile_n
 async def root(request: Request):
     return JSONResponse(status_code=200, content={"message": "Hello world!"})
 
-
 @app.get("/online")
 async def test_online(request: Request):
     """
@@ -163,9 +162,16 @@ async def test_online(request: Request):
     """
     return JSONResponse(status_code=200, content={"message": "API Operational"})
 
+# This is to just stop random bot on the internet from causing errors
 @app.get('/favicon.ico', include_in_schema=False)
 async def favicon():
     return Response("favicon.ico", media_type="image/ico")
+
+# This is to just stop random bot on the internet from causing errors
+@app.head("/", include_in_schema=False)
+async def root_head(request: Request):
+    return JSONResponse(status_code=200, content={"message": "Hello world!"})
+
 
 if __name__ == "__main__":
     print("Done")

@@ -49,9 +49,11 @@ async def on_ready() -> None:
         
 @client.event
 async def on_command_error(ctx, error) -> None:
-    if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, commands.errors.CheckFailure, discord.Forbidden)):
+    print("Here")
+    print(error, "|", str(error))
+    if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, discord.Forbidden)):  # discord.errors.Forbidden
         pass
-    elif isinstance(error, commands.CheckFailure):
+    elif isinstance(error, commands.errors.CheckFailure):
         return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
     else:
         print(f"##### ERROR, The command was: {ctx.message.content}. It was done in {ctx.guild.name}, ({ctx.guild.id}) by {ctx.author.display_name} ({ctx.author.id})")
@@ -64,7 +66,11 @@ async def on_interaction(interaction) -> None:
         message = ", ".join([f"'{argument['name']}: {argument['value']}'" for argument in interaction.data.get('options', {})])
         print(f"-- User {interaction.user.display_name} ({interaction.user.id}) performed `/{interaction.data['name']} {message}`\n"+
               f"-- in {'DMs' if interaction.guild is None else interaction.guild.name} ({'DMs' if interaction.guild is None else interaction.guild.id}) - {'DMs' if interaction.guild is None else interaction.channel.name}")
-        await client.process_application_commands(interaction)    
+        await client.process_application_commands(interaction)
+
+@client.event
+async def on_application_command_error(ctx, error):
+    print(ctx, error)
     
 @client.event
 async def on_command_completion(ctx) -> None:

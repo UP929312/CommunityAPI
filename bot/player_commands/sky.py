@@ -1,10 +1,9 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
-from discord.app import Option  # type: ignore
+from discord.commands import Option  # type: ignore
 from typing import Optional
 
 from parse_profile import input_to_uuid
-
 from utils import guild_ids
 
 class sky_cog(commands.Cog):

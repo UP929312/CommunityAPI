@@ -1,6 +1,6 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
-from discord.app import Option  # type: ignore
+from discord.commands import Option  # type: ignore
 from typing import Optional
 
 import requests  # For fetching the player's head
@@ -16,19 +16,23 @@ from menus import generate_dynamic_scrolling_menu
 async def create_emoji(emoji_guild: discord.Guild, username: str) -> discord.Emoji:
     image_source = f"https://mc-heads.net/head/{username}"
     image_request = requests.get(image_source)
+    if image_request.status_code != 200:# 503: This will sometimes return 503 for some reason, 503 Service Unavailable
+        return None
     emoji = await emoji_guild.create_custom_emoji(name=username, image=image_request.content)
     return emoji
 
 async def emoji_page(client: commands.Bot, page: int, username: str, use_emojis: bool=True) -> str:
+    emoji_text = "<:player_head:876942582444343347>"
+    
     if page in [1, 2, 3] and use_emojis:
         emoji_guild = client.get_guild(860247551008440320)
         emoji = discord.utils.find(lambda emoji: emoji.name.lower() == username.lower(), emoji_guild.emojis)
         if emoji is None:
             print("#"*40+f"Creating new emoji for {username}")
-            new_emoji: discord.Emoji = await create_emoji(emoji_guild, username)
+            new_emoji: Optional[discord.Emoji] = await create_emoji(emoji_guild, username)
+            if new_emoji is None:  # This will only run if the emoji creation has failed...
+                new_emoji = "<:player_head:876942582444343347>"
         emoji_text = f"{emoji or new_emoji}"
-    else:
-        emoji_text = "<:player_head:876942582444343347>"
         
     return emoji_text
 #################################

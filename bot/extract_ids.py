@@ -5,7 +5,7 @@ from struct import unpack
 
 from typing import Union
 
-def parse_container(raw: str):
+def parse_container(raw: str) -> list:
     """
     This will decompress and decode the base64 data that Hypixel returns from the API.
     This will then get parsed into one of the other functions below

@@ -1,14 +1,18 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
-from discord.app import Option  # type: ignore
+from discord.commands import Option  # type: ignore
 from typing import Optional
 
 import json
+import requests
 
-from utils import error, PROFILE_NAMES, guild_ids
+from utils import error, PROFILE_NAMES, hf, guild_ids
+from menus import generate_static_preset_menu
 from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 from extract_ids import extract_internal_names
+
+RARITY_LIST = list(ITEM_RARITY.keys())
 
 # Create the master list!
 from text_files.accessory_list import talisman_upgrades
@@ -26,6 +30,8 @@ MASTER_ACCESSORIES = []
 for accessory in ACCESSORIES:
     if accessory["internal_name"] not in talisman_upgrades.keys():
         MASTER_ACCESSORIES.append(accessory)
+
+EMOJI_LIST = ["<:winning_bid:856491169750712320>", "<:epic:863390433526022165>", "<:by_price:900069290143797299>"]
 
 class missing_cog(commands.Cog):
     def __init__(self, bot) -> None:
@@ -64,31 +70,42 @@ class missing_cog(commands.Cog):
 
         if not missing:
             return await error(ctx, f"Completion!", f"{username} already has all accessories!", is_response=is_response)
-        sorted_accessories = sorted(missing, key=lambda x: x["name"])[:42]
 
-        extra = "" if len(missing) <= 36 else f", showing the first {len(sorted_accessories)}"
-        embed = discord.Embed(title=f"Missing {len(missing)} accessories for {username}{extra}", colour=0x3498DB)
+        lowest_bin_data = requests.get("http://moulberry.codes/lowestbin.json").json()
 
-        def make_embed(embed, acc_list):
-            text = ""
-            for item in acc_list:
-                internal_name, name, rarity, wiki_link, _ = item.values()
-                wiki_link = "<Doesn't exist>" if not wiki_link else f"[wiki]({wiki_link})"
-                text += f"{ITEM_RARITY[rarity]} {name}\nLink: {wiki_link}\n"
+        for accessory in missing:
+            accessory["price"] = lowest_bin_data.get(accessory["internal_name"], 9999999999)
+
+        list_of_embeds = []
+
+        for page, parameter in zip(["alphabetically", "by rarity", "by price"], ["name", "rarity", "price"]):
+            sort_func = lambda x: x[parameter] if parameter != "rarity" else RARITY_LIST.index(x["rarity"])
+            sorted_accessories = sorted(missing, key=sort_func)[:42]
                             
-            embed.add_field(name=f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}", value=text, inline=True)
-            
-        if len(sorted_accessories) < 6:  # For people with only a few missing
-            make_embed(embed, sorted_accessories)
-        else:
-            list_length = int(len(sorted_accessories)/6)
-            for row in range(6):
-                row_accessories = sorted_accessories[row*list_length:(row+1)*list_length]  # Get the first group out of 6
-                make_embed(embed, row_accessories)
+            extra = "" if len(missing) <= 36 else f", showing the first {len(sorted_accessories)}"
+            embed = discord.Embed(title=f"Missing {len(missing)} accessories for {username}{extra}, sorted: {page}", colour=0x3498DB)
 
-        embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
-        if is_response:
-            await ctx.respond(embed=embed)
-        else:
-            await ctx.send(embed=embed)
+            def make_embed(embed, acc_list, num):
+                text = ""
+                for item in acc_list:
+                    wiki_link = "<Unknown>" if not item['wiki_link'] else f"[wiki]({item['wiki_link']})"
+                    price = hf(item['price']) if item['price'] != 9999999999 else 'N/A'
+                    text += f"{ITEM_RARITY[item['rarity']]} {item['name']}\n➜ {price} coins, link: {wiki_link}\n"
+
+                embed_title = f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}" if parameter == "name" else f"Group {num}"
+                embed.add_field(name=f"{embed_title}", value=text, inline=True)
+                
+            if len(sorted_accessories) < 6:  # For people with only a few missing
+                make_embed(embed, sorted_accessories, 1)
+            else:
+                list_length = int(len(sorted_accessories)/6)
+                for row in range(6):
+                    row_accessories = sorted_accessories[row*list_length:(row+1)*list_length]  # Get the first group out of 6
+                    make_embed(embed, row_accessories, row+1)
+
+            embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
+
+            list_of_embeds.append(embed)
+        
+        await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, is_response=is_response)
 

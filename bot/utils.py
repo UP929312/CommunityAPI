@@ -116,8 +116,8 @@ def hf(num: Union[float, str, int]) -> str:
 
     rounded = round(num, 3 - int(log10(num)) - 1)
     suffix = ends[int(log10(rounded)/3)]
-    new_num = rounded / letter_values[suffix]
-    return str(new_num)+suffix
+    new_num = str(rounded / letter_values[suffix]).removesuffix(".0")
+    return new_num+suffix
 
 def format_duration(duration, include_millis=False):
     """

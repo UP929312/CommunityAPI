@@ -1,13 +1,13 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
-from discord.app import Option  # type: ignore
+from discord.commands import Option  # type: ignore
 from typing import Optional
 
 from parse_profile import get_profile_data
 
 from utils import error, clean, remove_colours, PROFILE_NAMES, guild_ids
 from extract_ids import extract_nbt_dicts
-from menus import generate_option_picker, generate_static_preset_menu
+from menus import generate_option_picker, generate_static_preset_changing_menu
 from networth.constants import RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, ENCHANTMENTS, REGULAR_STARS, POWER_ABILITY_SCROLL, GEMS, GEMSTONE_CHAMBERS, GEMSTONE_POWER_SCROLL, REFORGE, TRANSMISSIONS, ETHERMERGE
 
 NUMBERS = [":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:", "<:ten:876112518072909864>"]
@@ -288,4 +288,4 @@ class maxer_cog(commands.Cog):
 
             list_of_embeds.append(embed)
         ########################################################################################################
-        await generate_static_preset_menu(ctx, list_of_embeds, EMOJI_LIST, message_object=view_object.message)
+        await generate_static_preset_changing_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, message_object=view_object.message)

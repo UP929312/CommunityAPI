@@ -112,13 +112,13 @@ NPC_ITEMS = {
         "SCARECROW": 120,
         "WEAPON_RACK": 100,
         "ARMOR_SHOWCASE": 100,
-        "FANCY_FLOWER_POT": 150,
+        "FLOWER_POT_ITEM": 150,
         "ENCHANTING_PLUS": 10000,
         "CRAFTING_PLUS": 10000,
         "FURNACE_PLUS": 15000,
         "WOOD_CHEST": 15000,
         "FIREPLACE": 10000,
-        "CHEST_SHELVES": 15000
+        "CHEST_SHELVES": 15000,
      },
     "Sherry": {
         "WINTER_ROD": 40000,

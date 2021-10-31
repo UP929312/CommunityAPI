@@ -3,15 +3,41 @@ from discord.ext import commands  # type: ignore
 
 from utils import guild_ids
 
+'''
+def check():      
+    async def predicate(ctx):
+        print((ctx.channel.permissions_for(ctx.guild.me)).send_messages)
+        return (ctx.channel.permissions_for(ctx.guild.me)).send_messages
+    
+    return commands.check(predicate)
+#'''
+'''
+def custom_check():
+    print("Check!")
+    print((ctx.channel.permissions_for(ctx.guild.me)).send_messages)
+    return (ctx.channel.permissions_for(ctx.guild.me)).send_messages
+#'''
+
+'''
+def allowed_channels(allowed_channels_list):      
+    async def predicate(ctx):
+        return ctx.guild and (ctx.channel.id in allowed_channels_list)
+    return commands.check(predicate)
+
+@allowed_channels([PREFIX_COMMAND])
+'''
+
 class invite_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
     @commands.command(name="invite")
     async def invite_command(self, ctx) -> None:
-        await self.invite(ctx, is_reponse=False)
+        await self.invite(ctx, is_response=False)
 
-    @commands.slash_command(name="invite", description="Shows info on inviting the bot", guild_ids=guild_ids)
+    #@check()
+    #@commands.has_permissions(send_messages=True)
+    @commands.slash_command(name="invite", description="Shows info on inviting the bot", guild_ids=guild_ids)#, checks=[check,])
     async def invite_slash(self, ctx):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)

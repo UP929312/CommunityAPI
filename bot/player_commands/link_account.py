@@ -1,6 +1,6 @@
 import discord  # type: ignore
 from discord.ext import commands  # type: ignore
-from discord.app import Option  # type: ignore
+from discord.commands import Option  # type: ignore
 from typing import Optional
 
 from database_manager import *
