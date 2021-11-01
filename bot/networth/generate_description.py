@@ -30,18 +30,18 @@ def generate_item_description(v: dict) -> str:
         power_ability_scroll_item, power_ability_scroll_value = list(v["power_ability_scroll"].items())[0]
         elems.append(f"{POWER_ABILITY_SCROLL} - Power scroll: ({clean(power_ability_scroll_item)} - {hf(power_ability_scroll_value)})") 
     if "gems" in v:
-        elems.append(f"{GEMS} - Gems: {hf(sum(v['gems'].values()))}")
-    if "gemstone_chambers" in v:
+        elems.append(f"{GEMS} - Gems: +{hf(sum(v['gems'].values()))}")
+    if "gemstone_chambers" in v:   # This might be broken?
         elems.append(f"{GEMSTONE_CHAMBERS} - Gemstone chambers: {hf(v['gemstone_chambers'])}")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
         reforge_item, reforge_item_cost = list(v['reforge']['item'].items())[0]
-        elems.append(f"{REFORGE} - Reforge: ({clean(reforge_item)} - {reforge_item_cost})")
+        elems.append(f"{REFORGE} - Reforge: ({clean(reforge_item)} - {hf(reforge_item_cost)})")
     if "tuned_transmission" in v:
-        elems.append(f"{TRANSMISSIONS} - Tuned transmissions: {hf(v['tuned_transmission'])}")
+        elems.append(f"{TRANSMISSIONS} - Tuned transmissions: +{hf(v['tuned_transmission'])}")
     if "ethermerge" in v:
-        elems.append(f"{ETHERMERGE} - Ethermerge: {hf(v['ethermerge'])}")
+        elems.append(f"{ETHERMERGE} - Ethermerge: +{hf(v['ethermerge'])}")
     if "winning_bid" in v:
-        elems.append(f"{WINNING_BID} - Winning bid: {hf(v['winning_bid'])}")
+        elems.append(f"{WINNING_BID} - Winning bid: +{hf(v['winning_bid'])}")
         
     return "\n".join(elems)
 

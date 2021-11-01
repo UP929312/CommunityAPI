@@ -56,7 +56,7 @@ class StaticPresetMenuView(discord.ui.View):
             for button in self.children:
                 button.disabled = True
             await self.message.edit(view=self)
-        except discord.errors.NotFound:
+        except discord.NotFound:
             pass
 
 async def generate_static_preset_menu(ctx, list_of_embeds: list[discord.Embed], emoji_list: list[str], alternate_colours: bool = False, is_response: bool = False):
@@ -146,7 +146,7 @@ class StaticScrollingMenuView(discord.ui.View):
             for button in self.children:
                 button.disabled = True
             await self.message.edit(view=self)
-        except discord.errors.NotFound:
+        except discord.NotFound:
             pass
 
 
@@ -193,7 +193,7 @@ class DynamicScrollingMenuView(discord.ui.View):
             for button in self.children:
                 button.disabled = True
             await self.message.edit(view=self)
-        except discord.errors.NotFound:
+        except discord.NotFound:
             pass
 
 
@@ -249,7 +249,7 @@ class OptionPickerView(discord.ui.View):
             for button in self.children:
                 button.disabled = True
             await self.message.edit(view=self)
-        except discord.errors.NotFound:
+        except discord.NotFound:
             pass
 
 async def generate_option_picker(ctx, embed: discord.Embed, number_of_options: int):    
