@@ -34,6 +34,13 @@ async def error(ctx, title: str, description: str, is_response: bool = False) ->
     else:
         await ctx.send(embed=embed)
 #=============================================================
+async def autocomplete_display_name(ctx):
+    print("Here")
+    print(ctx)
+    return "foo", "bar", "baz", ctx.interaction.user.name
+
+#async def autocomplete(ctx):
+#    return ("foo", "bar", "baz", ctx.interaction.user.name)
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()

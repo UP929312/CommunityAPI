@@ -31,8 +31,8 @@ def generate_item_description(v: dict) -> str:
         elems.append(f"{POWER_ABILITY_SCROLL} - Power scroll: ({clean(power_ability_scroll_item)} - {hf(power_ability_scroll_value)})") 
     if "gems" in v:
         elems.append(f"{GEMS} - Gems: +{hf(sum(v['gems'].values()))}")
-    if "gemstone_chambers" in v:   # This might be broken?
-        elems.append(f"{GEMSTONE_CHAMBERS} - Gemstone chambers: {hf(v['gemstone_chambers'])}")
+    if "gemstone_chambers" in v:
+        elems.append(f"{GEMSTONE_CHAMBERS} - Gemstone chambers: +{hf(v['gemstone_chambers'])}")
     if "reforge" in v and v["reforge"]["apply_cost"] != 0:
         reforge_item, reforge_item_cost = list(v['reforge']['item'].items())[0]
         elems.append(f"{REFORGE} - Reforge: ({clean(reforge_item)} - {hf(reforge_item_cost)})")

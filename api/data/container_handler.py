@@ -37,7 +37,7 @@ def get_data(profile_data, uuid, profile_name):
 
 
 def get_containers(data, profile_data, uuid, profile_name):
-    # Parse/Grab data    
+    # Parse/Grab data
     player_data, other_data = get_data(profile_data, uuid, profile_name)
     
     if player_data is None:

@@ -12,8 +12,6 @@ from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
 
 
-
-
 names = ["Expired/Ended auctions", "Buy It Now", "Auctions"]
 
 with open('text_files/hypixel_api_key.txt') as file:

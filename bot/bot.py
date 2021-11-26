@@ -3,10 +3,6 @@ from discord.ext import commands  # type: ignore
 
 import json  # For loading the uuid conversion cache
 
-intents: discord.Intents = discord.Intents(guild_reactions=False, members=False, invites=False, voice_states=False, typing=False,
-                                           dm_reactions=False, bans=False, presences=False, integrations=False, webhooks=False,
-                                           messages=True, guilds=True, emojis=True)
-
 from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
 from utils import error as error_embed
 
@@ -31,7 +27,9 @@ def get_prefix(bot: commands.Bot, msg: discord.Message) -> str:
     return "!"
 #'''
 
-client: commands.Bot = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
+intents = discord.Intents(messages=True, guilds=True, emojis=True)
+
+client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = dict(load_prefixes())
 client.linked_accounts = dict(load_linked_accounts())
 
@@ -54,7 +52,7 @@ async def on_command_error(ctx, error) -> None:
     if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, discord.Forbidden)):  # discord.errors.Forbidden
         pass
     elif isinstance(error, commands.errors.CheckFailure):
-        return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        return await ctx.respond("You're not allowed to do that here. Try a bot channel instead?", ephemeral=True)
     else:
         print(f"##### ERROR, The command was: {ctx.message.content}. It was done in {ctx.guild.name}, ({ctx.guild.id}) by {ctx.author.display_name} ({ctx.author.id})")
         print(str(error))
@@ -71,7 +69,8 @@ async def on_interaction(interaction) -> None:
 @client.event
 async def on_application_command_error(ctx, error):
     print(ctx, error)
-    
+
+# For text commands
 @client.event
 async def on_command_completion(ctx) -> None:
     print(f"-- User {ctx.author.display_name} ({ctx.author.id}) performed `{ctx.message.content}`\n"+

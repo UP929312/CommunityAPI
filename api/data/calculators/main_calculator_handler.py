@@ -9,7 +9,7 @@ def calculate_container(data, elements, print_prices=False):
 
         price = Price(element)
 
-        if isinstance(element, dict) and 'candyUsed' in element.keys() and 'active' in element.keys():
+        if isinstance(element, dict) and ('candyUsed' in element.keys() or 'active' in element.keys()):
             price_object = calculate_pet(data, price, print_prices)
 
         elif element.internal_name == "ENCHANTED_BOOK":

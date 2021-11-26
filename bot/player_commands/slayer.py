@@ -37,7 +37,7 @@ class slayer_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
         
-    @commands.command(name="slayer")
+    @commands.command(name="slayer", aliases=['slayers', 'slay'])
     async def slayer_command(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None) -> None:
         await self.get_slayer(ctx, provided_username, provided_profile_name, is_response=False)
     

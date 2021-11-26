@@ -14,10 +14,10 @@ class guild_print_cog(commands.Cog):
         self.client = bot
 
     @commands.command(name="guild_print")
-    async def guild_print_command(self, ctx, skill: str=None, guild: str=None) -> None:
+    async def guild_print_command(self, ctx, skill: str=None, guild: str="5d2e5aa477ce8415c3fd00e8") -> None:
 
-        print("Starting a guild print")
-        if skill.lower() not in ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming', 'carpentry', 'runecrafting']:
+        print("Starting a guild print", skill)
+        if skill is None or skill.lower() not in ['farming', 'mining', 'combat', 'foraging', 'fishing', 'enchanting', 'alchemy', 'taming', 'carpentry', 'runecrafting', 'catacombs']:
             return await error(ctx, "Error, invalid skill!", "This command takes a skill and a guild id to work")
 
         try:
@@ -36,13 +36,15 @@ class guild_print_cog(commands.Cog):
             print(f"Username: {username}, uuid: {uuid}")
             profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
             if not profile_list["profiles"]:
-                #print("Skipping", username, uuid)
                 continue
             valid_profiles: list[dict] = [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]
             profile_data = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
             profile = profile_data["members"][uuid]
             # Extract the right skill
-            skill_value = profile.get(f"experience_skill_{skill}", "HIDDEN")
+            if skill != "catacombs":
+                skill_value = profile.get(f"experience_skill_{skill}", "HIDDEN")
+            else:
+                skill_value = profile["dungeons"]["dungeon_types"]["catacombs"].get('experience', 0)
             nice_num = f"{int(skill_value):,}" if skill_value != "HIDDEN" else skill_value
             list_of_strings.append(f"**{username}**: {nice_num}")
      

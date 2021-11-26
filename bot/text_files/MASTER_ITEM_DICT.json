@@ -12,7 +12,7 @@
             "REDSTONE_GENERATOR_8:1",
             "ENCHANTED_COBBLESTONE:10",
             "ENCHANTED_COBBLESTONE:10",
-            "AATROX_PHONE_NUMBER:1",
+            "ENCHANTED_IRON_BLOCK:1",
             "ENCHANTED_COBBLESTONE:10"
         ]
     },
@@ -992,7 +992,7 @@
         "internal_name": "ARROW",
         "name": "Flint Arrow",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flint_Arrow",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
         "recipe": [
             "FLINT:1",
             "",
@@ -2591,6 +2591,13 @@
         "name": "§7[Lvl {LVL}] Black Cat",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Black_Cat_Pet",
+        "recipe": null
+    },
+    "BLACK_CAT_PLUSH": {
+        "internal_name": "BLACK_CAT_PLUSH",
+        "name": "Black Cat Plush",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
     },
     "BLAST_PROTECTION;1": {
@@ -4270,6 +4277,13 @@
     "CANDLE_ARCH": {
         "internal_name": "CANDLE_ARCH",
         "name": "Candle Arch",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
+        "recipe": null
+    },
+    "CANDLE_TABLE": {
+        "internal_name": "CANDLE_TABLE",
+        "name": "Candle Table",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
@@ -7770,6 +7784,13 @@
             ""
         ]
     },
+    "CRYSTAL_HOLLOWS_TRAVEL_SCROLL": {
+        "internal_name": "CRYSTAL_HOLLOWS_TRAVEL_SCROLL",
+        "name": "Travel Scroll to the Crystal Hollows",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Travel_Scrolls",
+        "recipe": null
+    },
     "CRYSTAL_LEGGINGS": {
         "internal_name": "CRYSTAL_LEGGINGS",
         "name": "Crystal Leggings",
@@ -7844,6 +7865,13 @@
         "name": "Enchanted Book",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "CYCLOPS_PERSONALITY": {
+        "internal_name": "CYCLOPS_PERSONALITY",
+        "name": "Cyclops Minion Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Minion_Skin",
         "recipe": null
     },
     "DAEDALUS_AXE": {
@@ -8370,6 +8398,13 @@
         "name": "Death Bow",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Death_Bow",
+        "recipe": null
+    },
+    "DECAYED_BAT": {
+        "internal_name": "DECAYED_BAT",
+        "name": "Decayed Bat",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Decayed_Bat",
         "recipe": null
     },
     "DECENT_BOW": {
@@ -9499,6 +9534,13 @@
         "name": "Wizard's Crystal",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wizard's_Crystal",
+        "recipe": null
+    },
+    "DUST_THE_FISH": {
+        "internal_name": "DUST_THE_FISH",
+        "name": "Dust the Fish",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dust_the_Fish",
         "recipe": null
     },
     "DWARF_TURTLE_SHELMET": {
@@ -14991,7 +15033,7 @@
     },
     "FLAWLESS_SAPPHIRE_GEM": {
         "internal_name": "FLAWLESS_SAPPHIRE_GEM",
-        "name": "✎ Flawless Sapphire Gemston",
+        "name": "✎ Flawless Sapphire Gemstone",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gemstone",
         "recipe": [
@@ -15127,6 +15169,23 @@
             "ENCHANTED_POPPY:1",
             "ENCHANTED_POPPY:1",
             "ENCHANTED_POPPY:1"
+        ]
+    },
+    "FLOWER_GENERATOR_12": {
+        "internal_name": "FLOWER_GENERATOR_12",
+        "name": "Flower Minion XII",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flower_Minion",
+        "recipe": [
+            "ENCHANTED_POPPY:2",
+            "ENCHANTED_POPPY:2",
+            "ENCHANTED_POPPY:2",
+            "ENCHANTED_POPPY:2",
+            "FLOWER_GENERATOR_11:1",
+            "ENCHANTED_POPPY:2",
+            "ENCHANTED_POPPY:2",
+            "ENCHANTED_POPPY:2",
+            "ENCHANTED_POPPY:2"
         ]
     },
     "FLOWER_GENERATOR_2": {
@@ -15311,7 +15370,17 @@
         "name": "Flycatcher",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flycatcher",
-        "recipe": null
+        "recipe": [
+            "",
+            "TARANTULA_SILK:17",
+            "",
+            "TARANTULA_SILK:17",
+            "FLY_SWATTER:1",
+            "TARANTULA_SILK:17",
+            "TARANTULA_SILK:17",
+            "TARANTULA_SILK:17",
+            "TARANTULA_SILK:17"
+        ]
     },
     "FLYING_BATS": {
         "internal_name": "FLYING_BATS",
@@ -15470,6 +15539,13 @@
             "",
             ""
         ]
+    },
+    "FORGE_TRAVEL_SCROLL": {
+        "internal_name": "FORGE_TRAVEL_SCROLL",
+        "name": "Travel Scroll to the Dwarven Forge",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Travel_Scrolls",
+        "recipe": null
     },
     "FORTUNE;1": {
         "internal_name": "FORTUNE;1",
@@ -15746,6 +15822,13 @@
             "STICK:1",
             ""
         ]
+    },
+    "FROZEN_SPIDER": {
+        "internal_name": "FROZEN_SPIDER",
+        "name": "Frozen Spider",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Frozen_Spider",
+        "recipe": null
     },
     "FROZEN_STEVE_SC": {
         "internal_name": "FROZEN_STEVE_SC",
@@ -16873,7 +16956,7 @@
     },
     "GOLDEN_DRAGON;4": {
         "internal_name": "GOLDEN_DRAGON;4",
-        "name": "§7[Lvl 1➡200] Golden Dragon",
+        "name": "§7[Lvl {LVL}] Golden Dragon",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Golden_Dragon_Pet",
         "recipe": null
@@ -17911,6 +17994,41 @@
             "ENCHANTED_CARROT:40"
         ]
     },
+    "GREAT_SPOOK_BOOTS": {
+        "internal_name": "GREAT_SPOOK_BOOTS",
+        "name": "Great Spook Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Great_Spook_Armor",
+        "recipe": null
+    },
+    "GREAT_SPOOK_CHESTPLATE": {
+        "internal_name": "GREAT_SPOOK_CHESTPLATE",
+        "name": "Great Spook Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Great_Spook_Armor",
+        "recipe": null
+    },
+    "GREAT_SPOOK_HELMET": {
+        "internal_name": "GREAT_SPOOK_HELMET",
+        "name": "Great Spook Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Great_Spook_Armor",
+        "recipe": null
+    },
+    "GREAT_SPOOK_LEGGINGS": {
+        "internal_name": "GREAT_SPOOK_LEGGINGS",
+        "name": "Great Spook Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Great_Spook_Armor",
+        "recipe": null
+    },
+    "GREAT_SPOOK_STAFF": {
+        "internal_name": "GREAT_SPOOK_STAFF",
+        "name": "Great Spook Staff",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Great_Spook_Staff",
+        "recipe": null
+    },
     "GREAT_WHITE_SHARK_SC": {
         "internal_name": "GREAT_WHITE_SHARK_SC",
         "name": "§3Great White Shark (Sea Creature)",
@@ -18492,6 +18610,13 @@
             "CONCENTRATED_STONE:2",
             "CONCENTRATED_STONE:2"
         ]
+    },
+    "HARD_STONE_GENERATOR_12": {
+        "internal_name": "HARD_STONE_GENERATOR_12",
+        "name": "Hard Stone Minion XII",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Hard_Stone_Minion",
+        "recipe": null
     },
     "HARD_STONE_GENERATOR_2": {
         "internal_name": "HARD_STONE_GENERATOR_2",
@@ -25065,6 +25190,23 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Minion_Skin",
         "recipe": null
     },
+    "MUSEUM_TRAVEL_SCROLL": {
+        "internal_name": "MUSEUM_TRAVEL_SCROLL",
+        "name": "Travel Scroll to Museum",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Travel_Scrolls",
+        "recipe": [
+            "ENCHANTED_BONE:16",
+            "ENCHANTED_BONE:16",
+            "ENCHANTED_BONE:16",
+            "ENCHANTED_BONE:16",
+            "ENCHANTED_ENDER_PEARL:16",
+            "ENCHANTED_BONE:16",
+            "ENCHANTED_BONE:16",
+            "ENCHANTED_BONE:16",
+            "ENCHANTED_BONE:16"
+        ]
+    },
     "MUSHROOM_BOOTS": {
         "internal_name": "MUSHROOM_BOOTS",
         "name": "Mushroom Boots",
@@ -25505,6 +25647,13 @@
         "name": "Netherrack",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "NETHER_ARTIFACT": {
+        "internal_name": "NETHER_ARTIFACT",
+        "name": "Nether Artifact",
+        "rarity": "EPIC",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Nether_Artifact",
         "recipe": null
     },
     "NETHER_BIOME_STICK": {
@@ -28218,6 +28367,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Items",
         "recipe": null
     },
+    "PET_SKIN_BAT_VAMPIRE": {
+        "internal_name": "PET_SKIN_BAT_VAMPIRE",
+        "name": "Vampire Bat Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "PET_SKIN_BLACK_CAT_IVORY": {
         "internal_name": "PET_SKIN_BLACK_CAT_IVORY",
         "name": "Ivory Black Cat Skin",
@@ -28386,6 +28542,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
+    "PET_SKIN_PARROT_GOLD_MACAW": {
+        "internal_name": "PET_SKIN_PARROT_GOLD_MACAW",
+        "name": "Gold Macaw Parrot Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "PET_SKIN_RABBIT": {
         "internal_name": "PET_SKIN_RABBIT",
         "name": "Pretty Rabbit Skin",
@@ -28538,6 +28701,13 @@
         "name": "Glow Squid Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_TIGER_SABER_TOOTH": {
+        "internal_name": "PET_SKIN_TIGER_SABER_TOOTH",
+        "name": "Saber-Tooth Tiger Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Skin",
         "recipe": null
     },
     "PET_SKIN_TIGER_TWILIGHT": {
@@ -29146,6 +29316,23 @@
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
+    },
+    "POISONED_CANDY": {
+        "internal_name": "POISONED_CANDY",
+        "name": "Poisoned Candy",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Poisoned_Candy",
+        "recipe": [
+            "TUTTI_FRUTTI_POISON:1",
+            "ENCHANTED_POISONOUS_POTATO:1",
+            "TUTTI_FRUTTI_POISON:1",
+            "ENCHANTED_POISONOUS_POTATO:1",
+            "SIMPLE_CARROT_CANDY:1",
+            "ENCHANTED_POISONOUS_POTATO:1",
+            "TUTTI_FRUTTI_POISON:1",
+            "ENCHANTED_POISONOUS_POTATO:1",
+            "TUTTI_FRUTTI_POISON:1"
+        ]
     },
     "POISONED_WATER_WORM_SC": {
         "internal_name": "POISONED_WATER_WORM_SC",
@@ -33649,6 +33836,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
     },
+    "SCARECROW_PERSONALITY": {
+        "internal_name": "SCARECROW_PERSONALITY",
+        "name": "Scarecrow Minion Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Minion_Skin",
+        "recipe": null
+    },
     "SCARECROW_SC": {
         "internal_name": "SCARECROW_SC",
         "name": "§3Scarecrow (Sea Creature)",
@@ -35516,6 +35710,13 @@
         "name": "Skull Minion Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Minion_Skin",
+        "recipe": null
+    },
+    "SKULL_VASE": {
+        "internal_name": "SKULL_VASE",
+        "name": "Skull Vase",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
     },
     "SKYBLOCK_BENCH": {
@@ -40524,6 +40725,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Sweet_Axe",
         "recipe": null
     },
+    "SWEET_FLESH": {
+        "internal_name": "SWEET_FLESH",
+        "name": "Sweet Flesh",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Sweet_Flesh",
+        "recipe": null
+    },
     "SWORD_OF_REVELATIONS": {
         "internal_name": "SWORD_OF_REVELATIONS",
         "name": "Sword of Revelations",
@@ -44146,6 +44354,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Werewolf_Skin",
         "recipe": null
     },
+    "WET_PUMPKIN": {
+        "internal_name": "WET_PUMPKIN",
+        "name": "Wet Pumpkin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wet_Pumpkin",
+        "recipe": null
+    },
     "WHALE_BAIT": {
         "internal_name": "WHALE_BAIT",
         "name": "Whale Bait",
@@ -44578,6 +44793,13 @@
         "name": "Wishing Compass",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wishing_Compass",
+        "recipe": null
+    },
+    "WITCH_BROOMSTICK": {
+        "internal_name": "WITCH_BROOMSTICK",
+        "name": "Witch's Broomstick",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
     },
     "WITCH_MASK": {

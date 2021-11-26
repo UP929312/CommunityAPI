@@ -5,7 +5,7 @@ ITEM_RARITY = {
     "EPIC":      "<:epic:863390433526022165>",
     "LEGENDARY": "<:legendary:863390433493123072>",
     "MYTHIC":    "<:mythic:867070377750167572>",
-    "SUPREME":   "<:supreme:867070395949383700>",
+    "SUPREME":   "<:supreme:867070395949383700>",  # Don't think this is used anymore
     "SPECIAL":   "<:special:867070427897135144>",
     "VERY_SPECIAL": "<:very_special:869652064224030830>",
     "DIVINE":    "<:divine:890223730909929522>",

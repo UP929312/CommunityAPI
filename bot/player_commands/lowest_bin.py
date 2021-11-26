@@ -59,7 +59,6 @@ class lowest_bin_cog(commands.Cog):
             level_selector = "" if level == "None" else f"PetLevel={level}"
             if level != "None" and rarity != "None":
                 level_selector = "&"+level_selector
-            #print(f"https://sky-commands.coflnet.com/api/auctions/tag/PET_{pet_type.upper()}/active/bin?{rarity_selector}{level_selector}")
             response = requests.get(f"https://sky-commands.coflnet.com/api/auctions/tag/PET_{pet_type.upper()}/active/bin?{rarity_selector}{level_selector}").json()
             
         elif closest[0] == "item":

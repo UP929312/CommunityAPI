@@ -50,7 +50,7 @@ class StaticPresetMenuView(discord.ui.View):
         await interaction.response.edit_message(view=self, embed=self.list_of_embeds[self.page])
 
     async def on_timeout(self):
-        if self.message is None:
+        if not isinstance(self.message, discord.Message):
             return
         try:
             for button in self.children:
@@ -140,7 +140,7 @@ class StaticScrollingMenuView(discord.ui.View):
         await interaction.response.edit_message(view=self, embed=embed)
 
     async def on_timeout(self):
-        if self.message is None:
+        if not isinstance(self.message, discord.Message):
             return
         try:
             for button in self.children:
@@ -187,7 +187,7 @@ class DynamicScrollingMenuView(discord.ui.View):
         await interaction.response.edit_message(view=self, embed=embed)
 
     async def on_timeout(self):
-        if self.message is None:
+        if not isinstance(self.message, discord.Message):
             return
         try:
             for button in self.children:
@@ -243,7 +243,7 @@ class OptionPickerView(discord.ui.View):
         self.stop()
 
     async def on_timeout(self):
-        if self.message is None:
+        if not isinstance(self.message, discord.Message):
             return
         try:
             for button in self.children:

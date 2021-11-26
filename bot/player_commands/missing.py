@@ -31,7 +31,7 @@ for accessory in ACCESSORIES:
     if accessory["internal_name"] not in talisman_upgrades.keys():
         MASTER_ACCESSORIES.append(accessory)
 
-EMOJI_LIST = ["<:winning_bid:856491169750712320>", "<:epic:863390433526022165>", "<:by_price:900069290143797299>"]
+EMOJI_LIST = ["<:alphabetically:905066318720544779>", "<:recombobulator:854750106376339477>", "<:by_price:900069290143797299>"]
 
 class missing_cog(commands.Cog):
     def __init__(self, bot) -> None:
@@ -41,7 +41,7 @@ class missing_cog(commands.Cog):
     async def missing_command(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
         await self.get_missing(ctx, provided_username, provided_profile, is_response=False)
 
-    @commands.slash_command(name="missing", description="Gets someone's missing auctions", guild_ids=guild_ids)
+    @commands.slash_command(name="missing", description="Gets someone's missing accessories", guild_ids=guild_ids)
     async def missing_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
@@ -71,7 +71,10 @@ class missing_cog(commands.Cog):
         if not missing:
             return await error(ctx, f"Completion!", f"{username} already has all accessories!", is_response=is_response)
 
-        lowest_bin_data = requests.get("http://moulberry.codes/lowestbin.json").json()
+        try:
+            lowest_bin_data = requests.get("http://moulberry.codes/lowestbin.json").json()
+        except:
+            return await error(ctx, f"Error, price API is down!", f"Please wait for it to return, and try again later!", is_response=is_response)
 
         for accessory in missing:
             accessory["price"] = lowest_bin_data.get(accessory["internal_name"], 9999999999)
@@ -82,7 +85,7 @@ class missing_cog(commands.Cog):
             sort_func = lambda x: x[parameter] if parameter != "rarity" else RARITY_LIST.index(x["rarity"])
             sorted_accessories = sorted(missing, key=sort_func)[:42]
                             
-            extra = "" if len(missing) <= 36 else f", showing the first {len(sorted_accessories)}"
+            extra = "" if len(missing) <= 36 else f", showing the first {int(len(sorted_accessories)/6)}"
             embed = discord.Embed(title=f"Missing {len(missing)} accessories for {username}{extra}, sorted: {page}", colour=0x3498DB)
 
             def make_embed(embed, acc_list, num):
@@ -90,7 +93,7 @@ class missing_cog(commands.Cog):
                 for item in acc_list:
                     wiki_link = "<Unknown>" if not item['wiki_link'] else f"[wiki]({item['wiki_link']})"
                     price = hf(item['price']) if item['price'] != 9999999999 else 'N/A'
-                    text += f"{ITEM_RARITY[item['rarity']]} {item['name']}\n➜ {price} coins, link: {wiki_link}\n"
+                    text += f"{ITEM_RARITY[item['rarity']]} {item['name']}\n➜ For {price}, link: {wiki_link}\n"
 
                 embed_title = f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}" if parameter == "name" else f"Group {num}"
                 embed.add_field(name=f"{embed_title}", value=text, inline=True)

@@ -44,7 +44,7 @@ class networth_cog(commands.Cog):
     #================================================================================================================================
 
     async def get_networth(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
-        # Convert username/linked_account/nick to profile and more 
+        # Convert username/linked_account/nick to profile and more
         player_data = await get_profile_data(ctx, provided_username, provided_profile_name, return_profile_list=True, is_response=is_response)
         if player_data is None:
             return None
@@ -67,7 +67,7 @@ class networth_cog(commands.Cog):
             return await error(ctx, "Error, rate limit hit", "Your request has not been fufiled, please slow down and try again later.", is_response)            
         elif request.status_code == 404:
             return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?", is_response)
-        #=======================
+        #=======================        
         data = request.json()
         # Generate all the pages and initiate the menu handler
         list_of_embeds = [generate_page(ctx.author, data, username, page) for page in PAGES]

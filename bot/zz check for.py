@@ -1,6 +1,6 @@
 import os
 
-find = "generate_dynamic_scrolling_menu"
+find = "file="
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]
 
@@ -11,13 +11,13 @@ def find_it(folder, ext):
                 try:
                     for line in a.readlines():
                         if find in line:
-                            print("Found in", file, " contained "+find)
+                            print(" > Found in", file, " contained "+find)
                 except Exception as e:
                     print(e)
                     pass
 
 for folder in folders:
-    if folder == ".\__pycache__":
+    if folder in [".\__pycache__", ".\.mypy_cache"]:
         continue
     print("Looking in folder:", folder)
     if folder == "":
