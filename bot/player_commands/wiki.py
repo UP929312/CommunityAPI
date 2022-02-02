@@ -3,7 +3,7 @@ from discord.ext import commands  # type: ignore
 from discord.commands import Option  # type: ignore
 from typing import Optional
 
-from utils import error, ITEMS, guild_ids
+from utils import error, ITEMS, bot_can_send, guild_ids
 from difflib import SequenceMatcher
 
 class wiki_cog(commands.Cog):
@@ -16,7 +16,7 @@ class wiki_cog(commands.Cog):
 
     @commands.slash_command(name="wiki", description="Gets the wiki entry for an item", guild_ids=guild_ids)
     async def wiki_slash(self, ctx, item: Option(str, "item:", required=True)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.wiki(ctx, item, is_response=True)
 

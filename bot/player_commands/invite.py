@@ -2,7 +2,7 @@ import discord  # type: ignore
 from discord.ext import commands  # type: ignore
 from discord.commands import permissions  # type: ignore
 
-from utils import guild_ids
+from utils import bot_can_send, guild_ids
 
 #'''
 def custom_check(ctx):
@@ -46,7 +46,7 @@ class invite_cog(commands.Cog):
     #@commands.has_permissions(send_messages=True)
     @commands.slash_command(name="invite", description="Shows info on inviting the bot", guild_ids=guild_ids)#, checks=[custom_check, ])
     async def invite_slash(self, ctx):
-        #if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        #if not bot_can_send(ctx):
         #    return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.invite(ctx, is_response=True)
 

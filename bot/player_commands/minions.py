@@ -5,7 +5,7 @@ from typing import Optional
 
 import requests
 
-from utils import error, ITEMS, clean, hf, API_KEY, PROFILE_NAMES, guild_ids
+from utils import error, ITEMS, clean, hf, API_KEY, PROFILE_NAMES, bot_can_send, guild_ids
 from emojis import MINION_TIER_EMOJIS
 from parse_profile import get_profile_data
 
@@ -116,7 +116,7 @@ class minions_cog(commands.Cog):
     @commands.slash_command(name="minions", description="Gets a players cheapest minions to upgrade", guild_ids=guild_ids)
     async def minions_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.minions(ctx, username, profile, is_response=True)
     

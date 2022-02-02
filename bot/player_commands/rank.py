@@ -6,7 +6,7 @@ from typing import Optional
 from database_manager import get_specific_networth_data, get_all_networth_data, get_sum_networth_data
 from emojis import PAGE_ICON_EMOJIS
 from parse_profile import input_to_uuid
-from utils import error, guild_ids
+from utils import error, bot_can_send, guild_ids
 
 
 def get_percent_categories(uuid: str, user_data: dict) -> dict[str, float]:
@@ -38,6 +38,7 @@ def fix(number_tuple: tuple) -> float:
     return max(number, 0.01)
 
 '''
+Linting stuff
 60: error: Argument 2 to "get_percent_categories" has incompatible type "Tuple[Any, ...]"; expected "Dict[Any, Any]"
 66: error: Argument 2 to "overall_percent" has incompatible type "Tuple[Any, ...]"; expected "Dict[Any, Any]"
 '''
@@ -52,13 +53,17 @@ class rank_cog(commands.Cog):
 
     @commands.slash_command(name="rank", description="See how people's networth stacks up against everyone elses", guild_ids=guild_ids)
     async def rank_slash(self, ctx, username: Option(str, "username:", required=False)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.rank(ctx, username, is_response=True)
 
     #==========================================================================================================================
 
     async def rank(self, ctx, provided_username: Optional[str] = None, is_response: bool = False) -> None:
+        if is_response:
+            await ctx.defer()
+            # This tells discord that something is coming slightly later that instantly,
+            # required because this command takes a little over a second to run
 
         player_data = await input_to_uuid(ctx, provided_username, is_response=is_response)
         if player_data is None:
@@ -86,9 +91,9 @@ class rank_cog(commands.Cog):
                   f"{PAGE_ICON_EMOJIS[sorted_data[-1][0]]} For {sorted_data[-1][0]}, they're in the bottom {fix(sorted_data[-1])}% of players."]
 
         embed = discord.Embed(title=f"{username}'s stats:", description="\n".join(string), url=f"https://sky.shiiyu.moe/stats/{username}", colour=0x3498DB)
-        embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")
-        
+        embed.set_thumbnail(url=f"https://mc-heads.net/head/{username}")        
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
+        
         if is_response:
             await ctx.respond(embed=embed)
         else:

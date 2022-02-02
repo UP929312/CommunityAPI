@@ -34,6 +34,9 @@ async def error(ctx, title: str, description: str, is_response: bool = False) ->
     else:
         await ctx.send(embed=embed)
 #=============================================================
+def bot_can_send(ctx):
+    return (ctx.guild is None) or (ctx.channel.permissions_for(ctx.guild.me)).send_messages
+        
 async def autocomplete_display_name(ctx):
     print("Here")
     print(ctx)
@@ -44,6 +47,20 @@ async def autocomplete_display_name(ctx):
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
+
+'''
+FORGE_TIMES = {
+    "AMONITE_PET": 1000,
+}
+
+new_dict = {}
+for key, value in FORGE_TIMES.items():
+    closest = max(ITEMS.values(), key=lambda item: similar(key.lower(), item["name"].lower()))
+    new_dict[closest["internal_name"]] = value
+    print(f"    '{closest['internal_name']}': {value},")
+
+#print(new_dict)
+'''
     
 # returns either "item/enchant" then the dict or enchant, or None
 async def smarter_find_closest(ctx, user_input: Optional[str], is_response: bool = False) -> tuple[Optional[str], Union[Optional[dict], Optional[str]]]:

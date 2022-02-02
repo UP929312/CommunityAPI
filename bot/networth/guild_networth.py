@@ -6,7 +6,7 @@ from typing import Optional
 import aiohttp
 import requests
 
-from utils import error
+from utils import error, bot_can_send
 from menus import generate_static_preset_menu
 from parse_profile import input_to_uuid
 from networth.generate_page import generate_page

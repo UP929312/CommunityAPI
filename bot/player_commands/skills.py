@@ -6,7 +6,7 @@ from typing import Optional
 import requests
 from bisect import bisect
 
-from utils import error, hf, PROFILE_NAMES, guild_ids, autocomplete_display_name
+from utils import error, hf, PROFILE_NAMES, bot_can_send, guild_ids, autocomplete_display_name
 from emojis import SKILL_EMOJIS
 from parse_profile import get_profile_data
 
@@ -45,7 +45,7 @@ class skills_cog(commands.Cog):
     @commands.slash_command(name="skills", description="Gets a players skills", guild_ids=guild_ids)
     async def skills_slash(self, ctx, username: Option(str, "username:", required=False, autocomplete=discord.utils.basic_autocomplete(values=["red", "green", "blue"])),
                                        profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.skills(ctx, username, profile, is_response=True)
 

@@ -7,7 +7,7 @@ import requests  # For fetching the player's head
 import json  # For dumping the uuid cache
 
 from database_manager import get_max_current_networth
-from utils import hf, error, guild_ids
+from utils import hf, error, bot_can_send, guild_ids
 
 from menus import generate_dynamic_scrolling_menu
 
@@ -70,7 +70,7 @@ class leaderboard_cog(commands.Cog):
 
     @commands.slash_command(name="leaderboard", description="Gets the top Skyblock players", guild_ids=guild_ids)
     async def leaderboard_slash(self, ctx, profile_type: Option(str, "profile_type", choices=['regular', 'ironman'], required=False, default="regular")):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.leaderboard(ctx, profile_type, is_response=True)
 

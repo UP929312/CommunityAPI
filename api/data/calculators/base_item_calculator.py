@@ -74,7 +74,6 @@ def calculate_item(data, price, print_prices=False):
     # Accessories of Power
     if item.internal_name in ["POWER_TALISMAN", "POWER_RING", "POWER_ARTIFACT"]:
         value["price_source"] = "Calculated"
-        flawed_rubies = 
         value["base_price"] = 45*data.BAZAAR.get("FLAWED_RUBY_GEM", 0)  # Flawed Rubies
         if item.internal_name == "POWER_RING":
             value["base_price"] += 7*data.BAZAAR.get("FINE_RUBY_GEM", 0) + data.LOWEST_BIN.get("GEMSTONE_MIXTURE", 0)  # Fine rubies + gem mix

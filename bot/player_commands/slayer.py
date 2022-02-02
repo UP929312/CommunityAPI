@@ -6,7 +6,7 @@ from typing import Optional
 import requests
 from bisect import bisect
 
-from utils import error, hf, PROFILE_NAMES, guild_ids
+from utils import error, hf, PROFILE_NAMES, bot_can_send, guild_ids
 from emojis import SLAYER_EMOJIS
 from parse_profile import get_profile_data
 
@@ -44,13 +44,13 @@ class slayer_cog(commands.Cog):
     @commands.slash_command(name="slayer", description="Gets slayer data about someone", guild_ids=guild_ids)
     async def slayer_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_slayer(ctx, username, profile, is_response=True)
 
     @commands.user_command(name="Get slayer data", guild_ids=guild_ids)  
     async def slayer_context_menu(self, ctx, member: discord.Member):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_slayer(ctx, member.display_name, None, is_response=True)
 

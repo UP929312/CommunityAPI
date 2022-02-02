@@ -1,6 +1,6 @@
 import os
 
-find = "file="
+find = "generate_dynamic_scrolling_menu"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]
 

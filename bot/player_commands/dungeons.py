@@ -8,7 +8,7 @@ from bisect import bisect
 
 from parse_profile import get_profile_data
 
-from utils import error, format_duration, clean, hf, PROFILE_NAMES, guild_ids
+from utils import error, format_duration, clean, hf, PROFILE_NAMES, bot_can_send, guild_ids
 from emojis import DUNGEON_BOSS_EMOJIS
 from menus import generate_static_preset_menu
 
@@ -29,9 +29,8 @@ CLASS_EMOJIS = {"catacombs": "<:catacombs:864618274900410408>",
 }
 CLASSES = list(CLASS_EMOJIS.keys())[1:]
 
-EMOJI_LIST = ["<:dungeons:864588623394897930>", "<:catacombs:850, 125, 235, 395, 625, 955, 1425, 2095, 3045, 4385, 6275, 894088075448100220949>", "<:master_catacombs:888075454353920010>"]
+EMOJI_LIST = ["<:dungeons:864588623394897930>", "<:catacombs:864618274900410408>", "<:master_catacombs:888075454353920010>"]
 LEVEL_REQS = [50, 125, 235, 395, 625, 955, 1425, 2095, 3045, 4385, 6275, 8940, 12700, 17960, 25340, 35640, 50040, 70040, 97640, 135640, 188140, 259640, 356640, 488640, 668640, 911640, 1239640, 1684640, 2284640, 3084640, 4149640, 5559640, 7459640, 9959640, 13259640, 17559640, 23159640, 30359640, 39559640, 51559640, 66559640, 85559640, 109559640, 139559640, 177559640, 225559640, 285559640, 360559640, 453559640, 569809640, 1000000000000000000000000000000]
-
    
 class dungeons_cog(commands.Cog):
     def __init__(self, bot):
@@ -44,19 +43,19 @@ class dungeons_cog(commands.Cog):
     @commands.slash_command(name="dungeons", description="Gets dungeons data about someone", guild_ids=guild_ids)
     async def dungeons_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_dungeons(ctx, username, profile, is_response=True)
 
     @commands.user_command(name="Get dungeons data", guild_ids=guild_ids)  
     async def dungeons_context_menu(self, ctx, member: discord.Member):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_dungeons(ctx, member.display_name, None, is_response=True)
 
     #======================================================================================================================================
 
-    async def get_dungeons(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:
+    async def get_dungeons(self, ctx, provided_username: Optional[str] = None, provided_profile_name: Optional[str] = None, is_response: bool = False) -> None:        
         player_data: Optional[dict] = await get_profile_data(ctx, provided_username, provided_profile_name, is_response=is_response)
         if player_data is None:
             return
@@ -149,6 +148,7 @@ class dungeons_cog(commands.Cog):
             
             embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
             list_of_embeds.append(embed)
+
         ####################################################################################################
         # Menu generator
         await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, is_response=is_response)

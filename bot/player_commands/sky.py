@@ -4,7 +4,7 @@ from discord.commands import Option  # type: ignore
 from typing import Optional
 
 from parse_profile import input_to_uuid
-from utils import guild_ids
+from utils import bot_can_send, guild_ids
 
 class sky_cog(commands.Cog):
     def __init__(self, bot) -> None:
@@ -16,7 +16,7 @@ class sky_cog(commands.Cog):
 
     @commands.slash_command(name="sky", description="Gets the sky link of the target", guild_ids=guild_ids)
     async def sky_slash(self, ctx, username: Option(str, "username:", required=False)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.sky(ctx, username, is_response=True)
 

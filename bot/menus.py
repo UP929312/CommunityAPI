@@ -215,7 +215,7 @@ Instructions on how to use Option Picker:
 # call it with await. It will return the number picked (e.g. 1 to x) and the view
 """
 
-class OptionPickerButton(discord.ui.Button['OptionPickerView']):
+class NumberPickerButton(discord.ui.Button):
     def __init__(self, number: int):
         super().__init__(style=discord.ButtonStyle.blurple, label=str(number), row=(number-1)//5)
 
@@ -226,7 +226,7 @@ class OptionPickerButton(discord.ui.Button['OptionPickerView']):
             await interaction.response.send_message("This isn't your command!\nYou can run this command yourself to explore this menu!", ephemeral=True)
         
 
-class OptionPickerView(discord.ui.View):
+class NumberPickerView(discord.ui.View):
     def __init__(self, ctx, number_of_options: int):
         super().__init__()
         self.ctx = ctx
@@ -252,13 +252,76 @@ class OptionPickerView(discord.ui.View):
         except discord.NotFound:
             pass
 
-async def generate_option_picker(ctx, embed: discord.Embed, number_of_options: int):    
-    view = OptionPickerView(ctx=ctx, number_of_options=number_of_options)
+async def generate_number_picker(ctx, embed: discord.Embed, number_of_options: int):    
+    view = NumberPickerView(ctx=ctx, number_of_options=number_of_options)
     view.message = await ctx.send(embed=embed, view=view)
 
     await view.wait()
     return view.value, view
 
 ###############################################################################
-# 
+# Option Picker, will allow the user to input a number between 1 and x.
+# Give it context and the number of options.
 ###############################################################################
+"""
+Instructions on how to use Option Picker:
+# Call the function `generate_option_picker` with context, and the number of options
+# call it with await. It will return the number picked (e.g. 1 to x) and the view
+"""
+
+class OptionPickerButton(discord.ui.Button):
+    def __init__(self, option: str, index: int):
+        super().__init__(style=discord.ButtonStyle.blurple, emoji=option)
+
+    async def callback(self, interaction: discord.Interaction):
+        if self.view.ctx.author.id == interaction.user.id or interaction.user.id in MENU_CONTROLLERS:
+            await self.view.picked_option(self.emoji)
+        else:
+            await interaction.response.send_message("This isn't your command!\nYou can run this command yourself to explore this menu!", ephemeral=True)
+        
+
+class OptionPickerView(discord.ui.View):
+    def __init__(self, ctx, options: list[str]):
+        super().__init__()
+        self.ctx = ctx
+        self.value: Optional[str] = None
+
+        for i, label in enumerate(options):
+            self.add_item(OptionPickerButton(option=label, index=i))
+
+    async def picked_option(self, option):
+        self.value: str = option
+        for button in self.children:
+            button.disabled = True
+        await self.message.edit(view=self)
+        self.stop()
+
+    async def on_timeout(self):
+        if not isinstance(self.message, discord.Message):
+            return
+        try:
+            for button in self.children:
+                button.disabled = True
+            await self.message.edit(view=self)
+        except discord.NotFound:
+            pass
+
+async def generate_option_picker(ctx, embed: discord.Embed, options: list[str], is_response: bool = False, message_object: discord.Message=None):
+    view = OptionPickerView(ctx=ctx, options=options)
+    if message_object and is_response:
+        print("This doesn't work yet!")
+        print("Editing!")
+        print(dir(ctx.interaction))
+        #print(ctx.interaction.original_message)
+        #print(repr(ctx.interaction.original_message))
+        #original_message = await ctx.interaction.original_message()
+        #view.message = await original_message.edit(embed=embed, view=view)
+    elif message_object:
+        view.message = await ctx.edit(embed=embed, view=view)
+    elif is_response:
+        view.message = await ctx.respond(embed=embed, view=view)
+    else:
+        view.message = await ctx.send(embed=embed, view=view)
+
+    await view.wait()
+    return view.value, view

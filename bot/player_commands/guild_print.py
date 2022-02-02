@@ -25,8 +25,7 @@ class guild_print_cog(commands.Cog):
             members_uuid = [x['uuid'] for x in data['members']]
             guild_name = data['name']
         except:
-            return await error(ctx, "Error, something messed up but I'm not sure what because this command was made very quickly",
-                                    "Rushed commands can often lack the normal safety guards a well polished one has.")
+            return await error(ctx, "Error, something messed up but I'm not sure what, I'll fix it when I can.")
 
         #print(f"Guild name = {guild_name}")
         list_of_strings = []
@@ -44,7 +43,7 @@ class guild_print_cog(commands.Cog):
             if skill != "catacombs":
                 skill_value = profile.get(f"experience_skill_{skill}", "HIDDEN")
             else:
-                skill_value = profile["dungeons"]["dungeon_types"]["catacombs"].get('experience', 0)
+                skill_value = profile["dungeons"]["dungeon_types"]["catacombs"].get('experience', "HIDDEN")
             nice_num = f"{int(skill_value):,}" if skill_value != "HIDDEN" else skill_value
             list_of_strings.append(f"**{username}**: {nice_num}")
      

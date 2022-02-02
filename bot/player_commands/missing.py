@@ -6,7 +6,7 @@ from typing import Optional
 import json
 import requests
 
-from utils import error, PROFILE_NAMES, hf, guild_ids
+from utils import error, PROFILE_NAMES, hf, bot_can_send, guild_ids
 from menus import generate_static_preset_menu
 from emojis import ITEM_RARITY
 from parse_profile import get_profile_data
@@ -44,7 +44,7 @@ class missing_cog(commands.Cog):
     @commands.slash_command(name="missing", description="Gets someone's missing accessories", guild_ids=guild_ids)
     async def missing_slash(self, ctx, username: Option(str, "username:", required=False),
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.get_missing(ctx, username, profile, is_response=True)
 

@@ -4,7 +4,7 @@ from discord.commands import Option  # type: ignore
 from typing import Optional
 
 from database_manager import *
-from utils import error, guild_ids
+from utils import error, bot_can_send, guild_ids
 
 class link_account_cog(commands.Cog):
     def __init__(self, bot) -> None:
@@ -16,7 +16,7 @@ class link_account_cog(commands.Cog):
 
     @commands.slash_command(name="link_account", description="Links your discord account to a minecraft account", guild_ids=guild_ids)
     async def link_account_slash(self, ctx, username: Option(str, "username:", required=True)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.link_account(ctx, username, is_response=True)
 

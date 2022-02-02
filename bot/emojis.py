@@ -12,6 +12,8 @@ ITEM_RARITY = {
     "UNKNOWN": "",
 }
 
+NUMBER_EMOJIS = [":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:", "<:ten:876112518072909864>"]
+
 DUNGEON_BOSS_EMOJIS = {
     "1": "<:bonzo:867330587345027093>",
     "2": "<:scarf:867330616378785793>",

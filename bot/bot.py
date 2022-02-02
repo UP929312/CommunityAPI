@@ -47,8 +47,7 @@ async def on_ready() -> None:
         
 @client.event
 async def on_command_error(ctx, error) -> None:
-    print("Here")
-    print(error, "|", str(error))
+    print("In on_command errror:", str(error))
     if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, discord.Forbidden)):  # discord.errors.Forbidden
         pass
     elif isinstance(error, commands.errors.CheckFailure):
@@ -85,10 +84,13 @@ all_cogs.extend(player_commands)
 for cog in all_cogs:
     client.add_cog(cog(client))
 
+from test_cog import test_cog
+client.add_cog(test_cog(client))
+
 print("6. Added cogs done.")
 
-client.ip_address = "db.superbonecraft.dk"
-#client.ip_address = "127.0.0.1"
+#client.ip_address = "db.superbonecraft.dk"
+client.ip_address = "127.0.0.1"
 
 bot_key = open("text_files/bot_key.txt","r").read()
 client.run(bot_key)

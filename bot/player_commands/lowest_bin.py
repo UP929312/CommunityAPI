@@ -6,7 +6,7 @@ from typing import Optional
 import requests
 from datetime import datetime  # To convert hypixel time string to object
 
-from utils import error, hf, format_duration, smarter_find_closest, guild_ids
+from utils import error, hf, format_duration, smarter_find_closest, bot_can_send, guild_ids
 from emojis import ITEM_RARITY
 from menus import generate_static_scrolling_menu
 
@@ -39,7 +39,7 @@ class lowest_bin_cog(commands.Cog):
 
     @commands.slash_command(name="lowest_bin", description="Gets the top 10 lowest BINs of that item on the AH", guild_ids=guild_ids)
     async def lowest_bin_slash(self, ctx, input: Option(str, "input:", required=True)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.lowest_bin(ctx, input, is_response=True)
 
@@ -52,18 +52,25 @@ class lowest_bin_cog(commands.Cog):
 
         if closest[0] == "enchant":
             enchant_type, level = closest[1].split(":")
-            response = requests.get(f"https://sky-commands.coflnet.com/api/auctions/tag/ENCHANTED_BOOK/active/bin?Enchantment={enchant_type}&EnchantLvl={level}").json()
+            response = requests.get(f"https://sky.coflnet.com/api/auctions/tag/ENCHANTED_BOOK/active/bin?Enchantment={enchant_type}&EnchantLvl={level}")
         elif closest[0] == "pet":
             pet_type, rarity, level = closest[1].split(":")
             rarity_selector = "" if rarity == "None" else f"Rarity={rarity.upper()}"
             level_selector = "" if level == "None" else f"PetLevel={level}"
             if level != "None" and rarity != "None":
                 level_selector = "&"+level_selector
-            response = requests.get(f"https://sky-commands.coflnet.com/api/auctions/tag/PET_{pet_type.upper()}/active/bin?{rarity_selector}{level_selector}").json()
+            response = requests.get(f"https://sky.coflnet.com/api/auctions/tag/PET_{pet_type.upper()}/active/bin?{rarity_selector}{level_selector}")
             
         elif closest[0] == "item":
             closest = closest[1]
-            response = requests.get(f"https://sky-commands.coflnet.com/api/auctions/tag/{closest['internal_name']}/active/bin").json()
+            response = requests.get(f"https://sky.coflnet.com/api/auctions/tag/{closest['internal_name']}/active/bin")
+
+        try:
+            response = response.json()
+        except Exception as e:
+            print(response.status_code)
+            print(e)
+            print(response.text)
 
         if not response or (isinstance(response, dict) and "Slug" in response.keys()):
             return await error(ctx, "Error, no items of that type could be found on the auction house!", "If you're searching for a pet, please end your search with 'pet', and if you're searching for an ultimate enchantment, please include `ultimate`.", is_response=is_response)

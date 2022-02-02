@@ -12,6 +12,7 @@ async def get_pages_dict(data, profile_data, uuid, profile_name):
             "banking":      {"total": str(extras["banking"])},
            }
 
+
     for container in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
         top_x = sorted(containers[container], key=lambda x: x.total, reverse=True)[:5]
         prices = [x.to_dict() for x in top_x]

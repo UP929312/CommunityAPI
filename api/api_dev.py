@@ -26,7 +26,11 @@ username = "56ms"
 #username = "glai"
 username = "lk"
 
-uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+#uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+
+
+
+uuid = "1e82592262494e8fb814dffb7de916aa"
 #uuid = "c3b9402747b1433d8b20cd54c7da3f5d"
 profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
 

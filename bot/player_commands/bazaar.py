@@ -7,7 +7,7 @@ import json
 import requests
 from difflib import SequenceMatcher
 
-from utils import error, similar, guild_ids
+from utils import error, similar, bot_can_send, guild_ids
 
 initial_request = requests.get(f"https://api.hypixel.net/skyblock/bazaar").json()
 ITEMS = initial_request["products"].keys()
@@ -35,7 +35,7 @@ class bazaar_cog(commands.Cog):
 
     @commands.slash_command(name="bazaar", description="Gets bazaar data for a certain item", guild_ids=guild_ids)
     async def bazaar_slash(self, ctx, input: Option(str, "input:", required=True)):
-        if not (ctx.channel.permissions_for(ctx.guild.me)).send_messages:
+        if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.bazaar(ctx, input, is_response=True)
 
