@@ -6,7 +6,7 @@ from parameterized import parameterized, parameterized_class
 ip = "http://127.0.0.1:8000"  #  For running locally
 #ip = "http://db.superbonecraft.dk:8000"  # For the server
 
-API_KEY = "0f67b80f-2308-4904-aa20-c89e3bfbc16b"
+API_KEY = ""
 
 test_usernames = {0: "56ms",   1: "nonbunary", 2: "poroknights",
                   4: "Skezza", 5: "kori_100",

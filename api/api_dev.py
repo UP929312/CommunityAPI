@@ -8,7 +8,7 @@ test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
 user = 0
 username = test_usernames[user]
 
-API_KEY = "0f67b80f-2308-4904-aa20-c89e3bfbc16b"
+API_KEY = ""
 
 
 #a = requests.get("https://api.hypixelskyblock.de/api/v1/cb/pages/balt")
