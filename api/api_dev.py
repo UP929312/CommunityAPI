@@ -8,7 +8,7 @@ test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
 user = 0
 username = test_usernames[user]
 
-API_KEY = "8b31eff6-6407-416a-a0bd-8afa39b262c2"
+API_KEY = "0f67b80f-2308-4904-aa20-c89e3bfbc16b"
 
 
 #a = requests.get("https://api.hypixelskyblock.de/api/v1/cb/pages/balt")
@@ -25,14 +25,17 @@ username = "56ms"
 #username = "laachs"
 #username = "glai"
 username = "lk"
+username = "AndtheBand28"
 
-#uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
+uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
 
-
-
-uuid = "1e82592262494e8fb814dffb7de916aa"
+#uuid = "1e82592262494e8fb814dffb7de916aa"
 #uuid = "c3b9402747b1433d8b20cd54c7da3f5d"
-profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
+profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}")
+if profile_data.status_code != 200:
+    print("Key dead?")
+
+profile_data = profile_data.json()
 
 ip = "127.0.0.1"  #  For running locally
 #ip = "db.superbonecraft.dk"  # For the server

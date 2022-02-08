@@ -128,7 +128,7 @@ TIER_3_BOW_ENCHANTS = {
 }
 
 enchantment_lists = {"SWORD": (TIER_1_SWORD_ENCHANTS, TIER_2_SWORD_ENCHANTS, TIER_3_SWORD_ENCHANTS),
-                     "BOW": (TIER_1_BOW_ENCHANTS, TIER_2_BOW_ENCHANTS, TIER_3_BOW_ENCHANTS),
+                     "BOW":   (TIER_1_BOW_ENCHANTS, TIER_2_BOW_ENCHANTS, TIER_3_BOW_ENCHANTS),
 }
 
 class maxer_cog(commands.Cog):

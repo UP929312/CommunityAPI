@@ -24,6 +24,11 @@ def calculate_pet(data, price, print_prices):
     pet = price.item
     value = price.value
 
+    # These can't be sold, so ignore their pet xp value and items
+    if pet['type'] == "GRANDMA_WOLF":
+        price.value = value
+        return price        
+
     if pet['type'] == "GOLDEN_DRAGON" and pet['exp'] > PET_LEVELS_SUMMED:
         # Dragon required 1.8m xp for each level 103-200,
         # 101 is insta recieved on hatching and 102 is weirdly broken...

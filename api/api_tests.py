@@ -3,15 +3,15 @@ import json
 import unittest
 from parameterized import parameterized, parameterized_class
 
-#ip = "http://127.0.0.1:8000"  #  For running locally
-ip = "http://db.superbonecraft.dk:8000"  # For the server
+ip = "http://127.0.0.1:8000"  #  For running locally
+#ip = "http://db.superbonecraft.dk:8000"  # For the server
 
-API_KEY = ""
+API_KEY = "0f67b80f-2308-4904-aa20-c89e3bfbc16b"
 
-test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
+test_usernames = {0: "56ms",   1: "nonbunary", 2: "poroknights",
                   4: "Skezza", 5: "kori_100",
-                  6: "Zaptro",
-                  7: "seattle72", 8: "Refraction", 9: "laachs"}
+                  6: "Zaptro", 7: "seattle72",
+                  8: "Refraction", 9: "laachs"}
 
 uuids = [requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"] for username in test_usernames.values()]
 
@@ -37,11 +37,11 @@ class TotalEndpoint(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
         r = r.json()
         # Check that it's {"total": x}
-        self.assertEqual(list(r.keys()) == ["total"], True)
+        self.assertTrue(list(r.keys()) == ["total"])
         # Check that it's only {"total": x}
         self.assertEqual(len(r.keys()), 1)
         # Check that the total isn't a string or None
-        self.assertEqual(isinstance(r["total"], int), True)
+        self.assertTrue(isinstance(r["total"], (float, int)))
 
     #@unittest.skip("Skip")
     def test_b_groups(self):
@@ -51,9 +51,9 @@ class TotalEndpoint(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
         r = r.json()
         # Check for right keys
-        self.assertEqual(list(r.keys()) == DEFAULT_KEYS, True)
+        self.assertTrue(list(r.keys()) == DEFAULT_KEYS)
         # Check for wrong keys
-        self.assertEqual(len(r.keys()) == len(DEFAULT_KEYS), True)
+        self.assertTrue(len(r.keys()) == len(DEFAULT_KEYS))
 
     #@unittest.skip("Skip")
     def test_c_pages(self):
@@ -63,9 +63,9 @@ class TotalEndpoint(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
         r = r.json()
         # Check for right keys
-        self.assertEqual(list(r.keys()) == DEFAULT_KEYS, True)
+        self.assertTrue(list(r.keys()) == DEFAULT_KEYS)
         # Check for wrong keys
-        self.assertEqual(len(r.keys()) == len(DEFAULT_KEYS), True)
+        self.assertTrue(len(r.keys()) == len(DEFAULT_KEYS))
 
     #@unittest.skip("Skip")
     def test_d_dump(self):
@@ -75,9 +75,9 @@ class TotalEndpoint(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
         r = r.json()
         # Check for right keys
-        self.assertEqual(list(r.keys()) == DEFAULT_KEYS, True)
+        self.assertTrue(list(r.keys()) == DEFAULT_KEYS)
         # Check for wrong keys
-        self.assertEqual(len(r.keys()) == len(DEFAULT_KEYS), True)
+        self.assertTrue(len(r.keys()) == len(DEFAULT_KEYS))
         
 if __name__ == '__main__':
     print("Starting tests")
