@@ -24,11 +24,6 @@ def calculate_pet(data, price, print_prices):
     pet = price.item
     value = price.value
 
-    # These can't be sold, so ignore their pet xp value and items
-    if pet['type'] == "GRANDMA_WOLF":
-        price.value = value
-        return price        
-
     if pet['type'] == "GOLDEN_DRAGON" and pet['exp'] > PET_LEVELS_SUMMED:
         # Dragon required 1.8m xp for each level 103-200,
         # 101 is insta recieved on hatching and 102 is weirdly broken...
@@ -36,6 +31,8 @@ def calculate_pet(data, price, print_prices):
     else:    
         pet_level = get_pet_level(pet)
 
+    value["pet_level"] = f"{pet_level}"
+    
     #######################################################################################
     # BASE VALUE
     if f"{pet['type']};{TIERS.index(pet['tier'])}" in data.LOWEST_BIN:
@@ -46,6 +43,14 @@ def calculate_pet(data, price, print_prices):
         # Try from Jerry's list
         value["base_price"] = data.PRICES.get(f"LVL_1_{pet['tier']}_{pet['type']}", 0)  # LVL_1_COMMON_ENDERMAN
         value["price_source"] = "Jerry"
+
+    #######################################################################################
+    # These can't be sold, so ignore their pet xp value and items
+    if pet['type'] == "GRANDMA_WOLF":
+        value["pet_level_bonus"] = {}
+        value["pet_level_bonus"]["worth"] = 0
+        price.value = value
+        return price
 
     #######################################################################################
     # PET ITEM VALUE
@@ -82,9 +87,8 @@ def calculate_pet(data, price, print_prices):
 
     if pet_level > 100:  # If it's level is over 100, i.e. it's a Golden Dragon, give each level's worth of xp a 3x multiplier
         value["pet_level_bonus"]["worth"] += (pet_level-100)*1_886_700*COINS_PER_XP_TWO_HUNDRED
-
+    
     #######################################################################################
-    value["pet_level"] = f"{pet_level}"
 
     price.value = value
     return price
