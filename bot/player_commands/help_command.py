@@ -9,6 +9,7 @@ data_dict = {
     "auctions":    ("[username]",    "Shows someone's auctions and BINs."),
     "bazaar":      ("<item>",        "Shows the bazaar price for a certain item, e.g. 'cobblestone'."),
     "dungeons":    ("[username]",    "Shows data about someone's dungeon level, including what floors they've beaten."),
+    "duped":       ("[username]",    "Shows duped items that a player has on them."),
     "help":        ("<None>",        "Takes you to this command."),
     "invite":      ("<None>",        "Provides instructions on how to invite the bot to your server."),
     "kills":       ("[username]",    "Shows the most mobs a player has killed."),
@@ -32,7 +33,7 @@ data_dict = {
 categories = {
     "Player Stats Commands": ["dungeons", "kills", "missing", "rank", "skills", "sky", "slayer", "weights"],
     "Price Data Commands":   ["auctions", "bazaar", "lowest_bin", "networth", "price_check"],
-    "General Info Commands": ["leaderboard", "maxer", "minions", "rank", "wiki"],
+    "General Info Commands": ["duped", "leaderboard", "maxer", "minions", "rank", "wiki"],
     "Settings Commands":     ["help", "invite", "link", "set_prefix"],
 }
 

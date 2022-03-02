@@ -5,12 +5,10 @@ from typing import Optional
 
 import requests
 
-from utils import error, hf, bot_can_send, guild_ids
+from utils import error, hf, WEIGHT_API_KEY, bot_can_send, guild_ids
 from parse_profile import input_to_uuid
 from menus import generate_static_preset_menu
 
-with open('text_files/hypixel_api_key.txt') as file:
-    API_KEY = file.read()
 
 EMOJI_DICT = {
     "farming": "<:farming:867330396684943390>",
@@ -72,7 +70,7 @@ class weights_cog(commands.Cog):
 
         #====================================================================================
         # Main page
-        response = requests.get(f"https://hypixel-api.senither.com/v1/profiles/{uuid}/weight?key={API_KEY}").json()
+        response = requests.get(f"https://hypixel-api.senither.com/v1/profiles/{uuid}/weight?key={WEIGHT_API_KEY}").json()
         if response["status"] != 200:
             return await error(ctx, "Error, the api couldn't fufill this request.", "As this is an external API, CommunityBot cannot fix this for now. Please try again later.", is_response=is_response)
         response = response["data"]

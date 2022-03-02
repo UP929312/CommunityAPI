@@ -1,4 +1,5 @@
 import discord  # type: ignore
+discord.http.API_VERSION = 9
 from discord.ext import commands  # type: ignore
 
 import json  # For loading the uuid conversion cache
@@ -29,7 +30,7 @@ def get_prefix(bot: commands.Bot, msg: discord.Message) -> str:
 
 intents = discord.Intents(messages=True, guilds=True, emojis=True)
 
-client = commands.Bot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
+client = commands.AutoShardedBot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = dict(load_prefixes())
 client.linked_accounts = dict(load_linked_accounts())
 
@@ -47,8 +48,8 @@ async def on_ready() -> None:
         
 @client.event
 async def on_command_error(ctx, error) -> None:
-    print("In on_command errror:", str(error))
-    if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, discord.Forbidden)):  # discord.errors.Forbidden
+    print("In on_command error:", str(error))
+    if isinstance(error, (commands.CommandNotFound, commands.errors.MissingAnyRole, discord.Forbidden)):
         pass
     elif isinstance(error, commands.errors.CheckFailure):
         return await ctx.respond("You're not allowed to do that here. Try a bot channel instead?", ephemeral=True)

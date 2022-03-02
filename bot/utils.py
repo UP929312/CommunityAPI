@@ -15,6 +15,10 @@ from typing import Optional, Union
 with open("text_files/hypixel_api_key.txt") as file:
     API_KEY: str = file.read()
 
+# Senither Weight API key for importing
+with open("text_files/hypixel_api_key_weight.txt") as file:
+    WEIGHT_API_KEY: str = file.read()
+
 # Find closest item
 with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
     ITEMS: dict = json.load(file)

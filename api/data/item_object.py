@@ -26,7 +26,6 @@ class Item:
         # Default minecraft items don't have anything special, so just leave them basically
         # It's sometimes: {'id': 5, 'Count': 64, 'Damage': 0}
         #{'id': 160, 'Count': 1, 'tag': {'display': {'Name': ' '}}, 'Damage': 15}
-
         if "tag" not in nbt or "Lore" not in nbt["tag"].get("display", {}):
             for tag_name, value in DEFAULT_ITEM.items():
                 setattr(self, tag_name, value)
@@ -40,9 +39,6 @@ class Item:
         self.name = re.sub('§.', '', display.get("Name", None))
         self.stack_size = max(0, nbt.get('Count', 1))  # Removes negative stack size
         self.origin_tag = extras.get("originTag", "UNKNOWN")
-
-        #if self.internal_name == "DIVAN_DRILL":
-        #    print(nbt)
 
         # Recomb + HPB
         self.recombobulated = bool(extras.get('rarity_upgrades', False))

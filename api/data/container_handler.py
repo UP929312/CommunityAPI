@@ -3,9 +3,9 @@ from data.calculators.main_calculator_handler import calculate_container
 from exceptions import InvalidProfileException, NoProfilesException, InvalidUUIDException
 
 def get_storage(player_data):
-    storage_items = []
     if not player_data.get("backpack_contents", False):
         return []
+    storage_items = []
     for i in range(0, 19):
         page = player_data["backpack_contents"].get(str(i), {"data": []})
         storage_items.extend(parse_container(page["data"]))

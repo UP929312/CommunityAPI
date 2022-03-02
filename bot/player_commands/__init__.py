@@ -17,13 +17,14 @@ from player_commands.rank          import rank_cog
 from player_commands.guild_print   import guild_print_cog
 from player_commands.maxer         import maxer_cog
 from player_commands.notify        import notify_cog
+from player_commands.duped         import duped_cog
 
 from player_commands.set_prefix    import set_prefix_cog
 from player_commands.link_account  import link_account_cog
 from player_commands.help_command  import help_cog
 from player_commands.regenerate_leaderboard import regenerate_leaderboard_cog
 
-#from player_commands._dev import _dev_cog
+from dev import dev_cog
 
 assistant_commands = [set_prefix_cog, link_account_cog, help_cog, regenerate_leaderboard_cog]
 
@@ -33,6 +34,6 @@ regular_commands = [sky_cog, wiki_cog, bazaar_cog,
                     auction_house_cog, missing_cog, weights_cog,
                     leaderboard_cog, price_check_cog,
                     minions_cog, rank_cog, guild_print_cog,
-                    maxer_cog, notify_cog]
+                    maxer_cog, notify_cog, duped_cog]+[dev_cog]
 
 player_commands = regular_commands+assistant_commands

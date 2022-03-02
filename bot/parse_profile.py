@@ -17,12 +17,13 @@ async def input_to_uuid(ctx, provided_username: Optional[str], is_response: bool
     parsing their ign from their discord nicks, by trimming off their tag,
     e.g. '[Admin] Notch' will get parsed as 'Notch'.
     """
-    nick = ""  # Used to detect if we fell back on parsing nick
+    nick = False  # Used to detect if we fell back on parsing nick
     if provided_username is None:  # If no username is given
         if (linked_account := ctx.bot.linked_accounts.get(f"{ctx.author.id}")):  # Check if they've linked their account
             username = linked_account
         else:  # If not, parse their nickname
             username = ctx.author.display_name
+            nick = True
     else:
         username = provided_username
 
@@ -72,6 +73,7 @@ async def get_profile_data(ctx: commands.Context, username: Optional[str], profi
     if data is None:
         return None
     username, uuid = data
+
     
     #################################
     # Fetch profile from hypixel's API with uuid

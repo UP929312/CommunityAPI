@@ -1,19 +1,52 @@
-import discord  # type: ignore
-from discord.ext import commands  # type: ignore
-from discord.commands import Option  # type: ignore
-from typing import Optional
+import discord
+from discord.ext import commands
+from discord.commands import Option
+from discord.ui import InputText, Modal
 
+class MyModal(Modal):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.add_item(
+            InputText(
+                label="Short Input",
+                placeholder="Placeholder Test"
+            )
+        )
+        print("Here")
 
-from utils import PROFILE_NAMES, autocomplete_display_name
+        self.add_item(
+            InputText(
+                label="Longer Input",
+                value="Longer Value\nSuper Long Value",
+                style=discord.InputTextStyle.long,
+                placeholder="Placeholder",
+                row=0
+            )
+        )
+        print("Here2")
+        
+    async def callback(self, interaction):
+        embed = discord.Embed(title="Your Modal Results")
+        embed.add_field(name="First Input", value=self.children[0].value, inline=False)
+        embed.add_field(name="Second Input", value=self.children[1].value, inline=False)
+        await interaction.response.send_message(embeds=[embed])
 
 class test_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
+    '''
     @commands.slash_command(name="test", description="test_test", guild_ids=[854749884103917599])
     async def test_slash(self, ctx, username: Option(str, "username:", required=False, autocomplete=discord.utils.basic_autocomplete(values=["red", "green", "blue"])),
-                                     profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
-        await self.do_test_slash(ctx, username, profile, is_response=True)
-
-    async def do_test_slash(self, ctx, provided_username = None, provided_profile_name = None, is_response = False):
-        print(provided_username, provided_profile_name, is_response)
+                                     profile: Option(str, "profile", choices=["Apple", "Banana"], required=False)):
+        print(username, profile, is_response)
+    '''
+    @commands.slash_command(name="test", description="test_test", guild_ids=[854749884103917599])  # CB
+    async def test_slash(self, ctx):
+        #embed = discord.Embed(description="Testing modalds", colour=0x3498DB)
+        #await embed.send()
+        print("We're here")
+        modal = MyModal(title="Slash Command Modal")
+        await ctx.interaction.response.send_modal(modal)
+        
+        

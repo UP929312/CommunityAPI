@@ -63,6 +63,8 @@ def parse_container(raw: str) -> list:
     raw_bytes.read(3)  # Remove file header (we ingore footer)
     root: dict = {}
     parse_next_tag(root)
+    if not root:
+        return []
     return [x for x in root['i'] if x]
 
 def extract_internal_id(nbt: dict) -> str:
@@ -80,7 +82,7 @@ def extract_nbt_dicts(raw: str) -> list[dict]:
     Takes a raw compressed encoded string and returns all the items in that
     list in an nbt dictionary
     """
-    return [x['tag'] for x in parse_container(raw)]
+    return [x['tag'] for x in parse_container(raw) if 'tag' in x.keys()]
 
 def extract_internal_names(raw: str) -> list[str]:
     """

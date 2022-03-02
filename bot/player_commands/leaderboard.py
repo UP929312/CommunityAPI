@@ -64,7 +64,7 @@ class leaderboard_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(name="leaderboard", aliases=["top", "l"])
+    @commands.command(name="leaderboard", aliases=["top", "l", "nwlb"])
     async def leaderboard_command(self, ctx, provided_profile_type: Optional[str] = "regular") -> None:
         await self.leaderboard(ctx, provided_profile_type, False)
 
