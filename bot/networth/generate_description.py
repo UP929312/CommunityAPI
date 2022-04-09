@@ -1,5 +1,5 @@
 from utils import hf, clean
-from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, SKIN, POWER_ABILITY_SCROLL, GEMS, GEMSTONE_CHAMBERS, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, PET_ITEM, PET_SKIN, LEVEL
+from networth.constants import PRICE_SOURCE, RECOMBOBULATOR, ART_OF_WAR, HOT_POTATO_BOOK, TALISMAN_ENRICHMENT, ENCHANTMENTS, REGULAR_STARS, MASTER_STARS, SKIN, POWER_ABILITY_SCROLL, GEMS, GEMSTONE_CHAMBERS, REFORGE, TRANSMISSIONS, ETHERMERGE, WINNING_BID, DYE, PET_ITEM, PET_SKIN, LEVEL
 
 def generate_item_description(v: dict) -> str:
     elems = []
@@ -42,6 +42,9 @@ def generate_item_description(v: dict) -> str:
         elems.append(f"{ETHERMERGE} - Ethermerge: +{hf(v['ethermerge'])}")
     if "winning_bid" in v:
         elems.append(f"{WINNING_BID} - Winning bid: +{hf(v['winning_bid'])}")
+    if "dye" in v:
+        dye_item, dye_value = list(v["dye"].items())[0]
+        elems.append(f"{DYE} - Dye: ({clean(dye_item)} - {hf(dye_value)})") 
         
     return "\n".join(elems)
 

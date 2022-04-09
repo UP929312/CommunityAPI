@@ -13,7 +13,7 @@ class duped_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
 
-    @commands.command(name="duped", aliases=['duped_profile'])
+    @commands.command(name="duped", aliases=['duped_profile', 'dupe'])
     async def duped_command(self, ctx, provided_username: Optional[str] = None, provided_profile: Optional[str] = None) -> None:
         await self.get_duped(ctx, provided_username, provided_profile, is_response=False)
 
@@ -83,7 +83,6 @@ class duped_cog(commands.Cog):
                         list_of_duped_items.append(item)
 
         desc = "\n".join(remove_colours(x["display"]["Name"]) for x in list_of_duped_items)
-        #print(desc)
         
         embed = discord.Embed(title=f"{username}'s list of duped items:", url=f"https://sky.shiiyu.moe/stats/{username}", description=desc, colour=0x3498DB)
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")

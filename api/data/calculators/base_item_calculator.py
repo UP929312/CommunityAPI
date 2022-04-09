@@ -60,8 +60,7 @@ def calculate_item(data, price, print_prices=False):
         
         if value["base_price"] is None:
             value["base_price"] = 0
-            value["price_source"] = "None"
-
+            value["price_source"] = "None"    
     #=============================================================================
     # Hoe calculations
     if item.type == "HOE" and item.hoe_material_list is not None:
@@ -150,6 +149,10 @@ def calculate_item(data, price, print_prices=False):
     # Hyperion scrolls (Necron's Blade Scrolls)
     if item.ability_scrolls:
         value["ability_scrolls_value"] = sum([data.LOWEST_BIN.get(scroll, 0) for scroll in item.ability_scrolls])
+    # Dyes:
+    if item.dye:
+        value["dye"] = {}
+        value["dye"][item.dye] = data.LOWEST_BIN.get(item.dye, 0)
     #=================
     price.value = value
     return price

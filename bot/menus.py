@@ -211,13 +211,13 @@ async def generate_dynamic_scrolling_menu(ctx, data, page_generator, is_response
 ###############################################################################
 """
 Instructions on how to use Option Picker:
-# Call the function `generate_option_picker` with context, and the number of options
+# Call the function `generate_number_picker` with context, and the number of options
 # call it with await. It will return the number picked (e.g. 1 to x) and the view
 """
 
 class NumberPickerButton(discord.ui.Button):
     def __init__(self, number: int):
-        super().__init__(style=discord.ButtonStyle.blurple, label=str(number), row=(number-1)//5)
+        super().__init__(style=discord.ButtonStyle.blurple, label=str(number))#, row=(number-1)//5)
 
     async def callback(self, interaction: discord.Interaction):
         if self.view.ctx.author.id == interaction.user.id or interaction.user.id in MENU_CONTROLLERS:
@@ -233,7 +233,7 @@ class NumberPickerView(discord.ui.View):
         self.value: Optional[int] = None
 
         for label in range(1, number_of_options+1):
-            self.add_item(OptionPickerButton(number=label))
+            self.add_item(NumberPickerButton(number=label))
 
     async def picked_option(self, number):
         self.value: int = number
@@ -265,7 +265,7 @@ async def generate_number_picker(ctx, embed: discord.Embed, number_of_options: i
 ###############################################################################
 """
 Instructions on how to use Option Picker:
-# Call the function `generate_option_picker` with context, and the number of options
+# Call the function `generate_option_picker` with context, and the options
 # call it with await. It will return the number picked (e.g. 1 to x) and the view
 """
 

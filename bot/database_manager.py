@@ -112,4 +112,5 @@ def get_sum_networth_data() -> list[tuple]:
           GROUP BY t3.uuid
         ) AS t2 ON t1.uuid = t2.uuid AND t1.datetime = t2.datetime
     ''')
+#print(sum([x[0] for x in get_sum_networth_data()]))
 #===========================================

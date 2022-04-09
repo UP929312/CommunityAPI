@@ -3,10 +3,9 @@ from data.calculators.pet_calculator import calculate_pet
 from data.calculators.base_item_calculator import calculate_item
 from data.price_object import Price
 
-def calculate_container(data, elements, print_prices=False):
+def calculate_container(data, elements, print_prices=False):    
     prices = []
     for element in elements:
-
         price = Price(element)
 
         if isinstance(element, dict) and ('candyUsed' in element.keys() or 'active' in element.keys()):

@@ -43,15 +43,45 @@ def get_containers(data, profile_data, uuid, profile_name):
     if player_data is None:
         return None, None
 
+    debug_items = False
     # Get item groupings
-    inv_contents   = parse_container(player_data.get("inv_contents", {"data": []})['data'])
-    talisman_bag   = parse_container(player_data.get("talisman_bag", {"data": []})['data'])
-    ender_chest    = parse_container(player_data.get("ender_chest_contents", {"data": []})['data'])
-    armour         = parse_container(player_data.get("inv_armor", {"data": []})['data'])
-    wardrobe       = parse_container(player_data.get("wardrobe_contents", {"data": []})['data'])
+    if debug_items:
+        print("Pre ALL parse containers, now testing inv_contents")
+    inv_contents = parse_container(player_data.get("inv_contents", {"data": []})['data'])
+    if debug_items:
+        print("inv_contents parsed properly, now testing talisman_bag")
+    talisman_bag = parse_container(player_data.get("talisman_bag", {"data": []})['data'])
+    if debug_items:
+        print("talisman_bag parsed properly, now testing ender_chest")
+    ender_chest  = parse_container(player_data.get("ender_chest_contents", {"data": []})['data'])
+    if debug_items:
+        print("ender_chest parsed properly, now testing armour")
+    armour = parse_container(player_data.get("inv_armor", {"data": []})['data'])
+    if debug_items:
+        print("armour parsed properly, now testing wardrobe")
+    wardrobe = parse_container(player_data.get("wardrobe_contents", {"data": []})['data'])
+    if debug_items:
+        print("wardrobe parsed properly, now testing personal_vault")
     personal_vault = parse_container(player_data.get("personal_vault_contents", {"data": []})['data'])
-    storage_items  = get_storage(player_data)
-    pet_items      = player_data.get("pets", [])
+    if debug_items:
+        print("personal_vault parsed properly, now testing storage_items")
+    storage_items = get_storage(player_data)
+    if debug_items:
+        print("storage_items parsed properly, now testing pet_items")
+    pet_items = player_data.get("pets", [])
+    if debug_items:
+        print("pet items parsed properly, all parsing COMPLETE")
+
+    if debug_items:
+        print("Testing all 'calculate_container")
+        calculate_container(data, inv_contents)
+        calculate_container(data, talisman_bag)
+        calculate_container(data, ender_chest)
+        calculate_container(data, armour)
+        calculate_container(data, wardrobe)
+        calculate_container(data, personal_vault)
+        calculate_container(data, storage_items)
+        calculate_container(data, pet_items)
 
     return ({
             "profile_name": other_data["cute_name"],

@@ -8,12 +8,13 @@ DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM", "name":"Default Item",    "stac
                 "power_ability_scroll": None,    "gems": {},               "gemstone_chambers": None,
                 "enchantments": {},              "reforge": None,          "star_upgrades": 0,
                 "farming_for_dummies": 0,        "tuned_transmission": 0,  "ethermerge": False,
-                "winning_bid": 0,                "ability_scrolls": [],    "origin_tag": "UNKNOWN",}
+                "winning_bid": 0,                "ability_scrolls": [],    "origin_tag": "UNKNOWN",
+                "dye": None}
                 
 HOE_MATERIAL_TO_INTERNAL_NAMES = {
     "POTATO": ("POTATO_ITEM", "ENCHANTED_POTATO", "ENCHANTED_BAKED_POTATO"),
-    "NETHER_WARTS": ("NETHER_STALK", "ENCHANTED_NETHER_STALK", "MUTANT_NETHER_STALK"),
-    "SUGAR_CANE": ("SUGAR_CANE", "ENCHANTED_SUGAR", "ENCHANTED_SUGAR_CANE"),
+    "WARTS": ("NETHER_STALK", "ENCHANTED_NETHER_STALK", "MUTANT_NETHER_STALK"),
+    "CANE": ("SUGAR_CANE", "ENCHANTED_SUGAR", "ENCHANTED_SUGAR_CANE"),
     "CARROT": ("CARROT_ITEM", "ENCHANTED_CARROT", "ENCHANTED_GOLDEN_CARROT"),
     "WHEAT": ("WHEAT", "ENCHANTED_HAY_BLOCK", "TIGHTLY_TIED_HAY_BALE"),
 }
@@ -40,11 +41,15 @@ class Item:
         self.stack_size = max(0, nbt.get('Count', 1))  # Removes negative stack size
         self.origin_tag = extras.get("originTag", "UNKNOWN")
 
+        #if "✿" in display.get("Name", ""):
+        #    print(nbt)
+            
         # Recomb + HPB
         self.recombobulated = bool(extras.get('rarity_upgrades', False))
         self.hot_potatoes = extras.get('hot_potato_count', 0)
 
         # Little extras
+        self.dye = extras.get("dye_item", None)  #self.dye = None
         self.talisman_enrichment = extras.get("talisman_enrichment", None)
         self.art_of_war = extras.get("art_of_war_count", None)
         self.wood_singularity = extras.get("wood_singularity_count", None)
@@ -59,8 +64,12 @@ class Item:
         self.star_upgrades = extras.get("dungeon_item_level", 0)  # Gets number of stars for dungeon items.
 
         # Parse item name with removed reforges (We can already get the reforges)
+        #if self.reforge.lower() == "ancient":
+        #    print(nbt)
+        #print(self.reforge, self.name)
         if self.reforge:            
             self.name = self.name.removeprefix(self.reforge.title()+" ")
+        self.name = self.name.removeprefix("Green Thumb ")            
 
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])
@@ -105,11 +114,15 @@ class Item:
         # Hoes
         self.hoe_level, self.hoe_material_list = (None, None)
         if self.type == "HOE" and "THEORETICAL" in self.internal_name:
-            hoe_material = "_".join(self.name.split(" ")[1:-1]).upper()  # Turing Sugar Cane Hoe
-            if hoe_material != "HOE":  # Remove Mathematical Hoe
-                self.hoe_material_list = HOE_MATERIAL_TO_INTERNAL_NAMES[hoe_material]
-                self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
-
+            self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
+            for material_type, material_list in HOE_MATERIAL_TO_INTERNAL_NAMES.items():
+                if material_type in self.internal_name:
+                    self.hoe_material_list = material_list
+                    break
+            else:
+                print("MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND")
+                raise TypeError("MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND")                    
+        
         # Hoes
         self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
 
@@ -184,5 +197,7 @@ class Item:
             data["winning_bid"] = self.winning_bid
         if self.ability_scrolls:
             data["ability_scrolls"] = self.ability_scrolls
+        if self.dye:
+            data["dye"] = self.dye
 
         return data

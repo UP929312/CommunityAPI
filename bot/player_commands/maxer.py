@@ -228,13 +228,12 @@ class maxer_cog(commands.Cog):
 
         if internal_name in DUNGEONIZABLE_ITEMS and (stars := extras.get("dungeon_item_level", 0)) < 9:
             if stars < 5:
-                missing_elements.append(f"{REGULAR_STARS} Missing {5-stars} **Dungeons Stars** and 4 **Master Stars**!")
+                missing_elements.append(f"{REGULAR_STARS} Missing {5-stars} **Dungeons Stars** and 5 **Master Stars**!")
             else:
-                missing_elements.append(f"{REGULAR_STARS} Missing {9-stars} **Master Stars**!")
+                missing_elements.append(f"{REGULAR_STARS} Missing {10-stars} **Master Stars**!")
 
-        if internal_name in GEMSTONE_SLOTS:
-            if extras.get("gems", {}) == {}:
-                missing_elements.append(f"{GEMS} Missing a **Gemstone**!")
+        if internal_name in GEMSTONE_SLOTS and extras.get("gems", {}) == {}:
+            missing_elements.append(f"{GEMS} Missing a **Gemstone**!")
 
         if internal_name in STARRABLE_ITEMS:  # If it could have been upgraded
             missing_elements.append(f"Missing **8 Livid Fragments**!")

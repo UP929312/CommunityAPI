@@ -8,25 +8,35 @@ test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
 user = 0
 username = test_usernames[user]
 
-API_KEY = ""
+API_KEY = "a5741dbb-ce47-4d0b-af54-ffc76fad4fae"
 
 
 #a = requests.get("https://api.hypixelskyblock.de/api/v1/cb/pages/balt")
 
+# Leaderboard players:
+#username = "NewEriwan"
+username = "Minikloon"
+#username = "Refraction"
+#username = "fela22"
+#username = "Makiso"
+username = "DeathStreeks"
+username = "Repurposer"
+username = "StutterMuch"
+username = "Ealman"
+username = "Skezza"
+#username = "56ms"
 #username = "ycarusishere"
 #username = "KebabOnNaan"
 #username = "ItzAlpha__"
 #username = "balt"
 #username = "455fcc3f87ea4a92a6c38e190c39d8ec"
-username = "56ms"
-#username = "Refraction"
 #username = "seattle72"
 #username = "Skezza"
 #username = "laachs"
 #username = "glai"
-username = "lk"
-username = "AndtheBand28"
-username = "56ms"
+#username = "lk"
+#username = "AndtheBand28"
+#username = "JasonHYH186"
 
 uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
 

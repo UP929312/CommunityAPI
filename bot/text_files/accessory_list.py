@@ -1,4 +1,7 @@
 talisman_upgrades: dict[str, list[str]] = {
+    "BINGO_TALISMAN": [
+      "BINGO_RING"
+    ],    
     "WOLF_TALISMAN": [
       "WOLF_RING"
     ],
