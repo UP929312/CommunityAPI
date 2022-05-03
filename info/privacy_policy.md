@@ -1,7 +1,7 @@
 This privacy policy ('policy") will help you understand how CommunityBot ('us', 'we', 'our') uses and protects the data you provide to us when you visit and use
 CommunityBot. 
 We reserve the right to change this policy at any given time, of which you can see this updated changes here. If you want to make sure that you are up to date with the
-latest changes, we advise you to trequently visit this page. 
+latest changes, we advise you to trequently visit this page.  
 **What User Data We Collect**  
 _When you use CommunityBot, we may collect the following data:_  
 Your discord messages, including media and attachments  
