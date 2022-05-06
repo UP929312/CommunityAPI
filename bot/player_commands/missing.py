@@ -59,7 +59,7 @@ class missing_cog(commands.Cog):
 
         accessory_bag = player_data.get("talisman_bag", None)
         inv_content = player_data.get("inv_contents", {"data": []})
-        
+
         if not accessory_bag:
             return await error(ctx, "Error, could not find this person's accessory bag", "Do they have their API disabled for this command?", is_response=is_response)
 

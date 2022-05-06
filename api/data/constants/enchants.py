@@ -37,7 +37,8 @@ ENCHANTS_DICT = {
             "ultimate_chimera",
             "ultimate_combo",
             "ultimate_swarm",
-            "ultimate_wise"
+            "ultimate_wise",
+            "smoldering"
         ],
         "BOW": [
             "aiming",
@@ -57,7 +58,9 @@ ENCHANTS_DICT = {
             "ultimate_chimera",
             "ultimate_swarm",
             "ultimate_wise",
-            "ultimate_rend"
+            "ultimate_rend",
+            "ultimate_reiterate",
+            "smoldering"
         ],
         "AXE": [
             "efficiency",
@@ -101,7 +104,9 @@ ENCHANTS_DICT = {
             "lure",
             "magnet",
             "spiked_hook",
-            "telekinesis"
+            "telekinesis",
+            "impaling",
+            "champ"
         ],
         "FISHING WEAPON": [
             "angler",
@@ -150,7 +155,9 @@ ENCHANTS_DICT = {
             "ultimate_chimera",
             "ultimate_combo",
             "ultimate_swarm",
-            "ultimate_wise"
+            "ultimate_wise",
+            "champ",
+            "smoldering"
         ],
         "SHOVEL": [
             "efficiency",
@@ -239,6 +246,94 @@ ENCHANTS_DICT = {
             "ultimate_legion",
             "ultimate_no_pain_no_gain",
             "ultimate_wisdom"
+        ],
+        "LONGSWORD": [
+            "bane_of_arthropods",
+            "cleave",
+            "critical",
+            "cubism",
+            "dragon_hunter",
+            "ender_slayer",
+            "execute",
+            "experience",
+            "fire_aspect",
+            "first_strike",
+            "giant_killer",
+            "impaling",
+            "knockback",
+            "lethality",
+            "life_steal",
+            "looting",
+            "luck",
+            "mana_steal",
+            "PROSECUTE",
+            "scavenger",
+            "sharpness",
+            "smite",
+            "syphon",
+            "telekinesis",
+            "titan_killer",
+            "thunderlord",
+            "thunderbolt",
+            "triple_strike",
+            "vampirism",
+            "venomous",
+            "vicious",
+            "ultimate_one_for_all",
+            "ultimate_soul_eater",
+            "ultimate_chimera",
+            "ultimate_combo",
+            "ultimate_swarm",
+            "ultimate_wise",
+            "smoldering"
+        ],
+        "GAUNTLET": [
+            "bane_of_arthropods",
+            "cleave",
+            "critical",
+            "cubism",
+            "dragon_hunter",
+            "ender_slayer",
+            "execute",
+            "experience",
+            "fire_aspect",
+            "first_strike",
+            "giant_killer",
+            "impaling",
+            "knockback",
+            "lethality",
+            "life_steal",
+            "looting",
+            "luck",
+            "mana_steal",
+            "PROSECUTE",
+            "scavenger",
+            "sharpness",
+            "smite",
+            "syphon",
+            "telekinesis",
+            "titan_killer",
+            "thunderlord",
+            "thunderbolt",
+            "triple_strike",
+            "vampirism",
+            "venomous",
+            "vicious",
+            "ultimate_one_for_all",
+            "ultimate_soul_eater",
+            "ultimate_chimera",
+            "ultimate_combo",
+            "ultimate_swarm",
+            "ultimate_wise",
+            "compact",
+            "efficiency",
+            "experience",
+            "fortune",
+            "silk_touch",
+            "pristine",
+            "smelting_touch",
+            "telekinesis",
+            "smoldering"
         ]
     },
     "enchant_pools": [
@@ -420,10 +515,6 @@ ENCHANTS_DICT = {
         [
             "ultimate_one_for_all",
             "vicious"
-        ],
-        [
-            "pristine",
-            "compact"
         ],
         [
             "turbo_pumpkin",
@@ -802,6 +893,9 @@ ENCHANTS_DICT = {
             10,
             20,
             30
+        ],
+        "rainbow": [
+            10
         ]
     }
 }

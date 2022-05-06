@@ -1,11 +1,12 @@
 import discord  # type: ignore
-discord.http.API_VERSION = 9
 from discord.ext import commands  # type: ignore
 
 import json  # For loading the uuid conversion cache
 
 from database_manager import load_guild_prefix, load_prefixes, load_linked_accounts
 from utils import error as error_embed
+
+intents = discord.Intents(messages=True, guilds=True, emojis=True, message_content=True)
 
 print("1. Importing discord, json and other util packages done.")
 
@@ -27,8 +28,6 @@ def get_prefix(bot: commands.Bot, msg: discord.Message):
 def get_prefix(bot: commands.Bot, msg: discord.Message) -> str:
     return "!"
 #'''
-
-intents = discord.Intents(messages=True, guilds=True, emojis=True)
 
 client = commands.AutoShardedBot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = dict(load_prefixes())

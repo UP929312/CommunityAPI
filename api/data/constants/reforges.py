@@ -10,17 +10,6 @@ REFORGE_DICT = {
             "MYTHIC": 600000
         }
     },
-    "bloody;ACCESSORY": {
-        "INTERNAL_NAME": "BEATING_HEART",
-        "REFORGE_COST": {
-            "COMMON": 750,
-            "UNCOMMON": 1500,
-            "RARE": 3650,
-            "EPIC": 7500,
-            "LEGENDARY": 15000,
-            "MYTHIC": 30000
-        }
-    },
     "blessed;AXE": {
         "INTERNAL_NAME": "BLESSED_FRUIT",
         "REFORGE_COST": {
@@ -107,17 +96,6 @@ REFORGE_DICT = {
             "EPIC": 150000,
             "LEGENDARY": 300000,
             "MYTHIC": 600000
-        }
-    },
-    "shaded;ACCESSORY": {
-        "INTERNAL_NAME": "DARK_ORB",
-        "REFORGE_COST": {
-            "COMMON": 25000,
-            "UNCOMMON": 50000,
-            "RARE": 100000,
-            "EPIC": 200000,
-            "LEGENDARY": 400000,
-            "MYTHIC": 800000
         }
     },
     "submerged;HELMET": {
@@ -498,7 +476,8 @@ REFORGE_DICT = {
             "RARE": 1000,
             "EPIC": 2500,
             "LEGENDARY": 5000,
-            "MYTHIC": 10000
+            "MYTHIC": 10000,
+            "DIVINE": 15000
         }
     },
     "silky;ACCESSORY": {
@@ -832,19 +811,10 @@ REFORGE_DICT = {
             "UNCOMMON": 10000,
             "RARE": 10000,
             "EPIC": 10000,
+            "MYTHIC": 10000,
             "LEGENDARY": 10000,
-            "SPECIAL": 10000
-        }
-    },
-    "sweet;ACCESSORY": {
-        "INTERNAL_NAME": "ROCK_CANDY",
-        "REFORGE_COST": {
-            "COMMON": 20000,
-            "UNCOMMON": 40000,
-            "RARE": 80000,
-            "EPIC": 150000,
-            "LEGENDARY": 300000,
-            "MYTHIC": 600000
+            "SPECIAL": 10000,
+            "VERY SPECIAL": 10000
         }
     },
     "auspicious;PICKAXE": {
@@ -855,7 +825,8 @@ REFORGE_DICT = {
             "RARE": 80000,
             "EPIC": 150000,
             "LEGENDARY": 300000,
-            "MYTHIC": 300000
+            "MYTHIC": 300000,
+            "DIVINE": 300000
         }
     },
     "empowered;HELMET": {
@@ -939,8 +910,8 @@ REFORGE_DICT = {
         "INTERNAL_NAME": "AOTE_STONE",
         "REFORGE_COST": {
             "RARE": 5000000,
-            "EPIC": 10000000,
-            "LEGENDARY": 20000000
+            "EPIC": 5000000,
+            "LEGENDARY": 5000000
         }
     },
     "withered;SWORD": {

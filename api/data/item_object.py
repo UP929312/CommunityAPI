@@ -43,6 +43,12 @@ class Item:
 
         #if "✿" in display.get("Name", ""):
         #    print(nbt)
+
+        if "cloak" in display.get("Name", "").lower():
+            print(nbt)
+        #if self.internal_name == "MOLTEN_CLOAK":
+        #    #print(nbt)
+        #print(nbt)
             
         # Recomb + HPB
         self.recombobulated = bool(extras.get('rarity_upgrades', False))
@@ -113,16 +119,15 @@ class Item:
 
         # Hoes
         self.hoe_level, self.hoe_material_list = (None, None)
-        if self.type == "HOE" and "THEORETICAL" in self.internal_name:
+        if self.type == "HOE" and "THEORETICAL" in self.internal_name and self.internal_name != "THEORETICAL_HOE":
             self.hoe_level = int(self.internal_name[-1])  # THEORETICAL_HOE_WHEAT_1 -> 1
             for material_type, material_list in HOE_MATERIAL_TO_INTERNAL_NAMES.items():
                 if material_type in self.internal_name:
                     self.hoe_material_list = material_list
                     break
             else:
-                print("MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND")
+                print(f"MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND, {self.internal_name}")
                 raise TypeError("MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND")                    
-        
         # Hoes
         self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
 

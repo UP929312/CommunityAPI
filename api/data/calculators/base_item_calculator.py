@@ -16,7 +16,9 @@ def calculate_reforge_price(data, price):
         #print("All data:", reforge_data, "\nInternal name:", item.internal_name)
         #print(reforge_data["REFORGE_COST"], item_rarity)
         reforge_cost = reforge_data["REFORGE_COST"].get(item_rarity, 0)  # Cost to apply for each rarity
-        reforge_item_cost = data.LOWEST_BIN.get(reforge_item, 0)  # How much does the reforge stone cost
+
+        # How much does the reforge stone cost, check bazaar
+        reforge_item_cost = data.BAZAAR.get(reforge_item, 0)
 
         price.value["reforge"] = {}
         price.value["reforge"]["item"] = {reforge_item: reforge_item_cost}
@@ -154,5 +156,6 @@ def calculate_item(data, price, print_prices=False):
         value["dye"] = {}
         value["dye"][item.dye] = data.LOWEST_BIN.get(item.dye, 0)
     #=================
+        
     price.value = value
     return price

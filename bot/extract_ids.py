@@ -72,7 +72,7 @@ def extract_internal_id(nbt: dict) -> str:
     Takes the data from the decode container function and returns
     the internal_id
     """
-    tag = nbt['tag']
+    tag = nbt.get('tag', {})
     internal_name = tag.get('ExtraAttributes', {"id": "UNKNOWN"}).get('id', "UNKNOWN")
 
     return internal_name

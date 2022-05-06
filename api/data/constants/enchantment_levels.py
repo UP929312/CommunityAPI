@@ -362,5 +362,8 @@ ENCHANTMENT_LEVELS = {
         10,
         20,
         30
+    ],
+    "rainbow": [
+        10
     ]
 }

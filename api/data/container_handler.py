@@ -9,6 +9,7 @@ def get_storage(player_data):
     for i in range(0, 19):
         page = player_data["backpack_contents"].get(str(i), {"data": []})
         storage_items.extend(parse_container(page["data"]))
+
     return storage_items
 
 def get_data(profile_data, uuid, profile_name):
