@@ -53,8 +53,11 @@ def get_containers(data, profile_data, uuid, profile_name):
         print("inv_contents parsed properly, now testing talisman_bag")
     talisman_bag = parse_container(player_data.get("talisman_bag", {"data": []})['data'])
     if debug_items:
-        print("talisman_bag parsed properly, now testing ender_chest")
-    ender_chest  = parse_container(player_data.get("ender_chest_contents", {"data": []})['data'])
+        print("talisman_bag parsed properly, now testing equipment")
+    equipment = parse_container(player_data.get("equippment_contents", {"data": []})['data'])
+    if debug_items:
+        print("equipment parsed properly, now testing ender_chest")
+    ender_chest = parse_container(player_data.get("ender_chest_contents", {"data": []})['data'])
     if debug_items:
         print("ender_chest parsed properly, now testing armour")
     armour = parse_container(player_data.get("inv_armor", {"data": []})['data'])
@@ -74,15 +77,17 @@ def get_containers(data, profile_data, uuid, profile_name):
         print("pet items parsed properly, all parsing COMPLETE")
 
     if debug_items:
-        print("Testing all 'calculate_container")
+        print("Testing all `calculate_container`s")
         calculate_container(data, inv_contents)
         calculate_container(data, talisman_bag)
+        calculate_container(data, equipment)
         calculate_container(data, ender_chest)
         calculate_container(data, armour)
         calculate_container(data, wardrobe)
         calculate_container(data, personal_vault)
         calculate_container(data, storage_items)
         calculate_container(data, pet_items)
+        print("All calculated properly")
 
     return ({
             "profile_name": other_data["cute_name"],
@@ -91,6 +96,7 @@ def get_containers(data, profile_data, uuid, profile_name):
             {
             "inventory":    calculate_container(data, inv_contents),
             "accessories":  calculate_container(data, talisman_bag),
+            "equipment":    calculate_container(data, equipment),
             "ender_chest":  calculate_container(data, ender_chest),
             "armor":        calculate_container(data, armour),
             "wardrobe":     calculate_container(data, wardrobe),

@@ -32,13 +32,13 @@ username = "oNicNoc"
 #username = "balt"
 #username = "455fcc3f87ea4a92a6c38e190c39d8ec"
 #username = "seattle72"
-#username = "Skezza"
 #username = "laachs"
 #username = "glai"
 #username = "lk"
 #username = "AndtheBand28"
 #username = "JasonHYH186"
-username = "Skezza"
+#username = "Jomis_"
+username = "56ms"
 
 uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
 
@@ -48,12 +48,12 @@ profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API
 if profile_data.status_code != 200:
     print("Key dead?")
 
-profile_data = profile_data.json()
+profile_json = profile_data.json()
 
 ip = "127.0.0.1"  #  For running locally
 #ip = "db.superbonecraft.dk"  # For the server
 
-a = requests.post(f"http://{ip}:8000/pages/{uuid}", json=profile_data)
+a = requests.post(f"http://{ip}:8000/pages/{uuid}", json=profile_json)
 #a = requests.post(f"http://{ip}:8000/tree/{uuid}", json=profile_data)
 
 print(a.status_code)

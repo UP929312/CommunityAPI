@@ -44,8 +44,8 @@ class Item:
         #if "✿" in display.get("Name", ""):
         #    print(nbt)
 
-        if "cloak" in display.get("Name", "").lower():
-            print(nbt)
+        #if "cloak" in display.get("Name", "").lower():
+        #    print(nbt)
         #if self.internal_name == "MOLTEN_CLOAK":
         #    #print(nbt)
         #print(nbt)
@@ -97,9 +97,10 @@ class Item:
             self.item_group = last_desc_row[-1]
             if self.item_group == "HATCCESSORY":
                 self.item_group = "ACCESSORY"                
-        
+
         if self.internal_name == "PET":
-            self.pet_info = json.loads(extras["petInfo"])
+            if self.name != "Unknown Pet":
+                self.pet_info = json.loads(extras["petInfo"])
 
         # A little edge case handling, because Hypixel are great...
         if self.reforge is not None:
@@ -127,7 +128,8 @@ class Item:
                     break
             else:
                 print(f"MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND, {self.internal_name}")
-                raise TypeError("MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND")                    
+                raise TypeError("MAJOR ERROR, HOE MATERIAL COULD NOT BE FOUND")
+
         # Hoes
         self.farming_for_dummies = extras.get("farming_for_dummies_count", 0)
 

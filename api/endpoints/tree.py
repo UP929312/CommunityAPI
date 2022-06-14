@@ -7,7 +7,7 @@ async def get_tree(data, profile_data, uuid, profile_name):
         return None
 
     items = ""
-    for container in ("inventory", "accessories", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
+    for container in ("inventory", "accessories", "equipment", "ender_chest", "armor", "wardrobe", "vault", "storage", "pets"):
         for price_object in containers[container]:
             item = price_object.to_dump_string()
             items += item+"\n"

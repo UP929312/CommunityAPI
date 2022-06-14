@@ -14,7 +14,7 @@ def calculate_container(data, elements, print_prices=False):
         elif element.internal_name == "ENCHANTED_BOOK":
             price_object = calculate_enchanted_book(data, price)
 
-        elif element.internal_name == "PET":
+        elif element.internal_name == "PET" and element.name != "Unknown Pet":
             pet_info = price.item.pet_info
             element = {'uuid': None, 'type': pet_info['type'], 'exp':  pet_info['exp'], 'active': False, 'tier': pet_info["tier"],
                        'candyUsed': pet_info.get('candyUsed', 0)}
