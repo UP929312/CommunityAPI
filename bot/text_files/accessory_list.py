@@ -796,5 +796,27 @@ talisman_upgrades: dict[str, list[str]] = {
     ],
     "POWER_RING": [
       "POWER_ARTIFACT"
-    ]
+    ],
+    "BINGO_TALISMAN": [
+      "BINGO_RING",
+      "BINGO_ARTIFACT"
+    ],
+    "ODGERS_BRONZE_TOOTH": [
+      "ODGERS_SILVER_TOOTH",
+      "ODGERS_GOLD_TOOTH",
+      "ODGERS_DIAMOND_TOOTH"
+    ],
+    "ODGERS_SILVER_TOOTH": [
+      "ODGERS_GOLD_TOOTH",
+      "ODGERS_DIAMOND_TOOTH"
+    ],
+    "ODGERS_GOLD_TOOTH": [
+      "ODGERS_DIAMOND_TOOTH"
+    ],
+    "BURSTSTOPPER_TALISMAN": [
+      "BURSTSTOPPER_ARTIFACT"
+    ],
+    "BINGO_RING": [
+      "BINGO_ARTIFACT"
+    ],
 }

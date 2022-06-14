@@ -73,7 +73,6 @@ async def get_profile_data(ctx: commands.Context, username: Optional[str], profi
     if data is None:
         return None
     username, uuid = data
-
     
     #################################
     # Fetch profile from hypixel's API with uuid

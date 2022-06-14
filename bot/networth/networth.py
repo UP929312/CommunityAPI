@@ -69,10 +69,11 @@ class networth_cog(commands.Cog):
             return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?", is_response)
         #=======================        
         data = request.json()
+        
         # Generate all the pages and initiate the menu handler
         list_of_embeds = [generate_page(ctx.author, data, username, page) for page in PAGES]
         await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, alternate_colours=True, is_response=is_response)
 
         # Add the data to the database (for the leaderboard command)
-        #data_totals: list[int] = [data[page]['total'] for page in ("purse", "banking", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets")]
-        #insert_profile(uuid, data["profile_data"]["profile_name"], data["profile_data"]["profile_type"], *data_totals)
+        data_totals: list[int] = [data[page]['total'] for page in ("purse", "banking", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets")]
+        insert_profile(uuid, data["profile_data"]["profile_name"], data["profile_data"]["profile_type"], *data_totals)

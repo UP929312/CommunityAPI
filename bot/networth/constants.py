@@ -1,4 +1,4 @@
-page_names = ["main", "inventory", "accessories", "ender_chest", "armor", "vault", "wardrobe", "storage", "pets", "misc"]
+page_names = ["main", "inventory", "accessories", "ender_chest", "armor", "equipment", "wardrobe", "storage", "pets", "misc"]
 
 # Item descriptive icons
 
@@ -36,7 +36,8 @@ ACCESSORES = "<:accessories:854797427420823572>"
 WARDROBE = "<:wardrobe:854797516078972928>"
 
 STORAGE = "<:storage:854797494830628884>"
-VAULT = "<:vault:854841046151331900>"
+#VAULT = "<:vault:854841046151331900>"
+EQUIPMENT = "<:belt:985209099354538014>"
 ARMOUR = "<:armor:855021791391383562>"
 PETS = "<:pets:854797481132032090>"
 MISC = "<:misc:854801277489774613>"
@@ -48,7 +49,7 @@ PAGE_TO_EMOJI: dict[str, str] = {
     "accessories": ACCESSORES,
     "wardrobe": WARDROBE,
     "storage": STORAGE,
-    "vault": VAULT,
+    "equipment": EQUIPMENT,
     "armor": ARMOUR,
     "pets": PETS,
     "misc": MISC,
@@ -65,7 +66,8 @@ PAGE_TO_IMAGE = {
     "wardrobe": "https://cdn.discordapp.com/emojis/854797516078972928.png?v=1",
 
     "storage": "https://cdn.discordapp.com/emojis/854797494830628884.png?v=1",
-    "vault": "https://cdn.discordapp.com/emojis/854841046151331900.png?v=1",
+    #"vault": "https://cdn.discordapp.com/emojis/854841046151331900.png?v=1",
+    "equipment": "https://cdn.discordapp.com/emojis/985209099354538014.png?v=1",
     "armor": "https://cdn.discordapp.com/emojis/855021791391383562.png?v=1",
     "pets": "https://cdn.discordapp.com/emojis/854797481132032090.png?v=1",
     "misc": "https://cdn.discordapp.com/emojis/854801277489774613.png?v=1",

@@ -65,6 +65,9 @@ MAX_MINION_TIERS = {
     "WHEAT_GENERATOR": 12,
     "ZOMBIE_GENERATOR": 11,
     "HARD_STONE_GENERATOR": 11,
+    "MYCELIUM_GENERATOR": 12,
+    "RED_SAND_GENERATOR": 12,
+    "INFERNO_GENERATOR": 12,
 }
 
 T12_MATERIALS = {
@@ -80,6 +83,7 @@ T12_MATERIALS = {
     "MITHRIL": ("REFINED_MITHRIL", 16),
     "HARD_STONE": ("ENCHANTED_HARD_STONE", 32),
     "REVENANT": ("REVENANT_VISCERA", 64),
+    "RED_SAND_GENERATOR": ("ENCHANTED_RED_SAND_CUBE", 32),
 }
 
 
@@ -157,13 +161,14 @@ class minions_cog(commands.Cog):
             if minion_tier(max_tier_minion) >= MAX_MINION_TIERS[minion+"_GENERATOR"]:
                 continue
             minion_maxes[minion] = minion_tier(max_tier_minion)
-
+    
         ########## Five: Get the prices for each of the next tier up
         minion_prices = {}
         for minion, tier in minion_maxes.items():
             minion_id = minion+f"_{tier+1}"
             # If it's being upgraded to max tier
             if tier+1 == MAX_MINION_TIERS[minion+"_GENERATOR"]:
+                
                 if (possible_materials := T12_MATERIALS.get(minion)) is None:
                     # If it's not a mining T12 minion, e.g. farming (Chicken T12)
                     minion_prices[minion_id] = UPGRADABLE
@@ -175,7 +180,7 @@ class minions_cog(commands.Cog):
             else:  # If not, just get the recipe from Moulberry's
                 recipe = ITEMS.get(f"{minion}_GENERATOR_{tier+1}", {"recipe": NO_ITEM_FOUND})["recipe"]
                 minion_prices[minion_id] = sum([get_price(data, x) for x in recipe if "GENERATOR" not in x])
-                
+
         ordered = sorted(minion_prices.items(), key=lambda item: item[1])[:12]
 
         if len(ordered) == 0:

@@ -13,15 +13,15 @@ from typing import Optional, Union
 
 # API key for importing
 with open("text_files/hypixel_api_key.txt") as file:
-    API_KEY: str = file.read()
+    API_KEY = file.read()
 
 # Senither Weight API key for importing
 with open("text_files/hypixel_api_key_weight.txt") as file:
-    WEIGHT_API_KEY: str = file.read()
+    WEIGHT_API_KEY = file.read()
 
 # Find closest item
 with open("text_files/MASTER_ITEM_DICT.json", "r", encoding="utf-8") as file:
-    ITEMS: dict = json.load(file)
+    ITEMS = json.load(file)
 
 ENCHANT_LIST = ['bane_of_arthropods', 'cleave', 'critical', 'cubism', 'dragon_hunter', 'ender_slayer', 'execute', 'experience', 'fire_aspect', 'first_strike', 'giant_killer', 'impaling', 'knockback', 'lethality', 'life_steal', 'looting', 'luck', 'mana_steal', 'prosecute', 'scavenger', 'sharpness', 'smite', 'syphon', 'telekinesis', 'titan_killer', 'thunderlord', 'thunderbolt', 'triple_strike', 'vampirism', 'venomous', 'vicious', 'ultimate_one_for_all', 'ultimate_soul_eater', 'ultimate_chimera', 'ultimate_combo', 'ultimate_swarm', 'ultimate_wise', 'aiming', 'chance', 'flame', 'infinite_quiver', 'piercing', 'overload', 'power', 'punch', 'snipe', 'ultimate_rend', 'efficiency', 'replenish', 'silk_touch', 'turbo_cactus', 'turbo_coco', 'turbo_melon', 'turbo_pumpkin', 'delicate', 'compact', 'fortune', 'pristine', 'smelting_touch', 'angler', 'blessing', 'caster', 'expertise', 'frail', 'luck_of_the_sea', 'lure', 'magnet', 'spiked_hook', 'harvesting', 'turbo_wheat', 'turbo_cane', 'turbo_warts', 'turbo_carrot', 'turbo_potato', 'turbo_mushrooms', 'cultivating', 'big_brain', 'blast_protection', 'fire_protection', 'projectile_protection', 'protection', 'growth', 'rejuvenate', 'respite', 'aqua_affinity', 'thorns', 'respiration', 'ultimate_bank', 'ultimate_last_stand', 'ultimate_legion', 'ultimate_no_pain_no_gain', 'ultimate_wisdom', 'counter_strike', 'true_protection', 'smarty_pants', 'sugar_rush', 'feather_falling', 'depth_strider', 'frost_walker']    
 PETS = ['ammonite', 'armadillo', 'baby_yeti', 'bal', 'bat', 'bee', 'black_cat', 'blaze', 'blue_whale', 'chicken', 'dolphin', 'elephant', 'ender_dragon', 'enderman', 'endermite', 'flying_fish', 'ghoul', 'giraffe', 'golden_dragon', 'golem', 'grandma_wolf', 'griffin', 'guardian', 'horse', 'hound', 'jellyfish', 'jerry', 'lion', 'magma_cube', 'megalodon', 'mithril_golem', 'monkey', 'ocelot', 'parrot', 'phoenix', 'pig', 'pigman', 'rabbit', 'rat', 'rock', 'scatha', 'sheep', 'silverfish', 'skeleton', 'skeleton_horse', 'snowman', 'spider', 'spirit', 'squid', 'tarantula', 'tiger', 'turtle', 'wither_skeleton', 'wolf', 'zombie']

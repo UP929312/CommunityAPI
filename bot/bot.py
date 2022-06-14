@@ -89,8 +89,8 @@ client.add_cog(test_cog(client))
 
 print("6. Added cogs done.")
 
-#client.ip_address = "db.superbonecraft.dk"
-client.ip_address = "127.0.0.1"
+client.ip_address = "db.superbonecraft.dk"
+#client.ip_address = "127.0.0.1"
 
 bot_key = open("text_files/bot_key.txt","r").read()
 client.run(bot_key)
