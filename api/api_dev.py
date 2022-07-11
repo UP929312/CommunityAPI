@@ -38,7 +38,7 @@ username = "oNicNoc"
 #username = "AndtheBand28"
 #username = "JasonHYH186"
 #username = "Jomis_"
-username = "56ms"
+username = "SneezyHamster"
 
 uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
 

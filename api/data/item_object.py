@@ -10,7 +10,7 @@ DEFAULT_ITEM = {"internal_name": "DEFAULT_ITEM", "name":"Default Item",    "stac
                 "farming_for_dummies": 0,        "tuned_transmission": 0,  "ethermerge": False,
                 "winning_bid": 0,                "ability_scrolls": [],    "origin_tag": "UNKNOWN",
                 "dye": None}
-                
+       
 HOE_MATERIAL_TO_INTERNAL_NAMES = {
     "POTATO": ("POTATO_ITEM", "ENCHANTED_POTATO", "ENCHANTED_BAKED_POTATO"),
     "WARTS": ("NETHER_STALK", "ENCHANTED_NETHER_STALK", "MUTANT_NETHER_STALK"),
@@ -67,15 +67,15 @@ class Item:
         # Unique to tools
         self.enchantments = extras.get('enchantments', {})
         self.reforge = extras.get('modifier', None)
+        if self.reforge == "none":
+            self.reforge = None
         self.star_upgrades = extras.get("dungeon_item_level", 0)  # Gets number of stars for dungeon items.
 
         # Parse item name with removed reforges (We can already get the reforges)
-        #if self.reforge.lower() == "ancient":
-        #    print(nbt)
         #print(self.reforge, self.name)
-        if self.reforge:            
+        if self.reforge:
             self.name = self.name.removeprefix(self.reforge.title()+" ")
-        self.name = self.name.removeprefix("Green Thumb ")            
+        self.name = self.name.removeprefix("Green Thumb ")
 
         # Description parsing for rarity and type
         self.description = display.get('Lore', [])
