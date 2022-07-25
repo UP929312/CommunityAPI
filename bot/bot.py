@@ -19,15 +19,11 @@ from player_commands import *
 
 print("3. Importing all player commands done.")
 
-'''
+LOCAL_BOT = True
 def get_prefix(bot: commands.Bot, msg: discord.Message):
+    if LOCAL_BOT: return "!"
     prefix = bot.prefixes.get(f"{msg.guild.id}", ".") if msg.guild else "."
     return commands.when_mentioned_or(prefix)(bot, msg)
-#'''
-#'''
-def get_prefix(bot: commands.Bot, msg: discord.Message) -> str:
-    return "!"
-#'''
 
 client = commands.AutoShardedBot(command_prefix=get_prefix, help_command=None, case_insensitive=True, owner_id=244543752889303041, intents=intents, allowed_mentions=discord.AllowedMentions(everyone=False))
 client.prefixes = dict(load_prefixes())
@@ -39,12 +35,17 @@ print("4. Client init done and data fetched")
 with open("text_files/uuid_conversion_cache.json", 'r') as file:
     client.uuid_conversion_cache = json.load(file)
 #====================================================
+client.first_run = True
+
 @client.event
 async def on_ready() -> None:
-    print("Done")
-    print('Bot up and running.')
-    print("Loaded in on the community bot!")
-        
+    print("on_ready fired! =====")
+    if client.first_run:
+        client.first_run = False
+        print("Done")  # To tell the VM startup was complete
+        print('Bot up and running.\nLoaded in on the community bot!')
+        client.emoji_guild = await client.fetch_guild(860247551008440320)
+    
 @client.event
 async def on_command_error(ctx, error) -> None:
     print("In on_command error:", str(error))

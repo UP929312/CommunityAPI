@@ -1,6 +1,6 @@
 import os
 
-find = "NEW_USER"
+find = "author."
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]+[""]
 
@@ -12,6 +12,7 @@ def find_it(folder, ext):
                     for line in a.readlines():
                         if find.lower() in line.lower():
                             print(" > Found in", file, " contained "+find)
+                            #print("   > ", line)
                 except Exception as e:
                     print(e)
                     pass
