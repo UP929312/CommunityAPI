@@ -81,6 +81,7 @@ class lowest_bin_cog(commands.Cog):
             time_left: str = format_duration(datetime.strptime(data['end'].rstrip("Z"), '%Y-%m-%dT%H:%M:%S'))
 
             # Enchants
+            #print(data["enchantments"])  #  int object has no attribute title
             enchantment_list: list[str] = [x["type"].title()+f" {x['level']}" for x in data["enchantments"]]
             enchantments: str = format_enchantments(enchantment_list)
             # Hot potato books

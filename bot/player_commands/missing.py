@@ -32,6 +32,7 @@ for accessory in ACCESSORIES:
         MASTER_ACCESSORIES.append(accessory)
 
 EMOJI_LIST = ["<:alphabetically:905066318720544779>", "<:recombobulator:854750106376339477>", "<:by_price:900069290143797299>"]
+NO_PRICE = 9876543211
 
 class missing_cog(commands.Cog):
     def __init__(self, bot) -> None:
@@ -46,6 +47,7 @@ class missing_cog(commands.Cog):
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await ctx.defer()
         await self.get_missing(ctx, username, profile, is_response=True)
 
     #=========================================================================================================================================
@@ -77,7 +79,7 @@ class missing_cog(commands.Cog):
             return await error(ctx, f"Error, price API is down!", f"Please wait for it to return, and try again later!", is_response=is_response)
 
         for accessory in missing:
-            accessory["price"] = lowest_bin_data.get(accessory["internal_name"], 9999999999)
+            accessory["price"] = lowest_bin_data.get(accessory["internal_name"], NO_PRICE)
 
         list_of_embeds = []
 
@@ -92,7 +94,7 @@ class missing_cog(commands.Cog):
                 text = ""
                 for item in acc_list:
                     wiki_link = "<Unknown>" if not item['wiki_link'] else f"[wiki]({item['wiki_link']})"
-                    price = hf(item['price']) if item['price'] != 9999999999 else 'N/A'
+                    price = hf(item['price']) if item['price'] != NO_PRICE else 'N/A'
                     text += f"{ITEM_RARITY[item['rarity']]} {item['name']}\n➜ For {price}, link: {wiki_link}\n"
 
                 embed_title = f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}" if parameter == "name" else f"Group {num}"

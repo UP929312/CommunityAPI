@@ -22,6 +22,7 @@ class duped_cog(commands.Cog):
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await ctx.defer()
         await self.get_duped(ctx, username, profile, is_response=True)
 
     #=========================================================================================================================================

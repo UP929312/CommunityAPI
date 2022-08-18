@@ -69,11 +69,13 @@ class leaderboard_cog(commands.Cog):
     async def leaderboard_slash(self, ctx, profile_type: Option(str, "profile_type", choices=['regular', 'ironman'], required=False, default="regular")):
         if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await ctx.defer()
         await self.leaderboard(ctx, profile_type, is_response=True)
 
     #===================================================================================================================================
 
     async def leaderboard(self, ctx, provided_profile_type: Optional[str] = "regular", is_response: bool = False) -> None:
+        
         profile_type = provided_profile_type.lower()
         if profile_type not in ['regular', 'ironman']:
             return await error(ctx, "Error, invalid profile type", "Valid profile types include 'regular' or 'ironman'", is_response=is_response)
