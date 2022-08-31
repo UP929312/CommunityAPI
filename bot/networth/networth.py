@@ -26,6 +26,7 @@ class networth_cog(commands.Cog):
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await ctx.defer()
         await self.get_networth(ctx, username, profile, is_response=True)
 
     @commands.slash_command(name="nw", description="Alias of /networth", guild_ids=guild_ids)
@@ -33,6 +34,7 @@ class networth_cog(commands.Cog):
                              profile: Option(str, "profile", choices=PROFILE_NAMES, required=False)):
         if not bot_can_send(ctx):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
+        await ctx.defer()
         await self.get_networth(ctx, username, profile, is_response=True)
 
     @commands.user_command(name="Get networth", guild_ids=guild_ids)  

@@ -2,6 +2,7 @@ import discord  # type: ignore
 from discord.ext import commands  # type: ignore
 from datetime import datetime
 import requests
+from typing import Optional
 
 from utils import error, API_KEY, ITEMS, guild_ids
 from parse_profile import get_profile_data

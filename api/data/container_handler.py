@@ -79,6 +79,7 @@ def get_containers(data, profile_data, uuid, profile_name):
     if debug_items:
         print("Testing all `calculate_container`s")
         calculate_container(data, inv_contents)
+        print("Post inv")
         calculate_container(data, talisman_bag)
         calculate_container(data, equipment)
         calculate_container(data, ender_chest)

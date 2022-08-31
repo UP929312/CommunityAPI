@@ -28,6 +28,7 @@ from dev import dev_cog
 
 assistant_commands = [set_prefix_cog, link_account_cog, help_cog, regenerate_leaderboard_cog]
 
+
 regular_commands = [sky_cog, wiki_cog, bazaar_cog,
                     dungeons_cog, kills_cog, lowest_bin_cog,
                     skills_cog, slayer_cog, invite_cog,

@@ -39,7 +39,7 @@ def generate_page(command_author: discord.Member, data: dict, username: str, pag
         embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"Networth Command Limitations")
         embed.add_field(name="**1**: The value doesn't include minions", value="As minions aren't part of the API, they're not visible to the bot, so aren't included. However, these scale linearly (when compared to total network), and shouldn't make too much of a difference (relative wise).", inline=False)
         embed.add_field(name="**2**: The value doesn't include chests", value="Similarly, chests also aren't visible, and also aren't included, and while this is partially problematic, is impossible to add at the current time. The effect this has should be relatively minor.", inline=False)
-        embed.add_field(name="**3**: Some values are subjective", value="While almost all items calculated have set prices (mostly from the auction house's BIN/Bazaar), one constants have been used, the value of Pet levels (e.g. Level 2 pet being worth more than a Level 1 pet), currently 0.2*xp (capped at Level 100).", inline=False)  
+        embed.add_field(name="**3**: Some values are subjective", value="While almost all items calculated have set prices (mostly from the auction house's BIN/Bazaar), one constant has been used: the value of Pet levels (e.g. Level 2 pet being worth more than a Level 1 pet), currently 0.2*xp (capped at Level 100).", inline=False)  
     # All the rest
     else:
         total = hf(data[page]["total"])

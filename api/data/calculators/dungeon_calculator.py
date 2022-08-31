@@ -1,11 +1,5 @@
 from data.constants.essence import ESSENCE_DICT
 
-'''
-ESSENCE_PRICE = {"Wither": 4000, "Gold": 3000,
-                 "Ice":    3000, "Diamond": 3000,
-                 "Dragon": 1000, "Spider": 3000,
-                 "Undead": 1000}
-'''
 MASTER_STAR_NAMES = ['first_master_star', 'second_master_star', 'third_master_star', 'fourth_master_star', 'fifth_master_star']
 
 #ESSENCE_ICE
@@ -39,7 +33,7 @@ def calculate_dungeon_item(data, price, print_prices=False):
         price.value["stars"]["master_stars"] = {}
         for i in range(0, item.star_upgrades-5):
             master_star_name = MASTER_STAR_NAMES[i]
-            price.value["stars"]["master_stars"][master_star_name] = data.LOWEST_BIN.get(master_star_name.upper(), 0)
+            price.value["stars"]["master_stars"][master_star_name] = data.BAZAAR.get(master_star_name.upper(), 0)
 
     return price
 

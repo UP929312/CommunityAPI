@@ -22,9 +22,9 @@ async def emoji_page(client: commands.Bot, page: int, username: str, use_emojis:
         return emoji
     
     print(f"Couldn't find emoji with username: {username}")
-    image_request = requests.get(f"https://mc-heads.net/head/{username}")
-    if image_request.status_code != 200:  # 503: This will sometimes return 503 for some reason, 503 Service Unavailable
-        return MISSING_EMOJI
+    #image_request = requests.get(f"https://mc-heads.net/head/{username}")
+    #if image_request.status_code != 200:  # 503: This will sometimes return 503 for some reason, 503 Service Unavailable
+    #    return MISSING_EMOJI
 
     print("#"*40+f"Creating new emoji for {username}")
     try:

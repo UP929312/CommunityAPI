@@ -70,7 +70,7 @@ def insert_profile(uuid, profile_name, profile_type, purse, banking, inventory, 
                      VALUES (%s, NOW(), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
                     (uuid, profile_name, profile_type, purse, banking, inventory, accessories, ender_chest, armor, vault, wardrobe, storage, pets))
 
-def get_max_current_networth(profile_type: str ="regular") -> list[tuple]:
+def get_max_current_networth(profile_type: str="regular") -> list[tuple]:
     # WHERE profile_type = %s
     return fetch_data('''
         SELECT t1.uuid, (t1.purse+t1.banking+t1.inventory+t1.accessories+t1.ender_chest+t1.armor+t1.vault+t1.wardrobe+t1.storage+t1.pets) AS total FROM 
@@ -114,3 +114,4 @@ def get_sum_networth_data() -> list[tuple]:
     ''')
 #print(sum([x[0] for x in get_sum_networth_data()]))
 #===========================================
+#print(get_max_current_networth())

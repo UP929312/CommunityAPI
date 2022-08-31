@@ -106,10 +106,10 @@ def calculate_item(data, price, print_prices=False):
         price = calculate_dungeon_item(data, price)
     # Art of war
     if item.art_of_war:
-        value["art_of_war_value"] = data.LOWEST_BIN.get("THE_ART_OF_WAR", 0)  # Get's the Art of War book from BIN
+        value["art_of_war_value"] = data.BAZAAR["THE_ART_OF_WAR"]
     # Wood singularity
     if item.wood_singularity:
-        value["wood_singularty_value"] = data.LOWEST_BIN.get("WOOD_SINGULARITY", 0)
+        value["wood_singularty_value"] = data.BAZAAR["WOOD_SINGULARITY"]
     # Armor skins
     if item.skin:
         value["skin"] = {}
@@ -129,7 +129,7 @@ def calculate_item(data, price, print_prices=False):
         value["gemstone_chambers"] = item.gemstone_chambers*data.LOWEST_BIN.get("GEMSTONE_CHAMBER", 0)
     # Farming for dummies books on hoes
     if item.farming_for_dummies:
-        value["farming_for_dummies"] = item.farming_for_dummies*data.LOWEST_BIN.get("FARMING_FOR_DUMMIES", 0)
+        value["farming_for_dummies"] = item.farming_for_dummies*data.BAZAAR.get("FARMING_FOR_DUMMIES", 0)
     # Drills (upgrades)
     if item.type == "DRILL" and item.has_drill_upgrade:
         value["drill_upgrades"] = {}
@@ -141,16 +141,16 @@ def calculate_item(data, price, print_prices=False):
             value["drill_upgrades"][item.drill_tank_upgrade] = data.LOWEST_BIN.get(item.drill_tank_upgrade, 0)
     # Tuned transmission:
     if item.tuned_transmission:
-        value["tuned_transmission"] = item.tuned_transmission*data.LOWEST_BIN.get("TRANSMISSION_TUNER", 0)
+        value["tuned_transmission"] = item.tuned_transmission*data.BAZAAR.get("TRANSMISSION_TUNER", 0)
     # Ethermerge
     if item.ethermerge:
         value["ethermerge"] = data.LOWEST_BIN.get("ETHERWARP_MERGER", 0)+data.LOWEST_BIN.get("ETHERWARP_CONDUIT", 0)
     # Winning bid for Midas Staff/Sword
     if item.winning_bid > 0 and item.internal_name in ["MIDAS_STAFF", "MIDAS_SWORD"]:
         value["winning_bid"] = item.winning_bid
-    # Hyperion scrolls (Necron's Blade Scrolls)
+    # Hyperion + Other scrolls (Necron's Blade Scrolls)
     if item.ability_scrolls:
-        value["ability_scrolls_value"] = sum([data.LOWEST_BIN.get(scroll, 0) for scroll in item.ability_scrolls])
+        value["ability_scrolls_value"] = sum([data.BAZAAR.get(scroll, 0) for scroll in item.ability_scrolls])
     # Dyes:
     if item.dye:
         value["dye"] = {}

@@ -31,7 +31,7 @@ class guild_networth_cog(commands.Cog):
 
     @commands.command(aliases=["gnw", "gn"])
     async def guild_networth(self, ctx: commands.Context, provided_username: Optional[str] = None) -> None:
-        username, uuid = await input_to_uuid(ctx, provided_username)
+        username, uuid = await input_to_uuid(ctx, provided_username, is_response=False)
         if uuid is None:
             return
 
