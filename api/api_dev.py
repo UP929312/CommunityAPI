@@ -8,7 +8,8 @@ test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
 user = 0
 username = test_usernames[user]
 
-API_KEY = "a5741dbb-ce47-4d0b-af54-ffc76fad4fae"
+# ThiccAsian
+API_KEY = "a89b886d-045e-449a-97b9-e7c93394d870"
 
 
 #a = requests.get("https://api.hypixelskyblock.de/api/v1/cb/pages/balt")
@@ -24,7 +25,7 @@ username = "Repurposer"
 username = "StutterMuch"
 username = "Ealman"
 username = "Skezza"
-username = "oNicNoc"
+#username = "oNicNoc"
 #username = "56ms"
 #username = "ycarusishere"
 #username = "KebabOnNaan"
@@ -39,12 +40,12 @@ username = "oNicNoc"
 #username = "JasonHYH186"
 #username = "Jomis_"
 #username = "Everlasting_Luck"
-username = "Larucus"
+
 
 uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}").json()["id"]
 
 #uuid = "1e82592262494e8fb814dffb7de916aa"
-#uuid = "c3b9402747b1433d8b20cd54c7da3f5d"
+#uuid = "0cb78dbf35e84a77bad937199a1a91ef"
 profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}")
 if profile_data.status_code != 200:
     print("Key dead?")
@@ -52,9 +53,12 @@ if profile_data.status_code != 200:
 profile_json = profile_data.json()
 
 ip = "127.0.0.1"  #  For running locally
+#ip = "panel.skyblockcommunity.com"
 #ip = "db.superbonecraft.dk"  # For the server
 
+print("Before")
 a = requests.post(f"http://{ip}:8000/pages/{uuid}", json=profile_json)
+print("After")
 #a = requests.post(f"http://{ip}:8000/tree/{uuid}", json=profile_data)
 
 print(a.status_code)

@@ -1,0 +1,6 @@
+fastapi==0.82.0
+fastapi_utils==0.2.1
+parameterized==0.8.1
+pydantic==1.8.2
+requests==2.25.1
+uvicorn==0.13.4

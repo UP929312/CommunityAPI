@@ -22,11 +22,10 @@ def get_data(profile_data, uuid, profile_name):
         if not any([uuid in x['members'] for x in profile_data]):
             raise InvalidUUIDException
 
-        valid_profiles = [x for x in profile_data if "last_save" in x['members'].get(uuid, {})]  # Very very rarely, the uuid won't be here
+        valid_profiles = [x for x in profile_data if uuid in x['members'] and "selected" in x]
         if not valid_profiles:
             raise NoProfilesException
-
-        profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
+        profile = max(valid_profiles, key=lambda x: x['selected'])
 
     if uuid not in profile['members'].keys():
         raise InvalidUUIDException
