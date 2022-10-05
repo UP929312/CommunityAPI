@@ -20,7 +20,7 @@ class sky_cog(commands.Cog):
             return await ctx.respond("You're not allowed to do that here.", ephemeral=True)
         await self.sky(ctx, username, is_response=True)
 
-    async def sky(self, ctx, provided_username: Optional[str] = None, is_response: bool = False) -> None:
+    async def sky(self, ctx, provided_username: Optional[str] = None, is_response: bool = False) -> None:        
         player_data: Optional[tuple[str, str]] = await input_to_uuid(ctx, provided_username, is_response=is_response)
         if player_data is None:
             return None

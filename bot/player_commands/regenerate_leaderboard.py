@@ -17,7 +17,7 @@ class regenerate_leaderboard_cog(commands.Cog):
     async def regenerate_leaderboard(self, ctx) -> None:        
         records = get_max_current_networth("regular")
 
-        for uuid, total in records:
+        for uuid, _ in records:
             print(f"Re-calculated {uuid}")
             profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
             

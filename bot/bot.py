@@ -45,7 +45,16 @@ async def on_ready() -> None:
         print("Done")  # To tell the VM startup was complete
         print('Bot up and running.\nLoaded in on the community bot!')
         client.emoji_guild = await client.fetch_guild(860247551008440320)
-    
+
+        '''
+        try:
+            guild = await client.fetch_guild(571681282652766208)
+            print(guild)
+            await guild.leave()
+        except:
+            pass
+        '''
+
 @client.event
 async def on_command_error(ctx, error) -> None:
     print("In on_command error:", str(error))
@@ -85,13 +94,13 @@ all_cogs.extend(player_commands)
 for cog in all_cogs:
     client.add_cog(cog(client))
 
-from test_cog import test_cog
-client.add_cog(test_cog(client))
+#from test_cog import test_cog
+#client.add_cog(test_cog(client))
 
 print("6. Added cogs done.")
 
-client.ip_address = "db.superbonecraft.dk"
-#client.ip_address = "127.0.0.1"
+#client.ip_address = "149.102.131.110"
+client.ip_address = "127.0.0.1"
 
 bot_key = open("text_files/bot_key.txt","r").read()
 client.run(bot_key)

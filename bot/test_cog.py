@@ -46,6 +46,7 @@ class test_cog(commands.Cog):
         #embed = discord.Embed(description="Testing modalds", colour=0x3498DB)
         #await embed.send()
         print("We're here")
+
         modal = MyModal(title="Slash Command Modal")
         await ctx.interaction.response.send_modal(modal)
         

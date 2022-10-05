@@ -97,10 +97,19 @@ async def get_profile_data(ctx: commands.Context, username: Optional[str], profi
             return await error(ctx, "Error, couldn't find that profile name", "Make sure you type it correctly and try again.", is_response=is_response)
         profile = profiles[0]
     else:  # If they leave it for auto
+        #'''
+        if not (valid_profiles := [x for x in profile_list["profiles"] if uuid in x['members'] and "selected" in x]):
+            return await error(ctx, "Error, cannot find profiles for this user!", "Make sure you spelled the target player's name correctly", is_response=is_response)
+    
+        profile = max(valid_profiles, key=lambda x: x['selected'])
+        #'''
+        '''
+        # Old - Broken
         if not (valid_profiles := [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]):
             return await error(ctx, "Error, cannot find profiles for this user!", "Make sure you spelled the target player's name correctly", is_response=is_response)
     
         profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
+        '''
     #################################
     # Save the profile data and some other bits because they're handy
     profile_dict = profile["members"][uuid]

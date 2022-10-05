@@ -52,6 +52,8 @@ class networth_cog(commands.Cog):
             return None
         username, uuid, profile_data, profile_name = player_data["data"]
 
+        print("Start")
+
         #=======================
         # Make the API request
         try:

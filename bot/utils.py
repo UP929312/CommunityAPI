@@ -39,7 +39,7 @@ async def error(ctx, title: str, description: str, is_response: bool = False) ->
         await ctx.send(embed=embed)
 #=============================================================
 def bot_can_send(ctx):
-    return (ctx.guild is None) or (ctx.channel.permissions_for(ctx.guild.me)).send_messages
+    return (ctx.guild is None) or (ctx.channel.permissions_for(ctx.guild.me)).send_messages #and ctx.guild in [None, 571681282652766208]
         
 async def autocomplete_display_name(ctx):
     print("Here")

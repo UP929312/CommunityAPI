@@ -4,12 +4,12 @@ import datetime
 from typing import Union, Any, List, Optional, cast
 
 with open("text_files/database_creds.txt") as file:
-    host, user, password = [x.rstrip("\n") for x in file.readlines()]
+    host, user, password, database = [x.rstrip("\n") for x in file.readlines()]
 
 #===========================================
 def fetch_data(*args) -> list[tuple]:
     try:
-        mydb = mysql.connector.connect(host=host, user=user, password=password, database="s27_community_bot", port=3306)
+        mydb = mysql.connector.connect(host=host, user=user, password=password, database=database, port=3306)
         cursor = mydb.cursor(*args)
 
         cursor.execute(*args)
@@ -23,7 +23,7 @@ def fetch_data(*args) -> list[tuple]:
 
 def execute_command(*args) -> None:
     try:
-        mydb = mysql.connector.connect(host=host, user=user, password=password, database="s27_community_bot", port=3306)
+        mydb = mysql.connector.connect(host=host, user=user, password=password, database=database, port=3306)
         cursor = mydb.cursor()
 
         cursor.execute(*args)
@@ -82,6 +82,7 @@ def get_max_current_networth(profile_type: str="regular") -> list[tuple]:
         ) AS t2 ON t1.uuid = t2.uuid AND t1.datetime = t2.datetime
         ORDER BY total DESC LIMIT 100
     ''', (profile_type,))
+
 #===========================================
 # For rank
 def get_specific_networth_data(uuid: str) -> list[tuple]:
@@ -112,6 +113,9 @@ def get_sum_networth_data() -> list[tuple]:
           GROUP BY t3.uuid
         ) AS t2 ON t1.uuid = t2.uuid AND t1.datetime = t2.datetime
     ''')
+
+#records = fetch_data("SELECT * FROM stored_profiles")
+#print(records)
 #print(sum([x[0] for x in get_sum_networth_data()]))
 #===========================================
 #print(get_max_current_networth())

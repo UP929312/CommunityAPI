@@ -1,6 +1,6 @@
 import os
 
-find = "author."
+find = "ip_address"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]+[""]
 
@@ -18,7 +18,7 @@ def find_it(folder, ext):
                     pass
 
 for folder in folders:
-    if folder in [".\__pycache__", ".\.mypy_cache"]:
+    if folder in [".\__pycache__", ".\.mypy_cache", '.\dead_code']:
         continue
     print("Looking in folder:", folder)
     if folder == "":
