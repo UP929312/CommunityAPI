@@ -46,14 +46,6 @@ async def on_ready() -> None:
         print('Bot up and running.\nLoaded in on the community bot!')
         client.emoji_guild = await client.fetch_guild(860247551008440320)
 
-        '''
-        try:
-            guild = await client.fetch_guild(571681282652766208)
-            print(guild)
-            await guild.leave()
-        except:
-            pass
-        '''
 
 @client.event
 async def on_command_error(ctx, error) -> None:

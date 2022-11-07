@@ -48,14 +48,14 @@ async def input_to_uuid(ctx, provided_username: Optional[str], is_response: bool
     else:
         # if it's a uuid
         uuid = username
-        username_request = requests.get(f"https://api.mojang.com/user/profiles/{uuid}/names")
+        username_request = requests.get(f"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}")
         if not username_request.text:
             return await error(ctx, "Error! UUID was incorrect.", "Could not find that player's uuid.", is_response=is_response)
         username_json = username_request.json()
         if isinstance(username_json, dict) and "error" in username_json.keys():
             return await error(ctx, "Error! Input was invalid.", "Could not find that player!. Did you try pinging them? (Pings are annoying to users so won't be accepted)", is_response=is_response)
 
-        username = username_request.json()[-1]["name"]
+        username = username_request.json()["name"]
         
     return username, uuid
 
