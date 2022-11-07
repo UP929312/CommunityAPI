@@ -9,7 +9,7 @@ from bisect import bisect
 from parse_profile import get_profile_data
 
 from utils import error, format_duration, clean, hf, PROFILE_NAMES, bot_can_send, guild_ids
-from emojis import DUNGEON_BOSS_EMOJIS
+from emojis import DUNGEON_BOSS_EMOJIS, CLASS_EMOJIS
 from menus import generate_static_preset_menu
 
 BOSS_INDEX_DICT = {"1": "Bonzo",
@@ -20,16 +20,9 @@ BOSS_INDEX_DICT = {"1": "Bonzo",
                    "6": "Sadan",
                    "7": "Necron"}
 
-CLASS_EMOJIS = {"catacombs": "<:catacombs:864618274900410408>",
-                "healer": "<:healer:864611797037350932>",
-                "mage": "<:mage:864611797042331699>",
-                "berserk": "<:berserker:864611797088075796>",
-                "archer": "<:archer:864611797038530590>",
-                "tank": "<:tank:864611797033156629>",
-}
 CLASSES = list(CLASS_EMOJIS.keys())[1:]
 
-EMOJI_LIST = ["<:dungeons:864588623394897930>", "<:catacombs:864618274900410408>", "<:master_catacombs:888075454353920010>"]
+EMOJI_LIST = ["<:dungeons:1035458870363041793>", "<:catacombs:1035458867078897685>", "<:master_catacombs:888075454353920010>"]
 LEVEL_REQS = [50, 125, 235, 395, 625, 955, 1425, 2095, 3045, 4385, 6275, 8940, 12700, 17960, 25340, 35640, 50040, 70040, 97640, 135640, 188140, 259640, 356640, 488640, 668640, 911640, 1239640, 1684640, 2284640, 3084640, 4149640, 5559640, 7459640, 9959640, 13259640, 17559640, 23159640, 30359640, 39559640, 51559640, 66559640, 85559640, 109559640, 139559640, 177559640, 225559640, 285559640, 360559640, 453559640, 569809640, 1000000000000000000000000000000]
    
 class dungeons_cog(commands.Cog):

@@ -8,39 +8,21 @@ import requests
 from utils import error, hf, WEIGHT_API_KEY, bot_can_send, guild_ids
 from parse_profile import input_to_uuid
 from menus import generate_static_preset_menu
+from emojis import SKILL_EMOJIS, CLASS_EMOJIS, SLAYER_EMOJIS
 
-
-EMOJI_DICT = {
-    "farming": "<:farming:867330396684943390>",
-    "mining": "<:mining:867330462648762368>",
-    "combat": "<:combat:867330422018408448>",
-    "foraging": "<:foraging:867330412128501770>",
-    "fishing": "<:fishing:867330404985339924>",
-    "enchanting": "<:enchanting:867330504533606480>",
-    "alchemy": "<:alchemy:867330341697355796>",
-    "taming": "<:taming:867330484668334084>",
-    "carpentry": "<:carpentry:867361518274347039>",
-    "runecrafting": "<:runecrafting:867330494679875584>",
-
-    "catacombs": "<:catacombs:864618274900410408>",
-    "healer": "<:healer:864611797037350932>",
-    "mage": "<:mage:864611797042331699>",
-    "berserker": "<:berserker:864611797088075796>",
-    "archer": "<:archer:864611797038530590>",
-    "tank": "<:tank:864611797033156629>",
-    
-    "revenant": "<:revenant:867330711191158804>",
-    "tarantula": "<:tarantula:867330736368386100>",
-    "sven": "<:sven:867330745591529512>",
-    "enderman": "<:voidgloom:867330759073464360>",
-}
+EMOJI_DICT = {**SKILL_EMOJIS, **CLASS_EMOJIS}
+EMOJI_DICT["revenant"] = SLAYER_EMOJIS["zombie"]
+EMOJI_DICT["tarantula"] = SLAYER_EMOJIS["spider"]
+EMOJI_DICT["sven"] = SLAYER_EMOJIS["wolf"]
+EMOJI_DICT["enderman"] = SLAYER_EMOJIS["enderman"]
+           
 PAGE_URLS = {"dungeons": ["healer", "mage", "berserker", "archer", "tank"],
              "skills":   ["mining", "foraging", "enchanting", "farming", "combat", "fishing", "alchemy", "taming", "carpentry"],
-             "slayers":  ["revenant", "tarantula", "sven", "enderman"]
+             "slayers":  ["revenant", "tarantula", "sven", "enderman"],
 }
 
-EMOJI_LIST = ["<:paper:873158778487443486>", "<:dungeons:864588623394897930>", "<:skills:864588638066311200>",
-              "<:slayers:864588648111276072>", "<:misc:854801277489774613>"]
+EMOJI_LIST = ["<:paper:1035458893482037278>", "<:dungeons:1035458870363041793>", "<:skills:1035458899240816702>",
+              "<:slayer:1035458900985651222>", "<:misc:854801277489774613>"]
 
 class weights_cog(commands.Cog):
     def __init__(self, bot) -> None:

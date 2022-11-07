@@ -1,12 +1,12 @@
 ITEM_RARITY = {   
-    "COMMON":    "<:common:863390433593786369>",
-    "UNCOMMON":  "<:uncommon:863390433517895690>",
-    "RARE":      "<:rare:863390433186152459>",
-    "EPIC":      "<:epic:863390433526022165>",
-    "LEGENDARY": "<:legendary:863390433493123072>",
-    "MYTHIC":    "<:mythic:867070377750167572>",
-    "SUPREME":   "<:supreme:867070395949383700>",  # Don't think this is used anymore
-    "SPECIAL":   "<:special:867070427897135144>",
+    "COMMON":    "<:common:1035458869616443402>",
+    "UNCOMMON":  "<:uncommon:1035458914059304990>",
+    "RARE":      "<:rare:1035458894438350854>",
+    "EPIC":      "<:epic:1035458874662211584>",
+    "LEGENDARY": "<:legendary:1035458884611096586>",
+    "MYTHIC":    "<:mythic:1035458891376513074>",
+    "SUPREME":   "<:supreme:1035458904299163648> ",  # Don't think this is used anymore
+    "SPECIAL":   "<:special:1035458901895811085>",
     "VERY_SPECIAL": "<:very_special:869652064224030830>",
     "DIVINE":    "<:divine:890223730909929522>",
     "UNKNOWN": "",
@@ -15,13 +15,13 @@ ITEM_RARITY = {
 NUMBER_EMOJIS = [":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:", "<:ten:876112518072909864>"]
 
 DUNGEON_BOSS_EMOJIS = {
-    "1": "<:bonzo:867330587345027093>",
-    "2": "<:scarf:867330616378785793>",
-    "3": "<:the_professor:867330626687991848>",
-    "4": "<:thorn:867330640549380106>",
-    "5": "<:livid:867330658032418836>",
-    "6": "<:sadan:867330667355045888>",
-    "7": "<:necron:867330684179316736>"}
+    "1": "<:bonzo:1035458864709124136>",
+    "2": "<:scarf:1035458898406162502>",
+    "3": "<:the_professor:1035458907511996466> ",
+    "4": "<:thorn:1035458908766076969> ",
+    "5": "<:livid:1035458886020374588>",
+    "6": "<:sadan:1035458897286270986>",
+    "7": "<:necron:1035458892001448038>"}
 
 MINION_TIER_EMOJIS = {   
     2:    "<:t2_minion:872063121253097522>",
@@ -47,28 +47,39 @@ MATHS_EMOJIS = {
 }
 
 SKILL_EMOJIS = {
-    "farming": "<:farming:867330396684943390>",
-    "mining": "<:mining:867330462648762368>",
-    "combat": "<:combat:867330422018408448>",
-    "foraging": "<:foraging:867330412128501770>",
-    "fishing": "<:fishing:867330404985339924>",
-    "enchanting": "<:enchanting:867330504533606480>",
-    "alchemy": "<:alchemy:867330341697355796>",
-    "taming": "<:taming:867330484668334084>",
-    "carpentry": "<:carpentry:867361518274347039>",
-    "runecrafting": "<:runecrafting:867330494679875584>"
+    "farming": "<:farming:1035458875744329738>",
+    "mining": "<:mining:1035458888658604123>",
+    "combat": "<:combat:1035458868425273394>",
+    "foraging": "<:foraging:1035458878386749470>",
+    "fishing": "<:fishing:1035458876813877278>",
+    "enchanting": "<:enchanting:1035458872867037196>",
+    "alchemy": "<:alchemy:1035458858119860285>",
+    "taming": "<:taming:1035458905406443560> ",
+    "carpentry": "<:carpentry:1035458865589911574>",
+    "runecrafting": "<:runecrafting:1035458896011198464>"
 }
 
-SLAYER_EMOJIS = {"zombie": "<:revenant:867330711191158804>",
-                 "spider": "<:tarantula:867330736368386100>",
-                 "wolf": "<:sven:867330745591529512>",
-                 "enderman": "<:voidgloom:867330759073464360>"}
+SLAYER_EMOJIS = {
+    "zombie": "<:revenant:1035458916781408296>",
+    "spider": "<:tarantula:1035458903258976306>",
+    "wolf": "<:sven:1035458915204345866>",
+    "enderman": "<:voidgloom:867330759073464360>"
+}
+
+CLASS_EMOJIS = {
+    "catacombs": "<:catacombs:864618274900410408>",
+    "healer": "<:healer:1035458883579289620>",
+    "mage": "<:mage:1035458887500959764>>",
+    "berserk": "<:berserker:1035458862570029076>",
+    "archer": "<:archer:1035458859113914392>",
+    "tank": "<:tank:1035458906417274890> ",
+}
 
 # Only for use on `rank`, not in networth
 PAGE_ICON_EMOJIS = {
     "overall": "<:paper:873158778487443486>",
     
-    "banking": "<:banking:873158080077115392>",
+    "banking": "<:banking:1035458860556759100>",
     "purse": "<:main:854797453223657505>",
     "inventory": "<:inventory:854797467726643210>",
     "ender chest": "<:ender_chest:854797443321036830>",

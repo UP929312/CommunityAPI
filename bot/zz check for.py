@@ -1,6 +1,6 @@
 import os
 
-find = "ip_address"
+find = "<:minions"
 
 folders = [f.path for f in os.scandir(".") if f.is_dir()]+[""]
 

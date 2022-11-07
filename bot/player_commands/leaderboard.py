@@ -42,7 +42,7 @@ async def page_generator(ctx, data: list, page: int, use_emojis: bool) -> discor
 
     for i, (uuid, total) in enumerate(cropped_data, 1):
         if uuid not in client.uuid_conversion_cache:
-            client.uuid_conversion_cache[uuid] = requests.get(f"https://api.mojang.com/user/profiles/{uuid}/names").json()[-1]["name"]
+            client.uuid_conversion_cache[uuid] = requests.get(f"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}").json()["name"]
 
         username = client.uuid_conversion_cache[uuid]
         emoji_text = await emoji_page(client, page, username, use_emojis)
