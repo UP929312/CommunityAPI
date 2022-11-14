@@ -819,4 +819,11 @@ talisman_upgrades: dict[str, list[str]] = {
     "BINGO_RING": [
       "BINGO_ARTIFACT"
     ],
+    "GREAT_SPOOK_TALISMAN": [
+        "GREAT_SPOOK_RING"
+        "GREAT_SPOOK_ARTIFACT",
+    ],
+    "GREAT_SPOOK_RING": [
+        "GREAT_SPOOK_ARTIFACT"
+    ],
 }
