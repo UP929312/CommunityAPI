@@ -1,9 +1,12 @@
-# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-2.1.0-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=HypixelSkyblock&colorA=7289DA&colorB=2C2F33)](https://discord.gg/HypixelSkyblock)
+# CommunityBot &middot; ![version](https://img.shields.io/badge/Version-2.1.0-brightgreen.svg?style=flat-square) ![license](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square) [![Discord](https://img.shields.io/discord/571681282652766208.svg?style=flat-square&logo=discord&label=SkyblockCommunityServer&colorA=7289DA&colorB=2C2F33)](https://discord.gg/skyblockcommunity)
 
 # A Discord bot that is developed by [Skezza#1139](https://discord.com/users/244543752889303041) made to help the community in various things related to Hypixel Skyblock
 ### The bot has numerous commands, a highlight of them is as follows:
 - Checking the prices of items.
 - Checking a player's networth.
+- Checks if a player has obtained possibly duped items.
+- Checking a player's auction house and displays whether the item is sold or not.
+- Shows how to max a player's weapon/armour and guided them through the process.
 - Show a player's missing talismans, with the ability to sort the list **alphabetically** as well as by **rarity** and the price.
 - Show what is needed to max items in a player's inventory, mainly weapons.
 - Show the tiers of minions a player can craft to unlock more unqiue minion tiers, helping them unlock more minion slots.
@@ -27,3 +30,5 @@ Invite the bot: [Link](https://discord.com/api/oauth2/authorize?client_id=854722
 Vote for the bot: [Link](https://discord.com/channels/854749884103917599/871727003060019300/892763258610675793)
 
 Join the support server: [Link](https://discord.gg/fhuPkpEYHX)
+
+Join our community server: [Link](https://discord.gg/skyblockcommunity)
