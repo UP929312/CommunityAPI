@@ -3,9 +3,9 @@
 # A Discord bot that is developed by [Skezza#1139](https://discord.com/users/244543752889303041) made to help the community in various things related to Hypixel Skyblock
 ### The bot has numerous commands, a highlight of them is as follows:
 - Checking the prices of items.
-- Checking a player's networth that constantly updates automatically using Hypixel API data.
-- Shows a player's possibly duped items.
-- Shows a player's auction house and displays whether the item is sold or not.
+- Checking a player's networth.
+- Checks if a player has obtained possibly duped items.
+- Checking a player's auction house and displays whether the item is sold or not.
 - Shows how to max a player's weapon/armour and guided them through the process.
 - Show a player's missing talismans, with the ability to sort the list **alphabetically** as well as by **rarity** and the price.
 - Show what is needed to max items in a player's inventory, mainly weapons.
