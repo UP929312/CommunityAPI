@@ -51,7 +51,7 @@ class networth_cog(commands.Cog):
         if player_data is None:
             return None
         username, uuid, profile_data, profile_name = player_data["data"]
-
+        
         #=======================
         # Make the API request
         try:
@@ -71,7 +71,7 @@ class networth_cog(commands.Cog):
             return await error(ctx, "Error, that person could not be found", "Perhaps you input the incorrect name?", is_response)
         #=======================        
         data = request.json()
-        
+
         # Generate all the pages and initiate the menu handler
         list_of_embeds = [generate_page(ctx.author, data, username, page) for page in PAGES]
         await generate_static_preset_menu(ctx=ctx, list_of_embeds=list_of_embeds, emoji_list=EMOJI_LIST, alternate_colours=True, is_response=is_response)

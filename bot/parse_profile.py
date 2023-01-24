@@ -43,7 +43,7 @@ async def input_to_uuid(ctx, provided_username: Optional[str], is_response: bool
                 return await error(ctx, "Error! Username was incorrect.", "Make sure you spelled the target player's name correctly.", is_response=is_response)
             else:
                 return await error(ctx, "Error, could not parse username from discord nickname.", "No linked account was found through /link_account, and no username was given. Please link your account or provide a username", is_response=is_response)
-            
+
         uuid = uuid_request.json()["id"]
     else:
         # if it's a uuid
@@ -78,6 +78,7 @@ async def get_profile_data(ctx: commands.Context, username: Optional[str], profi
     # Fetch profile from hypixel's API with uuid
     profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
 
+
     if profile_list == {'success': False, 'cause': 'Invalid API key'}:
         print("############################### Error, key has failed again!")
         return await error(ctx, "Error, the api key used to run this bot has failed.", "This is because Hypixel randomly kill API keys. Please be patient, a fix is coming soon!", is_response=is_response)
@@ -97,19 +98,11 @@ async def get_profile_data(ctx: commands.Context, username: Optional[str], profi
             return await error(ctx, "Error, couldn't find that profile name", "Make sure you type it correctly and try again.", is_response=is_response)
         profile = profiles[0]
     else:  # If they leave it for auto
-        #'''
         if not (valid_profiles := [x for x in profile_list["profiles"] if uuid in x['members'] and "selected" in x]):
             return await error(ctx, "Error, cannot find profiles for this user!", "Make sure you spelled the target player's name correctly", is_response=is_response)
     
         profile = max(valid_profiles, key=lambda x: x['selected'])
-        #'''
-        '''
-        # Old - Broken
-        if not (valid_profiles := [x for x in profile_list["profiles"] if "last_save" in x['members'][uuid]]):
-            return await error(ctx, "Error, cannot find profiles for this user!", "Make sure you spelled the target player's name correctly", is_response=is_response)
-    
-        profile = max(valid_profiles, key=lambda x: x['members'][uuid]['last_save'])
-        '''
+
     #################################
     # Save the profile data and some other bits because they're handy
     profile_dict = profile["members"][uuid]

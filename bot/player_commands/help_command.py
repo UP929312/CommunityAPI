@@ -56,6 +56,8 @@ class help_cog(commands.Cog):
     #============================================================================================================================
 
     async def help(self, ctx, is_response: bool = False) -> None:
+        if ctx.guild.id == 1036024217080168488:
+            return
         list_of_embeds = []
         for category, commands in categories.items():
             embed = discord.Embed(title=category, colour=0x3498DB)

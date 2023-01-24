@@ -31,9 +31,19 @@ for accessory in ACCESSORIES:
     if accessory["internal_name"] not in talisman_upgrades.keys():
         MASTER_ACCESSORIES.append(accessory)
 
-EMOJI_LIST = ["<:alphabetically:905066318720544779>", "<:recombobulator:854750106376339477>", "<:by_price:900069290143797299>"]
+EMOJI_LIST = ["<:alphabetically:905066318720544779>", "<:recombobulator:854750106376339477>", "<:by_price:900069290143797299>", "<:magic_power:1052617112193093723>"]
 NO_PRICE = 9876543211
 
+MAGIC_POWER_BY_RARITY = {
+    "COMMON": 3,
+    "UNCOMMON": 5,
+    "RARE": 8,
+    "EPIC": 12,
+    "LEGENDARY": 16,
+    "MYTHIC": 22,
+    "SPECIAL": 3,
+    "VERY_SPECIAL": 5,
+}
 class missing_cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.client = bot
@@ -83,8 +93,10 @@ class missing_cog(commands.Cog):
 
         list_of_embeds = []
 
-        for page, parameter in zip(["alphabetically", "by rarity", "by price"], ["name", "rarity", "price"]):
-            sort_func = lambda x: x[parameter] if parameter != "rarity" else RARITY_LIST.index(x["rarity"])
+        for page, parameter, sort_func in zip(
+                ["alphabetically", "by rarity", "by price", "by magic power"], ["name", "rarity", "price", "magic power"],
+                [lambda x: x["name"], lambda x: RARITY_LIST.index(x["rarity"]), lambda x: x["price"], lambda x: x["price"]/MAGIC_POWER_BY_RARITY[x["rarity"]]]
+        ):
             sorted_accessories = sorted(missing, key=sort_func)[:42]
                             
             extra = "" if len(missing) <= 36 else f", showing the first {int(len(sorted_accessories)/6)}"
@@ -94,7 +106,11 @@ class missing_cog(commands.Cog):
                 text = ""
                 for item in acc_list:
                     wiki_link = "<Unknown>" if not item['wiki_link'] else f"[wiki]({item['wiki_link']})"
-                    price = hf(item['price']) if item['price'] != NO_PRICE else 'N/A'
+                    if parameter == "magic power":
+                        coins_per_mp = int(item["price"]/MAGIC_POWER_BY_RARITY[item["rarity"]])
+                        price = f"{hf(coins_per_mp)} coins/mp" if item['price'] != NO_PRICE else 'N/A'
+                    else:
+                        price = hf(item['price']) if item['price'] != NO_PRICE else 'N/A'
                     text += f"{ITEM_RARITY[item['rarity']]} {item['name']}\n➜ For {price}, link: {wiki_link}\n"
 
                 embed_title = f"{acc_list[0]['name'][0]}-{acc_list[-1]['name'][0]}" if parameter == "name" else f"Group {num}"

@@ -139,7 +139,6 @@ class minions_cog(commands.Cog):
         # Get a list of all the different players on the profile
         all_crafted_generators = [combined_data["profile"]["members"][member].get("crafted_generators", []) for member in combined_data["profile"]["members"]]
         # Get the crafted_generators for each member in the profile
-
         minions = [item for sublist in all_crafted_generators for item in sublist]  # Combine all the lists
             
         if len(minions) == 0:
