@@ -76,7 +76,11 @@ async def get_profile_data(ctx: commands.Context, username: Optional[str], profi
     
     #################################
     # Fetch profile from hypixel's API with uuid
-    profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
+    try:
+        profile_list = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}").json()
+    except:
+        return await error(ctx, "Error, the Hypixel API is in maintenance mode!", "Please try again in a few hours!", is_response=is_response)
+        print("AHHHH, the Hypixel API isn't working properly!")
 
 
     if profile_list == {'success': False, 'cause': 'Invalid API key'}:
