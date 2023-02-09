@@ -38,7 +38,7 @@ def emojisforlevel(level):
         return 'Common ⬜'
 def permissions(level, username):
     if level <= 3:
-        return f'{username} does not have access to Wardrobe, Garden, Bazaar, Auto-Pickup and Community Shop. notskayer lacks progression, or has created a new profile.'
+        return f'{username} does not have access to Wardrobe, Garden, Bazaar, Auto-Pickup and Community Shop. {username} lacks progression, or has created a new profile.'
     elif level <= 5:
         return f'{username} does not have access to Bazaar, Auto-Pickup and Garden.'
     elif level <= 6:
