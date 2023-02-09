@@ -65,8 +65,7 @@ class skills_cog(commands.Cog):
         total_counted_levels = sum(get_level(skill_data, skill) for skill in SKILLS)
         skill_average = round(total_counted_levels/len(SKILLS), 2)
 
-        skyblock_level = int(skill_data["leveling"]["experience"])//100
-        skyblock_level_overflow = int(skill_data["leveling"]["experience"]) % 100
+        skyblock_level, skyblock_level_overflow = divmod(int(skill_data["leveling"]["experience"]), 100)
         
         embed.add_field(name=f"Skills Data:", value=f"Total Skill XP: **{hf(total_skill_xp)}**\nSkill Average: **{hf(skill_average)}**", inline=True)
         embed.add_field(name=f"Skyblock Level:", value=f"Level {skyblock_level} - {level_squares[skyblock_level//40]}\n[{skyblock_level_overflow}/100]", inline=True)
