@@ -29,6 +29,8 @@ max_levels = {
     "runecrafting": 25,
 }
 
+level_squares = ["⬜", "🟩", "🟦", "🟪", "🟨", "<:pink_square:1073051068998623342>", "🟦", "🟥", "[🔴]"]
+
 def get_level(skill_data: dict, skill: str) -> int:
     return min(bisect(CUMULATIVE_XP_REQS, skill_data.get(f'experience_skill_{skill}', 0)), max_levels[skill])
 
@@ -62,8 +64,13 @@ class skills_cog(commands.Cog):
         total_skill_xp = sum(skill_data.get(f'experience_skill_{skill}', 0) for skill in SKILLS)
         total_counted_levels = sum(get_level(skill_data, skill) for skill in SKILLS)
         skill_average = round(total_counted_levels/len(SKILLS), 2)
+
+        skyblock_level = int(skill_data["leveling"]["experience"])//100
+        skyblock_level_overflow = int(skill_data["leveling"]["experience"]) % 100
         
-        embed.add_field(name=f"Skills Data:", value=f"Total Skill XP: **{hf(total_skill_xp)}**\nSkill Average: **{hf(skill_average)}**", inline=False)
+        embed.add_field(name=f"Skills Data:", value=f"Total Skill XP: **{hf(total_skill_xp)}**\nSkill Average: **{hf(skill_average)}**", inline=True)
+        embed.add_field(name=f"Skyblock Level:", value=f"Level {skyblock_level} - {level_squares[skyblock_level//40]}\n[{skyblock_level_overflow}/100]", inline=True)
+        embed.add_field(name=f"\u200b", value="\u200b", inline=True)
 
         for skill in SKILLS:
             cumulative_xp = int(skill_data.get(f'experience_skill_{skill}', 0))
