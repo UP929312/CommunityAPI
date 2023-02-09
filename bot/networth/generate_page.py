@@ -4,6 +4,7 @@ from typing import Any
 from utils import hf, clean
 from networth.generate_description import generate_description
 from networth.constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
+from networth.fetchstuff import fetch_skyblock_level, decimal_part, emojisforlevel, permissions
 
 def format_info(total: int, item: dict, value: dict) -> str:
     name = item['name'] if 'name' in item else f"[Lvl {value['pet_level']}] {clean(item['tier'])} {clean(item['type'])}"
@@ -14,16 +15,21 @@ def format_info(total: int, item: dict, value: dict) -> str:
 def generate_page(command_author: discord.Member, data: dict, username: str, page: str, use_guilds: bool=False) -> discord.Embed:
 
     embed = discord.Embed(colour=0x3498DB)
-
+    
     # MAIN MENU
     if page == "main":
         total: str = hf(sum([float(x["total"]) for x in data.values() if "total" in x]))
-
+        skyblocklevel = int(fetch_skyblock_level(username))
+        levelformatted = int(skyblocklevel//100)
+        emoji = emojisforlevel(skyblocklevel//100)
+        check_permsissions_using_level = permissions(skyblocklevel//100, username)
+        true_skyblock_xp_to_level_up = decimal_part(skyblocklevel)
         purse = float(data['purse']['total'])
         bank = float(data['banking']['total'])
         embed.add_field(name="**Purse**", value=f"{hf(purse)}", inline=True)
         embed.add_field(name="**Bank**", value=f"{hf(bank)}", inline=True)
         embed.add_field(name="**Combined**", value=f"{hf(purse+bank)}", inline=True)
+        embed.add_field(name="**Skyblock Level**", value=f"{username}'s Skyblock Level - {emoji} **{levelformatted}** **[{true_skyblock_xp_to_level_up}/100]**\n{check_permsissions_using_level}")
         
         for page_string in page_names[1:-1]:  # Remove purse and banking
             if data[page_string]["total"] == "0":
@@ -39,7 +45,8 @@ def generate_page(command_author: discord.Member, data: dict, username: str, pag
         embed.set_author(icon_url=PAGE_TO_IMAGE[page], name=f"Networth Command Limitations")
         embed.add_field(name="**1**: The value doesn't include minions", value="As minions aren't part of the API, they're not visible to the bot, so aren't included. However, these scale linearly (when compared to total network), and shouldn't make too much of a difference (relative wise).", inline=False)
         embed.add_field(name="**2**: The value doesn't include chests", value="Similarly, chests also aren't visible, and also aren't included, and while this is partially problematic, is impossible to add at the current time. The effect this has should be relatively minor.", inline=False)
-        embed.add_field(name="**3**: Some values are subjective", value="While almost all items calculated have set prices (mostly from the auction house's BIN/Bazaar), one constant has been used: the value of Pet levels (e.g. Level 2 pet being worth more than a Level 1 pet), currently 0.2*xp (capped at Level 100).", inline=False)  
+        embed.add_field(name="**3**: Items in the museum are not shown.",value="Valuable items that have been stored in the museum for ranks will not be shown as it is not included in the Inventory, thus the total networth will be reduced, once the item is held in the museum.")
+        embed.add_field(name="**4**: Some values are subjective", value="While almost all items calculated have set prices (mostly from the auction house's BIN/Bazaar), one constant has been used: the value of Pet levels (e.g. Level 2 pet being worth more than a Level 1 pet), currently 0.2*xp (capped at Level 100).", inline=False)  
     # All the rest
     else:
         total = hf(data[page]["total"])
@@ -68,4 +75,3 @@ def generate_page(command_author: discord.Member, data: dict, username: str, pag
         
     embed.set_footer(text=f" Command executed by {command_author.display_name} | Community Bot. By the community, for the community.")    
     return embed
-
