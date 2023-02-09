@@ -4,6 +4,7 @@ from typing import Any
 from utils import hf, clean
 from networth.generate_description import generate_description
 from networth.constants import page_names, PAGE_TO_IMAGE, PAGE_TO_EMOJI
+from networth.fetchstuff import fetch_skyblock_level, decimal_part, emojisforlevel
 
 def format_info(total: int, item: dict, value: dict) -> str:
     name = item['name'] if 'name' in item else f"[Lvl {value['pet_level']}] {clean(item['tier'])} {clean(item['type'])}"
@@ -14,16 +15,20 @@ def format_info(total: int, item: dict, value: dict) -> str:
 def generate_page(command_author: discord.Member, data: dict, username: str, page: str, use_guilds: bool=False) -> discord.Embed:
 
     embed = discord.Embed(colour=0x3498DB)
-
+    
     # MAIN MENU
     if page == "main":
         total: str = hf(sum([float(x["total"]) for x in data.values() if "total" in x]))
-
+        skyblocklevel = int(fetch_skyblock_level(username))
+        levelformatted = int(skyblocklevel//100)
+        emoji = emojisforlevel(skyblocklevel//100)
+        true_skyblock_xp_to_level_up = decimal_part(skyblocklevel)
         purse = float(data['purse']['total'])
         bank = float(data['banking']['total'])
         embed.add_field(name="**Purse**", value=f"{hf(purse)}", inline=True)
         embed.add_field(name="**Bank**", value=f"{hf(bank)}", inline=True)
         embed.add_field(name="**Combined**", value=f"{hf(purse+bank)}", inline=True)
+        embed.add_field(name="**Skyblock Level**", value=f"{username}'s Skyblock Level - {emoji} *  *{levelformatted}** **[{true_skyblock_xp_to_level_up}/100]**")
         
         for page_string in page_names[1:-1]:  # Remove purse and banking
             if data[page_string]["total"] == "0":
@@ -68,4 +73,3 @@ def generate_page(command_author: discord.Member, data: dict, username: str, pag
         
     embed.set_footer(text=f" Command executed by {command_author.display_name} | Community Bot. By the community, for the community.")    
     return embed
-
