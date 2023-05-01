@@ -3,5 +3,6 @@ dead_code
 .mypy_cache
 bot/text_files/database_creds.txt
 bot/text_files/bot_key.txt
+bot/text_files/dev_bot_key.txt
 bot/text_files/hypixel_api_key.txt
 bot/text_files/hypixel_api_key_weight.txt
