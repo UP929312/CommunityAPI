@@ -8,8 +8,8 @@ test_usernames = {0: "56ms", 1: "nonbunary", 2: "poroknights",
 user = 0
 username = test_usernames[user]
 
-# ThiccAsian
-API_KEY = "a89b886d-045e-449a-97b9-e7c93394d870"
+# Skezza
+API_KEY = "78a53e82-85b5-442f-89cd-744285cbce80"
 
 
 #a = requests.get("https://api.hypixelskyblock.de/api/v1/cb/pages/balt")
@@ -48,7 +48,8 @@ uuid = requests.get(f"https://api.mojang.com/users/profiles/minecraft/{username}
 #uuid = "0cb78dbf35e84a77bad937199a1a91ef"
 profile_data = requests.get(f"https://api.hypixel.net/skyblock/profiles?key={API_KEY}&uuid={uuid}")
 if profile_data.status_code != 200:
-    print("Key dead?")
+    print(f"Key dead? Status code: {profile_data.status_code}")
+    print(profile_data.text)
 
 profile_json = profile_data.json()
 

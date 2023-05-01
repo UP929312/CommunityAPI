@@ -170,18 +170,15 @@ class minions_cog(commands.Cog):
                 
                 if (possible_materials := T12_MATERIALS.get(minion)) is None:
                     # If it's not a mining T12 minion, e.g. farming (Chicken T12)
-                    minion_prices[minion_id] = UPGRADABLE, None
+                    minion_prices[minion_id] = UPGRADABLE
                 else:  # Calculate minion cost through manual list and bazaar
                     material, count = possible_materials
                     bazaar_item = data[material]
                     price_per = bazaar_item['buy_summary'][0]['pricePerUnit']
-                    total_cost = price_per * count + 2_000_000
-                    minion_prices[minion_id] = total_cost, [price_per]*count
+                    minion_prices[minion_id] = price_per * count+2_000_000
             else:  # If not, just get the recipe from Moulberry's
                 recipe = ITEMS.get(f"{minion}_GENERATOR_{tier+1}", {"recipe": NO_ITEM_FOUND})["recipe"]
-                ingredients = [x for x in recipe if "GENERATOR" not in x]
-                total_cost = sum([get_price(data, x) for x in ingredients])
-                minion_prices[minion_id] = total_cost, ingredients
+                minion_prices[minion_id] = sum([get_price(data, x) for x in recipe if "GENERATOR" not in x])
 
         ordered = sorted(minion_prices.items(), key=lambda item: item[1])[:12]
 
@@ -193,7 +190,7 @@ class minions_cog(commands.Cog):
         embed.set_author(name=f"Cheapest minions to upgrade for {username}", icon_url=f"https://mc-heads.net/head/{username}")
         embed.set_footer(text=f"Command executed by {ctx.author.display_name} | Community Bot. By the community, for the community.")
         
-        for i, (minion_name, (price, recipe)) in enumerate(ordered, 1):
+        for i, (minion_name, price) in enumerate(ordered, 1):
             if price % UPGRADABLE == 0:
                 price_formatted = "Upgradable with [Terry](https://hypixel-skyblock.fandom.com/wiki/Terry%27s_Shop)!"
             elif price % NO_ITEM_FOUND == 0:
@@ -201,8 +198,6 @@ class minions_cog(commands.Cog):
             else:
                 price_formatted = f"Upgrade cost: {hf(int(price))}"
             embed.add_field(name=f"{MINION_TIER_EMOJIS[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price_formatted, inline=True)
-
-            print(recipe)
 
         if is_response:
             await ctx.respond(embed=embed)

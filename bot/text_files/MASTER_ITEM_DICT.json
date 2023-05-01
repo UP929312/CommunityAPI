@@ -34,7 +34,7 @@
         "internal_name": "ABICASE",
         "name": "Lighter Blue™ Abicase",
         "rarity": "RARE",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Abicases#Blue%E2%84%A2",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lighter_Blue™_Abicase",
         "recipe": null
     },
     "ABIPHONE_XIII_PRO": {
@@ -143,7 +143,17 @@
         "name": "Acacia Birdhouse",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Acacia_Birdhouse",
-        "recipe": null
+        "recipe": [
+            "",
+            "ENCHANTED_ACACIA_LOG:64",
+            "",
+            "ENCHANTED_ACACIA_LOG:64",
+            "",
+            "ENCHANTED_ACACIA_LOG:64",
+            "ENCHANTED_ACACIA_LOG:64",
+            "ENCHANTED_ACACIA_LOG:64",
+            "ENCHANTED_ACACIA_LOG:64"
+        ]
     },
     "ACACIA_DOOR_ITEM": {
         "internal_name": "ACACIA_DOOR_ITEM",
@@ -452,11 +462,32 @@
         "wiki_link": null,
         "recipe": null
     },
+    "ADVANCED_GARDENING_AXE": {
+        "internal_name": "ADVANCED_GARDENING_AXE",
+        "name": "Advanced Gardening Axe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Advanced_Gardening_Axe",
+        "recipe": null
+    },
+    "ADVANCED_GARDENING_HOE": {
+        "internal_name": "ADVANCED_GARDENING_HOE",
+        "name": "Advanced Gardening Hoe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Advanced_Gardening_Hoe",
+        "recipe": null
+    },
     "ADVENTURER_NPC": {
         "internal_name": "ADVENTURER_NPC",
         "name": "Adventurer (NPC)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Adventurer",
+        "recipe": null
+    },
+    "ADVENT_CALENDAR_DISPLAY": {
+        "internal_name": "ADVENT_CALENDAR_DISPLAY",
+        "name": "Advent Calendar Display",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Advent_Calendar_Display",
         "recipe": null
     },
     "AGILITY": {
@@ -718,6 +749,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Ancient_Elevator",
         "recipe": null
     },
+    "ANDREW_NPC": {
+        "internal_name": "ANDREW_NPC",
+        "name": "Andrew (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "ANGLER;1": {
         "internal_name": "ANGLER;1",
         "name": "Enchanted Book",
@@ -945,11 +983,39 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne's_Keeper",
         "recipe": null
     },
+    "ARACHNE_BELT": {
+        "internal_name": "ARACHNE_BELT",
+        "name": "Arachne's Belt",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Belt",
+        "recipe": null
+    },
+    "ARACHNE_BOOTS": {
+        "internal_name": "ARACHNE_BOOTS",
+        "name": "Arachne's Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Boots",
+        "recipe": null
+    },
     "ARACHNE_BOSS": {
         "internal_name": "ARACHNE_BOSS",
         "name": "Arachne (Boss)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne",
+        "recipe": null
+    },
+    "ARACHNE_CHESTPLATE": {
+        "internal_name": "ARACHNE_CHESTPLATE",
+        "name": "Arachne's Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Chestplate",
+        "recipe": null
+    },
+    "ARACHNE_CLOAK": {
+        "internal_name": "ARACHNE_CLOAK",
+        "name": "Arachne's Cloak",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Cloak",
         "recipe": null
     },
     "ARACHNE_CRYSTAL": {
@@ -959,6 +1025,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne_Crystal",
         "recipe": null
     },
+    "ARACHNE_FANG": {
+        "internal_name": "ARACHNE_FANG",
+        "name": "Arachne's Fang",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Fang",
+        "recipe": null
+    },
     "ARACHNE_FRAGMENT": {
         "internal_name": "ARACHNE_FRAGMENT",
         "name": "Arachne Fragment",
@@ -966,11 +1039,60 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne_Fragments",
         "recipe": null
     },
+    "ARACHNE_GLOVES": {
+        "internal_name": "ARACHNE_GLOVES",
+        "name": "Arachne's Gloves",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Gloves",
+        "recipe": null
+    },
+    "ARACHNE_HELMET": {
+        "internal_name": "ARACHNE_HELMET",
+        "name": "Arachne's Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Helmet",
+        "recipe": null
+    },
     "ARACHNE_KEEPER_FRAGMENT": {
         "internal_name": "ARACHNE_KEEPER_FRAGMENT",
-        "name": "Arachne's Keeper Fragment",
+        "name": "Arachne's Calling",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne_Keeper_Fragment",
+        "recipe": null
+    },
+    "ARACHNE_LEGGINGS": {
+        "internal_name": "ARACHNE_LEGGINGS",
+        "name": "Arachne's Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Leggings",
+        "recipe": null
+    },
+    "ARACHNE_NECKLACE": {
+        "internal_name": "ARACHNE_NECKLACE",
+        "name": "Arachne's Necklace",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arachne%27s_Necklace",
+        "recipe": null
+    },
+    "ARACHNE_SANCTUARY_TRAVEL_SCROLL": {
+        "internal_name": "ARACHNE_SANCTUARY_TRAVEL_SCROLL",
+        "name": "Travel Scroll to Arachne's Sanctuary",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Travel_Scroll_To_Arachne%27s_Sanctuary",
+        "recipe": null
+    },
+    "ARACK": {
+        "internal_name": "ARACK",
+        "name": "Arack",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arack",
+        "recipe": null
+    },
+    "ARCHAEOLOGIST_COMPASS": {
+        "internal_name": "ARCHAEOLOGIST_COMPASS",
+        "name": "Archaeologist's Compass",
+        "rarity": "COMMON",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Archaeologist%27s_Compass",
         "recipe": null
     },
     "ARCHERY": {
@@ -1206,6 +1328,13 @@
         "name": "Arrow Swapper",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrow_Swapper",
+        "recipe": null
+    },
+    "ARTHUR_NPC": {
+        "internal_name": "ARTHUR_NPC",
+        "name": "Arthur (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "ARTIFACT_OF_CONTROL": {
@@ -1521,6 +1650,13 @@
             "COBBLESTONE:8"
         ]
     },
+    "AUTUMN_HUT_BARN_SKIN": {
+        "internal_name": "AUTUMN_HUT_BARN_SKIN",
+        "name": "Autumn Hut Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Autumn_Hut_Barn_Skin",
+        "recipe": null
+    },
     "AXE_OF_THE_SHREDDED": {
         "internal_name": "AXE_OF_THE_SHREDDED",
         "name": "Axe of the Shredded",
@@ -1537,6 +1673,13 @@
             "SHARD_OF_THE_SHREDDED:1",
             "REVENANT_VISCERA:64"
         ]
+    },
+    "BABYSEAL_BACKPACK": {
+        "internal_name": "BABYSEAL_BACKPACK",
+        "name": "Baby Seal Backpack Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
     },
     "BABY_YETI;3": {
         "internal_name": "BABY_YETI;3",
@@ -1618,6 +1761,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bal",
         "recipe": null
     },
+    "BAMBOO_BARN_SKIN": {
+        "internal_name": "BAMBOO_BARN_SKIN",
+        "name": "Bamboo Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Bamboo_Barn_Skin",
+        "recipe": null
+    },
     "BANDAGED_MITHRIL_PICKAXE": {
         "internal_name": "BANDAGED_MITHRIL_PICKAXE",
         "name": "Bandaged Mithril Pickaxe",
@@ -1680,6 +1830,13 @@
     "BANE_OF_ARTHROPODS;7": {
         "internal_name": "BANE_OF_ARTHROPODS;7",
         "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "BANKER_BROADJAW_NPC": {
+        "internal_name": "BANKER_BROADJAW_NPC",
+        "name": "Banker Broadjaw (NPC)",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
@@ -2008,6 +2165,20 @@
             "GRIFFIN_FEATHER:2"
         ]
     },
+    "BASIC_GARDENING_AXE": {
+        "internal_name": "BASIC_GARDENING_AXE",
+        "name": "Basic Gardening Axe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Basic_Gardening_Axe",
+        "recipe": null
+    },
+    "BASIC_GARDENING_HOE": {
+        "internal_name": "BASIC_GARDENING_HOE",
+        "name": "Basic Gardening Hoe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Basic_Gardening_Hoe",
+        "recipe": null
+    },
     "BASKETBALL_PERSONALITY": {
         "internal_name": "BASKETBALL_PERSONALITY",
         "name": "Basketball Minion Skin",
@@ -2106,6 +2277,13 @@
             "ENCHANTED_BROWN_MUSHROOM:8",
             "ENCHANTED_BROWN_MUSHROOM:8"
         ]
+    },
+    "BAT;5": {
+        "internal_name": "BAT;5",
+        "name": "§7[Lvl {LVL}] Bat",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bat_Pet",
+        "recipe": null
     },
     "BATTLE_DISC": {
         "internal_name": "BATTLE_DISC",
@@ -2482,6 +2660,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Beating_Heart",
         "recipe": null
     },
+    "BEA_NPC": {
+        "internal_name": "BEA_NPC",
+        "name": "Bea (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bea",
+        "recipe": null
+    },
     "BED": {
         "internal_name": "BED",
         "name": "Bed",
@@ -2539,6 +2724,13 @@
         "name": "§7[Lvl {LVL}] Bee",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bee_Pet",
+        "recipe": null
+    },
+    "BEE_HIVE": {
+        "internal_name": "BEE_HIVE",
+        "name": "Bee Hive",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "BEE_PERSONALITY": {
@@ -2637,6 +2829,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
     },
+    "BETH_NPC": {
+        "internal_name": "BETH_NPC",
+        "name": "Beth (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "BETRAYAL_HEAD": {
         "internal_name": "BETRAYAL_HEAD",
         "name": "Head of Betrayal",
@@ -2731,6 +2930,27 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bingo_Pet",
         "recipe": null
     },
+    "BINGO;4": {
+        "internal_name": "BINGO;4",
+        "name": "§7[Lvl {LVL}] Bingo",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bingo_Pet",
+        "recipe": null
+    },
+    "BINGOLIBUR": {
+        "internal_name": "BINGOLIBUR",
+        "name": "Odd Bingolibur",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "BINGONIMBUS_2000": {
+        "internal_name": "BINGONIMBUS_2000",
+        "name": "Bingonimbus 2000",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bingonimbus_2000",
+        "recipe": null
+    },
     "BINGO_ARTIFACT": {
         "internal_name": "BINGO_ARTIFACT",
         "name": "Bingo Artifact",
@@ -2750,6 +2970,20 @@
         "name": "Bingo Display",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bingo_Display",
+        "recipe": null
+    },
+    "BINGO_LAVA_ROD": {
+        "internal_name": "BINGO_LAVA_ROD",
+        "name": "Bingo Lava Rod",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bingo_Lava_Rod",
+        "recipe": null
+    },
+    "BINGO_RELIC": {
+        "internal_name": "BINGO_RELIC",
+        "name": "Bingo Relic",
+        "rarity": "EPIC",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bingo_Relic",
         "recipe": null
     },
     "BINGO_RING": {
@@ -3774,6 +4008,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
+    "BLUE_GIFT_TALISMAN": {
+        "internal_name": "BLUE_GIFT_TALISMAN",
+        "name": "Blue Gift Talisman",
+        "rarity": "RARE",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Blue_Gift_Talisman",
+        "recipe": null
+    },
     "BLUE_ICE_HUNK": {
         "internal_name": "BLUE_ICE_HUNK",
         "name": "Hunk of Blue Ice",
@@ -4106,6 +4347,23 @@
             ""
         ]
     },
+    "BOX_OF_SEEDS": {
+        "internal_name": "BOX_OF_SEEDS",
+        "name": "Box of Seeds",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Box_Of_Seeds",
+        "recipe": [
+            "",
+            "ENCHANTED_SEEDS:32",
+            "",
+            "ENCHANTED_SEEDS:32",
+            "ENCHANTED_SEEDS:32",
+            "ENCHANTED_SEEDS:32",
+            "",
+            "ENCHANTED_SEEDS:32",
+            ""
+        ]
+    },
     "BRAIDED_GRIFFIN_FEATHER": {
         "internal_name": "BRAIDED_GRIFFIN_FEATHER",
         "name": "Braided Griffin Feather",
@@ -4305,6 +4563,13 @@
             ""
         ]
     },
+    "BUILDERS_RULER": {
+        "internal_name": "BUILDERS_RULER",
+        "name": "Builder's Ruler",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Builder%27s_Ruler",
+        "recipe": null
+    },
     "BUILDERS_WAND": {
         "internal_name": "BUILDERS_WAND",
         "name": "Builder's Wand",
@@ -4471,6 +4736,13 @@
         "name": "Bulvar (NPC)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bulvar",
+        "recipe": null
+    },
+    "BUNDLED_SNOWMAN": {
+        "internal_name": "BUNDLED_SNOWMAN",
+        "name": "Bundled Snowman",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bundled_Snowman",
         "recipe": null
     },
     "BUNNY": {
@@ -4660,6 +4932,13 @@
         "name": "Burning Terror Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Burning_Terror_Leggings",
+        "recipe": null
+    },
+    "BURROWING_SPORES": {
+        "internal_name": "BURROWING_SPORES",
+        "name": "Burrowing Spores",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Burrowing_Spores",
         "recipe": null
     },
     "BURSTFIRE_DAGGER": {
@@ -5872,6 +6151,13 @@
             ""
         ]
     },
+    "CASHMERE_JACKET": {
+        "internal_name": "CASHMERE_JACKET",
+        "name": "Cashmere Jacket",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Cashmere_Jacket",
+        "recipe": null
+    },
     "CASTER;1": {
         "internal_name": "CASTER;1",
         "name": "Enchanted Book",
@@ -5922,6 +6208,13 @@
         "name": "Enchanted Book",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "CASTLE_BARN_SKIN": {
+        "internal_name": "CASTLE_BARN_SKIN",
+        "name": "Castle Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Castle_Barn_Skin",
         "recipe": null
     },
     "CATACOMBS_EXPERT_RING": {
@@ -6886,6 +7179,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Chill_the_Fish",
         "recipe": null
     },
+    "CHRISTMAS_TREE": {
+        "internal_name": "CHRISTMAS_TREE",
+        "name": "Christmas Tree",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Christmas_Tree",
+        "recipe": null
+    },
     "CHUM": {
         "internal_name": "CHUM",
         "name": "Chum",
@@ -6955,7 +7255,7 @@
             "CLAY_BALL:10",
             "CLAY_BALL:10",
             "CLAY_BALL:10",
-            "WOOD_PICKAXE:1",
+            "WOOD_SPADE:1",
             "CLAY_BALL:10",
             "CLAY_BALL:10",
             "CLAY_BALL:10",
@@ -7200,6 +7500,13 @@
             "STICK:1",
             ""
         ]
+    },
+    "CLERK_SERAPHINE_NPC": {
+        "internal_name": "CLERK_SERAPHINE_NPC",
+        "name": "Clerk Seraphine (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "CLOVER_HELMET": {
         "internal_name": "CLOVER_HELMET",
@@ -8086,6 +8393,13 @@
             ""
         ]
     },
+    "COMPOST": {
+        "internal_name": "COMPOST",
+        "name": "Compost",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Compost",
+        "recipe": null
+    },
     "CONCENTRATED_STONE": {
         "internal_name": "CONCENTRATED_STONE",
         "name": "Concentrated Stone",
@@ -8101,6 +8415,23 @@
             "ENCHANTED_HARD_STONE:64",
             "ENCHANTED_HARD_STONE:64",
             "ENCHANTED_HARD_STONE:64"
+        ]
+    },
+    "CONDENSED_FERMENTO": {
+        "internal_name": "CONDENSED_FERMENTO",
+        "name": "Condensed Fermento",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Condensed_Fermento",
+        "recipe": [
+            "FERMENTO:1",
+            "FERMENTO:1",
+            "FERMENTO:1",
+            "FERMENTO:1",
+            "FERMENTO:1",
+            "FERMENTO:1",
+            "FERMENTO:1",
+            "FERMENTO:1",
+            "FERMENTO:1"
         ]
     },
     "CONJURING_SWORD": {
@@ -8526,6 +8857,13 @@
             "RAW_BEEF:1"
         ]
     },
+    "COZY_COTTAGE_BARN_SKIN": {
+        "internal_name": "COZY_COTTAGE_BARN_SKIN",
+        "name": "Cozy Cottage Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Cozy_Cottage_Barn_Skin",
+        "recipe": null
+    },
     "CRAB": {
         "internal_name": "CRAB",
         "name": "Crab",
@@ -8883,6 +9221,98 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Crooked_Artifact",
         "recipe": null
     },
+    "CROPIE": {
+        "internal_name": "CROPIE",
+        "name": "Cropie",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Cropie",
+        "recipe": null
+    },
+    "CROPIE_BOOTS": {
+        "internal_name": "CROPIE_BOOTS",
+        "name": "Cropie Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Cropie_Boots",
+        "recipe": [
+            "CROPIE:10",
+            "",
+            "CROPIE:10",
+            "TIGHTLY_TIED_HAY_BALE:1",
+            "MELON_BOOTS:1",
+            "TIGHTLY_TIED_HAY_BALE:1",
+            "",
+            "",
+            ""
+        ]
+    },
+    "CROPIE_CHESTPLATE": {
+        "internal_name": "CROPIE_CHESTPLATE",
+        "name": "Cropie Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Cropie_Chestplate",
+        "recipe": [
+            "CROPIE:10",
+            "MELON_CHESTPLATE:1",
+            "CROPIE:10",
+            "BOX_OF_SEEDS:3",
+            "TIGHTLY_TIED_HAY_BALE:1",
+            "BOX_OF_SEEDS:3",
+            "ENCHANTED_BAKED_POTATO:15",
+            "ENCHANTED_BAKED_POTATO:15",
+            "ENCHANTED_BAKED_POTATO:15"
+        ]
+    },
+    "CROPIE_HELMET": {
+        "internal_name": "CROPIE_HELMET",
+        "name": "Cropie Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Cropie_Helmet",
+        "recipe": [
+            "CROPIE:10",
+            "TIGHTLY_TIED_HAY_BALE:1",
+            "CROPIE:10",
+            "BOX_OF_SEEDS:3",
+            "MELON_HELMET:1",
+            "BOX_OF_SEEDS:3",
+            "",
+            "",
+            ""
+        ]
+    },
+    "CROPIE_LEGGINGS": {
+        "internal_name": "CROPIE_LEGGINGS",
+        "name": "Cropie Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Cropie_Leggings",
+        "recipe": [
+            "CROPIE:10",
+            "TIGHTLY_TIED_HAY_BALE:1",
+            "CROPIE:10",
+            "BOX_OF_SEEDS:3",
+            "MELON_LEGGINGS:1",
+            "BOX_OF_SEEDS:3",
+            "ENCHANTED_GOLDEN_CARROT:15",
+            "",
+            "ENCHANTED_GOLDEN_CARROT:15"
+        ]
+    },
+    "CROPIE_TALISMAN": {
+        "internal_name": "CROPIE_TALISMAN",
+        "name": "Cropie Talisman",
+        "rarity": "COMMON",
+        "wiki_link": "https://wiki.hypixel.net/Cropie_Talisman",
+        "recipe": [
+            "CROPIE:32",
+            "CROPIE:32",
+            "CROPIE:32",
+            "CROPIE:32",
+            "",
+            "CROPIE:32",
+            "CROPIE:32",
+            "CROPIE:32",
+            "CROPIE:32"
+        ]
+    },
     "CROWN_OF_GREED": {
         "internal_name": "CROWN_OF_GREED",
         "name": "Crown of Greed",
@@ -8902,6 +9332,13 @@
         "name": "Gabagool Distillate",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Distillates",
+        "recipe": null
+    },
+    "CRYOPOWDER_SHARD": {
+        "internal_name": "CRYOPOWDER_SHARD",
+        "name": "Cryopowder Shard",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Cryopowder_Shard",
         "recipe": null
     },
     "CRYPT_BOW": {
@@ -9070,6 +9507,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Portals",
         "recipe": null
     },
+    "CRYSTAL_HOLLOWS_SACK": {
+        "internal_name": "CRYSTAL_HOLLOWS_SACK",
+        "name": "Crystal Hollows Sack",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "CRYSTAL_HOLLOWS_TRAVEL_SCROLL": {
         "internal_name": "CRYSTAL_HOLLOWS_TRAVEL_SCROLL",
         "name": "Travel Scroll to the Crystal Hollows",
@@ -9106,6 +9550,13 @@
         "name": "Travel Scroll to the Crystal Nucleus",
         "rarity": "UNKNOWN",
         "wiki_link": "https://wiki.hypixel.net/Travel_Scroll_To_The_Crystal_Nucleus",
+        "recipe": null
+    },
+    "CUBE_BARN_SKIN": {
+        "internal_name": "CUBE_BARN_SKIN",
+        "name": "Cube Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Cube_Barn_Skin",
         "recipe": null
     },
     "CUBISM;1": {
@@ -9205,6 +9656,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Daedalus_Stick",
         "recipe": null
     },
+    "DALBREK_NPC": {
+        "internal_name": "DALBREK_NPC",
+        "name": "Dalbrek (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "DAMAGE": {
         "internal_name": "DAMAGE",
         "name": "Damage Potion",
@@ -9214,7 +9672,7 @@
     },
     "DANGER_1_PORTAL": {
         "internal_name": "DANGER_1_PORTAL",
-        "name": "Portal to Spider's Den",
+        "name": "Portal to the Spider's Den",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Portals",
         "recipe": [
@@ -9623,7 +10081,7 @@
     },
     "DARK_QUEENS_SOUL_DROP": {
         "internal_name": "DARK_QUEENS_SOUL_DROP",
-        "name": "Dark Queen's Soul Drop",
+        "name": "Dark Queen's Soul",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dark_Queen%27s_Soul_Drop",
         "recipe": null
@@ -9688,7 +10146,7 @@
     },
     "DCTR_SPACE_HELM": {
         "internal_name": "DCTR_SPACE_HELM",
-        "name": "Dctr's Space Helmet",
+        "name": "Space Helmet",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dctr's_Space_Helmet",
         "recipe": null
@@ -9725,7 +10183,7 @@
         "internal_name": "DEAN_LETTER_OF_RECOMMENDATION",
         "name": "Letter of Recommendation",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://wiki.hypixel.net/Letter_Of_Recommendation",
         "recipe": null
     },
     "DEATH_BOW": {
@@ -9761,6 +10219,34 @@
         "name": "Deck Chair",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
+        "recipe": null
+    },
+    "DEDICATION;1": {
+        "internal_name": "DEDICATION;1",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "DEDICATION;2": {
+        "internal_name": "DEDICATION;2",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "DEDICATION;3": {
+        "internal_name": "DEDICATION;3",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "DEDICATION;4": {
+        "internal_name": "DEDICATION;4",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "DEEPTERROR_MIXIN": {
@@ -11144,6 +11630,13 @@
         "wiki_link": "Given after completing the Lone adventurer's questline",
         "recipe": null
     },
+    "DRAKUU_NPC": {
+        "internal_name": "DRAKUU_NPC",
+        "name": "Drakuu (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Drakuu",
+        "recipe": null
+    },
     "DRILL_ENGINE": {
         "internal_name": "DRILL_ENGINE",
         "name": "Drill Engine",
@@ -11197,6 +11690,13 @@
         "name": "The Builder's Clay",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/The_Builder%27s_Clay",
+        "recipe": null
+    },
+    "DUKE_NPC": {
+        "internal_name": "DUKE_NPC",
+        "name": "Duke (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "DULL_SHARK_TOOTH_NECKLACE": {
@@ -11300,6 +11800,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wizard's_Crystal",
         "recipe": null
     },
+    "DUSK_NPC": {
+        "internal_name": "DUSK_NPC",
+        "name": "Dusk (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "DUST_THE_FISH": {
         "internal_name": "DUST_THE_FISH",
         "name": "Dust the Fish",
@@ -11380,6 +11887,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Portals",
         "recipe": null
     },
+    "DWARVEN_MINES_SACK": {
+        "internal_name": "DWARVEN_MINES_SACK",
+        "name": "Dwarven Sack",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "DWARVEN_TANKARD": {
         "internal_name": "DWARVEN_TANKARD",
         "name": "Dwarven Tankard",
@@ -11429,6 +11943,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dyes",
         "recipe": null
     },
+    "DYE_CELESTE": {
+        "internal_name": "DYE_CELESTE",
+        "name": "Celeste Dye",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dyes",
+        "recipe": null
+    },
     "DYE_DARK_PURPLE": {
         "internal_name": "DYE_DARK_PURPLE",
         "name": "Dark Purple Dye",
@@ -11450,6 +11971,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flame_Dye",
         "recipe": null
     },
+    "DYE_HOLLY": {
+        "internal_name": "DYE_HOLLY",
+        "name": "Holly Dye",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dyes",
+        "recipe": null
+    },
     "DYE_MANGO": {
         "internal_name": "DYE_MANGO",
         "name": "Mango Dye",
@@ -11457,9 +11985,23 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dyes",
         "recipe": null
     },
+    "DYE_NADESHIKO": {
+        "internal_name": "DYE_NADESHIKO",
+        "name": "Nadeshiko Dye",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dyes",
+        "recipe": null
+    },
     "DYE_NECRON": {
         "internal_name": "DYE_NECRON",
         "name": "Necron Dye",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dyes",
+        "recipe": null
+    },
+    "DYE_NYANZA": {
+        "internal_name": "DYE_NYANZA",
+        "name": "Nyanza Dye",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dyes",
         "recipe": null
@@ -11645,6 +12187,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Egg_the_Fish",
         "recipe": null
     },
+    "EINARY_NPC": {
+        "internal_name": "EINARY_NPC",
+        "name": "Einary (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Einary",
+        "recipe": null
+    },
     "ELECTRON_TRANSMITTER": {
         "internal_name": "ELECTRON_TRANSMITTER",
         "name": "Electron Transmitter",
@@ -11712,7 +12261,7 @@
         "internal_name": "ELLES_PICKAXE",
         "name": "Elle's Pickaxe",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://wiki.hypixel.net/Elle%27s_Pickaxe",
         "recipe": null
     },
     "EMBER_BOOTS": {
@@ -12153,6 +12702,55 @@
         "name": "Emerald-tipped Arrow",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Arrows",
+        "recipe": null
+    },
+    "EMISSARY_CARLTON_NPC": {
+        "internal_name": "EMISSARY_CARLTON_NPC",
+        "name": "Emissary Carlton (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "EMISSARY_CEANNA_NPC": {
+        "internal_name": "EMISSARY_CEANNA_NPC",
+        "name": "Emissary Ceanna (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "EMISSARY_ELIZA_NPC": {
+        "internal_name": "EMISSARY_ELIZA_NPC",
+        "name": "Emissary Eliza (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "EMISSARY_FRAISER_NPC": {
+        "internal_name": "EMISSARY_FRAISER_NPC",
+        "name": "Emissary Fraiser (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "EMISSARY_LILITH_NPC": {
+        "internal_name": "EMISSARY_LILITH_NPC",
+        "name": "Emissary Lilith (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "EMISSARY_SISKO_NPC": {
+        "internal_name": "EMISSARY_SISKO_NPC",
+        "name": "Emissary Sisko (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "EMISSARY_WILSON_NPC": {
+        "internal_name": "EMISSARY_WILSON_NPC",
+        "name": "Emissary Wilson (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "EMPTY_CHUM_BUCKET": {
@@ -12602,6 +13200,23 @@
             "INK_SACK-3:32",
             "",
             "INK_SACK-3:32",
+            ""
+        ]
+    },
+    "ENCHANTED_COMPOST": {
+        "internal_name": "ENCHANTED_COMPOST",
+        "name": "Compost Bundle",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Compost_Bundle",
+        "recipe": [
+            "",
+            "COMPOST:32",
+            "",
+            "COMPOST:32",
+            "COMPOST:32",
+            "COMPOST:32",
+            "",
+            "COMPOST:32",
             ""
         ]
     },
@@ -13121,15 +13736,15 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Enchanted_Brown_Mushroom_Block",
         "recipe": [
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64",
-            "HUGE_MUSHROOM_1:64"
+            "ENCHANTED_BROWN_MUSHROOM:8",
+            "ENCHANTED_BROWN_MUSHROOM:8",
+            "",
+            "ENCHANTED_BROWN_MUSHROOM:8",
+            "ENCHANTED_BROWN_MUSHROOM:8",
+            "",
+            "",
+            "",
+            ""
         ]
     },
     "ENCHANTED_HUGE_MUSHROOM_2": {
@@ -13138,15 +13753,15 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Enchanted_Red_Mushroom_Block",
         "recipe": [
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64",
-            "HUGE_MUSHROOM_2:64"
+            "ENCHANTED_RED_MUSHROOM:8",
+            "ENCHANTED_RED_MUSHROOM:8",
+            "",
+            "ENCHANTED_RED_MUSHROOM:8",
+            "ENCHANTED_RED_MUSHROOM:8",
+            "",
+            "",
+            "",
+            ""
         ]
     },
     "ENCHANTED_ICE": {
@@ -14004,7 +14619,17 @@
         "name": "Enchanted Shears",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Enchanted_Shears",
-        "recipe": null
+        "recipe": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "ENCHANTED_IRON:1",
+            "",
+            "ENCHANTED_IRON:1",
+            ""
+        ]
     },
     "ENCHANTED_SLIME_BALL": {
         "internal_name": "ENCHANTED_SLIME_BALL",
@@ -15223,6 +15848,13 @@
             "CHILI_PEPPER:8"
         ]
     },
+    "EPIC_KUUDRA_CHUNK": {
+        "internal_name": "EPIC_KUUDRA_CHUNK",
+        "name": "Hardened Kuudra Chunk",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Hardened_Kuudra_Chunk",
+        "recipe": null
+    },
     "EPOCH_CAKE_AQUA": {
         "internal_name": "EPOCH_CAKE_AQUA",
         "name": "Barry Century Cake",
@@ -15546,6 +16178,13 @@
         "wiki_link": null,
         "recipe": null
     },
+    "EXPERIENCE;5": {
+        "internal_name": "EXPERIENCE;5",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "EXPERIENCE_ARTIFACT": {
         "internal_name": "EXPERIENCE_ARTIFACT",
         "name": "Experience Artifact",
@@ -15657,6 +16296,13 @@
         "name": "Extra Large Gemstone Sack",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "EXTREME_BINGO_CARD": {
+        "internal_name": "EXTREME_BINGO_CARD",
+        "name": "Extreme Bingo Card (Extreme Bingo #1)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Bingo_Card_(Item)",
         "recipe": null
     },
     "EYE_OF_ENDER": {
@@ -15784,6 +16430,13 @@
             ""
         ]
     },
+    "FARMER_JON_NPC": {
+        "internal_name": "FARMER_JON_NPC",
+        "name": "Farmer Jon (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "FARMER_ORB": {
         "internal_name": "FARMER_ORB",
         "name": "Farmer Orb",
@@ -15817,6 +16470,13 @@
             "",
             "STRING:1"
         ]
+    },
+    "FARMHAND_NPC": {
+        "internal_name": "FARMHAND_NPC",
+        "name": "Farmhand (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "FARMING_1_PORTAL": {
         "internal_name": "FARMING_1_PORTAL",
@@ -16239,6 +16899,13 @@
             "FEATHER:12"
         ]
     },
+    "FELIX_NPC": {
+        "internal_name": "FELIX_NPC",
+        "name": "Felix (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "FEL_PEARL": {
         "internal_name": "FEL_PEARL",
         "name": "Fel Pearl",
@@ -16312,6 +16979,98 @@
             "",
             "",
             ""
+        ]
+    },
+    "FERMENTO": {
+        "internal_name": "FERMENTO",
+        "name": "Fermento",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Fermento",
+        "recipe": null
+    },
+    "FERMENTO_ARTIFACT": {
+        "internal_name": "FERMENTO_ARTIFACT",
+        "name": "Fermento Artifact",
+        "rarity": "RARE",
+        "wiki_link": "https://wiki.hypixel.net/Fermento_Artifact",
+        "recipe": [
+            "CONDENSED_FERMENTO:1",
+            "CONDENSED_FERMENTO:1",
+            "CONDENSED_FERMENTO:1",
+            "CONDENSED_FERMENTO:1",
+            "SQUASH_RING:1",
+            "CONDENSED_FERMENTO:1",
+            "CONDENSED_FERMENTO:1",
+            "CONDENSED_FERMENTO:1",
+            "CONDENSED_FERMENTO:1"
+        ]
+    },
+    "FERMENTO_BOOTS": {
+        "internal_name": "FERMENTO_BOOTS",
+        "name": "Fermento Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fermento_Boots",
+        "recipe": [
+            "CONDENSED_FERMENTO:1",
+            "",
+            "CONDENSED_FERMENTO:1",
+            "ENCHANTED_HUGE_MUSHROOM_2:32",
+            "SQUASH_BOOTS:1",
+            "ENCHANTED_HUGE_MUSHROOM_1:32",
+            "",
+            "",
+            ""
+        ]
+    },
+    "FERMENTO_CHESTPLATE": {
+        "internal_name": "FERMENTO_CHESTPLATE",
+        "name": "Fermento Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fermento_Chestplate",
+        "recipe": [
+            "CONDENSED_FERMENTO:1",
+            "SQUASH_CHESTPLATE:1",
+            "CONDENSED_FERMENTO:1",
+            "ENCHANTED_HUGE_MUSHROOM_2:32",
+            "ENCHANTED_SUGAR_CANE:32",
+            "ENCHANTED_HUGE_MUSHROOM_1:32",
+            "MUTANT_NETHER_STALK:15",
+            "ENCHANTED_CACTUS:25",
+            "MUTANT_NETHER_STALK:15"
+        ]
+    },
+    "FERMENTO_HELMET": {
+        "internal_name": "FERMENTO_HELMET",
+        "name": "Fermento Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fermento_Helmet",
+        "recipe": [
+            "CONDENSED_FERMENTO:1",
+            "ENCHANTED_SUGAR_CANE:32",
+            "CONDENSED_FERMENTO:1",
+            "ENCHANTED_HUGE_MUSHROOM_2:32",
+            "SQUASH_HELMET:1",
+            "ENCHANTED_HUGE_MUSHROOM_1:32",
+            "",
+            "",
+            ""
+        ]
+    },
+    "FERMENTO_LEGGINGS": {
+        "internal_name": "FERMENTO_LEGGINGS",
+        "name": "Fermento Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fermento_Leggings",
+        "recipe": [
+            "CONDENSED_FERMENTO:1",
+            "ENCHANTED_SUGAR_CANE:32",
+            "CONDENSED_FERMENTO:1",
+            "ENCHANTED_HUGE_MUSHROOM_2:32",
+            "SQUASH_LEGGINGS:1",
+            "ENCHANTED_HUGE_MUSHROOM_1:32",
+            "MUTANT_NETHER_STALK:20",
+            "",
+            "MUTANT_NETHER_STALK:20"
         ]
     },
     "FEROCIOUS_MANA;1": {
@@ -16417,6 +17176,13 @@
         "name": "Festive Jerry Minion Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Minion_Skin",
+        "recipe": null
+    },
+    "FESTIVE_MAILBOX": {
+        "internal_name": "FESTIVE_MAILBOX",
+        "name": "Festive Mailbox",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Festive_Mailbox",
         "recipe": null
     },
     "FESTIVE_SKELETON_PERSONALITY": {
@@ -16822,6 +17588,13 @@
             ""
         ]
     },
+    "FINNEGAN_MAYOR_MONSTER": {
+        "internal_name": "FINNEGAN_MAYOR_MONSTER",
+        "name": "Finnegan (Mayor)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Finnegan",
+        "recipe": null
+    },
     "FINWAVE_BELT": {
         "internal_name": "FINWAVE_BELT",
         "name": "Finwave Belt",
@@ -17179,6 +17952,13 @@
     "FIRST_STRIKE;5": {
         "internal_name": "FIRST_STRIKE;5",
         "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "FISHERMAN_NPC": {
+        "internal_name": "FISHERMAN_NPC",
+        "name": "Fisherman (NPC)",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": null
@@ -17959,6 +18739,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
     },
+    "FLORAL_WHEELBARROW": {
+        "internal_name": "FLORAL_WHEELBARROW",
+        "name": "Floral Wheelbarrow",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "FLORID_ZOMBIE_SWORD": {
         "internal_name": "FLORID_ZOMBIE_SWORD",
         "name": "Florid Zombie Sword",
@@ -17975,6 +18762,13 @@
             "ORNATE_ZOMBIE_SWORD:1",
             ""
         ]
+    },
+    "FLOWERING_BOUQUET": {
+        "internal_name": "FLOWERING_BOUQUET",
+        "name": "Flowering Bouquet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Flowering_Bouquet",
+        "recipe": null
     },
     "FLOWER_BED": {
         "internal_name": "FLOWER_BED",
@@ -18218,6 +19012,13 @@
             ""
         ]
     },
+    "FLOWER_SACK": {
+        "internal_name": "FLOWER_SACK",
+        "name": "Flower Sack",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "FLYCATCHER_UPGRADE": {
         "internal_name": "FLYCATCHER_UPGRADE",
         "name": "Flycatcher",
@@ -18334,7 +19135,17 @@
         "name": "Travel Scroll to The Park",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Travel_Scrolls",
-        "recipe": null
+        "recipe": [
+            "ENCHANTED_BIRCH_LOG:16",
+            "ENCHANTED_BIRCH_LOG:16",
+            "ENCHANTED_BIRCH_LOG:16",
+            "ENCHANTED_BIRCH_LOG:16",
+            "ENCHANTED_ENDER_PEARL:16",
+            "ENCHANTED_BIRCH_LOG:16",
+            "ENCHANTED_BIRCH_LOG:16",
+            "ENCHANTED_BIRCH_LOG:16",
+            "ENCHANTED_BIRCH_LOG:16"
+        ]
     },
     "FORAGING_2_PORTAL": {
         "internal_name": "FORAGING_2_PORTAL",
@@ -18508,6 +19319,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fractured_Mithril_Pickaxe",
         "recipe": null
     },
+    "FRAGILIS_NPC": {
+        "internal_name": "FRAGILIS_NPC",
+        "name": "Fragilis (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "FRAIL;1": {
         "internal_name": "FRAIL;1",
         "name": "Enchanted Book",
@@ -18595,6 +19413,20 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/French_Fries",
         "recipe": null
     },
+    "FRIENDLY_HIKER_NPC": {
+        "internal_name": "FRIENDLY_HIKER_NPC",
+        "name": "Friendly Hiker (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "FROG_BARN_SKIN": {
+        "internal_name": "FROG_BARN_SKIN",
+        "name": "Frog Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Frog_Barn_Skin",
+        "recipe": null
+    },
     "FROSTY_SC": {
         "internal_name": "FROSTY_SC",
         "name": "§3Frosty (Sea Creature)",
@@ -18645,6 +19477,20 @@
         "name": "Frozen Adventurer (Miniboss)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Frozen_Adventurer",
+        "recipe": null
+    },
+    "FROZEN_ALEX_NPC": {
+        "internal_name": "FROZEN_ALEX_NPC",
+        "name": "Frozen Alex (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Frozen_Alex",
+        "recipe": null
+    },
+    "FROZEN_BAUBLE": {
+        "internal_name": "FROZEN_BAUBLE",
+        "name": "Frozen Bauble",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "FROZEN_BLAZE_BOOTS": {
@@ -18876,6 +19722,13 @@
         "name": "Game Breaker",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Game_Breaker",
+        "recipe": null
+    },
+    "GARDEN_SCYTHE": {
+        "internal_name": "GARDEN_SCYTHE",
+        "name": "Garden Scythe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Garden_Scythe",
         "recipe": null
     },
     "GARLAND": {
@@ -19526,6 +20379,13 @@
             ""
         ]
     },
+    "GIMLEY_NPC": {
+        "internal_name": "GIMLEY_NPC",
+        "name": "Gimley (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "GINGERBREAD_HOUSE": {
         "internal_name": "GINGERBREAD_HOUSE",
         "name": "Gingerbread House",
@@ -19573,6 +20433,71 @@
         "name": "§7[Lvl {LVL}] Giraffe",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Giraffe_Pet",
+        "recipe": null
+    },
+    "GLACIAL_ARTIFACT": {
+        "internal_name": "GLACIAL_ARTIFACT",
+        "name": "Glacial Artifact",
+        "rarity": "RARE",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Glacial_Artifact",
+        "recipe": [
+            "GLACIAL_FRAGMENT:10",
+            "ENCHANTED_PACKED_ICE:2",
+            "GLACIAL_FRAGMENT:10",
+            "ENCHANTED_PACKED_ICE:2",
+            "GLACIAL_RING:1",
+            "ENCHANTED_PACKED_ICE:2",
+            "GLACIAL_FRAGMENT:10",
+            "ENCHANTED_PACKED_ICE:2",
+            "GLACIAL_FRAGMENT:10"
+        ]
+    },
+    "GLACIAL_FRAGMENT": {
+        "internal_name": "GLACIAL_FRAGMENT",
+        "name": "Glacial Fragment",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Glacial_Fragment",
+        "recipe": null
+    },
+    "GLACIAL_RING": {
+        "internal_name": "GLACIAL_RING",
+        "name": "Glacial Ring",
+        "rarity": "UNCOMMON",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Glacial_Ring",
+        "recipe": [
+            "GLACIAL_FRAGMENT:5",
+            "ENCHANTED_ICE:32",
+            "GLACIAL_FRAGMENT:5",
+            "ENCHANTED_ICE:32",
+            "GLACIAL_TALISMAN:1",
+            "ENCHANTED_ICE:32",
+            "GLACIAL_FRAGMENT:5",
+            "ENCHANTED_ICE:32",
+            "GLACIAL_FRAGMENT:5"
+        ]
+    },
+    "GLACIAL_SCYTHE": {
+        "internal_name": "GLACIAL_SCYTHE",
+        "name": "Glacial Scythe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Glacial_Scythe",
+        "recipe": [
+            "ENCHANTED_PACKED_ICE:32",
+            "GLACIAL_FRAGMENT:40",
+            "ENCHANTED_PACKED_ICE:32",
+            "ENCHANTED_PACKED_ICE:32",
+            "FROZEN_SCYTHE:1",
+            "ENCHANTED_PACKED_ICE:32",
+            "ENCHANTED_PACKED_ICE:32",
+            "BLUE_ICE_HUNK:64",
+            "ENCHANTED_PACKED_ICE:32"
+        ]
+    },
+    "GLACIAL_TALISMAN": {
+        "internal_name": "GLACIAL_TALISMAN",
+        "name": "Glacial Talisman",
+        "rarity": "COMMON",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Glacial_Talisman",
         "recipe": null
     },
     "GLACIAL_WISP;3": {
@@ -19641,6 +20566,13 @@
             ""
         ]
     },
+    "GLISTENING_MELON_FLUX": {
+        "internal_name": "GLISTENING_MELON_FLUX",
+        "name": "Glistening Melon Power Orb Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "GLOOMLOCK_GRIMOIRE": {
         "internal_name": "GLOOMLOCK_GRIMOIRE",
         "name": "Gloomlock Grimoire",
@@ -19657,6 +20589,13 @@
             "ENCHANTED_GUNPOWDER:64",
             "NULL_OVOID:4"
         ]
+    },
+    "GLOWING_GRAPE_FLUX": {
+        "internal_name": "GLOWING_GRAPE_FLUX",
+        "name": "Glowing Grape Power Orb Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
     },
     "GLOWING_MUSHROOM": {
         "internal_name": "GLOWING_MUSHROOM",
@@ -20074,6 +21013,13 @@
             "GOLD_INGOT:1"
         ]
     },
+    "GOLDEN_APPLE_FLUX": {
+        "internal_name": "GOLDEN_APPLE_FLUX",
+        "name": "Golden Apple Power Orb Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "GOLDEN_BALL": {
         "internal_name": "GOLDEN_BALL",
         "name": "Golden Ball",
@@ -20198,6 +21144,13 @@
             "WOLF_TOOTH:32",
             ""
         ]
+    },
+    "GOLDOR_CELESTIAL": {
+        "internal_name": "GOLDOR_CELESTIAL",
+        "name": "Celestial Goldor's Helmet Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
     },
     "GOLDOR_THE_FISH": {
         "internal_name": "GOLDOR_THE_FISH",
@@ -20525,6 +21478,13 @@
         "name": "Golden Gift",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Golden_Gift",
+        "recipe": null
+    },
+    "GOLD_GIFT_TALISMAN": {
+        "internal_name": "GOLD_GIFT_TALISMAN",
+        "name": "Gold Gift Talisman",
+        "rarity": "LEGENDARY",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Gold_Gift_Talisman",
         "recipe": null
     },
     "GOLD_HELMET": {
@@ -20934,6 +21894,13 @@
         "name": "§7[Lvl {LVL}] Grandma Wolf",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Grandma_Wolf_Pet",
+        "recipe": null
+    },
+    "GRANDMA_WOLF_NPC": {
+        "internal_name": "GRANDMA_WOLF_NPC",
+        "name": "Grandma Wolf (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "GRAND_EXP_BOTTLE": {
@@ -21358,6 +22325,13 @@
             ""
         ]
     },
+    "GREEN_BANDANA": {
+        "internal_name": "GREEN_BANDANA",
+        "name": "Green Bandana",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Green_Bandana",
+        "recipe": null
+    },
     "GREEN_CANDY": {
         "internal_name": "GREEN_CANDY",
         "name": "Green Candy",
@@ -21379,11 +22353,53 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Green_Gift",
         "recipe": null
     },
+    "GREEN_GIFT_TALISMAN": {
+        "internal_name": "GREEN_GIFT_TALISMAN",
+        "name": "Green Gift Talisman",
+        "rarity": "UNCOMMON",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Green_Gift_Talisman",
+        "recipe": null
+    },
     "GREEN_RECORD": {
         "internal_name": "GREEN_RECORD",
         "name": "Music Disc",
         "rarity": "UNKNOWN",
         "wiki_link": "https://wiki.hypixel.net/Music_Disc",
+        "recipe": null
+    },
+    "GREEN_THUMB;1": {
+        "internal_name": "GREEN_THUMB;1",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "GREEN_THUMB;2": {
+        "internal_name": "GREEN_THUMB;2",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "GREEN_THUMB;3": {
+        "internal_name": "GREEN_THUMB;3",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "GREEN_THUMB;4": {
+        "internal_name": "GREEN_THUMB;4",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "GREEN_THUMB;5": {
+        "internal_name": "GREEN_THUMB;5",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "GRIFFIN;0": {
@@ -21781,6 +22797,20 @@
         "name": "Gusher§r §l§7§LSILVER",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Trophy_Fishes",
+        "recipe": null
+    },
+    "GUY_NPC": {
+        "internal_name": "GUY_NPC",
+        "name": "Guy (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "GWENDOLYN_NPC": {
+        "internal_name": "GWENDOLYN_NPC",
+        "name": "Gwendolyn (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "GYROKINETIC_WAND": {
@@ -22337,7 +23367,7 @@
         "internal_name": "HAUNT_ABILITY",
         "name": "Haunt",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Haunt",
         "recipe": null
     },
     "HAY_BALE": {
@@ -22712,6 +23742,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Hilt_of_True_Ice",
         "recipe": null
     },
+    "HIVE_BARN_SKIN": {
+        "internal_name": "HIVE_BARN_SKIN",
+        "name": "Hive Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Hive_Barn_Skin",
+        "recipe": null
+    },
     "HOE_OF_GREATER_TILLING": {
         "internal_name": "HOE_OF_GREATER_TILLING",
         "name": "Hoe of Greater Tilling",
@@ -22719,11 +23756,25 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Hoe_of_Greater_Tilling",
         "recipe": null
     },
+    "HOE_OF_GREATEST_TILLING": {
+        "internal_name": "HOE_OF_GREATEST_TILLING",
+        "name": "Hoe of Greatest Tilling",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Hoe_Of_Greatest_Tilling",
+        "recipe": null
+    },
     "HOE_OF_GREAT_TILLING": {
         "internal_name": "HOE_OF_GREAT_TILLING",
         "name": "Hoe of Great Tilling",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Hoe_of_Great_Tilling",
+        "recipe": null
+    },
+    "HOLIDAY_TRAIN": {
+        "internal_name": "HOLIDAY_TRAIN",
+        "name": "Holiday Train",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Holiday_Train",
         "recipe": null
     },
     "HOLLOW_BOOTS": {
@@ -22939,6 +23990,13 @@
             "ENCHANTED_MUTTON:24"
         ]
     },
+    "HORNUM_NPC": {
+        "internal_name": "HORNUM_NPC",
+        "name": "Hornum (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "HORN_OF_TAURUS": {
         "internal_name": "HORN_OF_TAURUS",
         "name": "Horn of Taurus",
@@ -22982,7 +24040,7 @@
     },
     "HORSE;2": {
         "internal_name": "HORSE;2",
-        "name": "§7[Lvl {LVL}] Horse",
+        "name": "§7[Lvl 1] Horse",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Horse_Pet",
         "recipe": [
@@ -22999,7 +24057,7 @@
     },
     "HORSE;3": {
         "internal_name": "HORSE;3",
-        "name": "§7[Lvl {LVL}] Horse",
+        "name": "§7[Lvl 1] Horse",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Horse_Pet",
         "recipe": [
@@ -23016,7 +24074,7 @@
     },
     "HORSE;4": {
         "internal_name": "HORSE;4",
-        "name": "§7[Lvl {LVL}] Horse",
+        "name": "§7[Lvl 1] Horse",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Horse_Pet",
         "recipe": [
@@ -23088,6 +24146,13 @@
         "name": "Hot Chocolate",
         "rarity": "UNKNOWN",
         "wiki_link": "https://wiki.hypixel.net/Hot_Chocolate",
+        "recipe": null
+    },
+    "HOT_CHOCOLATE_AND_COOKIES": {
+        "internal_name": "HOT_CHOCOLATE_AND_COOKIES",
+        "name": "Hot Chocolate and Cookies",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Hot_Chocolate_And_Cookies",
         "recipe": null
     },
     "HOT_CRIMSON_BOOTS": {
@@ -23371,6 +24436,13 @@
             "RED_MUSHROOM:1"
         ]
     },
+    "HUNGRY_HIKER_NPC": {
+        "internal_name": "HUNGRY_HIKER_NPC",
+        "name": "Hungry Hiker (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "HUNTER_KNIFE": {
         "internal_name": "HUNTER_KNIFE",
         "name": "Hunter Knife",
@@ -23636,6 +24708,13 @@
             "ENCHANTED_ICE:64"
         ]
     },
+    "ICE_GENERATOR_12": {
+        "internal_name": "ICE_GENERATOR_12",
+        "name": "Ice Minion XII",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Ice_Minion",
+        "recipe": null
+    },
     "ICE_GENERATOR_2": {
         "internal_name": "ICE_GENERATOR_2",
         "name": "Ice Minion II",
@@ -23855,7 +24934,7 @@
             "",
             "BLUE_SHARK_TOOTH:8",
             "NURSE_SHARK_TOOTH:16",
-            "ENCHANTED_SHARK_FIN:16",
+            "ENCHANTED_SHARK_FIN:4",
             "NURSE_SHARK_TOOTH:16"
         ]
     },
@@ -23868,12 +24947,12 @@
             "BLUE_SHARK_TOOTH:8",
             "NURSE_SHARK_TOOTH:32",
             "BLUE_SHARK_TOOTH:8",
-            "ENCHANTED_SHARK_FIN:16",
+            "ENCHANTED_SHARK_FIN:1",
             "",
-            "ENCHANTED_SHARK_FIN:16",
-            "ENCHANTED_SHARK_FIN:16",
+            "ENCHANTED_SHARK_FIN:1",
+            "ENCHANTED_SHARK_FIN:1",
             "",
-            "ENCHANTED_SHARK_FIN:16"
+            "ENCHANTED_SHARK_FIN:1"
         ]
     },
     "ICHTHYIC_GLOVES": {
@@ -23882,11 +24961,11 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Ichthyic_Gloves",
         "recipe": [
-            "BLUE_SHARK_TOOTH:8",
-            "BLUE_SHARK_TOOTH:16",
-            "BLUE_SHARK_TOOTH:8",
+            "BLUE_SHARK_TOOTH:4",
+            "BLUE_SHARK_TOOTH:4",
+            "BLUE_SHARK_TOOTH:4",
             "NURSE_SHARK_TOOTH:16",
-            "NURSE_SHARK_TOOTH:16",
+            "ENCHANTED_SHARK_FIN:4",
             "NURSE_SHARK_TOOTH:16",
             "",
             "",
@@ -24752,7 +25831,7 @@
         "internal_name": "INFINI_TORCH",
         "name": "InfiniTorch™",
         "rarity": "UNKNOWN",
-        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Infinitorch",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/InfiniTorch™",
         "recipe": null
     },
     "INFLATABLE_JERRY": {
@@ -25574,9 +26653,16 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Spirit_Bow",
         "recipe": null
     },
+    "JACK_NPC": {
+        "internal_name": "JACK_NPC",
+        "name": "Jack (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "JACK_O_LANTERN": {
         "internal_name": "JACK_O_LANTERN",
-        "name": "Jack o'Lantern",
+        "name": "Jack o' Lantern",
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": [
@@ -25626,6 +26712,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jake",
         "recipe": null
     },
+    "JAKE_PLUSHIE": {
+        "internal_name": "JAKE_PLUSHIE",
+        "name": "Jake's Plushie",
+        "rarity": "UNCOMMON",
+        "wiki_link": "https://wiki.hypixel.net/Jake%27s_Plushie",
+        "recipe": null
+    },
     "JALAPENO_BOOK": {
         "internal_name": "JALAPENO_BOOK",
         "name": "Jalapeno Book",
@@ -25642,6 +26735,13 @@
             "ENCHANTED_PAPER:1",
             "STUFFED_CHILI_PEPPER:1"
         ]
+    },
+    "JAMIE_NPC": {
+        "internal_name": "JAMIE_NPC",
+        "name": "Jamie (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "JASPER_CRYSTAL": {
         "internal_name": "JASPER_CRYSTAL",
@@ -25773,6 +26873,20 @@
             "ASSISTANT:1"
         ]
     },
+    "JERRY;5": {
+        "internal_name": "JERRY;5",
+        "name": "§7[Lvl {LVL}] Jerry",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jerry_Pet",
+        "recipe": null
+    },
+    "JERRY_BARN_SKIN": {
+        "internal_name": "JERRY_BARN_SKIN",
+        "name": "Jerry Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Jerry_Barn_Skin",
+        "recipe": null
+    },
     "JERRY_BOX_BLUE": {
         "internal_name": "JERRY_BOX_BLUE",
         "name": "Blue Jerry Box",
@@ -25899,6 +27013,13 @@
         "name": "Jingle Bells",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jingle_Bells",
+        "recipe": null
+    },
+    "JOTRAELINE_GREATFORGE_NPC": {
+        "internal_name": "JOTRAELINE_GREATFORGE_NPC",
+        "name": "Jotraeline Greatforge (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "JOYFUL_VIKING_NPC": {
@@ -26492,6 +27613,13 @@
             ""
         ]
     },
+    "KUUDRA_CAVITY": {
+        "internal_name": "KUUDRA_CAVITY",
+        "name": "Kuudra Teeth Plaque",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Kuudra_Teeth_Plaque",
+        "recipe": null
+    },
     "KUUDRA_FIERY_TIER_KEY": {
         "internal_name": "KUUDRA_FIERY_TIER_KEY",
         "name": "Fiery Kuudra Key",
@@ -26509,6 +27637,13 @@
             ""
         ]
     },
+    "KUUDRA_FOLLOWER_ARTIFACT": {
+        "internal_name": "KUUDRA_FOLLOWER_ARTIFACT",
+        "name": "Kuudra Follower Artifact",
+        "rarity": "EPIC",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Kuudra_Follower_Artifact",
+        "recipe": null
+    },
     "KUUDRA_FOLLOWER_BOOTS": {
         "internal_name": "KUUDRA_FOLLOWER_BOOTS",
         "name": "Kuudra Follower Boots",
@@ -26523,11 +27658,25 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Kuudra_Follower_Armor",
         "recipe": null
     },
+    "KUUDRA_FOLLOWER_HELMET": {
+        "internal_name": "KUUDRA_FOLLOWER_HELMET",
+        "name": "Kuudra Follower Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Kuudra_Follower_Armor",
+        "recipe": null
+    },
     "KUUDRA_FOLLOWER_LEGGINGS": {
         "internal_name": "KUUDRA_FOLLOWER_LEGGINGS",
         "name": "Kuudra Follower Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Kuudra_Follower_Armor",
+        "recipe": null
+    },
+    "KUUDRA_FOLLOWER_RELIC": {
+        "internal_name": "KUUDRA_FOLLOWER_RELIC",
+        "name": "Kuudra Follower Relic",
+        "rarity": "LEGENDARY",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Kuudra_Follower_Relic",
         "recipe": null
     },
     "KUUDRA_HOT_TIER_KEY": {
@@ -26604,6 +27753,13 @@
         "name": "Kuudra Key",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Kuudra_Keys",
+        "recipe": null
+    },
+    "KUUDRA_WASHING_MACHINE": {
+        "internal_name": "KUUDRA_WASHING_MACHINE",
+        "name": "Kuudra Washing Machine",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Kuudra_Washing_Machine",
         "recipe": null
     },
     "LADDER": {
@@ -27105,6 +28261,23 @@
             "ENCHANTED_ROTTEN_FLESH:8"
         ]
     },
+    "LARGE_DRAGON_SACK": {
+        "internal_name": "LARGE_DRAGON_SACK",
+        "name": "Large Dragon Sack",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": [
+            "CRYSTAL_FRAGMENT:8",
+            "DRAGON_HORN:1",
+            "CRYSTAL_FRAGMENT:8",
+            "DRAGON_HORN:1",
+            "MEDIUM_DRAGON_SACK:1",
+            "DRAGON_HORN:1",
+            "CRYSTAL_FRAGMENT:8",
+            "DRAGON_HORN:1",
+            "CRYSTAL_FRAGMENT:8"
+        ]
+    },
     "LARGE_DUNGEON_SACK": {
         "internal_name": "LARGE_DUNGEON_SACK",
         "name": "Dungeon Sack",
@@ -27367,6 +28540,13 @@
             "GOLDEN_TOOTH:1"
         ]
     },
+    "LARGE_WALNUT": {
+        "internal_name": "LARGE_WALNUT",
+        "name": "Large Walnut",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Large_Walnut",
+        "recipe": null
+    },
     "LARGE_WINTER_SACK": {
         "internal_name": "LARGE_WINTER_SACK",
         "name": "Winter Sack",
@@ -27379,6 +28559,13 @@
         "name": "Last Breath",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Last_Breath",
+        "recipe": null
+    },
+    "LATTICE_BENCH": {
+        "internal_name": "LATTICE_BENCH",
+        "name": "Lattice Bench",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "LAUNCH_PAD": {
@@ -27560,6 +28747,13 @@
             "HORN_OF_TAURUS:16",
             "FLAMING_HEART:32"
         ]
+    },
+    "LAZY_MINER_NPC": {
+        "internal_name": "LAZY_MINER_NPC",
+        "name": "Lazy Miner (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "LEAFLET_BOOTS": {
         "internal_name": "LEAFLET_BOOTS",
@@ -27818,7 +29012,7 @@
         "internal_name": "LEECH_SUPREME_FRAGMENT",
         "name": "Leech Supreme Fragment",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Leech_Supreme_Fragment",
         "recipe": null
     },
     "LEECH_SWORD": {
@@ -27837,6 +29031,13 @@
             "DEADGEHOG_SPINE:12",
             ""
         ]
+    },
+    "LEGENDARY_KUUDRA_CHUNK": {
+        "internal_name": "LEGENDARY_KUUDRA_CHUNK",
+        "name": "Enriched Kuudra Chunk",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Enriched_Kuudra_Chunk",
+        "recipe": null
     },
     "LEGEND_ROD": {
         "internal_name": "LEGEND_ROD",
@@ -27861,9 +29062,9 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Armor_of_the_Pack",
         "recipe": [
+            "ENCHANTED_MUTTON:32",
             "GOLDEN_TOOTH:1",
-            "GOLDEN_TOOTH:1",
-            "GOLDEN_TOOTH:1",
+            "ENCHANTED_MUTTON:32",
             "ENCHANTED_MUTTON:32",
             "",
             "ENCHANTED_MUTTON:32",
@@ -27871,6 +29072,13 @@
             "",
             "ENCHANTED_MUTTON:32"
         ]
+    },
+    "LEO_NPC": {
+        "internal_name": "LEO_NPC",
+        "name": "Leo (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "LESSER_ORB_OF_HEALING": {
         "internal_name": "LESSER_ORB_OF_HEALING",
@@ -27974,6 +29182,13 @@
             "",
             ""
         ]
+    },
+    "LIAM_NPC": {
+        "internal_name": "LIAM_NPC",
+        "name": "Liam (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "LIBRARIAN_NPC": {
         "internal_name": "LIBRARIAN_NPC",
@@ -28264,6 +29479,34 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lord_Jawbus",
         "recipe": null
     },
+    "LOTUS_BELT": {
+        "internal_name": "LOTUS_BELT",
+        "name": "Lotus Belt",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lotus_Belt",
+        "recipe": null
+    },
+    "LOTUS_BRACELET": {
+        "internal_name": "LOTUS_BRACELET",
+        "name": "Lotus Bracelet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lotus_Bracelet",
+        "recipe": null
+    },
+    "LOTUS_CLOAK": {
+        "internal_name": "LOTUS_CLOAK",
+        "name": "Lotus Cloak",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lotus_Cloak",
+        "recipe": null
+    },
+    "LOTUS_NECKLACE": {
+        "internal_name": "LOTUS_NECKLACE",
+        "name": "Lotus Necklace",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lotus_Necklace",
+        "recipe": null
+    },
     "LUCK;1": {
         "internal_name": "LUCK;1",
         "name": "Enchanted Book",
@@ -28389,11 +29632,25 @@
         "wiki_link": null,
         "recipe": null
     },
+    "LUMBER_JACK_NPC": {
+        "internal_name": "LUMBER_JACK_NPC",
+        "name": "Lumber Jack (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "LUMBER_MERCHANT_NPC": {
         "internal_name": "LUMBER_MERCHANT_NPC",
         "name": "Lumber Merchant (NPC)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Lumber_Merchant",
+        "recipe": null
+    },
+    "LUMINA_NPC": {
+        "internal_name": "LUMINA_NPC",
+        "name": "Lumina (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "LUMINOUS_BRACELET": {
@@ -28415,6 +29672,13 @@
         "name": "Lump of Magma",
         "rarity": "UNKNOWN",
         "wiki_link": "https://wiki.hypixel.net/Lump_Of_Magma",
+        "recipe": null
+    },
+    "LUNAR_RABBIT_HAT": {
+        "internal_name": "LUNAR_RABBIT_HAT",
+        "name": "Lunar Rabbit Hat Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
     "LURE;1": {
@@ -28476,6 +29740,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Luxurious_Spool",
         "recipe": null
     },
+    "LYNN_NPC": {
+        "internal_name": "LYNN_NPC",
+        "name": "Lynn (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "LYNX_TALISMAN": {
         "internal_name": "LYNX_TALISMAN",
         "name": "Lynx Talisman",
@@ -28495,6 +29766,13 @@
         "name": "Machine Gun Bow",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Machine_Gun_Bow",
+        "recipe": null
+    },
+    "MADAME_ELEANOR_Q_GOLDSWORTH_III_NPC": {
+        "internal_name": "MADAME_ELEANOR_Q_GOLDSWORTH_III_NPC",
+        "name": "Madame Eleanor Q. Goldsworth III (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "MAD_REDSTONE_ENGINEER_NPC": {
@@ -29419,6 +30697,13 @@
         "wiki_link": null,
         "recipe": null
     },
+    "MASON_NPC": {
+        "internal_name": "MASON_NPC",
+        "name": "Mason (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "MASTER_SKULL_TIER_1": {
         "internal_name": "MASTER_SKULL_TIER_1",
         "name": "Master Skull - Tier 1",
@@ -29672,6 +30957,13 @@
         "wiki_link": "§aUsed to test /neuec",
         "recipe": null
     },
+    "MAXOR_CELESTIAL": {
+        "internal_name": "MAXOR_CELESTIAL",
+        "name": "Celestial Maxor's Helmet Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "MAXOR_THE_FISH": {
         "internal_name": "MAXOR_THE_FISH",
         "name": "Maxor the Fish",
@@ -29728,6 +31020,23 @@
             "ENCHANTED_ROTTEN_FLESH:4",
             "ENCHANTED_ROTTEN_FLESH:4",
             "ENCHANTED_ROTTEN_FLESH:4"
+        ]
+    },
+    "MEDIUM_DRAGON_SACK": {
+        "internal_name": "MEDIUM_DRAGON_SACK",
+        "name": "Medium Dragon Sack",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": [
+            "CRYSTAL_FRAGMENT:2",
+            "SUMMONING_EYE:1",
+            "CRYSTAL_FRAGMENT:2",
+            "SUMMONING_EYE:1",
+            "SMALL_DRAGON_SACK:1",
+            "SUMMONING_EYE:1",
+            "CRYSTAL_FRAGMENT:2",
+            "SUMMONING_EYE:1",
+            "CRYSTAL_FRAGMENT:2"
         ]
     },
     "MEDIUM_ENCHANTED_CHEST": {
@@ -29935,12 +31244,80 @@
             "MELON:1"
         ]
     },
+    "MELON_BOOTS": {
+        "internal_name": "MELON_BOOTS",
+        "name": "Melon Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melon_Boots",
+        "recipe": [
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "",
+            ""
+        ]
+    },
+    "MELON_CHESTPLATE": {
+        "internal_name": "MELON_CHESTPLATE",
+        "name": "Melon Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melon_Chestplate",
+        "recipe": [
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5"
+        ]
+    },
     "MELON_DICER": {
         "internal_name": "MELON_DICER",
         "name": "Melon Dicer",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melon_Dicer",
         "recipe": null
+    },
+    "MELON_DICER_2": {
+        "internal_name": "MELON_DICER_2",
+        "name": "Melon Dicer 2.0",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melon_Dicer_2.0",
+        "recipe": [
+            "ENCHANTED_MELON_BLOCK:8",
+            "ENCHANTED_MELON_BLOCK:8",
+            "ENCHANTED_MELON_BLOCK:8",
+            "ENCHANTED_MELON_BLOCK:8",
+            "MELON_DICER:1",
+            "ENCHANTED_MELON_BLOCK:8",
+            "ENCHANTED_MELON_BLOCK:8",
+            "ENCHANTED_MELON_BLOCK:8",
+            "ENCHANTED_MELON_BLOCK:8"
+        ]
+    },
+    "MELON_DICER_3": {
+        "internal_name": "MELON_DICER_3",
+        "name": "Melon Dicer 3.0",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melon_Dicer_3.0",
+        "recipe": [
+            "ENCHANTED_MELON_BLOCK:16",
+            "ENCHANTED_MELON_BLOCK:16",
+            "ENCHANTED_MELON_BLOCK:16",
+            "ENCHANTED_MELON_BLOCK:16",
+            "MELON_DICER_2:1",
+            "ENCHANTED_MELON_BLOCK:16",
+            "ENCHANTED_MELON_BLOCK:16",
+            "ENCHANTED_MELON_BLOCK:16",
+            "ENCHANTED_MELON_BLOCK:16"
+        ]
     },
     "MELON_GENERATOR_1": {
         "internal_name": "MELON_GENERATOR_1",
@@ -30134,6 +31511,40 @@
             "ENCHANTED_MELON:64",
             "ENCHANTED_MELON:64",
             "ENCHANTED_MELON:64"
+        ]
+    },
+    "MELON_HELMET": {
+        "internal_name": "MELON_HELMET",
+        "name": "Melon Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melon_Helmet",
+        "recipe": [
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "",
+            ""
+        ]
+    },
+    "MELON_LEGGINGS": {
+        "internal_name": "MELON_LEGGINGS",
+        "name": "Melon Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Melon_Leggings",
+        "recipe": [
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "ENCHANTED_MELON_BLOCK:5",
+            "ENCHANTED_MELON_BLOCK:5",
+            "",
+            "ENCHANTED_MELON_BLOCK:5"
         ]
     },
     "MELON_PERSONALITY": {
@@ -31959,7 +33370,8 @@
             "BLAZE_ASHES:1",
             "",
             "SPECTRE_DUST:1",
-            ""
+            "",
+            32
         ]
     },
     "MYCELIUM_GENERATOR_1": {
@@ -32156,6 +33568,13 @@
             "ENCHANTED_MYCELIUM:64"
         ]
     },
+    "MYSTERIOUS_CROP": {
+        "internal_name": "MYSTERIOUS_CROP",
+        "name": "Mysterious Crop",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Mysterious_Crop",
+        "recipe": null
+    },
     "MYSTERIOUS_MEAT": {
         "internal_name": "MYSTERIOUS_MEAT",
         "name": "Mysterious Meat",
@@ -32241,6 +33660,13 @@
         "name": "Necron (Boss)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Necron",
+        "recipe": null
+    },
+    "NECRON_CELESTIAL": {
+        "internal_name": "NECRON_CELESTIAL",
+        "name": "Celestial Necron's Helmet Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
     "NECRON_HANDLE": {
@@ -32805,6 +34231,81 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
     },
+    "NUTCRACKER_BOOTS": {
+        "internal_name": "NUTCRACKER_BOOTS",
+        "name": "Nutcracker Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Nutcracker_Boots",
+        "recipe": [
+            "WALNUT:3",
+            "SNOW_SUIT_BOOTS:1",
+            "WALNUT:3",
+            "WALNUT:3",
+            "",
+            "WALNUT:3",
+            "",
+            "",
+            ""
+        ]
+    },
+    "NUTCRACKER_CHESTPLATE": {
+        "internal_name": "NUTCRACKER_CHESTPLATE",
+        "name": "Nutcracker Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Nutcracker_Chestplate",
+        "recipe": [
+            "WALNUT:3",
+            "SNOW_SUIT_CHESTPLATE:1",
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3"
+        ]
+    },
+    "NUTCRACKER_HELMET": {
+        "internal_name": "NUTCRACKER_HELMET",
+        "name": "Nutcracker Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Nutcracker_Helmet",
+        "recipe": [
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "SNOW_SUIT_HELMET:1",
+            "WALNUT:3",
+            "",
+            "",
+            ""
+        ]
+    },
+    "NUTCRACKER_LEGGINGS": {
+        "internal_name": "NUTCRACKER_LEGGINGS",
+        "name": "Nutcracker Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Nutcracker_Leggings",
+        "recipe": [
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "WALNUT:3",
+            "SNOW_SUIT_LEGGINGS:1",
+            "WALNUT:3",
+            "WALNUT:3",
+            "",
+            "WALNUT:3"
+        ]
+    },
+    "NUTCRACKER_SC": {
+        "internal_name": "NUTCRACKER_SC",
+        "name": "§3Nutcracker (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Nutcracker",
+        "recipe": null
+    },
     "OAK_GENERATOR_1": {
         "internal_name": "OAK_GENERATOR_1",
         "name": "Oak Minion I",
@@ -33317,7 +34818,17 @@
         "name": "Obsidian Tablet",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Obsidian_Tablet",
-        "recipe": null
+        "recipe": [
+            "ENCHANTED_OBSIDIAN:24",
+            "ENCHANTED_OBSIDIAN:24",
+            "ENCHANTED_OBSIDIAN:24",
+            "ENCHANTED_OBSIDIAN:24",
+            "SUMMONING_EYE:1",
+            "ENCHANTED_OBSIDIAN:24",
+            "ENCHANTED_OBSIDIAN:24",
+            "ENCHANTED_OBSIDIAN:24",
+            "ENCHANTED_OBSIDIAN:24"
+        ]
     },
     "OCELOT;0": {
         "internal_name": "OCELOT;0",
@@ -33535,6 +35046,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Dragon_Fragment",
         "recipe": null
     },
+    "OLD_MAN_GARRY_NPC": {
+        "internal_name": "OLD_MAN_GARRY_NPC",
+        "name": "Old Man Garry (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "OLD_SHAMAN_NYKO_NPC": {
         "internal_name": "OLD_SHAMAN_NYKO_NPC",
         "name": "Old Shaman Nyko (NPC)",
@@ -33673,6 +35191,13 @@
             "GOLDEN_TOOTH:32"
         ]
     },
+    "OVERGROWN_GRASS": {
+        "internal_name": "OVERGROWN_GRASS",
+        "name": "Overgrown Grass",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Overgrown_Grass",
+        "recipe": null
+    },
     "OVERLOAD;1": {
         "internal_name": "OVERLOAD;1",
         "name": "Enchanted Book",
@@ -33706,6 +35231,13 @@
         "name": "Enchanted Book",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "OXFORD_SHOES": {
+        "internal_name": "OXFORD_SHOES",
+        "name": "Oxford Shoes",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Oxford_Shoes",
         "recipe": null
     },
     "PACKED_ICE": {
@@ -33988,6 +35520,20 @@
         "name": "X PEDESTAL",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
+        "recipe": null
+    },
+    "PELT_BELT": {
+        "internal_name": "PELT_BELT",
+        "name": "Pelt Belt",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pelt_Belt",
+        "recipe": null
+    },
+    "PENGUIN_BACKPACK": {
+        "internal_name": "PENGUIN_BACKPACK",
+        "name": "Penguin Backpack Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
     "PENGUIN_PERSONALITY": {
@@ -35043,6 +36589,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Petrified_Starfall",
         "recipe": null
     },
+    "PET_CAKE": {
+        "internal_name": "PET_CAKE",
+        "name": "Pet Cake",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Cake",
+        "recipe": null
+    },
     "PET_ITEM_ALL_SKILLS_BOOST_COMMON": {
         "internal_name": "PET_ITEM_ALL_SKILLS_BOOST_COMMON",
         "name": "All Skills Exp Boost",
@@ -35338,6 +36891,20 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Items",
         "recipe": null
     },
+    "PET_SKIN_AMMONITE_MAGMA": {
+        "internal_name": "PET_SKIN_AMMONITE_MAGMA",
+        "name": "Magma Ammonite Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_AMMONITE_NATURAL": {
+        "internal_name": "PET_SKIN_AMMONITE_NATURAL",
+        "name": "Natural Ammonite Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "PET_SKIN_ARMADILLO_ENCHANTED": {
         "internal_name": "PET_SKIN_ARMADILLO_ENCHANTED",
         "name": "Enchanted Armadillo Skin",
@@ -35411,6 +36978,13 @@
     "PET_SKIN_CHICKEN_BABY_CHICK": {
         "internal_name": "PET_SKIN_CHICKEN_BABY_CHICK",
         "name": "Baby Chick Chicken Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_CHICKEN_TURKEY": {
+        "internal_name": "PET_SKIN_CHICKEN_TURKEY",
+        "name": "Turkey Chicken Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
@@ -35569,6 +37143,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
+    "PET_SKIN_GRIFFIN_REINDRAKE": {
+        "internal_name": "PET_SKIN_GRIFFIN_REINDRAKE",
+        "name": "Reindrake Griffin Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Skin",
+        "recipe": null
+    },
     "PET_SKIN_GUARDIAN": {
         "internal_name": "PET_SKIN_GUARDIAN",
         "name": "Watcher Guardian Skin",
@@ -35688,6 +37269,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
+    "PET_SKIN_RABBIT_LUNAR": {
+        "internal_name": "PET_SKIN_RABBIT_LUNAR",
+        "name": "Lunar Rabbit Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "PET_SKIN_RABBIT_ROSE": {
         "internal_name": "PET_SKIN_RABBIT_ROSE",
         "name": "Rose Rabbit Skin",
@@ -35700,6 +37288,13 @@
         "name": "Hide and Squeak Rat Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_REINDEER_AURORA": {
+        "internal_name": "PET_SKIN_REINDEER_AURORA",
+        "name": "Aurora Reindeer Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pet_Skin",
         "recipe": null
     },
     "PET_SKIN_ROCK_BLINKING": {
@@ -35737,6 +37332,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
+    "PET_SKIN_ROCK_NORTH_STAR": {
+        "internal_name": "PET_SKIN_ROCK_NORTH_STAR",
+        "name": "North Star Rock Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/North_Star_Rock_Skin",
+        "recipe": null
+    },
     "PET_SKIN_ROCK_SMILE": {
         "internal_name": "PET_SKIN_ROCK_SMILE",
         "name": "Smiling Rock Skin",
@@ -35768,6 +37370,27 @@
     "PET_SKIN_ROCK_THINKING": {
         "internal_name": "PET_SKIN_ROCK_THINKING",
         "name": "Thinking Rock Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_SCATHA_ALBINO": {
+        "internal_name": "PET_SKIN_SCATHA_ALBINO",
+        "name": "Albino Scatha Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_SCATHA_DARK": {
+        "internal_name": "PET_SKIN_SCATHA_DARK",
+        "name": "Dark Scatha Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "PET_SKIN_SCATHA_GOLDEN": {
+        "internal_name": "PET_SKIN_SCATHA_GOLDEN",
+        "name": "Golden Scatha Skin",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
@@ -36613,6 +38236,13 @@
         "wiki_link": "https://wiki.hypixel.net/Poisonous_Potato",
         "recipe": null
     },
+    "POISON_SAMPLE": {
+        "internal_name": "POISON_SAMPLE",
+        "name": "Poison Sample",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Poison_Sample",
+        "recipe": null
+    },
     "POLISHED_PEBBLE": {
         "internal_name": "POLISHED_PEBBLE",
         "name": "Polished Pebble",
@@ -36649,9 +38279,9 @@
             "SAND:5",
             "SAND:5",
             "SAND:5",
-            "PRISMARINE_CRYSTALS:5",
-            "PRISMARINE_CRYSTALS:5",
-            "PRISMARINE_CRYSTALS:5"
+            "PRISMARINE_CRYSTALS:20",
+            "PRISMARINE_CRYSTALS:20",
+            "PRISMARINE_CRYSTALS:20"
         ]
     },
     "POND_SQUID_SC": {
@@ -37562,6 +39192,41 @@
         "wiki_link": null,
         "recipe": null
     },
+    "PROSPERITY;1": {
+        "internal_name": "PROSPERITY;1",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "PROSPERITY;2": {
+        "internal_name": "PROSPERITY;2",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "PROSPERITY;3": {
+        "internal_name": "PROSPERITY;3",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "PROSPERITY;4": {
+        "internal_name": "PROSPERITY;4",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "PROSPERITY;5": {
+        "internal_name": "PROSPERITY;5",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "PROTECTION;1": {
         "internal_name": "PROTECTION;1",
         "name": "Enchanted Book",
@@ -37836,6 +39501,40 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pumpkin_Dicer",
         "recipe": null
+    },
+    "PUMPKIN_DICER_2": {
+        "internal_name": "PUMPKIN_DICER_2",
+        "name": "Pumpkin Dicer 2.0",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pumpkin_Dicer_2.0",
+        "recipe": [
+            "POLISHED_PUMPKIN:2",
+            "POLISHED_PUMPKIN:2",
+            "POLISHED_PUMPKIN:2",
+            "POLISHED_PUMPKIN:2",
+            "PUMPKIN_DICER:1",
+            "POLISHED_PUMPKIN:2",
+            "POLISHED_PUMPKIN:2",
+            "POLISHED_PUMPKIN:2",
+            "POLISHED_PUMPKIN:2"
+        ]
+    },
+    "PUMPKIN_DICER_3": {
+        "internal_name": "PUMPKIN_DICER_3",
+        "name": "Pumpkin Dicer 3.0",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Pumpkin_Dicer_3.0",
+        "recipe": [
+            "POLISHED_PUMPKIN:4",
+            "POLISHED_PUMPKIN:4",
+            "POLISHED_PUMPKIN:4",
+            "POLISHED_PUMPKIN:4",
+            "PUMPKIN_DICER_2:1",
+            "POLISHED_PUMPKIN:4",
+            "POLISHED_PUMPKIN:4",
+            "POLISHED_PUMPKIN:4",
+            "POLISHED_PUMPKIN:4"
+        ]
     },
     "PUMPKIN_GENERATOR_1": {
         "internal_name": "PUMPKIN_GENERATOR_1",
@@ -38175,11 +39874,25 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
         "recipe": null
     },
+    "PURPLE_GIFT_TALISMAN": {
+        "internal_name": "PURPLE_GIFT_TALISMAN",
+        "name": "Purple Gift Talisman",
+        "rarity": "EPIC",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Purple_Gift_Talisman",
+        "recipe": null
+    },
     "PURPLE_SMALL_BACKPACK": {
         "internal_name": "PURPLE_SMALL_BACKPACK",
         "name": "Small Backpack",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Backpack",
+        "recipe": null
+    },
+    "PUZZLER_NPC": {
+        "internal_name": "PUZZLER_NPC",
+        "name": "Puzzler (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "PYROCLASTIC_SCALE": {
@@ -38479,6 +40192,13 @@
             "QUARTZ_BLOCK:1"
         ]
     },
+    "QUEEN_MISMYLA_NPC": {
+        "internal_name": "QUEEN_MISMYLA_NPC",
+        "name": "Queen Mismyla (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "RABBIT": {
         "internal_name": "RABBIT",
         "name": "Raw Rabbit",
@@ -38577,6 +40297,40 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Jake",
         "recipe": null
+    },
+    "RABBIT_BOOTS": {
+        "internal_name": "RABBIT_BOOTS",
+        "name": "Rabbit Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Rabbit_Boots",
+        "recipe": [
+            "ENCHANTED_RABBIT_HIDE:5",
+            "",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_FOOT:10",
+            "",
+            "ENCHANTED_RABBIT_FOOT:10",
+            "",
+            "",
+            ""
+        ]
+    },
+    "RABBIT_CHESTPLATE": {
+        "internal_name": "RABBIT_CHESTPLATE",
+        "name": "Rabbit Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Rabbit_Chestplate",
+        "recipe": [
+            "ENCHANTED_RABBIT_HIDE:5",
+            "",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_FOOT:10",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_FOOT:10",
+            "ENCHANTED_RABBIT_HIDE:5"
+        ]
     },
     "RABBIT_FOOT": {
         "internal_name": "RABBIT_FOOT",
@@ -38786,6 +40540,23 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rabbit_Hat",
         "recipe": null
     },
+    "RABBIT_HELMET": {
+        "internal_name": "RABBIT_HELMET",
+        "name": "Rabbit Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Rabbit_Helmet",
+        "recipe": [
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_FOOT:10",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "",
+            "",
+            ""
+        ]
+    },
     "RABBIT_HIDE": {
         "internal_name": "RABBIT_HIDE",
         "name": "Rabbit Hide",
@@ -38799,6 +40570,23 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
         "recipe": null
+    },
+    "RABBIT_LEGGINGS": {
+        "internal_name": "RABBIT_LEGGINGS",
+        "name": "Rabbit Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Rabbit_Leggings",
+        "recipe": [
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_FOOT:10",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "ENCHANTED_RABBIT_HIDE:5",
+            "",
+            "ENCHANTED_RABBIT_HIDE:5"
+        ]
     },
     "RABBIT_STEW": {
         "internal_name": "RABBIT_STEW",
@@ -39008,6 +40796,13 @@
         "name": "Rare Diamond",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rare_Diamond",
+        "recipe": null
+    },
+    "RARE_KUUDRA_CHUNK": {
+        "internal_name": "RARE_KUUDRA_CHUNK",
+        "name": "Meaty Kuudra Chunk",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Meaty_Kuudra_Chunk",
         "recipe": null
     },
     "RAT;4": {
@@ -40195,6 +41990,20 @@
             "CHILI_PEPPER:1"
         ]
     },
+    "REINDEER;4": {
+        "internal_name": "REINDEER;4",
+        "name": "§7[Lvl {LVL}] Reindeer",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Reindeer_Pet",
+        "recipe": null
+    },
+    "REINDEER_BACKPACK": {
+        "internal_name": "REINDEER_BACKPACK",
+        "name": "Reindeer Backpack Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "REINDEER_PERSONALITY": {
         "internal_name": "REINDEER_PERSONALITY",
         "name": "Reindeer Minion Skin",
@@ -40207,6 +42016,13 @@
         "name": "Reindeer Plush",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
+        "recipe": null
+    },
+    "REINDRAKE_SC": {
+        "internal_name": "REINDRAKE_SC",
+        "name": "§3Reindrake (Sea Creature)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Reindrake",
         "recipe": null
     },
     "REINFORCED_IRON_ARROW": {
@@ -40830,6 +42646,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Revive_Stone",
         "recipe": null
     },
+    "RHYS_NPC": {
+        "internal_name": "RHYS_NPC",
+        "name": "Rhys (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "RIDER_OF_THE_DEEP_SC": {
         "internal_name": "RIDER_OF_THE_DEEP_SC",
         "name": "§3Rider of the Deep (Sea Creature)",
@@ -40942,6 +42765,13 @@
         "name": "§7[Lvl {LVL}] Rock",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rock_Pet",
+        "recipe": null
+    },
+    "ROCKING_CHAIR": {
+        "internal_name": "ROCKING_CHAIR",
+        "name": "Rocking Chair",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rocking_Chair",
         "recipe": null
     },
     "ROCK_CANDY": {
@@ -41198,6 +43028,27 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Royal_Pigeon",
         "recipe": null
     },
+    "ROYAL_RESIDENT_NEIGHBOR_NPC": {
+        "internal_name": "ROYAL_RESIDENT_NEIGHBOR_NPC",
+        "name": "Royal Resident (Neighbor) (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "ROYAL_RESIDENT_NPC": {
+        "internal_name": "ROYAL_RESIDENT_NPC",
+        "name": "Royal Resident (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "ROYAL_RESIDENT_SNOOTY_NPC": {
+        "internal_name": "ROYAL_RESIDENT_SNOOTY_NPC",
+        "name": "Royal Resident (Snooty) (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "RUBY_CRYSTAL": {
         "internal_name": "RUBY_CRYSTAL",
         "name": "Ruby Crystal",
@@ -41258,6 +43109,27 @@
         "name": "Aurora Staff",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Aurora_Staff",
+        "recipe": null
+    },
+    "RUSTY_ANCHOR": {
+        "internal_name": "RUSTY_ANCHOR",
+        "name": "Rusty Anchor",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Rusty_Anchor",
+        "recipe": null
+    },
+    "RUSTY_NPC": {
+        "internal_name": "RUSTY_NPC",
+        "name": "Rusty (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "RYU_NPC": {
+        "internal_name": "RYU_NPC",
+        "name": "Ryu (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "SADAN_BOSS": {
@@ -41389,6 +43261,27 @@
         "name": "Salmon Opal",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Salmon_Opal",
+        "recipe": null
+    },
+    "SALT_CUBE": {
+        "internal_name": "SALT_CUBE",
+        "name": "Salt Cube",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Salt_Cube",
+        "recipe": null
+    },
+    "SAM_ASSISTANT": {
+        "internal_name": "SAM_ASSISTANT",
+        "name": "Move Sam",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Move_Sam",
+        "recipe": null
+    },
+    "SAM_SCYTHE": {
+        "internal_name": "SAM_SCYTHE",
+        "name": "Sam's Scythe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Sam%27s_Scythe",
         "recipe": null
     },
     "SAND-1": {
@@ -41746,6 +43639,20 @@
             "ENCHANTED_PAPER:16",
             "FINE_SAPPHIRE_GEM:16"
         ]
+    },
+    "SARGWYN_NPC": {
+        "internal_name": "SARGWYN_NPC",
+        "name": "Sargwyn (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "SATIN_TROUSERS": {
+        "internal_name": "SATIN_TROUSERS",
+        "name": "Satin Trousers",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "SAVANA_BIOME_STICK": {
         "internal_name": "SAVANA_BIOME_STICK",
@@ -42420,6 +44327,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Shady_Ring",
         "recipe": null
     },
+    "SHAGGY_NPC": {
+        "internal_name": "SHAGGY_NPC",
+        "name": "Shaggy (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "SHAMAN_SWORD": {
         "internal_name": "SHAMAN_SWORD",
         "name": "Shaman Sword",
@@ -42556,15 +44470,15 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Shark_Water_Orb",
         "recipe": [
-            "ENCHANTED_SHARK_FIN:3",
+            "ENCHANTED_SHARK_FIN:1",
             "GREAT_WHITE_SHARK_TOOTH:1",
-            "ENCHANTED_SHARK_FIN:3",
-            "BLUE_SHARK_TOOTH:8",
+            "ENCHANTED_SHARK_FIN:1",
+            "BLUE_SHARK_TOOTH:6",
             "WATER_ORB:1",
-            "NURSE_SHARK_TOOTH:16",
-            "ENCHANTED_SHARK_FIN:3",
+            "NURSE_SHARK_TOOTH:12",
+            "ENCHANTED_SHARK_FIN:1",
             "TIGER_SHARK_TOOTH:4",
-            "ENCHANTED_SHARK_FIN:3"
+            "ENCHANTED_SHARK_FIN:1"
         ]
     },
     "SHARPNESS;1": {
@@ -43015,13 +44929,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Shimmering_Light_Trousers",
         "recipe": [
             "ENCHANTED_MYCELIUM_CUBE:1",
-            "",
-            "ENCHANTED_MYCELIUM_CUBE:1",
-            "Y:30",
             "Z:10",
+            "ENCHANTED_MYCELIUM_CUBE:1",
+            "Y:30",
+            "",
             "Y:30",
             "ENCHANTED_MYCELIUM_CUBE:1",
-            "ENCHANTED_MYCELIUM_CUBE:1",
+            "",
             "ENCHANTED_MYCELIUM_CUBE:1"
         ]
     },
@@ -44018,9 +45932,16 @@
     },
     "SKYBLOCK_MENU": {
         "internal_name": "SKYBLOCK_MENU",
-        "name": "SkyBlock Menu §7(Right Click)",
+        "name": "SkyBlock Menu §7(Click)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/SkyBlock_Menu",
+        "recipe": null
+    },
+    "SKYBLOCK_NORTH_STAR": {
+        "internal_name": "SKYBLOCK_NORTH_STAR",
+        "name": "North Star",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/North_Star",
         "recipe": null
     },
     "SKYBLOCK_PELT": {
@@ -44042,6 +45963,13 @@
         "name": "Dark Oak Table",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Furniture",
+        "recipe": null
+    },
+    "SKYMART_BROCHURE": {
+        "internal_name": "SKYMART_BROCHURE",
+        "name": "SkyMart Brochure",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "SLAYER_ENERGY_DRINK": {
@@ -44432,6 +46360,23 @@
             "ENCHANTED_ROTTEN_FLESH:2",
             "ENCHANTED_ROTTEN_FLESH:2",
             "ENCHANTED_ROTTEN_FLESH:2"
+        ]
+    },
+    "SMALL_DRAGON_SACK": {
+        "internal_name": "SMALL_DRAGON_SACK",
+        "name": "Small Dragon Sack",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": [
+            "CRYSTAL_FRAGMENT:2",
+            "DRAGON_CLAW:1",
+            "CRYSTAL_FRAGMENT:2",
+            "DRAGON_CLAW:1",
+            "ENCHANTED_LEATHER:1",
+            "DRAGON_CLAW:1",
+            "CRYSTAL_FRAGMENT:2",
+            "DRAGON_CLAW:1",
+            "CRYSTAL_FRAGMENT:2"
         ]
     },
     "SMALL_ENCHANTED_CHEST": {
@@ -45077,6 +47022,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Flake_the_Fish",
         "recipe": null
     },
+    "SNOWGLOBE": {
+        "internal_name": "SNOWGLOBE",
+        "name": "Snowglobe",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Snowglobe",
+        "recipe": null
+    },
     "SNOWMAN": {
         "internal_name": "SNOWMAN",
         "name": "Derpy Snowman",
@@ -45091,11 +47043,25 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Snowman_Pet",
         "recipe": null
     },
+    "SNOWMAN_PERSONALITY": {
+        "internal_name": "SNOWMAN_PERSONALITY",
+        "name": "Snowman Minion Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Snowman_Minion_Skin",
+        "recipe": null
+    },
     "SNOW_BALL": {
         "internal_name": "SNOW_BALL",
         "name": "Snowball",
         "rarity": "UNKNOWN",
         "wiki_link": null,
+        "recipe": null
+    },
+    "SNOW_BELT": {
+        "internal_name": "SNOW_BELT",
+        "name": "Snow Belt",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Snow_Belt",
         "recipe": null
     },
     "SNOW_BLASTER": {
@@ -45127,6 +47093,13 @@
         "name": "Frosty the Snow Cannon",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Frosty_the_Snow_Cannon",
+        "recipe": null
+    },
+    "SNOW_CLOAK": {
+        "internal_name": "SNOW_CLOAK",
+        "name": "Snow Cloak",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Snow_Cloak",
         "recipe": null
     },
     "SNOW_GENERATOR_1": {
@@ -45169,6 +47142,13 @@
             "ENCHANTED_SNOW_BLOCK:16",
             "ENCHANTED_SNOW_BLOCK:16"
         ]
+    },
+    "SNOW_GENERATOR_12": {
+        "internal_name": "SNOW_GENERATOR_12",
+        "name": "Snow Minion XII",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Snow_Minion",
+        "recipe": null
     },
     "SNOW_GENERATOR_2": {
         "internal_name": "SNOW_GENERATOR_2",
@@ -45305,6 +47285,27 @@
             "ENCHANTED_SNOW_BLOCK:4",
             "ENCHANTED_SNOW_BLOCK:4"
         ]
+    },
+    "SNOW_GLOVES": {
+        "internal_name": "SNOW_GLOVES",
+        "name": "Snow Gloves",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Snow_Gloves",
+        "recipe": null
+    },
+    "SNOW_HOWITZER": {
+        "internal_name": "SNOW_HOWITZER",
+        "name": "Frosty the Howitzer",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Frosty_The_Howitzer",
+        "recipe": null
+    },
+    "SNOW_NECKLACE": {
+        "internal_name": "SNOW_NECKLACE",
+        "name": "Snow Necklace",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Snow_Necklace",
+        "recipe": null
     },
     "SNOW_RUNE;1": {
         "internal_name": "SNOW_RUNE;1",
@@ -46370,6 +48371,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Spider_Talisman",
         "recipe": null
     },
+    "SPIDER_TAMER_NPC": {
+        "internal_name": "SPIDER_TAMER_NPC",
+        "name": "Spider Tamer (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Spider_Tamer",
+        "recipe": null
+    },
     "SPIKED_ATROCITY": {
         "internal_name": "SPIKED_ATROCITY",
         "name": "Spiked Atrocity",
@@ -47020,6 +49028,98 @@
             "WOOD-1:1",
             "WOOD-1:1",
             "WOOD-1:1"
+        ]
+    },
+    "SQUASH": {
+        "internal_name": "SQUASH",
+        "name": "Squash",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squash",
+        "recipe": null
+    },
+    "SQUASH_BOOTS": {
+        "internal_name": "SQUASH_BOOTS",
+        "name": "Squash Boots",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squash_Boots",
+        "recipe": [
+            "SQUASH:10",
+            "",
+            "SQUASH:10",
+            "POLISHED_PUMPKIN:6",
+            "CROPIE_BOOTS:1",
+            "POLISHED_PUMPKIN:6",
+            "",
+            "",
+            ""
+        ]
+    },
+    "SQUASH_CHESTPLATE": {
+        "internal_name": "SQUASH_CHESTPLATE",
+        "name": "Squash Chestplate",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squash_Chestplate",
+        "recipe": [
+            "SQUASH:10",
+            "CROPIE_CHESTPLATE:1",
+            "SQUASH:10",
+            "ENCHANTED_MELON_BLOCK:24",
+            "POLISHED_PUMPKIN:8",
+            "ENCHANTED_MELON_BLOCK:24",
+            "ENCHANTED_COOKIE:10",
+            "ENCHANTED_COOKIE:10",
+            "ENCHANTED_COOKIE:10"
+        ]
+    },
+    "SQUASH_HELMET": {
+        "internal_name": "SQUASH_HELMET",
+        "name": "Squash Helmet",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squash_Helmet",
+        "recipe": [
+            "SQUASH:10",
+            "POLISHED_PUMPKIN:8",
+            "SQUASH:10",
+            "ENCHANTED_MELON_BLOCK:24",
+            "CROPIE_HELMET:1",
+            "ENCHANTED_MELON_BLOCK:24",
+            "",
+            "",
+            ""
+        ]
+    },
+    "SQUASH_LEGGINGS": {
+        "internal_name": "SQUASH_LEGGINGS",
+        "name": "Squash Leggings",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Squash_Leggings",
+        "recipe": [
+            "SQUASH:10",
+            "POLISHED_PUMPKIN:8",
+            "SQUASH:10",
+            "ENCHANTED_MELON_BLOCK:24",
+            "CROPIE_LEGGINGS:1",
+            "ENCHANTED_MELON_BLOCK:24",
+            "ENCHANTED_COOKIE:10",
+            "",
+            "ENCHANTED_COOKIE:10"
+        ]
+    },
+    "SQUASH_RING": {
+        "internal_name": "SQUASH_RING",
+        "name": "Squash Ring",
+        "rarity": "UNCOMMON",
+        "wiki_link": null,
+        "recipe": [
+            "SQUASH:16",
+            "SQUASH:16",
+            "SQUASH:16",
+            "SQUASH:16",
+            "CROPIE_TALISMAN:1",
+            "SQUASH:16",
+            "SQUASH:16",
+            "SQUASH:16",
+            "SQUASH:16"
         ]
     },
     "SQUID;0": {
@@ -48327,6 +50427,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Steel_Chestplate",
         "recipe": null
     },
+    "STELLA_NPC": {
+        "internal_name": "STELLA_NPC",
+        "name": "Stella (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "STEP-1": {
         "internal_name": "STEP-1",
         "name": "Sandstone Slab",
@@ -48798,6 +50905,13 @@
             ""
         ]
     },
+    "STORM_CELESTIAL": {
+        "internal_name": "STORM_CELESTIAL",
+        "name": "Celestial Storm's Helmet Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "STORM_THE_FISH": {
         "internal_name": "STORM_THE_FISH",
         "name": "Storm the Fish",
@@ -49044,7 +51158,7 @@
         "internal_name": "SUGAR_CANE",
         "name": "Sugar Cane",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://wiki.hypixel.net/Sugar_Cane",
         "recipe": null
     },
     "SUGAR_CANE_GENERATOR_1": {
@@ -49321,7 +51435,7 @@
         "internal_name": "SULPHUR_SKITTER_DIAMOND",
         "name": "Sulphur Skitter§r §l§B§LDIAMOND",
         "rarity": "UNKNOWN",
-        "wiki_link": null,
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Trophy_Fishes",
         "recipe": null
     },
     "SULPHUR_SKITTER_GOLD": {
@@ -49350,6 +51464,41 @@
         "name": "Summoning Ring",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Summoning_Ring",
+        "recipe": null
+    },
+    "SUNDER;1": {
+        "internal_name": "SUNDER;1",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "SUNDER;2": {
+        "internal_name": "SUNDER;2",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "SUNDER;3": {
+        "internal_name": "SUNDER;3",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "SUNDER;4": {
+        "internal_name": "SUNDER;4",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
+    "SUNDER;5": {
+        "internal_name": "SUNDER;5",
+        "name": "Enchanted Book",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "SUN_PERSONALITY": {
@@ -49847,7 +51996,7 @@
             "",
             "INFERNO_VERTEX:8",
             "",
-            "MOLTEN_POWDER:64",
+            "MOLTEN_POWDER:48",
             "",
             ""
         ]
@@ -49875,6 +52024,13 @@
             "",
             ""
         ]
+    },
+    "TALBOTS_THEODOLITE": {
+        "internal_name": "TALBOTS_THEODOLITE",
+        "name": "Talbot's Theodolite",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Talbot%27s_Theodolite",
+        "recipe": null
     },
     "TALISMAN_ENRICHMENT_ATTACK_SPEED": {
         "internal_name": "TALISMAN_ENRICHMENT_ATTACK_SPEED",
@@ -49958,6 +52114,13 @@
         "name": "Speed Enrichment",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Enrichments",
+        "recipe": null
+    },
+    "TAMMY_NPC": {
+        "internal_name": "TAMMY_NPC",
+        "name": "Tammy (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "TANK_MINER_BOOTS": {
@@ -50419,6 +52582,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Tarantula_Web",
         "recipe": null
     },
+    "TARWEN_NPC": {
+        "internal_name": "TARWEN_NPC",
+        "name": "Tarwen (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "TAURUS_HELMET": {
         "internal_name": "TAURUS_HELMET",
         "name": "Taurus Helmet",
@@ -50431,6 +52601,13 @@
         "name": "§3Taurus (Sea Creature)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Taurus",
+        "recipe": null
+    },
+    "TAVERN_BARN_SKIN": {
+        "internal_name": "TAVERN_BARN_SKIN",
+        "name": "Tavern Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Tavern_Barn_Skin",
         "recipe": null
     },
     "TELEKINESIS;1": {
@@ -50447,13 +52624,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Teleporter_Pill",
         "recipe": [
             "MOLTEN_POWDER:1",
-            "ENCHANTED_CAKE:64",
+            "ENCHANTED_SUGAR:64",
             "MOLTEN_POWDER:1",
             "INFERNO_VERTEX:1",
             "TELEPORT_PAD:64",
             "INFERNO_VERTEX:1",
             "MOLTEN_POWDER:1",
-            "ENCHANTED_CAKE:64",
+            "ENCHANTED_SUGAR:64",
             "MOLTEN_POWDER:1"
         ]
     },
@@ -50484,14 +52661,14 @@
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Terminator",
         "recipe": [
-            "",
-            "JUDGEMENT_CORE:1",
+            "TESSELLATED_ENDER_PEARL:4",
+            "NULL_BLADE:1",
             "TARANTULA_SILK:64",
-            "TESSELLATED_ENDER_PEARL:8",
-            "",
+            "NULL_BLADE:1",
+            "JUDGEMENT_CORE:1",
             "BRAIDED_GRIFFIN_FEATHER:4",
-            "",
-            "NULL_BLADE:3",
+            "TESSELLATED_ENDER_PEARL:4",
+            "NULL_BLADE:1",
             "TARANTULA_SILK:64"
         ]
     },
@@ -50521,6 +52698,13 @@
         "name": "Terror Leggings",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Terror_Leggings",
+        "recipe": null
+    },
+    "TERRY_SNOWGLOBE": {
+        "internal_name": "TERRY_SNOWGLOBE",
+        "name": "Terry's Snowglobe",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "TESSELLATED_ENDER_PEARL": {
@@ -50792,13 +52976,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Euclid%27s_Wheat_Hoe",
         "recipe": [
             "JACOBS_TICKET:64",
-            "TIGHTLY_TIED_HAY_BALE:64",
+            "TIGHTLY_TIED_HAY_BALE:16",
             "JACOBS_TICKET:64",
-            "TIGHTLY_TIED_HAY_BALE:64",
+            "TIGHTLY_TIED_HAY_BALE:16",
             "THEORETICAL_HOE_WHEAT_2:1",
-            "TIGHTLY_TIED_HAY_BALE:64",
+            "TIGHTLY_TIED_HAY_BALE:16",
             "JACOBS_TICKET:64",
-            "TIGHTLY_TIED_HAY_BALE:64",
+            "TIGHTLY_TIED_HAY_BALE:16",
             "JACOBS_TICKET:64"
         ]
     },
@@ -51137,6 +53321,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Thyst",
         "recipe": null
     },
+    "TIA_THE_FAIRY_NPC": {
+        "internal_name": "TIA_THE_FAIRY_NPC",
+        "name": "Tia the Fairy (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "TIC_TAC_TOE": {
         "internal_name": "TIC_TAC_TOE",
         "name": "Tic Tac Toe",
@@ -51443,6 +53634,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Tomioka",
         "recipe": null
     },
+    "TOM_NPC": {
+        "internal_name": "TOM_NPC",
+        "name": "Tom (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "TONY_SHOP_NPC": {
         "internal_name": "TONY_SHOP_NPC",
         "name": "Tony's Shop (NPC)",
@@ -51470,7 +53668,7 @@
         "rarity": "UNKNOWN",
         "wiki_link": null,
         "recipe": [
-            "COAL-1:1",
+            "COAL:1",
             "",
             "",
             "STICK:1",
@@ -51510,6 +53708,13 @@
         "name": "Toy",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Toy",
+        "recipe": null
+    },
+    "TRADING_POST_BARN_SKIN": {
+        "internal_name": "TRADING_POST_BARN_SKIN",
+        "name": "Trading Post Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Trading_Post_Barn_Skin",
         "recipe": null
     },
     "TRAINING_DUMMY": {
@@ -51559,6 +53764,27 @@
             "",
             ""
         ]
+    },
+    "TRAPPER_CREST": {
+        "internal_name": "TRAPPER_CREST",
+        "name": "Trapper Crest",
+        "rarity": "COMMON",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Trapper_Crest",
+        "recipe": null
+    },
+    "TRAPPER_DEN_PORTAL": {
+        "internal_name": "TRAPPER_DEN_PORTAL",
+        "name": "Portal to the Trapper's Den",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Portals",
+        "recipe": null
+    },
+    "TRAPPER_DEN_TRAVEL_SCROLL": {
+        "internal_name": "TRAPPER_DEN_TRAVEL_SCROLL",
+        "name": "Travel Scroll to the Trapper's Den",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Travel_Scroll_To_The_Trapper%27s_Den",
+        "recipe": null
     },
     "TRAP_DOOR": {
         "internal_name": "TRAP_DOOR",
@@ -51648,6 +53874,13 @@
             "ENCHANTED_OBSIDIAN:64",
             "ENCHANTED_OBSIDIAN:64"
         ]
+    },
+    "TREVOR_NPC": {
+        "internal_name": "TREVOR_NPC",
+        "name": "Trevor (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
     },
     "TRIBAL_SPEAR": {
         "internal_name": "TRIBAL_SPEAR",
@@ -52817,6 +55050,13 @@
         "wiki_link": null,
         "recipe": null
     },
+    "UNCOMMON_KUUDRA_CHUNK": {
+        "internal_name": "UNCOMMON_KUUDRA_CHUNK",
+        "name": "Kuudra Chunk",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Kuudra_Chunk",
+        "recipe": null
+    },
     "UNDEAD_BOW": {
         "internal_name": "UNDEAD_BOW",
         "name": "Undead Bow",
@@ -53011,6 +55251,40 @@
             "MOLTEN_POWDER:64",
             "INFERNO_APEX:1",
             "MOLTEN_POWDER:64"
+        ]
+    },
+    "VACCINE_ARTIFACT": {
+        "internal_name": "VACCINE_ARTIFACT",
+        "name": "Vaccine Artifact",
+        "rarity": "RARE",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Vaccine_Artifact",
+        "recipe": [
+            "POISON_SAMPLE:1",
+            "POISON_SAMPLE:1",
+            "POISON_SAMPLE:1",
+            "POISON_SAMPLE:1",
+            "VACCINE_RING:1",
+            "POISON_SAMPLE:1",
+            "POISON_SAMPLE:1",
+            "POISON_SAMPLE:1",
+            "POISON_SAMPLE:1"
+        ]
+    },
+    "VACCINE_RING": {
+        "internal_name": "VACCINE_RING",
+        "name": "Vaccine Ring",
+        "rarity": "UNCOMMON",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Vaccine_Ring",
+        "recipe": [
+            "ARACHNE_FANG:1",
+            "ARACHNE_FANG:1",
+            "ARACHNE_FANG:1",
+            "ARACHNE_FANG:1",
+            "VACCINE_TALISMAN:1",
+            "ARACHNE_FANG:1",
+            "ARACHNE_FANG:1",
+            "ARACHNE_FANG:1",
+            "ARACHNE_FANG:1"
         ]
     },
     "VACCINE_TALISMAN": {
@@ -53219,6 +55493,13 @@
             ""
         ]
     },
+    "VELVET_TOP_HAT": {
+        "internal_name": "VELVET_TOP_HAT",
+        "name": "Velvet Top Hat",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
+        "recipe": null
+    },
     "VENOMOUS;1": {
         "internal_name": "VENOMOUS;1",
         "name": "Enchanted Book",
@@ -53293,6 +55574,13 @@
         "name": "§eVery Official Yellow Rock of Love!",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Very_Official_Yellow_Rock_of_Love!",
+        "recipe": null
+    },
+    "VEX_NPC": {
+        "internal_name": "VEX_NPC",
+        "name": "Vex (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "VICIOUS;3": {
@@ -53770,6 +56058,13 @@
         "wiki_link": null,
         "recipe": null
     },
+    "WALNUT": {
+        "internal_name": "WALNUT",
+        "name": "Walnut",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Walnut",
+        "recipe": null
+    },
     "WALTER_NPC": {
         "internal_name": "WALTER_NPC",
         "name": "Walter (NPC)",
@@ -53999,9 +56294,9 @@
             "ENCHANTED_RAW_FISH:16",
             "ENCHANTED_WATER_LILY:8",
             "ENCHANTED_RAW_SALMON:16",
-            "ENCHANTED_PRISMARINE_CRYSTALS:16",
-            "DIVER_FRAGMENT:1",
             "ENCHANTED_PRISMARINE_SHARD:16",
+            "DIVER_FRAGMENT:1",
+            "ENCHANTED_PRISMARINE_CRYSTALS:16",
             "ENCHANTED_SPONGE:4",
             "ENCHANTED_PUFFERFISH:16",
             "ENCHANTED_CLOWNFISH:8"
@@ -54549,6 +56844,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/White_Gift",
         "recipe": null
     },
+    "WHITE_GIFT_TALISMAN": {
+        "internal_name": "WHITE_GIFT_TALISMAN",
+        "name": "White Gift Talisman",
+        "rarity": "COMMON",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/White_Gift_Talisman",
+        "recipe": null
+    },
     "WHITE_SPIRAL_RUNE;1": {
         "internal_name": "WHITE_SPIRAL_RUNE;1",
         "name": "◆ White Spiral Rune I",
@@ -54591,6 +56893,13 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wilson's_Engineering_Plans",
         "recipe": null
     },
+    "WINDMILL_BARN_SKIN": {
+        "internal_name": "WINDMILL_BARN_SKIN",
+        "name": "Windmill Barn Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Windmill_Barn_Skin",
+        "recipe": null
+    },
     "WIND_CHIMES": {
         "internal_name": "WIND_CHIMES",
         "name": "Wind Chimes",
@@ -54610,6 +56919,20 @@
         "name": "Winter Disc",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Winter_Disc",
+        "recipe": null
+    },
+    "WINTER_ISLAND": {
+        "internal_name": "WINTER_ISLAND",
+        "name": "Winter Island",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Winter_Island",
+        "recipe": null
+    },
+    "WINTER_ISLAND_CRYSTAL": {
+        "internal_name": "WINTER_ISLAND_CRYSTAL",
+        "name": "Winter Crystal",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://wiki.hypixel.net/Winter_Crystal",
         "recipe": null
     },
     "WINTER_ROD": {
@@ -54898,6 +57221,20 @@
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wither_Goggles",
         "recipe": null
     },
+    "WITHER_GOGGLES_CELESTIAL": {
+        "internal_name": "WITHER_GOGGLES_CELESTIAL",
+        "name": "Celestial Wither Goggles Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
+    "WITHER_GOGGLES_CYBERPUNK": {
+        "internal_name": "WITHER_GOGGLES_CYBERPUNK",
+        "name": "Cyberpunk Wither Goggles Skin",
+        "rarity": "UNKNOWN",
+        "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Fire_Sale",
+        "recipe": null
+    },
     "WITHER_GOURD_MONSTER": {
         "internal_name": "WITHER_GOURD_MONSTER",
         "name": "Wither Gourd (Monster)",
@@ -54996,6 +57333,13 @@
         "name": "Wither Spectre (Monster)",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wither_Spectre",
+        "recipe": null
+    },
+    "WIZARD_NPC": {
+        "internal_name": "WIZARD_NPC",
+        "name": "Wizard (NPC)",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "WIZARD_WAND": {
@@ -55382,7 +57726,17 @@
         "name": "Wooden Shovel",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Wooden_Shovel",
-        "recipe": null
+        "recipe": [
+            "",
+            "WOOD:1",
+            "",
+            "",
+            "STICK:1",
+            "",
+            "",
+            "STICK:1",
+            ""
+        ]
     },
     "WOOD_STAIRS": {
         "internal_name": "WOOD_STAIRS",
@@ -55942,6 +58296,13 @@
         "name": "Y",
         "rarity": "UNKNOWN",
         "wiki_link": "https://hypixel-skyblock.fandom.com/wiki/Y",
+        "recipe": null
+    },
+    "YELLOW_BANDANA": {
+        "internal_name": "YELLOW_BANDANA",
+        "name": "Yellow Bandana",
+        "rarity": "UNKNOWN",
+        "wiki_link": null,
         "recipe": null
     },
     "YELLOW_FLOWER": {

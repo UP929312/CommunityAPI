@@ -94,5 +94,5 @@ print("6. Added cogs done.")
 #client.ip_address = "149.102.131.110"
 client.ip_address = "127.0.0.1"
 
-bot_key = open("text_files/bot_key.txt","r").read()
+bot_key = open("text_files/bot_key.txt" if not LOCAL_BOT else "text_files/dev_bot_key.txt","r").read() 
 client.run(bot_key)
