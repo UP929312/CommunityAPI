@@ -200,7 +200,14 @@ class minions_cog(commands.Cog):
                 price_formatted = "Price unknown"
             else:
                 price_formatted = f"Upgrade cost: {hf(int(price))}"
-            embed.add_field(name=f"{MINION_TIER_EMOJIS[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price_formatted, inline=True)
+
+            recipe_string = ""
+            for unique_ingredient in set(recipe):
+                amount_of_slots = recipe.count(unique_ingredient)
+                total_count = amount_of_slots * 1 if ":" not in unique_ingredient else unique_ingredient.split(":")[-1]
+                recipe_string += f"\n{ITEMS[unique_ingredient.split(':')[0]]['name']} x{total_count}"
+
+            embed.add_field(name=f"{MINION_TIER_EMOJIS[minion_tier(minion_name)]} {clean(minion_name)} - #{i}", value=price_formatted+recipe_string, inline=True)
 
             print(recipe)
 

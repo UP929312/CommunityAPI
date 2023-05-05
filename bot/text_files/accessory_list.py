@@ -820,10 +820,38 @@ talisman_upgrades: dict[str, list[str]] = {
       "BINGO_ARTIFACT"
     ],
     "GREAT_SPOOK_TALISMAN": [
-        "GREAT_SPOOK_RING"
-        "GREAT_SPOOK_ARTIFACT",
+      "GREAT_SPOOK_RING"
+      "GREAT_SPOOK_ARTIFACT",
     ],
     "GREAT_SPOOK_RING": [
-        "GREAT_SPOOK_ARTIFACT"
+      "GREAT_SPOOK_ARTIFACT"
+    ],
+    "GLACIAL_TALISMAN": [
+      "GLACIAL_RING",
+      "GLACIAL_ARTIFACT"
+    ],
+    "GOLD_GIFT_TALISMAN": [
+      "PURPLE_GIFT_TALISMAN",
+      "BLUE_GIFT_TALISMAN",
+      "GREEN_GIFT_TALISMAN",
+      "WHITE_GIFT_TALISMAN"
+    ],
+    "DRACONIC_TALISMAN": [
+      "DRACONIC_RING",
+      "DRACONIC_ARTIFACT"
+    ],
+    "VACCINE_TALISMAN": [
+      "VACCINE_RING",
+      "VACCINE_ARTIFACT"
+    ],
+    "CROPIE_TALISMAN": [
+      "SQUASH_RING",
+      "FERMENTO_ARTIFACT",
+    ],
+    "KUUDRA_FOLLOWER_ARTIFACT": [
+      "KUUDRA_FOLLOWER_RELIC",
+    ],
+    "FIERY_KUUDRA_CORE": [
+      "INFERNAL_KUUDRA_CORE",
     ],
 }
